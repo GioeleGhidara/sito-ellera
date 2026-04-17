@@ -948,6 +948,9 @@
             }
         ];
 
+        // OFFSET GLOBALE PER SINCRONIZZARE IL TEMPO
+        let serverTimeOffset = 0;
+
         // 3. LA NUOVA LOGICA DEL COUNTDOWN INTELLIGENTE
         function startCountdown(isoStart, isoEnd, dId, hId, mId, wrapId, themeClass, onComplete) {
             const pad = n => String(n).padStart(2, '0');
@@ -959,12 +962,22 @@
             if (!wrap) return;
 
             (function tick() {
-                const now = Date.now();
+                // Utilizza l'offset per correggere l'ora locale rispetto al server
+                const now = Date.now() + serverTimeOffset;
                 const start = new Date(isoStart).getTime();
                 const end = new Date(isoEnd).getTime();
 
+                if (isNaN(start) || isNaN(end)) return; // Failsafe per date non valide
+
                 if (now >= end) {
-                    if (onComplete) onComplete();
+                    if (onComplete) {
+                        onComplete();
+                    } else {
+                        // Per eventi statici, ferma il timer a zero visivamente
+                        if (dEl) dEl.textContent = '00';
+                        if (hEl) hEl.textContent = '00';
+                        if (mEl) mEl.textContent = '00';
+                    }
                     return;
                 }
 
@@ -974,10 +987,10 @@
                     return;
                 }
 
-                const diff = start - now;
+                const diff = Math.max(0, start - now);
                 if (dEl) dEl.textContent = pad(Math.floor(diff / 86400000));
-                if (hEl) hEl.textContent = pad(Math.floor(diff % 86400000 / 3600000));
-                if (mEl) mEl.textContent = pad(Math.floor(diff % 3600000 / 60000));
+                if (hEl) hEl.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+                if (mEl) mEl.textContent = pad(Math.floor((diff % 3600000) / 60000));
 
                 setTimeout(tick, 1000);
             })();
@@ -1044,14 +1057,32 @@
             }
         }
 
-        // Init dei box
-        loadNextEvent();
+        // SINCRONIZZAZIONE ORA SERVER E INIT DEI BOX
+        async function initAllCountdowns() {
+            try {
+                // Legge la data dal tuo stesso server per avere sempre il fuso orario online corretto
+                const res = await fetch(window.location.href, { method: 'HEAD', cache: 'no-store' });
+                const dateHeader = res.headers.get('Date');
+                if (dateHeader) {
+                    const serverTime = new Date(dateHeader).getTime();
+                    serverTimeOffset = serverTime - Date.now();
+                }
+            } catch (e) {
+                console.warn('Sync server time fallito, uso di sicurezza ora locale:', e);
+            }
 
-        // Bike Fest
-        startCountdown('2026-06-14T09:00:00+02:00', '2026-06-15T00:00:00+02:00', 'cb-d', 'cb-h', 'cb-m', 'cb-wrap', 'red', null);
+            // Init dei box testuali superando l'offset appena calcolato
+            loadNextEvent();
 
-        // Caruggi
-        startCountdown('2026-08-21T19:00:00+02:00', '2026-08-23T10:00:00+02:00', 'cl-d', 'cl-h', 'cl-m', 'cl-wrap', 'amber', null);
+            // Bike Fest
+            startCountdown('2026-06-14T09:00:00+02:00', '2026-06-15T00:00:00+02:00', 'cb-d', 'cb-h', 'cb-m', 'cb-wrap', 'red', null);
+
+            // Caruggi
+            startCountdown('2026-08-21T19:00:00+02:00', '2026-08-23T10:00:00+02:00', 'cl-d', 'cl-h', 'cl-m', 'cl-wrap', 'amber', null);
+        }
+
+        // Avvia il calcolo
+        initAllCountdowns();
 
         /* ── PARALLAX TITLE ── */
         document.addEventListener('mousemove', e => {
