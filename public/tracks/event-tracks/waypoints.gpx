@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="https://gpx.studio" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Punti di riferimento</name>
+    <desc>Waypoint punti di interesse</desc>
+  </metadata>
+  <wpt lat="44.329494" lon="8.512344">
+    <name>Scacchiera</name>
+  </wpt>
+  <wpt lat="44.344178" lon="8.499991">
+    <name>Società Luceto</name>
+  </wpt>
+  <wpt lat="44.364137" lon="8.464114">
+    <name>Murale</name>
+  </wpt>
+</gpx>

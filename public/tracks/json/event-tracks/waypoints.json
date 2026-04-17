@@ -1,0 +1,25 @@
+{
+    "source": "event-tracks/waypoints.gpx",
+    "simplifiedAt": 10,
+    "tracks": [],
+    "waypoints": [
+        {
+            "name": "Scacchiera",
+            "desc": "",
+            "lat": 44.329494,
+            "lon": 8.512344
+        },
+        {
+            "name": "Società Luceto",
+            "desc": "",
+            "lat": 44.344178,
+            "lon": 8.499991
+        },
+        {
+            "name": "Murale",
+            "desc": "",
+            "lat": 44.364137,
+            "lon": 8.464114
+        }
+    ]
+}

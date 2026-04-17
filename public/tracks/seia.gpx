@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1" creator="Trailforks.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <name>Seia GPX - Albi Trail Area</name>
+    <desc>Flow. Lunghezza 446.0 m - Salita +1 m - Discesa -76 m. Tempo medio: 00:02:22.</desc>
+    <author>
+      <name>Comitato Ellerese</name>
+    </author>
+    <link href="https://www.trailforks.com/trails/seia/">
+      <text>Trail reference</text>
+    </link>
+    <keywords>ellera,albi-trail-area,mtb,flow,downhill</keywords>
+    <time>2024-06-15T08:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Seia</name>
+    <desc>Flow. Lunghezza 446.0 m - Salita +1 m - Discesa -76 m.</desc>
+    <type>MTB Descent</type>
+    <trkseg>
+      <trkpt lat="44.35241" lon="8.49788">
+        <time>2024-06-15T08:00:00Z</time>
+        <ele>122</ele>
+      </trkpt>
+      <trkpt lat="44.35236" lon="8.49787">
+        <time>2024-06-15T08:00:00Z</time>
+        <ele>125</ele>
+      </trkpt>
+      <trkpt lat="44.35237" lon="8.49791">
+        <time>2024-06-15T08:00:01Z</time>
+        <ele>122</ele>
+      </trkpt>
+      <trkpt lat="44.3524" lon="8.49791">
+        <time>2024-06-15T08:00:01Z</time>
+        <ele>122</ele>
+      </trkpt>
+      <trkpt lat="44.35249" lon="8.49796">
+        <time>2024-06-15T08:00:02Z</time>
+        <ele>118</ele>
+      </trkpt>
+      <trkpt lat="44.35269" lon="8.49806">
+        <time>2024-06-15T08:00:05Z</time>
+        <ele>113</ele>
+      </trkpt>
+      <trkpt lat="44.35279" lon="8.49809">
+        <time>2024-06-15T08:00:07Z</time>
+        <ele>113</ele>
+      </trkpt>
+      <trkpt lat="44.35285" lon="8.49798">
+        <time>2024-06-15T08:00:08Z</time>
+        <ele>113</ele>
+      </trkpt>
+      <trkpt lat="44.3529" lon="8.49801">
+        <time>2024-06-15T08:00:09Z</time>
+        <ele>113</ele>
+      </trkpt>
+      <trkpt lat="44.35296" lon="8.4981">
+        <time>2024-06-15T08:00:10Z</time>
+        <ele>104</ele>
+      </trkpt>
+      <trkpt lat="44.35305" lon="8.49816">
+        <time>2024-06-15T08:00:11Z</time>
+        <ele>104</ele>
+      </trkpt>
+      <trkpt lat="44.35316" lon="8.49817">
+        <time>2024-06-15T08:00:13Z</time>
+        <ele>104</ele>
+      </trkpt>
+      <trkpt lat="44.35323" lon="8.49841">
+        <time>2024-06-15T08:00:16Z</time>
+        <ele>90</ele>
+      </trkpt>
+      <trkpt lat="44.35333" lon="8.49855">
+        <time>2024-06-15T08:00:18Z</time>
+        <ele>84</ele>
+      </trkpt>
+      <trkpt lat="44.3534" lon="8.49874">
+        <time>2024-06-15T08:00:19Z</time>
+        <ele>84</ele>
+      </trkpt>
+      <trkpt lat="44.35332" lon="8.49889">
+        <time>2024-06-15T08:00:21Z</time>
+        <ele>77</ele>
+      </trkpt>
+      <trkpt lat="44.35317" lon="8.49901">
+        <time>2024-06-15T08:00:24Z</time>
+        <ele>83</ele>
+      </trkpt>
+      <trkpt lat="44.35304" lon="8.49906">
+        <time>2024-06-15T08:00:26Z</time>
+        <ele>72</ele>
+      </trkpt>
+      <trkpt lat="44.35297" lon="8.49911">
+        <time>2024-06-15T08:00:27Z</time>
+        <ele>72</ele>
+      </trkpt>
+      <trkpt lat="44.35292" lon="8.49912">
+        <time>2024-06-15T08:00:27Z</time>
+        <ele>72</ele>
+      </trkpt>
+      <trkpt lat="44.35284" lon="8.49913">
+        <time>2024-06-15T08:00:29Z</time>
+        <ele>73</ele>
+      </trkpt>
+      <trkpt lat="44.35274" lon="8.49916">
+        <time>2024-06-15T08:00:30Z</time>
+        <ele>73</ele>
+      </trkpt>
+      <trkpt lat="44.3526" lon="8.49919">
+        <time>2024-06-15T08:00:32Z</time>
+        <ele>78</ele>
+      </trkpt>
+      <trkpt lat="44.35253" lon="8.49924">
+        <time>2024-06-15T08:00:33Z</time>
+        <ele>78</ele>
+      </trkpt>
+      <trkpt lat="44.35247" lon="8.49935">
+        <time>2024-06-15T08:00:35Z</time>
+        <ele>65</ele>
+      </trkpt>
+      <trkpt lat="44.35245" lon="8.49948">
+        <time>2024-06-15T08:00:36Z</time>
+        <ele>65</ele>
+      </trkpt>
+      <trkpt lat="44.35253" lon="8.49954">
+        <time>2024-06-15T08:00:37Z</time>
+        <ele>65</ele>
+      </trkpt>
+      <trkpt lat="44.35262" lon="8.49958">
+        <time>2024-06-15T08:00:38Z</time>
+        <ele>65</ele>
+      </trkpt>
+      <trkpt lat="44.35263" lon="8.49966">
+        <time>2024-06-15T08:00:40Z</time>
+        <ele>55</ele>
+      </trkpt>
+      <trkpt lat="44.35257" lon="8.49971">
+        <time>2024-06-15T08:00:41Z</time>
+        <ele>55</ele>
+      </trkpt>
+      <trkpt lat="44.35248" lon="8.49986">
+        <time>2024-06-15T08:00:42Z</time>
+        <ele>55</ele>
+      </trkpt>
+      <trkpt lat="44.35239" lon="8.5">
+        <time>2024-06-15T08:00:44Z</time>
+        <ele>49</ele>
+      </trkpt>
+      <trkpt lat="44.3523" lon="8.50013">
+        <time>2024-06-15T08:00:46Z</time>
+        <ele>54</ele>
+      </trkpt>
+      <trkpt lat="44.35221" lon="8.50028">
+        <time>2024-06-15T08:00:48Z</time>
+        <ele>48</ele>
+      </trkpt>
+      <trkpt lat="44.3521" lon="8.50035">
+        <time>2024-06-15T08:00:49Z</time>
+        <ele>48</ele>
+      </trkpt>
+      <trkpt lat="44.35201" lon="8.50042">
+        <time>2024-06-15T08:00:51Z</time>
+        <ele>46</ele>
+      </trkpt>
+      <trkpt lat="44.35191" lon="8.5005">
+        <time>2024-06-15T08:00:52Z</time>
+        <ele>46</ele>
+      </trkpt>
+      <trkpt lat="44.35185" lon="8.50054">
+        <time>2024-06-15T08:00:53Z</time>
+        <ele>46</ele>
+      </trkpt>
+      <trkpt lat="44.35175" lon="8.50065">
+        <time>2024-06-15T08:00:55Z</time>
+        <ele>53</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

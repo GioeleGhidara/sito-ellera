@@ -1,0 +1,73 @@
+import {
+  panel01,
+  panel02,
+  panel03,
+  panel04,
+  panel05,
+  panel06,
+} from "@/assets/images";
+
+export interface GalleryImageItem {
+  src: string;
+  alt: string;
+}
+
+export const artists = [
+  "Aldo Pagliaro",
+  "Alfredo Sosabravo",
+  "Arturo Santillo",
+  "Bartolomeo Delfino",
+  "Beppe Schiavetta",
+  "Bill Michael Linde",
+  "Bruno Cassaglia",
+  "Carla Tolomeo",
+  "Carlo Nangeroni",
+  "Carlo Tirone",
+  "Christina Von Bitter",
+  "Dario Rossi",
+  "Ernst Heckelmann",
+  "Errika Pontevichi",
+  "Francesco Cento",
+  "Francesco Favagrossa",
+  "Francesco Preverino",
+  "Franco Bruzzone",
+  "Franz Hitzler",
+  "Giorgio Moiso",
+  "Heike Pillemann",
+  "Italo Bolano",
+  "Luciano Fiannacca",
+  "Luisa Delfino",
+  "Luiso Sturla",
+  "Marco Lodola",
+  "Maria D'Orazio",
+  "Marino Iotti",
+  "Maurizio Diana",
+  "Milena Milani",
+  "Nes Lerpa",
+  "Paolo Valle",
+  "Peter Casagrande",
+  "Piermario Dorigatti",
+  "Pietro Bulloni",
+  "Primo Formenti",
+  "Raffaele Scaglione",
+  "Renata Minuto",
+  "Roberto Giannotti",
+  "Sabrina Miconi",
+  "Silvana Priametto",
+  "Stefano Soddu",
+  "Stellario Baccellieri",
+  "Timour Lam",
+  "Tony Salem",
+  "Tony Tedesco",
+  "Walter Di Giusto",
+  "Ylli Plaka",
+];
+
+export const galleryImages: GalleryImageItem[] = [
+  { src: panel01, alt: "Pannello ceramico 1" },
+  { src: panel02, alt: "Pannello ceramico 2" },
+  { src: panel03, alt: "Pannello ceramico 3" },
+  { src: panel04, alt: "Pannello ceramico 4" },
+  { src: panel05, alt: "Pannello ceramico 5" },
+  { src: panel06, alt: "Pannello ceramico 6" },
+];

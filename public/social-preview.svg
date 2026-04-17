@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#101727"/>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1010" cy="120" r="180" fill="#D77254" fill-opacity=".18"/>
+  <circle cx="180" cy="540" r="220" fill="#D0E1D4" fill-opacity=".12"/>
+  <path d="M0 500C180 430 300 390 480 420C660 450 840 560 1200 430V630H0V500Z" fill="#1E2A43" fill-opacity=".55"/>
+  <path d="M0 560C220 480 390 470 570 500C760 532 920 610 1200 520V630H0V560Z" fill="#0F172A" fill-opacity=".45"/>
+  <g filter="url(#shadow)">
+    <rect x="78" y="76" width="1044" height="478" rx="30" fill="white" fill-opacity=".08"/>
+    <rect x="79.5" y="77.5" width="1041" height="475" rx="28.5" stroke="white" stroke-opacity=".14" stroke-width="3"/>
+  </g>
+  <text x="110" y="205" fill="#F7F4ED" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700">Ellera</text>
+  <text x="112" y="284" fill="#D77254" font-family="Verdana, Geneva, sans-serif" font-size="30" font-weight="700" letter-spacing="5">Borgo, Arte e Outdoor in Liguria</text>
+  <text x="112" y="372" fill="#E5E7EB" font-family="Verdana, Geneva, sans-serif" font-size="38">
+    Galleria a cielo aperto, trail MTB, trekking,
+  </text>
+  <text x="112" y="424" fill="#E5E7EB" font-family="Verdana, Geneva, sans-serif" font-size="38">
+    teatro, tradizioni ed eventi nella Valle Sansobbia.
+  </text>
+  <text x="112" y="500" fill="#D0E1D4" font-family="Verdana, Geneva, sans-serif" font-size="26" font-weight="700" letter-spacing="2">COMITATO ELLERESE</text>
+  <defs>
+    <linearGradient id="bg" x1="102" y1="66" x2="1117" y2="583" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A2540"/>
+      <stop offset=".52" stop-color="#122033"/>
+      <stop offset="1" stop-color="#25314F"/>
+    </linearGradient>
+    <filter id="shadow" x="58" y="60" width="1084" height="518" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="10"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0156863 0 0 0 0 0.0235294 0 0 0 0 0.0431373 0 0 0 0.35 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+</svg>

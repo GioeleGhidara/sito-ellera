@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informativa Privacy - Albi Trail E-Bike Fest</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c4321a;
+      --red-hot: #e84d2a;
+      --red-dark: #7a1e0a;
+      --red-warm: #ff6b3d;
+      --black: #090807;
+      --black2: #121110;
+      --black3: #1c1a18;
+      --white: #f4ede6;
+      --sand: #c8b89a;
+      --grey: #3a3632;
+      --grey-lt: #857c74;
+    }
+
+    /* Base styles */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      padding: 0;
+      cursor: crosshair;
+    }
+
+    /* NOISE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.032;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(to bottom, rgba(9, 8, 7, 0.96), transparent);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red-hot);
+      flex-shrink: 0;
+    }
+
+    main {
+      padding: 10rem 3rem 6rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--red-hot);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-tag::after {
+      content: '';
+      height: 1px;
+      background: var(--grey);
+      width: 50px;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 0.95;
+      margin-bottom: 3rem;
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin: 2.5rem 0 1rem;
+      border-bottom: 1px solid var(--grey);
+      padding-bottom: 0.5rem;
+    }
+
+    p,
+    li {
+      font-size: 0.95rem;
+      color: var(--grey-lt);
+      margin-bottom: 1.2rem;
+    }
+
+    strong {
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    ul li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--red-warm);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      border: 1px solid var(--grey);
+      padding: 0.8rem 1.6rem;
+      margin-top: 4rem;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      border-color: var(--red-warm);
+      color: var(--red-warm);
+      transform: translateX(-5px);
+    }
+
+    footer {
+      border-top: 1px solid var(--grey);
+      padding: 3rem;
+      text-align: center;
+      background: var(--black2);
+    }
+
+    .footer-copy {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--grey);
+      text-transform: uppercase;
+    }
+
+    /* CURSOR - solo desktop */
+    .cursor-dot {
+      display: none;
+      width: 8px;
+      height: 8px;
+      background: var(--red-hot);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+    }
+
+    @media (pointer: fine) {
+      .cursor-dot {
+        display: block;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      nav {
+        padding: 1rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor-dot" id="dot"></div>
+
+  <nav>
+    <a href="/albi-trail-ebike-fest" class="nav-logo">
+      <div class="nav-logo-dot"></div>
+      Albi Trail<span style="color:var(--red-warm);margin-left:0.15em;">E-Bike&nbsp;Fest</span>
+    </a>
+  </nav>
+
+  <main>
+    <div class="section-tag">GDPR Compliant</div>
+    <h1>Informativa sulla<br>Privacy</h1>
+
+    <p>Ai sensi dell'<strong>art. 13 del Regolamento UE n. 2016/679</strong> (General Data Protection Regulation -
+      GDPR), questa informativa descrive le modalità con cui il <strong>Comitato Ellerese</strong> tratta i dati
+      personali raccolti tramite il sito web e i moduli di iscrizione relativi all'evento <strong>Albi Trail E-Bike
+        Fest</strong>.</p>
+
+    <h2>1. Titolare del Trattamento</h2>
+    <p>Il Titolare del trattamento è il <strong>Comitato Ellerese</strong>, con sede legale in Ellera, Albisola
+      Superiore (SV), nella persona del suo legale rappresentante pro tempore.</p>
+    <p>Per qualsiasi richiesta o chiarimento, è possibile contattare il Titolare via email all'indirizzo: <a
+        href="mailto:info@ellera.it" style="color:var(--red-warm);text-decoration:none;">info@ellera.it</a>.</p>
+
+    <h2>2. Oggetto del Trattamento</h2>
+    <p>Il Titolare tratta i dati personali identificativi (nome, cognome, indirizzo email, telefono) volontariamente
+      forniti in fase di pre-registrazione. Ai fini della validità legale e del log di consenso (Art. 7 GDPR), il
+      sistema acquisisce e conserva l'<strong>Indirizzo IP</strong>, lo <strong>User Agent</strong> del browser e il
+      <strong>Timestamp</strong> esatto dell'iscrizione.</p>
+    <p>Inoltre, per la partecipazione all'attività e al pranzo, il Titolare tratta esclusivamente i dati identificativi,
+      la dichiarazione soggettiva di idoneità fisica all'attività resa dall'interessato in fase di iscrizione, e i dati
+      particolari (Art. 9 GDPR) relativi ad eventuali allergie o intolleranze alimentari segnalate volontariamente nel
+      modulo per la gestione del catering.</p>
+
+    <h2>3. Finalità e Base Giuridica</h2>
+    <p>Il trattamento avviene sulla base degli <strong>Articoli 6.1.a (Consenso), 6.1.b (Esecuzione
+        contrattuale/servizio) e 6.1.c (Obbligo legale)</strong> per le seguenti finalità:</p>
+    <ul>
+      <li>Gestione dell'iscrizione e partecipazione all'evento;</li>
+      <li>Adempimenti connessi alla copertura assicurativa RC dell'organizzazione;</li>
+      <li>Assolvimento di obblighi di legge, regolamento o norme di pubblica sicurezza;</li>
+      <li>Invio di comunicazioni logistiche urgenti e di servizio relative all'evento.</li>
+    </ul>
+
+    <h2>4. Trattamento di Immagini e Video (Liberatoria)</h2>
+    <p>Durante lo svolgimento dell'evento potranno essere acquisite immagini o riprese audio-video che La ritraggono. Ai
+      sensi del consenso libero e distinto prestato nel modulo di iscrizione (Art. 7 GDPR), il Titolare utilizzerà tali
+      materiali per <strong>finalità documentali, storiche e di promozione</strong> sui propri canali digitali e social,
+      nel rispetto del decoro e della dignità dell'interessato.</p>
+
+    <h2>5. Modalità del Trattamento e Conservazione</h2>
+    <p>Il trattamento sarà effettuato sia con strumenti manuali che informatici, garantendo standard elevati di
+      integrità e riservatezza. I dati generali e i log di consenso saranno conservati per i tempi previsti dalle
+      normative di prescrizione legale (10 anni per le finalità di tutela legale).</p>
+    <p>I <strong>dati particolari relativi alla salute</strong> (allergie e intolleranze alimentari) saranno conservati
+      unicamente per il tempo strettamente necessario alla gestione logistica e al catering, e <strong>verranno
+        definitivamente cancellati e distrutti immediatamente dopo la conclusione dell'evento</strong>.</p>
+
+    <h2>6. Destinatari dei Dati</h2>
+    <p>I dati di iscrizione vengono registrati su Supabase (database cloud con server in area UE) e su Google Sheets,
+      accessibili ai soli organizzatori dell'evento. I dati potranno inoltre essere comunicati a soggetti terzi
+      esclusivamente per l'erogazione del servizio (es. compagnie di assicurazione per la polizza RC
+      dell'organizzazione, organi di vigilanza e soccorso, autorità giudiziarie in caso di sinistri).</p>
+    <p>I versamenti dei contributi di partecipazione avvengono in modo sicuro tramite gateway di pagamento esterni
+      (<strong>Stripe</strong> e <strong>PayPal</strong>). Tali società elaborano i dati delle transazioni finanziarie
+      in qualità di autonomi Titolari del Trattamento in base alle proprie privacy policy. Non è prevista la diffusione
+      dei dati a fini commerciali verso terzi senza esplicito consenso.</p>
+
+    <h2>7. Diritti dell'Interessato</h2>
+    <p>Nella Sua qualità di interessato, Lei gode dei diritti sanciti dagli <strong>Artt. 15, 16, 17, 18, 20 e 21 del
+        GDPR</strong>:</p>
+    <ul>
+      <li><strong>Diritto di accesso:</strong> per conoscere quali dati stiamo trattando;</li>
+      <li><strong>Diritto di rettifica:</strong> per correggere dati inesatti o incompleti;</li>
+      <li><strong>Diritto alla cancellazione (oblio):</strong> sussistendone i presupposti legali;</li>
+      <li><strong>Diritto alla limitazione e opposizione:</strong> per limitare il trattamento per motivi legittimi;
+      </li>
+      <li><strong>Diritto alla portabilità:</strong> per ricevere i dati in formato strutturato.</li>
+    </ul>
+    <p>Lei ha inoltre il diritto di revocare il consenso in qualsiasi momento (Art. 7.3 GDPR) o di proporre reclamo
+      all'Autorità Garante per la Protezione dei Dati Personali.</p>
+
+    <a href="/albi-trail-ebike-fest" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(180deg);">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+      Torna all'evento
+    </a>
+  </main>
+
+  <footer>
+    <div class="footer-copy">© 2026 COMITATO ELLERESE - REGOLAMENTO UE 2016/679</div>
+  </footer>
+
+  <script>
+    /* CURSOR */
+    const dot = document.getElementById('dot');
+    if (dot) {
+      document.addEventListener('mousemove', e => {
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+      });
+    }
+  </script>
+</body>
+
+</html>

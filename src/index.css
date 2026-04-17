@@ -1,0 +1,172 @@
+/* ── Font ─────────────────────────────────────────────────────────────────────
+   Fraunces: heading serif espressivo (sostituisce Lora)
+   Source Sans 3: body sans-serif (invariato)
+   ──────────────────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Superfici ── */
+    --background: 36 28% 94%;
+    /* crema leggermente più calda (era 40 20% 98%) */
+    --foreground: 155 20% 14%;
+    /* quasi-nero con tonalità verde */
+
+    --card: 0 0% 100%;
+    --card-foreground: 155 20% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 155 20% 14%;
+
+    /* ── Primary: verde foresta (era blu navy 215 55% 32%) ── */
+    --primary: 155 35% 28%;
+    /* #1a3028 - il forest di LaPedaliamoInsieme */
+    --primary-foreground: 0 0% 100%;
+
+    /* ── Secondary: crema/sabbia ── */
+    --secondary: 40 30% 94%;
+    --secondary-foreground: 155 20% 14%;
+
+    /* ── Muted ── */
+    --muted: 40 18% 91%;
+    --muted-foreground: 155 8% 44%;
+
+    /* ── Accent: terracotta/ambra (invariato - si lega alla ceramica) ── */
+    --accent: 28 72% 48%;
+    /* leggermente più caldo dell'originale 20 75% 50% */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 18% 86%;
+    --input: 40 18% 86%;
+    --ring: 155 35% 28%;
+
+    --radius: 0.5rem;
+
+    /* ── Custom tokens ── */
+    --terracotta: 28 72% 48%;
+    --terracotta-light: 28 55% 93%;
+    --maiolica: 155 35% 28%;
+    /* ora verde, coerente col primary */
+    --maiolica-light: 155 30% 92%;
+    --warm-stone: 35 25% 85%;
+    --cream: 40 30% 96%;
+
+    /* ── Sage (nuovo - usato in LaPedaliamoInsieme, utile per accenti sottili) ── */
+    --sage: 145 28% 55%;
+  }
+
+  .dark {
+    --background: 155 20% 8%;
+    --foreground: 40 20% 94%;
+
+    --card: 155 18% 11%;
+    --card-foreground: 40 20% 94%;
+
+    --popover: 155 18% 11%;
+    --popover-foreground: 40 20% 94%;
+
+    --primary: 155 32% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 155 12% 16%;
+    --secondary-foreground: 40 20% 94%;
+
+    --muted: 155 12% 16%;
+    --muted-foreground: 155 8% 58%;
+
+    --accent: 28 68% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 155 12% 20%;
+    --input: 155 12% 20%;
+    --ring: 155 32% 52%;
+
+    --terracotta: 28 68% 54%;
+    --terracotta-light: 28 25% 18%;
+    --maiolica: 155 32% 52%;
+    --maiolica-light: 155 20% 18%;
+    --warm-stone: 35 12% 22%;
+    --cream: 155 12% 12%;
+    --sage: 145 22% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Source Sans 3", system-ui, sans-serif;
+  }
+
+  /* Fraunces per tutti gli heading - stessa logica di LaPedaliamoInsieme */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Fraunces", Georgia, serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-maiolica {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--maiolica)), hsl(155 28% 42%));
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.52) 100%);
+  }
+
+  .bg-gradient-terracotta {
+    background: linear-gradient(135deg, hsl(var(--terracotta)), hsl(18 76% 40%));
+  }
+
+  .shadow-warm {
+    box-shadow: 0 10px 40px -12px hsl(var(--terracotta) / 0.15);
+  }
+
+  .shadow-maiolica {
+    box-shadow: 0 10px 40px -12px hsl(var(--maiolica) / 0.18);
+  }
+
+  /* Utility for hiding scrollbar but allowing scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+/* Trail tooltip */
+.trail-tooltip {
+  background: hsl(155 20% 14% / 0.92) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 13px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.trail-tooltip::before {
+  border-top-color: hsl(155 20% 14% / 0.92) !important;
+}

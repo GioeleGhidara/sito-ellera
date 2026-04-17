@@ -1,0 +1,22 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F4EFE6"/>
+  <rect x="48" y="48" width="1504" height="804" rx="28" fill="url(#bg)"/>
+  <rect x="116" y="116" width="1368" height="668" rx="24" fill="#FFF9F0" stroke="#D6C9B6" stroke-width="4" stroke-dasharray="18 14"/>
+  <circle cx="800" cy="370" r="116" fill="#E7DCCB"/>
+  <path d="M730 430L792 352C800 342 816 342 824 352L878 421C888 434 878 454 862 454H746C728 454 719 432 730 430Z" fill="#C7B59B"/>
+  <circle cx="872" cy="300" r="32" fill="#C7B59B"/>
+  <path d="M680 628H920" stroke="#B0946E" stroke-width="16" stroke-linecap="round"/>
+  <path d="M722 680H878" stroke="#C7B59B" stroke-width="12" stroke-linecap="round"/>
+  <text x="800" y="560" text-anchor="middle" fill="#6E5A3D" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="700">
+    Immagine da sostituire
+  </text>
+  <text x="800" y="735" text-anchor="middle" fill="#8B7355" font-family="Arial, Helvetica, sans-serif" font-size="32" letter-spacing="3">
+    PLACEHOLDER PER I RACCONTI DI ELLERA
+  </text>
+  <defs>
+    <linearGradient id="bg" x1="136" y1="96" x2="1468" y2="804" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EFE3D0"/>
+      <stop offset="1" stop-color="#F8F2E8"/>
+    </linearGradient>
+  </defs>
+</svg>
