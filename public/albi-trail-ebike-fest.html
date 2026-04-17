@@ -3226,16 +3226,20 @@
 
               <!-- STRIPE - SEZIONE CARTA DI CREDITO -->
               <div id="stripe-section" class="w-full-max-400">
+                <!-- INTEGRAZIONE SOSPESA
                 <div id="stripe-card-element"
                   style="background:var(--black);border:1px solid var(--grey);padding:0.9rem 1.2rem;transition:border-color 0.2s;">
                 </div>
                 <div id="stripe-card-errors"
                   style="display:none;margin-top:0.4rem;font-size:0.8rem;color:var(--red-hot);font-family:'Barlow',sans-serif;">
                 </div>
-
+                -->
                 <button type="button" id="btn-stripe" disabled
-                  style="margin-top:0.4rem;width:100%;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;background:var(--red-warm);color:var(--white);border:none;padding:1.1rem;cursor:pointer;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%);transition:all 0.2s;opacity:0.45;">
-                  Salda con Carta
+                  style="margin-top:0.4rem;width:100%;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;background:#3a3632;color:rgba(255,255,255,0.4);border:none;padding:1.1rem;cursor:not-allowed;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%);">
+                  <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+                     <span style="font-weight:700;letter-spacing:0.1em;border:1px solid rgba(255,255,255,0.2);padding:2px 8px;border-radius:4px;font-family:'Barlow',sans-serif;font-size:0.75rem;">Stripe</span> 
+                     MOMENTANEAMENTE FUORI SERVIZIO
+                  </div>
                 </button>
               </div>
 
@@ -3680,6 +3684,7 @@
 
       if (window.Stripe) {
         stripeInstance = Stripe(STRIPE_PK);
+        /* INTEGRAZIONE SOSPESA 
         const elements = stripeInstance.elements({
           // Stile del campo carta che si adatta al tema scuro della pagina
           fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&display=swap' }]
@@ -3723,6 +3728,7 @@
             errBox.style.display = 'none';
           }
         });
+        */
       }
 
       /* ---------- Handler bottone Stripe ---------- */
