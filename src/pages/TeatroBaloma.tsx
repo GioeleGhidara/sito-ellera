@@ -9,12 +9,10 @@ import {
   HardHat,
   Heart,
   Info,
-  Instagram,
   Mail,
   MapPin,
   Music,
   Phone,
-  Quote,
   Sparkles,
   Theater,
   Users,
@@ -49,7 +47,6 @@ import {
   teatroBalomaContacts,
   teatroBalomaHighlights,
   teatroBalomaIntro,
-  teatroBalomaNeeds,
   teatroBalomaRecentEvents,
   teatroBalomaTimeline,
   teatroBalomaUseCases,
@@ -352,39 +349,20 @@ const TeatroBaloma = () => {
                 {teatroBalomaIntro.lead}
               </p>
 
-              {/* Paragrafi 2 e 3 nascosti su mobile: il lead + primo para danno contesto sufficiente */}
-              <div className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground sm:mt-6 sm:space-y-4 sm:text-base sm:leading-relaxed">
-                {teatroBalomaIntro.paragraphs.map((paragraph, i) => (
-                  <p key={paragraph} className={i > 0 ? "hidden sm:block" : undefined}>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-
-              <div className="mt-6 rounded-3xl border border-accent/15 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent p-4 sm:mt-8 sm:p-6">
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground sm:mt-1 sm:h-11 sm:w-11 sm:rounded-2xl">
-                    <Quote className="h-4 w-4 sm:h-5 sm:w-5" />
-                  </div>
-                  <div>
-                    <p className="text-lg font-heading font-bold text-foreground sm:text-xl">
-                      {teatroBalomaIntro.quote}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      Il dato più importante non è tecnico: il Balomà ha senso se continua a essere usato, prenotato,
-                      frequentato e riconosciuto come spazio comune.
-                    </p>
-                    <div className="mt-4 sm:mt-5">
-                      <Link
-                        to={`${ROUTES.tradizioni}/cinema-e-teatro-balomà`}
-                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent/80 hover:underline"
-                      >
-                        Vuoi saperne di più? Leggi la storia completa qui
-                        <ArrowUpRight className="h-4 w-4" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link
+                  to={`${ROUTES.tradizioni}/cinema-e-teatro-balomà`}
+                  className="group inline-flex items-center gap-2 rounded-full bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent transition-all hover:bg-accent/20"
+                >
+                  Leggi la storia completa
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+                <Link
+                  to={ROUTES.teatroBalomaSupport}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline"
+                >
+                  Come sostenere il progetto
+                </Link>
               </div>
             </motion.div>
 
@@ -632,181 +610,45 @@ const TeatroBaloma = () => {
         </div>
       </section>
 
-      {/* ── SUPPORT ───────────────────────────────────────────────────────── */}
+      {/* ── SUPPORT CTA ─────────────────────────────────────────────────── */}
       <section
         id="sostieni"
-        className="scroll-mt-24 border-y border-border/60 bg-[hsl(35,45%,96%)] py-10 sm:py-16 lg:scroll-mt-28 lg:py-24"
+        className="scroll-mt-24 border-y border-border/60 bg-[hsl(35,45%,96%)] py-12 sm:py-20 lg:scroll-mt-28"
       >
         <div className={pageContainerClassName}>
-          <div className="grid gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-start">
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-card px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                <Heart className="h-3.5 w-3.5" />
-                Sostieni il Balomà
-              </span>
-              <h2 className="mt-4 text-2xl font-heading font-bold text-foreground sm:text-3xl lg:text-4xl">
-                Sostegno e obiettivi per far crescere davvero il Balomà
-              </h2>
-              <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base sm:leading-relaxed">
-                Se vuoi contribuire, c'è una pagina dedicata con bonifico, PayPal e contatti diretti. Qui sotto trovi
-                anche gli obiettivi concreti su cui oggi il sostegno può incidere davvero.
-              </p>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:mt-4">
-                {teatroBalomaContacts.supportNote}
-              </p>
-
-              <div className="mt-6 sm:mt-8">
-                <Link
-                  to={ROUTES.teatroBalomaSupport}
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
-                >
-                  Pagina sostegno completa
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="mt-5 rounded-3xl border border-border/70 bg-card/85 p-4 shadow-[0_18px_52px_-36px_hsl(var(--foreground)/0.32)] sm:mt-8 sm:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Obiettivi</p>
-                <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:space-y-3">
-                  {teatroBalomaNeeds.map((item) => (
-                    <li key={item.title} className="list-inside list-disc">
-                      <span className="font-semibold text-foreground">{item.title}:</span> {item.description}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <motion.aside
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                className="relative rounded-3xl border border-border/70 bg-card p-4 shadow-[0_24px_60px_-36px_hsl(var(--foreground)/0.35)] sm:p-6"
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="flex flex-col items-center text-center"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-card px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+              <Heart className="h-3.5 w-3.5" />
+              Sostieni il Balomà
+            </span>
+            <h2 className="mt-6 text-2xl font-heading font-bold text-foreground sm:text-3xl lg:text-4xl">
+              Vuoi aiutare il Balomà a crescere davvero?
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Dalle donazioni via bonifico e PayPal al supporto pratico negli spazi: scopri tutti i modi per contribuire al progetto e gli obiettivi che stiamo portando avanti.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                to={ROUTES.teatroBalomaSupport}
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-all hover:opacity-90"
               >
-                <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
-                  <GhostHandCoins className="absolute -bottom-3 -right-3 h-24 w-24 text-accent opacity-[0.07] sm:h-28 sm:w-28" />
-                </div>
-                <div className="relative">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Accesso rapido</p>
-                  <h3 className="mt-2.5 text-xl font-heading font-bold text-foreground sm:mt-3 sm:text-2xl">
-                    Dati essenziali, senza distrazioni
-                  </h3>
-                  <div className="mt-4 flex flex-wrap gap-3 sm:mt-6">
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <button
-                          type="button"
-                          className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-accent/30 hover:text-accent"
-                        >
-                          Bonifico
-                          <ArrowUpRight className="h-4 w-4" />
-                        </button>
-                      </PopoverTrigger>
-                      <PopoverContent
-                        side="bottom"
-                        align="start"
-                        className="w-[calc(100vw-2.5rem)] max-w-[340px] rounded-3xl border-border/70 p-5"
-                      >
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Bonifico</p>
-                        <p className="mt-4 text-sm font-semibold text-foreground">
-                          {teatroBalomaContacts.supportAccountHolder}
-                        </p>
-                        <p className="mt-3 break-all font-mono text-sm text-foreground">
-                          {teatroBalomaContacts.supportIban}
-                        </p>
-                      </PopoverContent>
-                    </Popover>
-
-                    <a
-                      href={teatroBalomaContacts.supportPaypalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-accent/30 hover:text-accent"
-                    >
-                      PayPal
-                      <ArrowUpRight className="h-4 w-4" />
-                    </a>
-                  </div>
-                </div>
-              </motion.aside>
-
-              <motion.aside
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                className="relative rounded-3xl border border-border/70 bg-card p-4 shadow-[0_24px_60px_-36px_hsl(var(--foreground)/0.35)] sm:p-6"
+                Scopri come sostenerci
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+              <a
+                href={`mailto:${teatroBalomaContacts.email}`}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-accent/5"
               >
-                <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
-                  <GhostPhone className="absolute -bottom-3 -right-3 h-24 w-24 text-accent opacity-[0.07] sm:h-28 sm:w-28" />
-                </div>
-                <div className="relative">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Affitto e contatti</p>
-                  <h3 className="mt-2.5 text-xl font-heading font-bold text-foreground sm:mt-3 sm:text-2xl">
-                    Porta un'attività dentro il Balomà
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground sm:mt-3">
-                    La sala può essere affittata e adattata a incontri, presentazioni, prove, laboratori e piccole
-                    rassegne.
-                  </p>
-
-                  <div className="mt-4 space-y-2.5 sm:mt-6 sm:space-y-3">
-                    <a
-                      href={`tel:${teatroBalomaContacts.phone}`}
-                      className="flex items-center justify-between rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent/30 hover:text-primary"
-                    >
-                      <span className="inline-flex items-center gap-3">
-                        <Phone className="h-4 w-4 text-accent" />
-                        {teatroBalomaContacts.phone}
-                      </span>
-                      <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
-                    </a>
-
-                    <a
-                      href={`mailto:${teatroBalomaContacts.email}`}
-                      className="flex items-center justify-between rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent/30 hover:text-primary"
-                    >
-                      <span className="inline-flex min-w-0 items-center gap-3">
-                        <Mail className="h-4 w-4 flex-shrink-0 text-accent" />
-                        <span className="break-all">{teatroBalomaContacts.email}</span>
-                      </span>
-                      <ArrowUpRight className="ml-2 h-4 w-4 flex-shrink-0 text-muted-foreground" />
-                    </a>
-
-                    <a
-                      href={teatroBalomaContacts.instagramUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent/30 hover:text-primary"
-                    >
-                      <span className="inline-flex min-w-0 items-center gap-3">
-                        <Instagram className="h-4 w-4 flex-shrink-0 text-accent" />
-                        <span className="break-all">{teatroBalomaContacts.instagramLabel}</span>
-                      </span>
-                      <ArrowUpRight className="ml-2 h-4 w-4 flex-shrink-0 text-muted-foreground" />
-                    </a>
-                  </div>
-
-                  <div className="mt-4 rounded-2xl bg-secondary/60 p-3.5 sm:mt-6 sm:p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                      Dove si trova
-                    </p>
-                    <p className="mt-2 inline-flex items-start gap-2 text-sm leading-relaxed text-foreground">
-                      <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
-                      {teatroBalomaContacts.address}
-                    </p>
-                  </div>
-                </div>
-              </motion.aside>
+                Contattaci direttamente
+              </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

@@ -59,13 +59,7 @@ export interface TeatroBalomaRecentEvent {
 
 export const teatroBalomaIntro = {
   lead:
-    "Costruito alla fine del Seicento come Oratorio della Confraternita di San Lorenzo, il Teatro Balomà è un ex cinema rinato come spazio culturale polivalente nel cuore di Ellera.",
-  paragraphs: [
-    "Originariamente animato dalla fede dei confratelli seduti sugli stalli in legno, tra il 1830 e il 1860 l'edificio si ampliò includendo magazzini e la sagrestia, spingendosi a ospitare anche l'Ufficio Comunale. A fine Ottocento, arricchito da altare e balaustre in marmo e un nuovo piano dedicato al Cappellano, si consolidò come centro vibrante e partecipato.",
-    "Intorno al 1960 il luogo cambiò veste, diventando l'Asilo e il Cinematografo Parrocchiale. Accanto alle voci dei bambini, il grande schermo unì le generazioni di elleresi per decenni, prima dell'inesorabile declino e chiusura degli anni Ottanta.",
-    "Oggi, grazie all'impegno viscerale degli amici e dei giovani e meno giovani del Comitato Ellerese (finanziato con le risorse ricavate da feste fondamentali come 'Carruggi e Lanterne'), la sala è sfuggita all'oblio. Ritornato finalmente alla comunità a fine 2023, lo spazio custodisce il respiro di tutti questi passaggi d'epoca."
-  ],
-  quote: "Ogni pietra racconta una storia di comunità, impegno e amore.",
+    "Costruito alla fine del Seicento come Oratorio della Confraternita di San Lorenzo, il Teatro Balomà è oggi un ex cinema rinato come spazio culturale polivalente nel cuore di Ellera, restituito alla comunità grazie all'impegno del Comitato Ellerese.",
 };
 
 export const teatroBalomaHighlights: TeatroBalomaHighlight[] = [

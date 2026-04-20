@@ -104,15 +104,15 @@
 
   body {
     @apply text-foreground antialiased;
-    /* Il gradiente ambra/stone diventa lo sfondo assoluto dell'intero sito */
-    @apply bg-gradient-to-br from-amber-100 via-orange-100 to-stone-200;
+    /* Gradiente coerente: dall'azzurro aria alla pietra, finendo nel verde maiolica chiaro (stessa radice del footer) */
+    @apply bg-gradient-to-br from-blue-50 via-slate-50 to-maiolica-light;
     background-attachment: fixed;
     font-family: "Source Sans 3", system-ui, sans-serif;
   }
 
   /* Rendi trasparenti le sezioni che usano esplicitamente bg-background in modo da far trasparire il gradiente, 
      mantenendo invece coprenti le interfacce card e altri overlay. */
-  section.bg-background, 
+  section.bg-background,
   div.bg-background {
     background-color: transparent !important;
   }
