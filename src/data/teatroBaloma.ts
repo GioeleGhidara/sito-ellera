@@ -59,13 +59,13 @@ export interface TeatroBalomaRecentEvent {
 
 export const teatroBalomaIntro = {
   lead:
-    "Il Teatro Balomà è un ex cinema di paese tornato a vivere come spazio culturale polivalente nel cuore di Ellera.",
+    "Costruito alla fine del Seicento come Oratorio della Confraternita di San Lorenzo, il Teatro Balomà è un ex cinema rinato come spazio culturale polivalente nel cuore di Ellera.",
   paragraphs: [
-    "Secondo la memoria locale, il nome Balomà richiama i tre nomi Bartolomeo, Lorenzo e Maddalena: un riferimento che oggi porta con sé storia di comunità, spettacolo e ritrovo.",
-    "Negli anni Sessanta lo spazio era già un presidio importante della vita del borgo, legato anche alle attività animate da don Vallarino. Per decenni ha funzionato come cinema del paese, accompagnando Ellera fino agli anni Novanta.",
-    "Di quella stagione resta ancora la macchina di proiezione: un segno concreto del passato cinematografico che rende il Balomà diverso da una sala qualsiasi.",
+    "Originariamente animato dalla fede dei confratelli seduti sugli stalli in legno, tra il 1830 e il 1860 l'edificio si ampliò includendo magazzini e la sagrestia, spingendosi a ospitare anche l'Ufficio Comunale. A fine Ottocento, arricchito da altare e balaustre in marmo e un nuovo piano dedicato al Cappellano, si consolidò come centro vibrante e partecipato.",
+    "Intorno al 1960 il luogo cambiò veste, diventando l'Asilo e il Cinematografo Parrocchiale. Accanto alle voci dei bambini, il grande schermo unì le generazioni di elleresi per decenni, prima dell'inesorabile declino e chiusura degli anni Ottanta.",
+    "Oggi, grazie all'impegno viscerale degli amici e dei giovani e meno giovani del Comitato Ellerese (finanziato con le risorse ricavate da feste fondamentali come 'Carruggi e Lanterne'), la sala è sfuggita all'oblio. Ritornato finalmente alla comunità a fine 2023, lo spazio custodisce il respiro di tutti questi passaggi d'epoca."
   ],
-  quote: "Farlo vivere è l'obiettivo principale.",
+  quote: "Ogni pietra racconta una storia di comunità, impegno e amore.",
 };
 
 export const teatroBalomaHighlights: TeatroBalomaHighlight[] = [
@@ -97,34 +97,34 @@ export const teatroBalomaHighlights: TeatroBalomaHighlight[] = [
 
 export const teatroBalomaTimeline: TeatroBalomaTimelineEntry[] = [
   {
-    year: "'60",
-    title: "Cinema e presidio del paese",
-    description:
-      "Il Balomà entra nella memoria del borgo come luogo di aggregazione, legato anche alle attività animate da don Vallarino.",
+    year: "Fine '600",
+    title: "Nasce l'Oratorio di S. Lorenzo",
+    description: "Costruito con maestria e amore dalla Confraternita. All'epoca un grande salone con un altare in muratura per la devozione rurale e l'associazionismo cittadino.",
   },
   {
-    year: "'90",
-    title: "La lunga stagione del cinema",
-    description:
-      "Per decenni la sala resta il cinema di Ellera. La macchina di proiezione è ancora presente e racconta quella fase senza bisogno di troppe spiegazioni.",
+    year: "1830-1860",
+    title: "Ampliamenti e vita civile",
+    description: "Cresce includendo magazzini e sagrestia; finisce persino per ospitare l'Ufficio Comunale, mentre il presbiterio scopre un nuovo splendore in marmo.",
   },
   {
-    year: "2018",
-    title: "Ripartono i lavori",
-    description:
-      "Prima del Covid comincia il recupero dello spazio, con una prima fase di sistemazioni e servizi per renderlo di nuovo utilizzabile.",
+    year: "1960",
+    title: "Asilo e Cinematografo",
+    description: "L'Oratorio cambia direzione unendo la fede al tempo libero: i canti dei bambini e le prime mitiche proiezioni al cinema del paese accendono nuovamente la sala.",
   },
   {
-    year: "2019",
-    title: "Si completa la saletta davanti al palco",
-    description:
-      "L'anno successivo prende forma anche l'ambiente che precede la sala principale, utile per accoglienza, attese e momenti collaterali.",
+    year: "Anni '80",
+    title: "Chiusura e abbandono",
+    description: "Un declino prolungato ne porta l'usura e l'abbandono al crepuscolo del millennio, facendolo sembrare perso ai ricordi del paese.",
   },
   {
-    year: "2023",
-    title: "Completamento del resto del teatro",
-    description:
-      "Il Balomà torna finalmente a proporsi come spazio intero, pronto per una programmazione più continua e più aperta alla comunità.",
+    year: "2000",
+    title: "La forza del Comitato Ellerese",
+    description: "Un gruppo di volontari ridà vita al Comitato. Le famose iniziative di paese raccolgono miracolosamente fondi destinati a salvare questo edificio carico di memorie.",
+  },
+  {
+    year: "Fine 2023",
+    title: "Inaugurazione della sala",
+    description: "Il Balomà torna accessibile, pronto per una programmazione flessibile, inaugurato col botto tramite uno splendido spettacolo danzante durante le festività natalizie.",
   },
 ];
 
@@ -168,16 +168,16 @@ export const teatroBalomaNeeds: TeatroBalomaNeed[] = [
       "Servono i tendoni classici da teatro, con la struttura necessaria per montarli e usare meglio il palco, anche quando va nascosto.",
   },
   {
-    title: "Riscaldamento",
-    description: "Una sala usabile bene tutto l'anno rende possibile una programmazione più stabile e più ambiziosa.",
+    title: "Pannelli fonoassorbenti contro i riverberi",
+    description: "L'installazione di nuovi e adeguati pannelli fonoassorbenti per sistemare l'acustica ed espandere appieno concerti, prove e conferenze.",
   },
   {
-    title: "Sedute e attrezzatura",
-    description: "Ampliare la dotazione di sedute e attrezzature resta una priorità concreta per far crescere la sala.",
+    title: "Nuove sedie per abbellire le quinte",
+    description: "Mancano ancora piccole rifiniture fisiche tra cui la dotazione espansa di sedute e arredi laterali, indicati esplicitamente come prossimo obiettivo del Comitato.",
   },
   {
-    title: "Insonorizzazione",
-    description: "Intervenire sull'acustica aiuterebbe concerti, prove, conferenze e uso continuativo dello spazio.",
+    title: "Riscaldamento invernale",
+    description: "Stabilizzare il caldo per riuscire a promuovere una robusta stagione invernale al coperto che faccia crescere la sala anche nel lungo periodo.",
   },
 ];
 
@@ -313,7 +313,7 @@ export const teatroBalomaContacts = {
   supportEmail: "comitatoellera@gmail.com",
   supportIban: "IT62V0306909606100000415994",
   supportAccountHolder: "Comitato Ellerese",
-  supportPaypalUrl: "https://www.paypal.com/paypalme/teatrobaloma",
+  supportPaypalUrl: "https://paypal.me/comitatoellerese",
   supportNote:
     "Il Balomà cresce anche grazie a disponibilità, sostegno e collaborazioni: ogni iniziativa utile ad attivarlo ha valore.",
 };

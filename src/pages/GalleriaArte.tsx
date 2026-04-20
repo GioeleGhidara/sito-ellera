@@ -7,13 +7,14 @@ import PageHero from "@/components/PageHero";
 import Seo from "@/components/Seo";
 import TableOfContents from "@/components/TableOfContents";
 import { Link } from "react-router-dom";
-import { artists, galleryImages } from "@/data/galleriaArte";
+import { artists } from "@/data/galleriaArte";
 import {
   galleriaArteImage, caruggiImage,
   muralesCeramista1, muralesCeramista2,
   mappaPannelliImage,
 } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
+import CeramicCube from "@/components/CeramicCube";
 
 const gallerySections = [
   { id: "storia", title: "Un sogno diventato realtà" },
@@ -30,7 +31,7 @@ const fadeUp = {
 };
 
 const GalleriaArte = () => {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  // stato rimosso
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredArtists = useMemo(() => {
@@ -39,10 +40,6 @@ const GalleriaArte = () => {
     return artists.filter((name) => name.toLowerCase().includes(q));
   }, [searchQuery]);
 
-  const openLightbox = (i: number) => setLightboxIndex(i);
-  const closeLightbox = () => setLightboxIndex(null);
-  const prevImage = () => setLightboxIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null));
-  const nextImage = () => setLightboxIndex((prev) => (prev !== null ? (prev + 1) % galleryImages.length : null));
 
   return (
     <Layout>
@@ -157,29 +154,17 @@ const GalleriaArte = () => {
                 </div>
               </div>
 
-              {/* Mini Galleria Pannelli */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
+              {/* Cubo 3D Pannelli */}
+              <div className="flex flex-col items-center lg:items-start w-full">
+                <div className="flex items-center gap-2 mb-3 w-full">
                   <Image className="w-4 h-4 text-accent" />
-                  <h4 className="font-heading font-semibold text-foreground text-sm">Galleria dei Pannelli</h4>
+                  <h4 className="font-heading font-semibold text-foreground text-sm">Esplora i Pannelli in 3D</h4>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {galleryImages.map((img, i) => (
-                    <button
-                      key={i}
-                      onClick={() => openLightbox(i)}
-                      className="aspect-square rounded-lg overflow-hidden border border-border hover:border-accent transition-colors cursor-pointer group"
-                    >
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </button>
-                  ))}
+                <div className="w-full max-w-sm">
+                  <CeramicCube />
                 </div>
-                <p className="text-xs text-muted-foreground mt-2 text-center italic">
-                  Clicca per ingrandire - Immagini dal catalogo ufficiale 2016
+                <p className="text-xs text-muted-foreground mt-3 text-center lg:text-left italic w-full max-w-sm">
+                  Trascina il cubo per ruotarlo, usa scorrimento per lo zoom.
                 </p>
               </div>
             </div>
@@ -357,44 +342,7 @@ const GalleriaArte = () => {
         </div>
       </section>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={closeLightbox}
-          >
-            <button onClick={closeLightbox} className="absolute top-4 right-4 text-white/80 hover:text-white z-10">
-              <X className="w-8 h-8" />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); prevImage(); }}
-              className="absolute left-4 text-white/80 hover:text-white z-10"
-            >
-              <ChevronLeft className="w-10 h-10" />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); nextImage(); }}
-              className="absolute right-4 text-white/80 hover:text-white z-10"
-            >
-              <ChevronRight className="w-10 h-10" />
-            </button>
-            <motion.img
-              key={lightboxIndex}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              src={galleryImages[lightboxIndex].src}
-              alt={galleryImages[lightboxIndex].alt}
-              className="max-w-full max-h-[85vh] object-contain rounded-lg"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </Layout>
   );
 };

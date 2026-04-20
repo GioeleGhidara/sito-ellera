@@ -1,7 +1,3 @@
-/* ── Font ─────────────────────────────────────────────────────────────────────
-   Fraunces: heading serif espressivo (sostituisce Lora)
-   Source Sans 3: body sans-serif (invariato)
-   ──────────────────────────────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -107,8 +103,18 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
+    /* Il gradiente ambra/stone diventa lo sfondo assoluto dell'intero sito */
+    @apply bg-gradient-to-br from-amber-100 via-orange-100 to-stone-200;
+    background-attachment: fixed;
     font-family: "Source Sans 3", system-ui, sans-serif;
+  }
+
+  /* Rendi trasparenti le sezioni che usano esplicitamente bg-background in modo da far trasparire il gradiente, 
+     mantenendo invece coprenti le interfacce card e altri overlay. */
+  section.bg-background, 
+  div.bg-background {
+    background-color: transparent !important;
   }
 
   /* Fraunces per tutti gli heading - stessa logica di LaPedaliamoInsieme */
@@ -146,11 +152,15 @@
 
   /* Utility for hiding scrollbar but allowing scroll */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
+
   .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
   }
 }
 

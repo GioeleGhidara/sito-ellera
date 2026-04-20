@@ -374,6 +374,15 @@ const TeatroBaloma = () => {
                       Il dato più importante non è tecnico: il Balomà ha senso se continua a essere usato, prenotato,
                       frequentato e riconosciuto come spazio comune.
                     </p>
+                    <div className="mt-4 sm:mt-5">
+                      <Link
+                        to={`${ROUTES.tradizioni}/cinema-e-teatro-balomà`}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent/80 hover:underline"
+                      >
+                        Vuoi saperne di più? Leggi la storia completa qui
+                        <ArrowUpRight className="h-4 w-4" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

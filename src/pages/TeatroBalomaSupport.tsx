@@ -96,7 +96,7 @@ const TeatroBalomaSupport = () => {
         imageClassName="object-[center_63%]"
         eyebrow="Sostegno al progetto"
         eyebrowIcon={Heart}
-        title="Sostieni il Balomà"
+        title="Sostieni il Teatro Balomà"
         sectionClassName="h-[38vh] min-h-[300px]"
         containerClassName="max-w-5xl pb-8 lg:pb-10"
         contentClassName="max-w-3xl"
