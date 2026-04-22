@@ -79,14 +79,14 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
 *Ti consigliamo di indossare abiti comodi e, se lo desideri, di portare un tappetino o una copertina personale per massimizzare il comfort durante la sessione.*`,
   },
   {
-    slug: "la-pedaliamo-assieme-2026",
-    title: "La Pedaliamo Assieme",
+    slug: "la-pedaliamo-insieme-2026",
+    title: "La Pedaliamo Insieme",
     date: "31 Maggio 2026",
     startDate: "2026-05-31",
     image: albiTrailAreaImage,
     desc: "Pedalata in beneficenza tra Albisola Superiore ed Ellera con percorsi per tutti i livelli, incluso il giro famiglie su strada con passaggio nel golf.",
     location: EVENT_LOCATIONS.ALBISOLA_ELLERA.name,
-    status: "Iscrizioni Aperte",
+    status: "In programma",
     organizerName: "Comitato Ellerese",
     organizerLogo: logoComitatoRidotto,
     organizerLogoAlt: "Logo Comitato Ellerese",
@@ -114,7 +114,7 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
     ],
     posterPlaceholderLabel: "locandina",
     showOnHome: true,
-    detailContent: `La Pedaliamo Assieme è una giornata di sport, solidarietà e natura tra Albisola Superiore ed Ellera.
+    detailContent: `La Pedaliamo Insieme è una giornata di sport, solidarietà e natura tra Albisola Superiore ed Ellera.
 
 - Percorsi per tutti i livelli
 - Area bambini con Quiliano Bike

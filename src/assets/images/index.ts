@@ -1,7 +1,8 @@
-export { default as albiTrailAreaImage } from "./albi-trail/hero-albi-trail.webp";
+﻿export { default as albiTrailAreaImage } from "./albi-trail/hero-albi-trail.webp";
 export { default as albiTrailAreaLogo } from "./albi-trail/albi-trail-area.svg";
 
 export { default as heroImage } from "./home/hero_image.avif";
+export { default as heroImageMobile } from "./home/hero_image-mobile.png";
 export { default as tradizioniHeroImage } from "./tradizioni/hero-tradizioni.webp";
 
 export { default as galleriaArteImage } from "./places/galleria_arte.avif";
@@ -27,21 +28,16 @@ export { default as trailHeroPurpleImage } from "./trail-headers/trail-hero-purp
 export { default as trailHeroGreenImage } from "./trail-headers/trail-hero-green.webp";
 export { default as trailHeroBlackImage } from "./trail-headers/trail-hero-black.webp";
 
-export { default as muralesCeramista1 } from "./places/murales_ceramista1.avif";
-export { default as muralesCeramista2 } from "./places/murales_ceramista_2.avif";
+export { default as muralesCeramista1 } from "./places/gruppomurales.avif";
+export { default as ceramista } from "./places/ceramista.avif";
 
-export { default as panel01 } from "./panels/panel_01.avif";
-export { default as panel02 } from "./panels/panel_02.avif";
-export { default as panel03 } from "./panels/panel_03.avif";
-export { default as panel04 } from "./panels/panel_04.avif";
-export { default as panel05 } from "./panels/panel_05.avif";
-export { default as panel06 } from "./panels/panel_06.avif";
+
 export { default as mappaPannelliImage } from "./panels/mappa_pannelli.webp";
 
 export { default as logoComitato } from "./comitato/logo_comitato.svg";
 export { default as logoComitatoRidotto } from "./comitato/logo_comitato_ridotto.svg";
-export { default as barrabravaLogoSvg } from "./events/la-pedaliamo-assieme/barrabrava/barrabrava_logo.svg";
-export { default as quilianoBikeLogoSvg } from "./events/la-pedaliamo-assieme/quiliano-bike/quiliano-bike-logo.png";
-export { default as comuneAlbisolaSupLogoSvg } from "./events/la-pedaliamo-assieme/comune-albisola-sup/logo-albi.svg";
+export { default as barrabravaLogoSvg } from "./events/la-pedaliamo-insieme/barrabrava/barrabrava_logo.svg";
+export { default as quilianoBikeLogoSvg } from "./events/la-pedaliamo-insieme/quiliano-bike/quiliano-bike-logo.png";
+export { default as comuneAlbisolaSupLogoSvg } from "./events/la-pedaliamo-insieme/comune-albisola-sup/logo-albi.svg";
 
 export { default as meteoHeroImage } from "./meteo/meteo-hero.webp";

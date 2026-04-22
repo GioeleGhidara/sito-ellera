@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
   imageSrc: string;
+  mobileImageSrc?: string;
   imageAlt: string;
   title: string;
   description?: string;
@@ -21,6 +22,7 @@ type PageHeroProps = {
 
 const PageHero = ({
   imageSrc,
+  mobileImageSrc,
   imageAlt,
   title,
   description,
@@ -44,11 +46,14 @@ const PageHero = ({
         sectionClassName,
       )}
     >
-      <img
-        src={imageSrc}
-        alt={imageAlt}
-        className={cn("absolute inset-0 w-full h-full object-cover", imageClassName)}
-      />
+      <picture className="absolute inset-0 w-full h-full">
+        {mobileImageSrc && <source media="(max-width: 768px)" srcSet={mobileImageSrc} />}
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          className={cn("w-full h-full object-cover", imageClassName)}
+        />
+      </picture>
       <div className="absolute inset-0 bg-gradient-hero" />
 
       <div className={cn("relative z-10 container mx-auto px-4 lg:px-8 pb-12", containerClassName)}>

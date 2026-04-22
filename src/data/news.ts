@@ -1,4 +1,4 @@
-import {
+﻿import {
   caruggiEventImage,
   consiglioNewsImage,
   muralesCeramista1,
@@ -22,7 +22,7 @@ const newsData: NewsItem[] = [
     date: "2026-02-27",
     title: "Definite le prime date del 2026: Caruggi e Lanterne il 21 e 22 agosto",
     excerpt:
-      "Il Comitato Ellerese fissa i primi appuntamenti del 2026: Caruggi e Lanterne il 21-22 agosto, La Pedaliamo Assieme il 31 maggio ed Ellera Bike Fest il 14 giugno.",
+      "Il Comitato Ellerese fissa i primi appuntamenti del 2026: Caruggi e Lanterne il 21-22 agosto, La Pedaliamo Insieme il 31 maggio ed Ellera Bike Fest il 14 giugno.",
     content: `In data **27 febbraio 2026** il Comitato Ellerese ha definito i primi appuntamenti del calendario eventi per la stagione 2026, con l'obiettivo di dare riferimenti chiari a volontari, residenti e visitatori.
 
 La data scelta per **Caruggi e Lanterne** è quella di **venerdì 21 e sabato 22 agosto 2026**. La manifestazione resterà il momento centrale dell'estate ellerese, con i caruggi illuminati, musica, installazioni e punti ristoro diffusi nel borgo.

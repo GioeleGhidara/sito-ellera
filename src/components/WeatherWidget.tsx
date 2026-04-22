@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AlertTriangle, Droplets, Moon, Thermometer, Wind, Zap } from "@/lib/icons";
@@ -17,6 +17,7 @@ import {
 import { getWeatherInfo } from "@/lib/weather";
 import { supabase } from "@/integrations/supabase/client";
 import { ROUTES } from "@/lib/routes";
+import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
 
 const LAT = 44.3671;
 const LON = 8.4611;
@@ -393,12 +394,16 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
   if (variant === "compact") {
     if (loading) {
       return (
-        <div className="inline-flex items-center gap-3 bg-card/60 backdrop-blur-sm border border-border rounded-full px-5 py-2.5">
-          <Skeleton className="w-5 h-5 rounded-full" />
-          <Skeleton className="w-10 h-4" />
-          <Skeleton className="w-16 h-3" />
-          <Skeleton className="hidden sm:block w-16 h-3" />
-          <Skeleton className="hidden sm:block w-10 h-3" />
+        <div className="inline-flex items-center gap-3 bg-card/60 backdrop-blur-sm border border-white/30 rounded-full px-3 py-2 shadow-sm">
+          <Skeleton className="w-9 h-9 rounded-full bg-muted/40" />
+          <div className="flex flex-col gap-1.5">
+            <Skeleton className="w-10 h-3.5 bg-muted/40" />
+            <Skeleton className="w-14 h-2.5 bg-muted/40" />
+          </div>
+          <div className="hidden sm:flex border-l border-border/40 pl-3 gap-2">
+            <Skeleton className="w-16 h-3 bg-muted/30" />
+            <Skeleton className="w-12 h-3 bg-muted/30" />
+          </div>
         </div>
       );
     }
@@ -411,6 +416,7 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
     return (
       <Link
         to={ROUTES.meteo}
+        onClick={() => triggerHaptic(HAPTIC_PATTERNS.LIGHT)}
         className="inline-block rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
       >
         <motion.div
@@ -504,18 +510,21 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
   if (loading) {
     return (
       <div className="space-y-6">
-        {/* 4. Aggiornati gli skeleton a 5 colonne */}
         <div className="flex gap-3 overflow-x-hidden">
           {[0, 1, 2, 3, 4].map((d) => (
             <div key={d} className="min-w-[220px] flex-1">
-              <Skeleton className="w-20 h-4 mb-3" />
-              <div className="space-y-3">
+              <Skeleton className="w-24 h-4 mb-4 mx-auto bg-muted/30" />
+              <div className="space-y-2">
                 {[0, 1, 2, 3].map((i) => (
-                  <div key={i} className="bg-card border border-border rounded-xl p-3 flex items-center gap-2">
-                    <Skeleton className="w-8 h-8 rounded-lg shrink-0" />
-                    <div className="flex-1 space-y-2">
-                      <Skeleton className="w-10 h-2" />
-                      <Skeleton className="w-8 h-3" />
+                  <div key={i} className="bg-card border border-border/40 rounded-xl p-3 flex items-center gap-3">
+                    <Skeleton className="w-8 h-8 rounded-lg shrink-0 bg-muted/40" />
+                    <div className="flex-1 space-y-1.5">
+                      <Skeleton className="w-12 h-2 bg-muted/30" />
+                      <Skeleton className="w-10 h-3 bg-muted/30" />
+                    </div>
+                    <div className="space-y-1">
+                      <Skeleton className="w-8 h-2 ml-auto bg-muted/30" />
+                      <Skeleton className="w-8 h-2 ml-auto bg-muted/30" />
                     </div>
                   </div>
                 ))}
@@ -547,8 +556,6 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
         <Thermometer className="w-5 h-5 text-primary" />
         Meteo Ellera - Prossimi 5 giorni
       </h2>
-
-      {/* 5. Layout responsivo: Scorrimento su mobile/tablet, 5 Colonne su schermi Grandi (lg) */}
       <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-1 px-1 lg:grid lg:grid-cols-5 lg:overflow-visible lg:snap-none lg:pb-0 lg:mx-0 lg:px-0 lg:gap-4 scrollbar-hide">
         {days.map((day, dayIndex) => (
           <motion.div

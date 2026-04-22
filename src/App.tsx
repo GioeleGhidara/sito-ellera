@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+﻿import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -54,8 +54,8 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
   { path: ROUTES.chiSiamo, element: <Navigate to={ROUTES.comitato} replace /> },
   { path: ROUTES.eventi, element: <Eventi /> },
   {
-    path: ROUTES.laPedaliamoAssieme2026,
-    element: <StaticPageRedirect to="/la-pedaliamo-assieme-2026.html" />,
+    path: ROUTES.laPedaliamoInsieme2026,
+    element: <StaticPageRedirect to="/la-pedaliamo-insieme-2026.html" />,
   },
   {
     path: "/eventi/albi-trail-ebike-fest",

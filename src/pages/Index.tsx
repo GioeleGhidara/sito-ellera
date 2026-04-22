@@ -32,8 +32,9 @@ import Seo from "@/components/Seo";
 import SeasonalHighlight from "@/components/SeasonalHighlight";
 import { homeExploreItems, homeRootsCards } from "@/data/home";
 import { ROUTES, newsDetailPath, eventDetailPath, tradizioneDetailPath } from "@/lib/routes";
+import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
 import { createComitatoOrganizationJsonLd } from "@/lib/jsonLd";
-import { heroImage } from "@/assets/images";
+import { heroImage, heroImageMobile } from "@/assets/images";
 
 const WeatherWidget = lazy(() => import("@/components/WeatherWidget"));
 
@@ -79,14 +80,17 @@ const Index = () => {
       />
 
       <section className="relative flex h-[85vh] min-h-[500px] items-center justify-center overflow-hidden">
-        <motion.img
-          src={heroImage}
-          alt="Veduta aerea di Ellera, borgo ligure"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-          initial={{ scale: 1.08 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 12, ease: "easeOut" }}
-        />
+        <picture className="absolute inset-0 h-full w-full">
+          <source media="(max-width: 768px)" srcSet={heroImageMobile} />
+          <motion.img
+            src={heroImage}
+            alt="Veduta aerea di Ellera, borgo ligure"
+            className="h-full w-full object-cover object-center"
+            initial={{ scale: 1.08 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 12, ease: "easeOut" }}
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-hero" />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -103,6 +107,7 @@ const Index = () => {
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               to={ROUTES.trekking}
+              onClick={() => triggerHaptic(HAPTIC_PATTERNS.MEDIUM)}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground shadow-warm transition-opacity hover:opacity-90"
             >
               <Mountain className="h-5 w-5" />
@@ -110,6 +115,7 @@ const Index = () => {
             </Link>
             <Link
               to={ROUTES.galleriaArte}
+              onClick={() => triggerHaptic(HAPTIC_PATTERNS.MEDIUM)}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-primary-foreground/30 bg-primary-foreground/15 px-6 py-3 font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/25"
             >
               <Palette className="h-5 w-5" />
@@ -185,10 +191,10 @@ const Index = () => {
                         {formatDate(featuredNews.date)}
                       </span>
                     </div>
-                    <h3 className="max-w-4xl text-lg font-heading font-bold text-foreground transition-colors group-hover:text-primary lg:text-xl">
+                    <h3 className="max-w-4xl text-lg font-heading font-bold text-foreground transition-colors group-hover:text-primary lg:text-xl line-clamp-2 lg:line-clamp-none">
                       {featuredNews.title}
                     </h3>
-                    <p className="mt-2 max-w-4xl text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-2 max-w-4xl text-sm leading-relaxed text-muted-foreground line-clamp-2 lg:line-clamp-none">
                       {featuredNews.excerpt}
                     </p>
                   </div>
@@ -248,7 +254,7 @@ const Index = () => {
                         event.title
                       )}
                     </h4>
-                    <p className="mt-2 text-sm text-muted-foreground">{event.desc}</p>
+                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2 lg:line-clamp-none">{event.desc}</p>
                   </div>
                 </div>
               ))}
@@ -310,7 +316,7 @@ const Index = () => {
                       </span>
                     </div>
                     <h4 className="mb-2 font-heading font-semibold text-foreground group-hover:text-primary transition-colors">{story.title}</h4>
-                    <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                    <p className="line-clamp-2 lg:line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                       {story.body}
                     </p>
                   </Link>

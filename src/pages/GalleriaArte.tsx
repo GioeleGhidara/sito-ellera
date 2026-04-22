@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Brush, ChevronLeft, ChevronRight, Download, Droplets, Image, MapPin, Palette, Quote, Search, Users, X } from "@/lib/icons";
+import { motion } from "framer-motion";
+import { BookOpen, Brush, Download, Droplets, Image, MapPin, Palette, Quote, Search, Users } from "@/lib/icons";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { artists } from "@/data/galleriaArte";
 import {
   galleriaArteImage, caruggiImage,
-  muralesCeramista1, muralesCeramista2,
+  muralesCeramista1, ceramista,
   mappaPannelliImage,
 } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
@@ -194,13 +194,13 @@ const GalleriaArte = () => {
                   className="w-full rounded-xl shadow-warm object-cover aspect-[3/4]"
                 />
                 <img
-                  src={muralesCeramista2}
+                  src={ceramista}
                   alt="Murales Il Ceramista di 750ML a Ellera - dettaglio"
                   className="w-full rounded-xl shadow-warm object-cover aspect-[3/4]"
                 />
               </div>
               <p className="text-xs text-muted-foreground mt-3 text-center italic">
-                Il murales «Il Ceramista» in Piazza dell'Elce - Foto: IVG.it
+                Il murales «Il Ceramista» in Piazza dell'Elce — Foto: IVG.it / Archivio Fotografico del Comune di Albisola Superiore
               </p>
             </motion.div>
 
@@ -337,6 +337,8 @@ const GalleriaArte = () => {
               Brochure «Ellera - Galleria all'aperto della ceramica d'arte» 2016
               <br />
               Libro «Le famiglie albisolesi ed elleresi e le loro attività di un tempo» di Roberto Siri.
+              <br />
+              Archivio Fotografico del Comune di Albisola Superiore.
             </p>
           </motion.div>
         </div>

@@ -1,4 +1,4 @@
-export const ROUTES = {
+﻿export const ROUTES = {
   home: "/",
   trekking: "/trekking",
   albiTrailArea: "/albi-trail-area",
@@ -11,7 +11,7 @@ export const ROUTES = {
   chiSiamo: "/chi-siamo",
   eventi: "/eventi",
   // Eventi statici - path legacy diretto (redirect a .html in App.tsx)
-  laPedaliamoAssieme2026: "/eventi/la-pedaliamo-assieme-2026",
+  laPedaliamoInsieme2026: "/eventi/la-pedaliamo-insieme-2026",
   elleraBikeFest2026: "/eventi/ellera-bike-fest-2026",
   servizi: "/servizi",
   tradizioni: "/tradizioni",

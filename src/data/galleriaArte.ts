@@ -1,16 +1,6 @@
-import {
-  panel01,
-  panel02,
-  panel03,
-  panel04,
-  panel05,
-  panel06,
-} from "@/assets/images";
 
-export interface GalleryImageItem {
-  src: string;
-  alt: string;
-}
+
+
 
 export const artists = [
   "Aldo Pagliaro",
@@ -63,11 +53,3 @@ export const artists = [
   "Ylli Plaka",
 ];
 
-export const galleryImages: GalleryImageItem[] = [
-  { src: panel01, alt: "Pannello ceramico 1" },
-  { src: panel02, alt: "Pannello ceramico 2" },
-  { src: panel03, alt: "Pannello ceramico 3" },
-  { src: panel04, alt: "Pannello ceramico 4" },
-  { src: panel05, alt: "Pannello ceramico 5" },
-  { src: panel06, alt: "Pannello ceramico 6" },
-];

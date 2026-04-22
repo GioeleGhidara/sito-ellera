@@ -62,15 +62,15 @@ export const trailSections: TrailSectionConfig[] = [
 
 export const trailAreaEventCards: TrailAreaEventCard[] = [
   {
-    slug: "la-pedaliamo-assieme-2026",
-    title: "La Pedaliamo Assieme",
+    slug: "la-pedaliamo-insieme-2026",
+    title: "La Pedaliamo Insieme",
     date: "31 Maggio 2026",
     category: "Outdoor",
     description:
       "Pedalata in beneficenza tra Albisola Superiore ed Ellera con percorsi per tutti i livelli, incluso il giro famiglie su strada con passaggio nel golf.",
     location: EVENT_LOCATIONS.ALBISOLA_ELLERA.name,
-    status: "Iscrizioni Aperte",
-    to: ROUTES.laPedaliamoAssieme2026,
+    status: "In programma",
+    to: ROUTES.laPedaliamoInsieme2026,
   },
 ];
 

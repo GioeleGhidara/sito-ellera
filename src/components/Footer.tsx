@@ -9,6 +9,8 @@ import {
   Eye,
   Handshake,
   House,
+  Facebook,
+  Instagram,
   Mail,
   MapPin,
   Mountain,
@@ -142,6 +144,26 @@ const Footer = () => {
                     comitato@ellera.it
                   </a>
                 </div>
+              </div>
+              <div className="flex gap-4 pt-1">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61578504275210#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-primary-foreground"
+                  aria-label="Seguici su Facebook"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.instagram.com/comitatoellerese"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-primary-foreground"
+                  aria-label="Seguici su Instagram"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
               </div>
               <div className="flex items-start gap-2 border-t border-primary-foreground/10 pt-2">
                 <Church className="mt-0.5 h-4 w-4 shrink-0" />
