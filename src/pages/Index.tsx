@@ -34,7 +34,7 @@ import { homeExploreItems, homeRootsCards } from "@/data/home";
 import { ROUTES, newsDetailPath, eventDetailPath, tradizioneDetailPath } from "@/lib/routes";
 import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
 import { createComitatoOrganizationJsonLd } from "@/lib/jsonLd";
-import { heroImage, heroImageMobile } from "@/assets/images";
+import { heroImage } from "@/assets/images";
 
 const WeatherWidget = lazy(() => import("@/components/WeatherWidget"));
 
@@ -80,17 +80,14 @@ const Index = () => {
       />
 
       <section className="relative flex h-[85vh] min-h-[500px] items-center justify-center overflow-hidden">
-        <picture className="absolute inset-0 h-full w-full">
-          <source media="(max-width: 768px)" srcSet={heroImageMobile} />
-          <motion.img
-            src={heroImage}
-            alt="Veduta aerea di Ellera, borgo ligure"
-            className="h-full w-full object-cover object-center"
-            initial={{ scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 12, ease: "easeOut" }}
-          />
-        </picture>
+        <motion.img
+          src={heroImage}
+          alt="Veduta aerea di Ellera, borgo ligure"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 12, ease: "easeOut" }}
+        />
         <div className="absolute inset-0 bg-gradient-hero" />
         <motion.div
           initial={{ opacity: 0, y: 40 }}

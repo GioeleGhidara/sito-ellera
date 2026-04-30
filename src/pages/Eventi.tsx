@@ -9,7 +9,7 @@ import {
   MapPin,
 } from "@/lib/icons";
 import type { EventCategory } from "@/data/events";
-import { events, getFeaturedEvent, hasEventDetail } from "@/data/events";
+import { events, getFeaturedEvent, hasEventDetail, isEventPast } from "@/data/events";
 import { downloadIcs } from "@/lib/ics";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
@@ -54,17 +54,22 @@ const sporadicFilters: SporadicFilter[] = ["Tutti", "Cultura", "Outdoor", "Festa
 const Eventi = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const rawFilter = searchParams.get("categoria");
+  const rawTab = searchParams.get("tab");
   const activeFilter = sporadicFilters.includes(rawFilter as SporadicFilter)
     ? (rawFilter as SporadicFilter)
     : "Tutti";
+  const activeTab = rawTab === "archivio" ? "archivio" : "programma";
+  const isArchive = activeTab === "archivio";
+
+  const baseEvents = events.filter((e) => isArchive ? isEventPast(e) : !isEventPast(e));
 
   const filteredSporadicEvents =
     activeFilter === "Tutti"
-      ? events
-      : events.filter((event) => event.category === activeFilter);
+      ? baseEvents
+      : baseEvents.filter((event) => event.category === activeFilter);
   const closestEvent =
-    activeFilter === "Tutti"
-      ? (getFeaturedEvent() ?? events[0])
+    (activeFilter === "Tutti" && !isArchive)
+      ? (getFeaturedEvent() ?? baseEvents[0])
       : (filteredSporadicEvents[0] ?? null);
 
   const remainingEvents = closestEvent
@@ -77,6 +82,16 @@ const Eventi = () => {
       nextSearchParams.delete("categoria");
     } else {
       nextSearchParams.set("categoria", filter);
+    }
+    setSearchParams(nextSearchParams, { replace: true });
+  };
+
+  const handleTabChange = (tab: "programma" | "archivio") => {
+    const nextSearchParams = new URLSearchParams(searchParams);
+    if (tab === "programma") {
+      nextSearchParams.delete("tab");
+    } else {
+      nextSearchParams.set("tab", tab);
     }
     setSearchParams(nextSearchParams, { replace: true });
   };
@@ -133,32 +148,55 @@ const Eventi = () => {
                 Tutti gli Appuntamenti
               </span>
             </div>
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
                 <h2 className="font-heading text-2xl font-semibold leading-tight text-foreground md:text-3xl lg:text-4xl">
                   Calendario
                 </h2>
                 <p className="mt-2.5 text-sm leading-7 text-muted-foreground md:text-base">
-                  Esplora tutti gli eventi che si terranno quest'anno nel borgo di Ellera.
-                  Usa i filtri per trovare più facilmente quello che ti interessa.
+                  {isArchive 
+                    ? "Rivivi i momenti passati e scopri gli eventi che si sono già tenuti a Ellera."
+                    : "Esplora tutti gli eventi in programma nel borgo di Ellera. Usa i filtri per trovare più facilmente quello che ti interessa."}
                 </p>
               </div>
-              <div className="flex flex-wrap gap-2 lg:justify-end">
-                {sporadicFilters.map((filter) => {
-                  const isActive = activeFilter === filter;
+              <div className="flex flex-col gap-4 items-start lg:items-end">
+                <div className="flex bg-accent/5 p-1 rounded-lg border border-accent/10">
+                  <button
+                    type="button"
+                    onClick={() => handleTabChange("programma")}
+                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${
+                      !isArchive ? "bg-background text-accent shadow-sm" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    In Programma
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleTabChange("archivio")}
+                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${
+                      isArchive ? "bg-background text-accent shadow-sm" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    Archivio
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2 lg:justify-end">
+                  {sporadicFilters.map((filter) => {
+                    const isActive = activeFilter === filter;
 
-                  return (
-                    <button
-                      key={filter}
-                      type="button"
-                      onClick={() => handleFilterChange(filter)}
-                      className={`rounded-full border border-border px-3.5 py-1.5 text-xs hover:bg-accent/10 hover:text-accent transition-colors ${isActive ? "bg-accent/10 text-accent shadow-sm" : "bg-background text-muted-foreground"
-                        }`}
-                    >
-                      {filter}
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={filter}
+                        type="button"
+                        onClick={() => handleFilterChange(filter)}
+                        className={`rounded-full border border-border px-3.5 py-1.5 text-xs hover:bg-accent/10 hover:text-accent transition-colors ${isActive ? "bg-accent/10 text-accent shadow-sm" : "bg-background text-muted-foreground"
+                          }`}
+                      >
+                        {filter}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -208,9 +246,14 @@ const Eventi = () => {
                                 {event.category || "Altro"}
                               </span>
                               <span className="text-xs text-muted-foreground md:text-sm">{formattedDate.full}</span>
-                              {event.status && (
+                              {event.status && !isEventPast(event) && (
                                 <span className="ml-1 rounded-full border border-border/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                                   {event.status}
+                                </span>
+                              )}
+                              {isEventPast(event) && (
+                                <span className="ml-1 rounded-full border border-border/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                                  Concluso
                                 </span>
                               )}
                             </div>

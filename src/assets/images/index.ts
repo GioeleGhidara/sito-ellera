@@ -1,8 +1,7 @@
-﻿export { default as albiTrailAreaImage } from "./albi-trail/hero-albi-trail.webp";
+export { default as albiTrailAreaImage } from "./albi-trail/hero-albi-trail.webp";
 export { default as albiTrailAreaLogo } from "./albi-trail/albi-trail-area.svg";
 
 export { default as heroImage } from "./home/hero_image.avif";
-export { default as heroImageMobile } from "./home/hero_image-mobile.png";
 export { default as tradizioniHeroImage } from "./tradizioni/hero-tradizioni.webp";
 
 export { default as galleriaArteImage } from "./places/galleria_arte.avif";

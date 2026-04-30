@@ -240,13 +240,19 @@ La sera prima della vera e propria ricorrenza, l'intera Valle Sansobbia si riuni
 
 export const getFeaturedEvent = (referenceDate = new Date()) => {
   const referenceDayTimestamp = getReferenceDayTimestamp(referenceDate);
-  return events.find((e) => toTimestamp(e.startDate) >= referenceDayTimestamp);
+  return events.find((e) => {
+    const eventEnd = e.endDate || e.startDate;
+    return toTimestamp(eventEnd) >= referenceDayTimestamp;
+  });
 };
 
 export const getNextBikeEvent = (referenceDate = new Date()) => {
   const referenceDayTimestamp = getReferenceDayTimestamp(referenceDate);
   return events.find(
-    (e) => e.category === "Outdoor" && toTimestamp(e.startDate) >= referenceDayTimestamp,
+    (e) => {
+      const eventEnd = e.endDate || e.startDate;
+      return e.category === "Outdoor" && toTimestamp(eventEnd) >= referenceDayTimestamp;
+    }
   );
 };
 
@@ -256,12 +262,21 @@ export const getUpcomingEventsByCategory = (
 ) => {
   const referenceDayTimestamp = getReferenceDayTimestamp(referenceDate);
   return events.filter(
-    (event) => event.category === category && toTimestamp(event.startDate) >= referenceDayTimestamp,
+    (event) => {
+      const eventEnd = event.endDate || event.startDate;
+      return event.category === category && toTimestamp(eventEnd) >= referenceDayTimestamp;
+    }
   );
 };
 
 export const getEventBySlug = (slug: string) =>
   events.find((e) => e.slug === slug);
+
+export const isEventPast = (event: EventItem, referenceDate = new Date()) => {
+  const referenceDayTimestamp = getReferenceDayTimestamp(referenceDate);
+  const eventEnd = event.endDate || event.startDate;
+  return toTimestamp(eventEnd) < referenceDayTimestamp;
+};
 
 export const getEventOrganizers = (
   event: EventOrganizersSource,
