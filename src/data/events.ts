@@ -8,6 +8,7 @@ import {
   logoComitatoRidotto,
   quilianoBikeLogoSvg,
   sincroresonanceImage,
+  locandinaPedaliamoInsieme,
 } from "@/assets/images";
 import { EVENT_LOCATIONS } from "./locations";
 
@@ -83,7 +84,7 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
     title: "La Pedaliamo Insieme",
     date: "31 Maggio 2026",
     startDate: "2026-05-31",
-    image: albiTrailAreaImage,
+    image: locandinaPedaliamoInsieme,
     desc: "Pedalata in beneficenza tra Albisola Superiore ed Ellera con percorsi per tutti i livelli, incluso il giro famiglie su strada con passaggio nel golf.",
     location: EVENT_LOCATIONS.ALBISOLA_ELLERA.name,
     status: "In programma",

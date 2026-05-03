@@ -38,5 +38,6 @@ export { default as logoComitatoRidotto } from "./comitato/logo_comitato_ridotto
 export { default as barrabravaLogoSvg } from "./events/la-pedaliamo-insieme/barrabrava/barrabrava_logo.svg";
 export { default as quilianoBikeLogoSvg } from "./events/la-pedaliamo-insieme/quiliano-bike/quiliano-bike-logo.png";
 export { default as comuneAlbisolaSupLogoSvg } from "./events/la-pedaliamo-insieme/comune-albisola-sup/logo-albi.svg";
+export { default as locandinaPedaliamoInsieme } from "./events/la-pedaliamo-insieme/locandina.jpg";
 
 export { default as meteoHeroImage } from "./meteo/meteo-hero.webp";

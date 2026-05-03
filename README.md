@@ -27,6 +27,17 @@ Il progetto raccoglie in un unico frontend le sezioni dedicate a outdoor, cultur
 - Precache dei file `.gpx` per garantire disponibilità offline dei percorsi.
 - Cache runtime delle tile OpenStreetMap dopo il primo utilizzo.
 
+## Configurazione (.env)
+
+Per far funzionare correttamente il progetto (sitemap, robots e chiamate a Supabase per le allerte meteo), devi creare un file `.env` nella directory principale partendo dal file `.env.example`.
+
+Le variabili da inserire sono:
+- `SECRET_TOKEN`: Token segreto o password del progetto.
+- `VITE_SUPABASE_URL`: URL del tuo progetto Supabase (serve per le chiamate alle Edge Functions, es. `arpal-allerta`).
+- `VITE_SUPABASE_PUBLISHABLE_KEY`: Chiave pubblica anonima di Supabase.
+- `VITE_SITE_URL`: Il dominio ufficiale del sito (es. `https://ellera.it`). È **fondamentale** che sia corretto, perché lo script di build lo usa per generare automaticamente la `sitemap.xml` e il `robots.txt`.
+- `VITE_SITE_NOINDEX`: Imposta a `true` per disabilitare l'indicizzazione sui motori di ricerca (utile per ambienti di test).
+
 ## Sviluppo locale
 
 ```bash
