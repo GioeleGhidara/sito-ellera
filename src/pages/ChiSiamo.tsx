@@ -52,10 +52,10 @@ const NUMERI = [
 ] as const;
 
 const RUOLI = [
-  { role: "Presidente e Vicepresidente", desc: "Guida e rappresentanza del Comitato." },
-  { role: "Tesoriere-Segretario", desc: "Gestione amministrativa e contabile." },
-  { role: "2 Consiglieri Albi Trail", desc: "Sviluppo e cura della sentieristica." },
-  { role: "1 Consigliere Balomà", desc: "Riferimento per il Centro Polifunzionale." },
+  { role: "Presidente e Vicepresidente", desc: "Guida e rappresentanza del Comitato.", wide: false },
+  { role: "Tesoriere-Segretario", desc: "Gestione amministrativa e contabile.", wide: false },
+  { role: "2 Consiglieri Albi Trail", desc: "Sviluppo e cura della sentieristica.", wide: false },
+  { role: "1 Consigliere Balomà", desc: "Riferimento per il Centro Polifunzionale.", wide: false },
   { role: "2 Consiglieri Generali", desc: "Supporto a tutte le attività logistiche.", wide: true },
 ] as const;
 

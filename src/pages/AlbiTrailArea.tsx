@@ -15,7 +15,7 @@ import {
   TrendingDown,
   TrendingUp,
 } from "@/lib/icons";
-import { FeaturedEventCardCompact } from "@/components/EventCard";
+import { FeaturedEventCard } from "@/components/EventCard";
 import Layout from "@/components/Layout";
 import MapFallback from "@/components/MapFallback";
 import PageHero from "@/components/PageHero";
@@ -329,11 +329,11 @@ const AlbiTrailArea = () => {
         title="Albi Trail Area, MTB a Ellera"
         description="Esplora l'Albi Trail Area di Ellera: trail MTB tra discese tecniche, risalite pedalate e mappe GPX nel cuore della Liguria."
         image={albiImage}
-        imageAlt="Mountain biker sui trail di Ellera"
+        imageAlt="Mountain biker in un passaggio tra gli alberi nei trail di Ellera"
       />
       <PageHero
         imageSrc={albiImage}
-        imageAlt="Mountain biker sui trail di Ellera"
+        imageAlt="Mountain biker in un passaggio tra gli alberi nei trail di Ellera"
         eyebrow="Outdoor MTB"
         eyebrowIcon={Bike}
         title="Albi Trail Area"
@@ -410,7 +410,7 @@ const AlbiTrailArea = () => {
         <section className="bg-[var(--forest-mid,#264d3a)]/10 py-12">
           <div className="container mx-auto max-w-5xl px-4 lg:px-8">
             <SectionHeader icon={Calendar} eyebrow="In programma" title="Prossimo evento" />
-            <FeaturedEventCardCompact event={nextBikeEvent} />
+            <FeaturedEventCard event={nextBikeEvent} />
           </div>
         </section>
       )}

@@ -2,6 +2,7 @@ import {
   albiTrailAreaImage,
   barrabravaLogoSvg,
   caruggiEventImage,
+  caruggiLanterneImage,
   comuneAlbisolaSupLogoSvg,
   castagnataImage,
   heroImage,
@@ -9,6 +10,7 @@ import {
   quilianoBikeLogoSvg,
   sincroresonanceImage,
   locandinaPedaliamoInsieme,
+  chiesaSanBartolomeoEventImage,
 } from "@/assets/images";
 import { EVENT_LOCATIONS } from "./locations";
 
@@ -131,9 +133,9 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
 - Ritrovo conclusivo comune
 
 **Percorsi**
-- **Giro Ellera**: passaggio da Ellera con sosta in Piazza dell'Elce
-- **Giro Albisola**: percorso su forze proprie, senza passaggio da Ellera
-- **Giro Famiglie**: percorso su strada, adatto a famiglie e accompagnatori
+- **Giro Rosso**: passaggio da Ellera con sosta in Piazza dell'Elce
+- **Giro Verde**: percorso su forze proprie, senza passaggio da Ellera
+- **Giro Bianco**: percorso su strada, adatto a famiglie e accompagnatori
 
 **Organizzazione**
 - **Barrabrava 41**: coordinamento operativo dell'evento
@@ -169,7 +171,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     date: "21-22 Agosto 2026",
     startDate: "2026-08-21",
     endDate: "2026-08-22",
-    image: caruggiEventImage,
+    image: caruggiLanterneImage,
     desc: "Il tradizionale percorso enogastronomico nei caruggi del borgo di Ellera. Tre serate dedicate al buon cibo, street food e convivialità. L'atmosfera magica delle lanterne è accompagnata da musica dal vivo di tutti i generi e rassegne d'arte come 'L'Arte del Fuoco'. Servizio navetta gratuito da Luceto dalle 19:00.",
     location: EVENT_LOCATIONS.CARUGGI.name,
     locationUrl: EVENT_LOCATIONS.CARUGGI.url,
@@ -192,7 +194,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     date: "22-23 Agosto 2026",
     startDate: "2026-08-22",
     endDate: "2026-08-23",
-    image: heroImage,
+    image: chiesaSanBartolomeoEventImage,
     desc: "La festa del patrono di Ellera, titolare della parrocchia inaugurata nel 1642. La sera del 23 agosto la comunità si ritrova per la messa e per l'annuale falò della vigilia, rito che accende la festa del 24 e richiama la tradizione contadina della Valle Sansobbia.",
     location: EVENT_LOCATIONS.CENTRO_STORICO.name,
     locationUrl: EVENT_LOCATIONS.CENTRO_STORICO.url,

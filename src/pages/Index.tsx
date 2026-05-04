@@ -34,7 +34,7 @@ import { homeExploreItems, homeRootsCards } from "@/data/home";
 import { ROUTES, newsDetailPath, eventDetailPath, tradizioneDetailPath } from "@/lib/routes";
 import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
 import { createComitatoOrganizationJsonLd } from "@/lib/jsonLd";
-import { heroImage } from "@/assets/images";
+import { elleraDalPonteImage } from "@/assets/images";
 
 const WeatherWidget = lazy(() => import("@/components/WeatherWidget"));
 
@@ -74,15 +74,15 @@ const Index = () => {
       <Seo
         title="Ellera, borgo in Liguria tra arte, trail e tradizioni"
         description={pageDescription}
-        image={heroImage}
-        imageAlt="Veduta aerea di Ellera, borgo ligure"
+        image={elleraDalPonteImage}
+        imageAlt="Il borgo di Ellera visto dal ponte sul Sansobbia"
         jsonLd={createComitatoOrganizationJsonLd()}
       />
 
       <section className="relative flex h-[85vh] min-h-[500px] items-center justify-center overflow-hidden">
         <motion.img
-          src={heroImage}
-          alt="Veduta aerea di Ellera, borgo ligure"
+          src={elleraDalPonteImage}
+          alt="Il borgo di Ellera visto dal ponte sul Sansobbia"
           className="absolute inset-0 h-full w-full object-cover object-center"
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}

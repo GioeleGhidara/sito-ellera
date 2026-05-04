@@ -21,7 +21,7 @@ import {
   FeaturedEventCard,
   formatEventDate,
 } from "@/components/EventCard";
-import { caruggiEventImage } from "@/assets/images";
+import { luceTerrazzoImage } from "@/assets/images";
 import { eventDetailPath } from "@/lib/routes";
 import { type Variants } from "framer-motion";
 
@@ -99,8 +99,9 @@ const Eventi = () => {
   return (
     <Layout>
       <PageHero
-        imageSrc={caruggiEventImage}
-        imageAlt="Scorcio degli eventi di Ellera"
+        imageSrc={luceTerrazzoImage}
+        imageAlt="Luce dorata su un terrazzo affacciato sul borgo di Ellera"
+        imageClassName="object-[center_35%]"
         eyebrow="Calendario"
         eyebrowIcon={CalendarDays}
         title="Eventi"

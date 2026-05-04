@@ -1,7 +1,8 @@
-﻿import {
+import {
   caruggiEventImage,
+  caruggiLanterneImage,
   consiglioNewsImage,
-  muralesCeramista1,
+  gruppomurales,
 } from "@/assets/images";
 
 export interface NewsItem {
@@ -33,7 +34,7 @@ Per il **14 giugno 2026** è invece in preparazione un appuntamento organizzato 
 
 I dettagli operativi, compresi orari, modalità di iscrizione e programma completo delle singole giornate, saranno comunicati con aggiornamenti dedicati nelle prossime settimane.`,
     category: "Associazione",
-    image: caruggiEventImage,
+    image: caruggiLanterneImage,
   },
   {
     id: 7,
@@ -84,7 +85,7 @@ Il murale si inserisce nel contesto della **Galleria a Cielo Aperto di Ellera**,
 
 Il risultato è un'opera che unisce memoria industriale, storia dell'arte e rigenerazione dello spazio pubblico, confermando Ellera come uno dei luoghi più originali del paesaggio culturale albisolese.`,
     category: "Cultura",
-    image: muralesCeramista1,
+    image: gruppomurales,
   },
 ];
 

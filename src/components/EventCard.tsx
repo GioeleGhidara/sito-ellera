@@ -124,7 +124,7 @@ export const EventPoster = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
-  if (placeholderLabel || !image || hasError) {
+  if (!image || hasError) {
     return (
       <div
         className={`flex h-full w-full items-center justify-center bg-muted text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground ${className ?? ""}`}

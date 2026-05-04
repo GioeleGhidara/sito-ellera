@@ -5,8 +5,12 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import Seo from "@/components/Seo";
 import { stories, type Story } from "@/data/stories";
-import { tradizioniHeroImage } from "@/assets/images";
+import { gattoNeroImage } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
+import MaintenanceView from "@/components/MaintenanceView";
+import { MAINTENANCE_CONFIG } from "@/config/maintenance";
+
+const IS_UNDER_MAINTENANCE = MAINTENANCE_CONFIG.TRADIZIONI;
 
 const iconMap: Record<Story["icon"], React.ElementType> = {
   sparkles: Sparkles,
@@ -41,17 +45,39 @@ const getStorySummary = (story: Story, maxChars = 220) => {
 };
 
 const Tradizioni = () => {
+  if (IS_UNDER_MAINTENANCE) {
+    return (
+      <Layout>
+        <Seo
+          title="Tradizioni e storie di Ellera"
+          description="Scopri tradizioni, leggende, mestieri e memorie di Ellera attraverso i racconti che hanno plasmato l'identità del borgo."
+          image={gattoNeroImage}
+          imageAlt="Gatto nero tra i vicoli di Ellera, simbolo della leggenda delle gatte-streghe"
+        />
+        <div className="h-16 lg:h-20 bg-slate-900" aria-hidden="true"></div>
+        <section className="bg-background pt-12 pb-12 lg:pt-20 lg:pb-24">
+          <div className="container mx-auto px-4">
+            <MaintenanceView 
+              title="Sezione Tradizioni in Manutenzione"
+              message="Stiamo raccogliendo nuove testimonianze storiche e digitalizzando l'archivio fotografico del borgo. Torna presto per leggere le nuove storie."
+            />
+          </div>
+        </section>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Seo
         title="Tradizioni e storie di Ellera"
         description="Scopri tradizioni, leggende, mestieri e memorie di Ellera attraverso i racconti che hanno plasmato l'identità del borgo."
-        image={tradizioniHeroImage}
-        imageAlt="Scorcio storico di Ellera"
+        image={gattoNeroImage}
+        imageAlt="Gatto nero tra i vicoli di Ellera, simbolo della leggenda delle gatte-streghe"
       />
       <PageHero
-        imageSrc={tradizioniHeroImage}
-        imageAlt="Scorcio storico di Ellera"
+        imageSrc={gattoNeroImage}
+        imageAlt="Gatto nero tra i vicoli di Ellera, simbolo della leggenda delle gatte-streghe"
         eyebrow="Memoria e Tradizioni"
         eyebrowIcon={BookOpen}
         title="Racconti dal Borgo"

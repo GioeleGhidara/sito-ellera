@@ -1,4 +1,4 @@
-import caruggiEllera from "@/assets/images/events/caruggi_ellera.avif";
+import caruggiEllera from "@/assets/images/places/caruggiEllera.jpg";
 import fieraBestiame from "@/assets/images/fiera-pesa/f.bestiame.avif";
 import pesaPubblica from "@/assets/images/fiera-pesa/pasa_pubblica.avif";
 import heroImage from "@/assets/images/home/hero_image.avif";
@@ -9,6 +9,7 @@ import chiesaSanBartolomeo from "@/assets/images/tradizioni/chiese/chiesa_san_ba
 import alberoCuccagna1 from "@/assets/images/tradizioni/albero-cuccagna/albero-cuccagna1.jpg";
 import alberoCuccagna2 from "@/assets/images/tradizioni/albero-cuccagna/albero-cuccagna2.jpg";
 import gattaVicoli from "@/assets/images/tradizioni/streghe/gatta-vicoli.avif";
+import gattoMano from "@/assets/images/tradizioni/gattoMano.avif";
 import tradizionePlaceholder from "@/assets/images/tradizioni/placeholders/tradizione-placeholder.svg";
 import digaMulinoMaroneBesin from "@/assets/images/tradizioni/mulini-riferimenti/diga del mulino di Marone con il mulino di besin o impianto per la produzione dell energia elettrica.avif";
 import mappaMulini from "@/assets/images/tradizioni/mulini-riferimenti/mappa mulini.avif";
@@ -41,10 +42,11 @@ export const tradizioneGalleryBySlug: Record<string, GallerySlide[]> = {
       caption:
         "I carruggi del borgo sono il luogo in cui la memoria popolare continua a riconoscere nelle gatte le antiche protettrici di Ellera.",
     },
-    createPlaceholderSlide(
-      "caverna o anfratto nascosto tra rovi e macchia sopra Ellera",
-      "Una cavità nascosta tra rovi, pietra e macchia mediterranea sui pendii sopra il borgo rende visibile il rifugio che la leggenda attribuisce alle gatte stregate.",
-    ),
+    {
+      src: gattoMano,
+      alt: "Dettaglio gatto nei carruggi",
+      caption: "Un incontro suggestivo tra i carruggi, dove la leggenda delle gatte stregate rivive nei dettagli quotidiani del borgo.",
+    },
     {
       src: gattaVicoli,
       alt: "Gatta nei vicoli di Ellera legata all'immaginario delle gatte stregate",

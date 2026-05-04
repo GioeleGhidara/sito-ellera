@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import Seo from "@/components/Seo";
 import { news } from "@/data/news";
-import { caruggiImage } from "@/assets/images";
+import { heroNewsImage } from "@/assets/images";
 import { newsDetailPath } from "@/lib/routes";
 
 const fadeUp = {
@@ -31,12 +31,13 @@ const News = () => {
       <Seo
         title="News da Ellera"
         description="Leggi le ultime news da Ellera: progetti del Comitato Ellerese, eventi, cultura, outdoor e novità dal borgo."
-        image={caruggiImage}
-        imageAlt="I caruggi di Ellera"
+        image={heroNewsImage}
+        imageAlt="Un caruggio del borgo di Ellera"
       />
       <PageHero
-        imageSrc={caruggiImage}
-        imageAlt="I caruggi di Ellera"
+        imageSrc={heroNewsImage}
+        imageAlt="Un caruggio del borgo di Ellera"
+        imageClassName="object-[center_70%]"
         eyebrow="Dal borgo"
         eyebrowIcon={Newspaper}
         title="News dall'Anima di Ellera"

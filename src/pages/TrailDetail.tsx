@@ -19,6 +19,10 @@ import {
   trailHeroPurpleImage,
   trailHeroRedImage,
   albiTrailAreaImage,
+  biciCartelloImage,
+  biciCascinaImage,
+  biciNeveImage,
+  biciPrimopianoImage,
 } from "@/assets/images";
 
 const TrailMiniMap = React.lazy(() => import("@/components/TrailMiniMap"));
@@ -42,7 +46,12 @@ const TrailDetail = () => {
 
   if (!trail) return <NotFound />;
 
-  const placeholderImages = Array.from({ length: 4 }, (_, i) => i);
+  const galleryImages = [
+    { src: biciCartelloImage, alt: "MTB vicino al cartello" },
+    { src: biciCascinaImage, alt: "MTB vicino a una cascina in pietra" },
+    { src: biciNeveImage, alt: "MTB su trail innevato" },
+    { src: biciPrimopianoImage, alt: "Dettaglio mountain bike" },
+  ];
   const trailColor = trail.gpxColor.toUpperCase();
   const trailHeaderImage = TRAIL_HEADERS_BY_COLOR[trailColor];
   const hasTrailHeaderImage = Boolean(trailHeaderImage);
@@ -152,15 +161,17 @@ const TrailDetail = () => {
               Galleria
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {placeholderImages.map((i) => (
+              {galleryImages.map((img, idx) => (
                 <div
-                  key={i}
-                  className="aspect-[4/3] bg-muted rounded-xl border border-border flex items-center justify-center"
+                  key={idx}
+                  className="aspect-[4/3] rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-warm transition-shadow group"
                 >
-                  <div className="text-center text-muted-foreground/50">
-                    <ImageIcon className="w-8 h-8 mx-auto mb-1" />
-                    <span className="text-xs">Foto {i + 1}</span>
-                  </div>
+                  <img 
+                    src={img.src} 
+                    alt={img.alt} 
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
                 </div>
               ))}
             </div>

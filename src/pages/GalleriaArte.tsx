@@ -9,8 +9,8 @@ import TableOfContents from "@/components/TableOfContents";
 import { Link } from "react-router-dom";
 import { artists } from "@/data/galleriaArte";
 import {
-  galleriaArteImage, caruggiImage,
-  muralesCeramista1, ceramista,
+  galleriaArteImage, caruggioImage,
+  gruppomurales, ceramista,
   mappaPannelliImage,
 } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
@@ -52,6 +52,7 @@ const GalleriaArte = () => {
       <PageHero
         imageSrc={galleriaArteImage}
         imageAlt="Pannello ceramico della Galleria a Cielo Aperto di Ellera"
+        imageClassName="object-[center_40%]"
         eyebrow="Arte e Ceramica"
         eyebrowIcon={Palette}
         title="Galleria A Cielo Aperto"
@@ -99,8 +100,8 @@ const GalleriaArte = () => {
 
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <img
-                src={caruggiImage}
-                alt="I caruggi di Ellera con pannelli ceramici"
+                src={caruggioImage}
+                alt="Caruggi di Ellera con i pannelli ceramici della Galleria a Cielo Aperto"
                 className="w-full rounded-xl shadow-warm object-cover aspect-[3/4]"
               />
               <p className="text-xs text-muted-foreground mt-3 text-center italic">I caratteristici caruggi di Ellera con i pannelli ceramici</p>
@@ -189,7 +190,7 @@ const GalleriaArte = () => {
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-3">
               <div className="grid grid-cols-2 gap-3">
                 <img
-                  src={muralesCeramista1}
+                  src={gruppomurales}
                   alt="Murales Il Ceramista di 750ML a Ellera - vista frontale"
                   className="w-full rounded-xl shadow-warm object-cover aspect-[3/4]"
                 />

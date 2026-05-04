@@ -220,6 +220,15 @@
       font-family: 'DM Sans', sans-serif;
     }
 
+    .btn-primary.disabled,
+    .btn-primary-sm.disabled {
+      background: var(--stone);
+      opacity: 0.7;
+      cursor: not-allowed;
+      box-shadow: none;
+      pointer-events: none;
+    }
+
     .btn-primary:hover {
       background: #c4721f;
       transform: translateY(-1px);
@@ -1203,10 +1212,16 @@
 
     .map-legend-swatch {
       width: 16px;
-      height: 3px;
-      border-radius: 999px;
+      height: 6px;
+      border-radius: 3px;
       background: var(--legend-color, var(--moss));
       flex-shrink: 0;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    label[style*="#FFFFFF"] .map-legend-swatch,
+    label[style*="#ffffff"] .map-legend-swatch {
+      border: 1px solid #000 !important;
     }
 
     .map-legend-divider {
@@ -1248,7 +1263,7 @@
       align-items: center;
       gap: 6px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--stone);
       letter-spacing: .02em;
     }
@@ -1261,8 +1276,8 @@
     }
 
     .event-map-legend-dot.waypoint {
-      background: #f5f0e8;
-      border: 2px solid #1a3028;
+      background: #3b82f6;
+      border: 2px solid #1d4ed8;
       width: 11px;
       height: 11px;
     }
@@ -2071,6 +2086,33 @@
     .fade-up-4 {
       animation-delay: .35s;
     }
+
+    .charity-compact .org-card {
+      padding: 12px;
+      min-height: auto;
+      flex-direction: row;
+      gap: 12px;
+      text-align: left;
+      align-items: center;
+    }
+
+    .charity-compact .org-logo {
+      width: 50px;
+      min-height: 50px;
+      margin-bottom: 0;
+    }
+
+    .charity-compact .org-logo img {
+      max-width: 50px;
+      max-height: 50px;
+    }
+
+    @media (min-width: 768px) {
+      .charity-compact {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+    }
   </style>
 </head>
 
@@ -2087,10 +2129,10 @@
     </button>
     <div class="sticky-info">
       <strong>La Pedaliamo Insieme</strong>
-      <span class="sticky-info-meta">31 Maggio 2026 · Albisola Superiore</span>
+      <span class="sticky-info-meta">31 Maggio 2026 · Pagamento solo in loco</span>
     </div>
-    <button class="btn-primary-sm sticky-register-btn" onclick="openModal()">
-      Registrati
+    <button class="btn-primary-sm sticky-register-btn disabled" disabled>
+      In arrivo..
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
         stroke-linecap="round" stroke-linejoin="round">
         <path d="m9 18 6-6-6-6" />
@@ -2149,8 +2191,8 @@
         </div>
       </div>
       <div class="hero-ctas fade-up fade-up-4">
-        <a href="#" class="btn-primary" target="_blank">
-          Registrati ora
+        <a href="javascript:void(0)" class="btn-primary disabled">
+          In arrivo..
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="m9 18 6-6-6-6" />
@@ -2163,15 +2205,7 @@
             <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
         </a>
-        <a href="/locandina-la-pedaliamo-insieme-2026.pdf" target="_blank" class="btn-ghost">
-          Locandina
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
-          </svg>
-        </a>
+
       </div>
     </div>
   </div>
@@ -2230,6 +2264,17 @@
               <div>
                 <div class="info-card-label">Data</div>
                 <div class="info-card-value">Domenica 31 Maggio 2026</div>
+                <a href="/la-pedaliamo-insieme-2026.ics" class="btn-ghost"
+                  style="padding: 6px 12px; font-size: 11px; margin-top: 8px; height: auto; text-decoration: none;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  Aggiungi al calendario
+                </a>
               </div>
             </div>
             <div class="info-card">
@@ -2269,7 +2314,7 @@
               <div>
                 <div class="info-card-label">Finalità</div>
                 <!-- MODIFICA: aggiornare con nome ente benefico -->
-                <div class="info-card-value">Beneficienza (ente in definizione)</div>
+                <div class="info-card-value">Croce Verde, Protezione Civile, Balomà</div>
               </div>
             </div>
           </div>
@@ -2303,6 +2348,9 @@
                   <ul>
                     <li>La manifestazione non è competitiva: si prega di mantenere un'andatura turistica.</li>
                     <li>I minorenni devono essere accompagnati da un adulto responsabile.</li>
+                    <li><strong>Attenzione:</strong> tutti i percorsi prevedono tratti su <strong>strade
+                        sterrate</strong>; si raccomanda di essere preparati adeguatamente e di avere una bici idonea.
+                    </li>
                     <li>Controlla le condizioni meteo e dei percorsi prima di partire.</li>
                   </ul>
                 </div>
@@ -2362,6 +2410,26 @@
               <div class="org-note">Patrocina ufficialmente la manifestazione.</div>
             </div>
           </div>
+
+          <!-- FINALITÀ BENEFICA -->
+          <h3 class="orgs-title serif" style="margin-top: 40px;">Il ricavato andrà a</h3>
+          <div class="orgs-grid charity-compact">
+            <div class="org-card">
+              <div class="org-logo"><img src="loghi/logoCroceVerde.avif" alt="Logo Croce Verde Albisola" /></div>
+              <div class="org-name">Croce Verde Albisola</div>
+            </div>
+            <div class="org-card">
+              <div class="org-logo"><img src="loghi/logoAIB.avif" alt="Logo Protezione Civile AIB" /></div>
+              <div class="org-name">Protezione Civile</div>
+            </div>
+            <div class="org-card">
+              <div class="org-logo"><img src="loghi/logoBaloma.avif" alt="Logo Centro Balomà" /></div>
+              <div class="org-name">Centro Balomà</div>
+            </div>
+          </div>
+          <p style="margin-top:16px; font-size:12px; color:var(--stone); text-align:center; opacity:0.8;">
+            L'intero ricavato delle iscrizioni e della lotteria sarà devoluto a sostegno di queste realtà locali.
+          </p>
         </section>
 
         <!-- PROGRAMMA -->
@@ -2379,96 +2447,86 @@
           <div class="section-divider"></div>
           <div class="timeline">
             <div class="timeline-group">
-              <div class="timeline-group-label">Mattino - Zona Scacchiera</div>
+              <div class="timeline-group-label">Mattino - Dalle ore 10:00</div>
               <div class="timeline-row">
-                <div class="timeline-time">Mattino</div>
+                <div class="timeline-time">10:00</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text">Accoglienza alla <strong>zona Scacchiera</strong>. Palco animato e
-                  maxischermo con visibilità per gli sponsor dell'evento.</div>
+                <div class="timeline-text">Apertura in <strong>zona Scacchiera</strong>: apertura iscrizioni in loco e
+                  inizio vendita biglietti della <strong>Lotteria</strong>.</div>
               </div>
               <div class="timeline-row">
-                <div class="timeline-time">Area bici</div>
+                <div class="timeline-time">fino alle 12:30</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text"><strong>Parcheggi sovrastanti la zona Scacchiera</strong> allestiti da
-                  <strong>Quiliano Bike</strong>: percorsi ad ostacoli, aree di gioco e bici disponibili per i bambini.
-                </div>
-              </div>
-              <div class="timeline-row">
-                <div class="timeline-time">Biglietti</div>
-                <div class="timeline-dot-col">
-                  <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-text">Inizio vendita dei <strong>biglietti della lotteria</strong> (€ 5) -
-                  acquistabili durante tutta la giornata fino all'estrazione finale.</div>
+                <div class="timeline-text">Area <strong>Quiliano Bike</strong>: prove di abilità per bambini con piccolo
+                  percorso e possibilità di usare le bici messe a disposizione.</div>
               </div>
             </div>
+
             <div class="timeline-group">
-              <div class="timeline-group-label">Pomeriggio - Partenze scaglionate</div>
+              <div class="timeline-group-label">Pomeriggio - I Percorsi</div>
+              <div class="timeline-row">
+                <div class="timeline-time">14:15</div>
+                <div class="timeline-dot-col">
+                  <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-text"><strong>Ritrovo</strong> di tutti i partecipanti in zona Scacchiera.</div>
+              </div>
               <div class="timeline-row">
                 <div class="timeline-time">14:30</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text">Primo scaglione di partenza dalla <strong>zona Scacchiera</strong> verso i
-                  percorsi.</div>
-              </div>
-              <div class="timeline-row">
-                <div class="timeline-time">15:00</div>
-                <div class="timeline-dot-col">
-                  <div class="timeline-dot"></div>
+                <div class="timeline-text"><strong>Partenza dei gruppi</strong> dalla Scacchiera verso i vari itinerari.
                 </div>
-                <div class="timeline-text">Secondo scaglione di partenza.</div>
-              </div>
-              <div class="timeline-row">
-                <div class="timeline-time">15:30</div>
-                <div class="timeline-dot-col">
-                  <div class="timeline-dot"></div>
-                </div>
-                <div class="timeline-text">Terzo e ultimo scaglione di partenza.</div>
               </div>
               <div class="timeline-row">
                 <div class="timeline-time">Tappa</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text">I percorsi che transitano per Ellera si fermano in <strong>Piazza
-                    dell'Elce</strong>, sotto al murale <em>Il Ceramista</em>, per una sosta veloce e un rinfresco.
-                </div>
+                <div class="timeline-text">Ritrovo dei percorsi <strong>Famiglia</strong> e <strong>E-bike</strong> a
+                  Ellera in <strong>Piazza dell'Elce</strong> per un rinfresco sotto al murale.</div>
               </div>
               <div class="timeline-row">
-                <div class="timeline-time">Ritrovo</div>
+                <div class="timeline-time">Unione</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text"><strong>Tutti i gruppi convergono alla Società Luceto</strong> prima del
-                  rientro comune.</div>
+                <div class="timeline-text">Rientro verso valle e ricongiungimento con il gruppo della
+                  <strong>Muscolare</strong> in zona Società di Luceto.
+                </div>
               </div>
+            </div>
+
+            <div class="timeline-group">
+              <div class="timeline-group-label">Conclusione - Zona Scacchiera</div>
               <div class="timeline-row">
-                <div class="timeline-time">Rientro</div>
+                <div class="timeline-time">Arrivo</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text">Tutti insieme di ritorno alla <strong>zona Scacchiera</strong>.</div>
+                <div class="timeline-text">Rientro dei <strong>3 gruppi uniti</strong> alla Scacchiera per il gran
+                  finale.</div>
               </div>
               <div class="timeline-row">
-                <div class="timeline-time">Lotteria</div>
+                <div class="timeline-time">17:30</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text"><strong>Estrazione della lotteria</strong>: vengono sorteggiati i premi messi
-                  in palio dagli sponsor dell'evento.</div>
+                <div class="timeline-text">Debriefing della giornata ed <strong>estrazione della lotteria</strong> con i
+                  premi degli sponsor.</div>
               </div>
               <div class="timeline-row">
                 <div class="timeline-time">Rinfresco</div>
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text">Rinfresco finale offerto da <strong>sponsor e organizzazione</strong> per
-                  concludere tutti insieme la giornata.</div>
+                <div class="timeline-text"><strong>Rinfresco finale</strong> offerto a tutti i partecipanti per
+                  concludere la giornata in compagnia.</div>
               </div>
             </div>
           </div>
@@ -2487,13 +2545,32 @@
             <h2 class="section-title">Percorsi disponibili</h2>
           </div>
           <div class="section-divider"></div>
+
+          <!-- AVVISO STERRATO -->
+          <div
+            style="margin-bottom:24px; padding:16px; background:rgba(21, 48, 40, 0.4); border: 1px solid var(--sage); border-radius:12px; display:flex; align-items:center; gap:16px;">
+            <div style="background:var(--amber); color:var(--black); padding:8px; border-radius:8px; flex-shrink:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            <div style="font-size:14px; color:var(--ivory); line-height:1.5;">
+              <strong>Nota tecnica:</strong> Tutti i percorsi, incluso il giro famiglia, presentano <strong>tratti su
+                strada sterrata</strong>. Assicurati di avere una bicicletta in ordine e un abbigliamento adeguato al
+              terreno.
+            </div>
+          </div>
+
           <div class="routes-grid">
 
             <div class="route-card" style="--route-color: #FF0000">
               <div class="route-accent"></div>
               <div class="route-body">
                 <div class="route-head">
-                  <span class="route-name">Giro Ellera</span>
+                  <span class="route-name">Giro Rosso</span>
                   <span class="route-tag" style="background:#fee2e2;color:#b91c1c">E-bike</span>
                 </div>
                 <div class="route-poi-row">
@@ -2521,12 +2598,12 @@
               </div>
             </div>
 
-            <div class="route-card" style="--route-color: #0000FF">
+            <div class="route-card" style="--route-color: #00AA00">
               <div class="route-accent"></div>
               <div class="route-body">
                 <div class="route-head">
-                  <span class="route-name">Giro Albisola</span>
-                  <span class="route-tag" style="background:#dbeafe;color:#1e3a8a">Muscolare</span>
+                  <span class="route-name">Giro Verde</span>
+                  <span class="route-tag" style="background:#dcfce7;color:#166534">Muscolare</span>
                 </div>
                 <div class="route-poi-row">
                   <span class="route-poi-label">
@@ -2554,12 +2631,13 @@
               </div>
             </div>
 
-            <div class="route-card" style="--route-color: #F59E0B">
-              <div class="route-accent"></div>
+            <div class="route-card" style="--route-color: #FFFFFF; border: 1px solid rgba(0,0,0,0.1)">
+              <div class="route-accent" style="border: 1px solid #000"></div>
               <div class="route-body">
                 <div class="route-head">
-                  <span class="route-name">Giro Famiglia</span>
-                  <span class="route-tag" style="background:#fef3c7;color:#92400e">Qualsiasi bici</span>
+                  <span class="route-name">Giro Bianco</span>
+                  <span class="route-tag" style="background:#ffffff;color:#4b5563;border:1px solid #e5e7eb">Qualsiasi
+                    bici</span>
                 </div>
                 <div class="route-poi-row">
                   <span class="route-poi-label">
@@ -2592,21 +2670,17 @@
           <div class="event-map-wrap">
             <div id="event-map" aria-label="Mappa percorsi evento"></div>
             <div class="event-map-legend" aria-hidden="true">
-              <span class="event-map-legend-item">
-                <span class="event-map-legend-dot" style="background:#F59E0B"></span>
-                Percorso Famiglie
+              <span class="event-map-legend-item" style="color:#000">
+                <span class="event-map-legend-dot" style="background:#FFFFFF; border: 1px solid #000"></span>
+                Famiglie
               </span>
-              <span class="event-map-legend-item">
-                <span class="event-map-legend-dot" style="background:#00AA00"></span>
-                Accesso Comune
-              </span>
-              <span class="event-map-legend-item">
+              <span class="event-map-legend-item" style="color:#FF0000">
                 <span class="event-map-legend-dot" style="background:#FF0000"></span>
-                Giro Ellera
+                e-MTB
               </span>
-              <span class="event-map-legend-item">
-                <span class="event-map-legend-dot" style="background:#0000FF"></span>
-                Giro Albisola
+              <span class="event-map-legend-item" style="color:#00AA00">
+                <span class="event-map-legend-dot" style="background:#00AA00"></span>
+                MTB
               </span>
               <span class="event-map-legend-item">
                 <span class="event-map-legend-dot waypoint"></span>
@@ -2635,16 +2709,47 @@
             <div class="pricing-row">
               <div>
                 <div class="pricing-who">Bambini</div>
-                <div class="pricing-sub">dai 10 anni</div>
+                <div class="pricing-sub">fino a 12 anni</div>
               </div>
               <div class="pricing-price">€ 5</div>
             </div>
             <div class="pricing-row">
               <div>
                 <div class="pricing-who">Adulti</div>
-                <div class="pricing-sub">qualsiasi percorso</div>
+                <div class="pricing-sub">qualsiasi percorso · include 1 biglietto lotteria</div>
               </div>
               <div class="pricing-price">€ 10</div>
+            </div>
+
+            <div
+              style="margin-top:16px; padding:12px; background:rgba(21, 48, 40, 0.4); border: 1px dashed var(--sage); border-radius:12px; display:flex; align-items:flex-start; gap:12px;">
+              <div style="background:var(--sage); color:var(--ivory); padding:4px; border-radius:6px; flex-shrink:0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                  <path d="m3.3 7 8.7 5 8.7-5" />
+                  <path d="M12 22V12" />
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:13px; color:var(--ivory); font-weight:600; margin-bottom:2px;">Pacco gara
+                  garantito</div>
+                <div style="font-size:12px; color:var(--ivory); opacity:0.85; line-height:1.4;">Disponibile per i primi
+                  <strong>200
+                    iscritti</strong> alla manifestazione.</div>
+              </div>
+            </div>
+
+            <div
+              style="margin-top:12px; padding:8px 12px; background:rgba(212, 128, 42, 0.08); border-radius:8px; font-size:12px; color:var(--amber); font-weight:600; display:flex; align-items:center; gap:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              I pagamenti possono essere effettuati esclusivamente in loco il giorno dell'evento.
             </div>
           </div>
           <div class="reg-banner">
@@ -2652,20 +2757,15 @@
               <strong>Come iscriversi</strong>
               <span>Registrazione online · Pagamento in loco il giorno dell'evento</span>
             </div>
-            <a href="#" class="btn-primary-sm" target="_blank">
-              Registrati
+            <a href="javascript:void(0)" class="btn-primary-sm disabled">
+              In arrivo..
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="m9 18 6-6-6-6" />
               </svg>
             </a>
           </div>
-          <!-- MODIFICA: aggiornare nome ente benefico -->
-          <p class="lead" style="margin-top:18px;font-size:13px">
-            Il ricavato dell'evento è interamente destinato a un <strong>ente benefico</strong> (in fase di
-            definizione).
-            Maggiori dettagli verranno comunicati nelle settimane precedenti.
-          </p>
+
         </section>
 
         <!-- LOTTERIA -->
@@ -2700,7 +2800,7 @@
             <p class="lottery-desc">
               Al termine della giornata, di ritorno alla <strong>zona Scacchiera</strong>,
               si terrà la lotteria dell'evento. I biglietti sono acquistabili in loco durante
-              la giornata. I <strong>premi sono offerti dagli sponsor</strong> che hanno scelto
+              la giornata (il costo è di <strong>10€</strong> a biglietto, ma ricorda che con ogni iscrizione adulto ne riceverai già uno incluso!). I <strong>premi sono offerti dagli sponsor</strong> che hanno scelto
               di sostenere questa iniziativa. L'<strong>intero ricavato della lotteria andrà in
                 beneficienza</strong>, insieme al ricavato delle iscrizioni.
             </p>
@@ -2719,7 +2819,7 @@
                     points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                 </svg>
               </div>
-              <div class="lottery-price-num">€ 5</div>
+              <div class="lottery-price-num">€ 10</div>
               <div class="lottery-price-label">a biglietto<br>acquistabile in loco</div>
             </div>
           </div>
@@ -2907,9 +3007,9 @@
             <label class="form-label">Percorso <span>*</span></label>
             <select class="form-select" id="f-percorso">
               <option value="">Seleziona un percorso…</option>
-              <option value="ellera">Giro Ellera (e-bike)</option>
-              <option value="albisola">Giro Albisola (muscolare)</option>
-              <option value="famiglia">Giro Famiglia (su strada)</option>
+              <option value="ellera">Giro Rosso</option>
+              <option value="albisola">Giro Verde</option>
+              <option value="famiglia">Giro Bianco</option>
             </select>
             <span class="form-error" id="err-percorso"></span>
           </div>
@@ -3063,10 +3163,9 @@
 
       /* -- Config tracce -- */
       const EVENT_TRACKS = [
-        { slug: 'percorso-famiglie', name: 'Percorso famiglie', json: '/tracks/json/event-tracks/percorso_famiglie.json', color: '#F59E0B', weight: 7 },
-        { slug: '1-comune', name: 'Accesso ai percorsi Comune', json: '/tracks/json/event-tracks/1-comune.json', color: '#00AA00', weight: 6 },
-        { slug: 'ellera-ebike', name: 'Giro Ellera (e-bike)', json: '/tracks/json/event-tracks/ellera-ebike.json', color: '#FF0000', weight: 5 },
-        { slug: 'albisola-muscolare', name: 'Giro Albisola', json: '/tracks/json/event-tracks/albisola-muscolare.json', color: '#0000FF', weight: 4 },
+        { slug: 'percorso-famiglie', name: 'Famiglie', json: '/tracks/json/event-tracks/percorso_famiglie.json', color: '#FFFFFF', weight: 7 },
+        { slug: 'ellera-ebike', name: 'e-MTB', json: '/tracks/json/event-tracks/ellera-ebike.json', color: '#FF0000', weight: 5 },
+        { slug: 'albisola-muscolare', name: 'MTB', json: '/tracks/json/event-tracks/albisola-muscolare.json', color: '#00AA00', weight: 4 },
       ];
       const WAYPOINTS_URL = '/tracks/json/event-tracks/waypoints.json';
       const DEFAULT_CENTER = [44.35, 8.42];
@@ -3114,13 +3213,14 @@
           '<path d="m6 9 6 6 6-6" /></svg></button>' +
           '<div class="map-legend-body">' +
           '<div class="map-legend-title">Percorsi Evento</div>' +
-          EVENT_TRACKS.map(t =>
-            `<label class="map-legend-option" style="--legend-color:${t.color}">
+          EVENT_TRACKS.map(t => {
+            const textColor = t.color.toUpperCase() === '#FFFFFF' ? '#000' : t.color;
+            return `<label class="map-legend-option" style="--legend-color:${t.color}; color:${textColor}; font-weight:700">
               <input type="checkbox" data-slug="${t.slug}" checked>
               <span class="map-legend-swatch"></span>
               ${t.name}
-            </label>`
-          ).join('') +
+            </label>`;
+          }).join('') +
           '<div class="map-legend-divider"></div>' +
           '<div class="map-legend-waypoint">' +
           '<span class="map-legend-waypoint-dot"></span>' +
@@ -3164,6 +3264,13 @@
           const { t, coords } = r;
           const display = offsetted[i];
 
+          if (t.color.toUpperCase() === '#FFFFFF') {
+            L.polyline(display, {
+              color: '#000000', weight: t.weight + 2, opacity: 0.8,
+              pane: `ep-${t.slug}`, interactive: false,
+            }).addTo(map);
+          }
+
           const line = L.polyline(display, {
             color: t.color, weight: t.weight, opacity: 0.9,
             pane: `ep-${t.slug}`, interactive: false,
@@ -3176,8 +3283,6 @@
 
           const state = { line, hit, pinned: false, visible: true, t };
           trackLayers[t.slug] = state;
-
-          hit.bindTooltip(`<strong style="font-family:Fraunces,serif">${t.name}</strong>`, { sticky: true, direction: 'top', offset: [0, -10] });
 
           hit.on('mouseover', () => {
             if (!state.pinned) line.setStyle({ weight: t.weight + 2, opacity: 1 });
@@ -3210,9 +3315,9 @@
           parseWaypointsJson(waypointData).forEach(wp => {
             const m = L.circleMarker([wp.lat, wp.lon], {
               pane: 'ep-waypoints', radius: 6,
-              color: '#1a3028', weight: 2, fillColor: '#f5f0e8', fillOpacity: 1,
+              color: '#1d4ed8', weight: 2, fillColor: '#3b82f6', fillOpacity: 1,
             }).addTo(map);
-            m.bindTooltip(wp.name, { direction: 'top', offset: [0, -6] });
+            m.bindTooltip(`<strong>${wp.name}</strong>`, { direction: 'top', offset: [0, -6] });
             m.bindPopup(`<strong>${wp.name}</strong>${wp.desc ? `<br>${wp.desc}` : ''}`);
             allBounds.extend(m.getLatLng());
           });
@@ -3431,7 +3536,7 @@
       const telefono = document.getElementById('f-telefono').value.trim();
       const percorso = document.getElementById('f-percorso').value;
       const note = document.getElementById('f-note').value.trim();
-      const percorsoLabel = { ellera: 'Giro Ellera (e-bike)', albisola: 'Giro Albisola (muscolare)', famiglia: 'Giro Famiglia (su strada)' }[percorso];
+      const percorsoLabel = { ellera: 'Giro Rosso', albisola: 'Giro Verde', famiglia: 'Giro Bianco' }[percorso];
       try {
         // MODIFICA: sostituire con endpoint reale (Google Form action URL o API)
         const response = await fetch('/api/registrazioni', {

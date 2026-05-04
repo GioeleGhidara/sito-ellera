@@ -14,6 +14,7 @@ import {
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import Seo from "@/components/Seo";
+import MaintenanceView from "@/components/MaintenanceView";
 import { trekkingPageImage as trekkingImage } from "@/assets/images";
 import {
   trekkingRoutes,
@@ -22,6 +23,7 @@ import {
   difficultyOrder,
   routeTypeLabel,
 } from "@/data/trekkingRoutes";
+import { MAINTENANCE_CONFIG } from "@/config/maintenance";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -70,8 +72,32 @@ const getDurationStartMinutes = (durationH?: string) => {
   return hours * 60 + minutes;
 };
 
+const IS_UNDER_MAINTENANCE = MAINTENANCE_CONFIG.TREKKING;
+
 const Trekking = () => {
   const [activeFilter, setActiveFilter] = useState<"Tutti" | Difficulty>("Tutti");
+
+  if (IS_UNDER_MAINTENANCE) {
+    return (
+      <Layout>
+        <Seo
+          title="Trekking a Ellera nella Valle Sansobbia"
+          description="Scopri i principali percorsi trekking da Ellera tra boschi, crinali panoramici e sentieri storici dell'entroterra savonese."
+          image={trekkingImage}
+          imageAlt="Escursionisti sui sentieri di Ellera"
+        />
+        <div className="h-16 lg:h-20 bg-slate-900" aria-hidden="true"></div>
+        <section className="bg-background pt-12 pb-12 lg:pt-20 lg:pb-24">
+          <div className="container mx-auto px-4">
+            <MaintenanceView 
+              title="Sezione Trekking in Manutenzione"
+              message="Stiamo tracciando i nuovi percorsi e aggiornando la mappa dei sentieri. Torna presto per scoprire tutte le escursioni nella Valle Sansobbia."
+            />
+          </div>
+        </section>
+      </Layout>
+    );
+  }
 
   const filtered = [
     ...(activeFilter === "Tutti"

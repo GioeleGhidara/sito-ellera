@@ -94,6 +94,8 @@ export {
   LuWrench as Wrench,
   LuX as X,
   LuZap as Zap,
+  LuSettings as Settings,
+  LuConstruction as Construction,
 } from "react-icons/lu";
 
 export { FaCow as Cow } from "react-icons/fa6";
