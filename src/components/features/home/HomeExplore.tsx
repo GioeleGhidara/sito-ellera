@@ -15,10 +15,10 @@ const homeExploreIconMap: Record<string, React.ElementType> = {
 
 const HomeExplore = ({ homeExploreItems, fadeUp }: HomeExploreProps) => {
   return (
-    <section className="bg-background pb-10 lg:pb-24">
+    <section className="bg-background pb-10 lg:pb-12">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h3 className="mb-6 text-center text-xl font-heading font-bold text-foreground lg:mb-8 lg:text-3xl">
+          <h3 className="mb-4 text-center text-xl font-heading font-bold text-foreground lg:mb-6 lg:text-3xl">
             Scopri Ellera
           </h3>
           <div className="grid grid-cols-3 gap-2 sm:gap-4 md:grid-cols-3 md:gap-6">

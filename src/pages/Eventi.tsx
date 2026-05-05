@@ -11,6 +11,7 @@ import type { EventCategory } from "@/data/events";
 import { events, getFeaturedEvent, hasEventDetail, isEventPast } from "@/data/events";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import DecorativeSeparator from "@/components/shared/DecorativeSeparator";
 import {
   EventOrganizerBadges,
