@@ -30,7 +30,7 @@ const Index = () => {
   return (
     <Layout>
       <Seo
-        title="Ellera, borgo in Liguria tra arte, trail e tradizioni"
+        title="Ellera"
         description={pageDescription}
         image={elleraDalPonteImage}
         imageAlt="Il borgo di Ellera visto dal ponte sul Sansobbia"

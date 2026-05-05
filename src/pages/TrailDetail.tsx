@@ -56,7 +56,7 @@ const TrailDetail = () => {
   const trailHeaderImage = TRAIL_HEADERS_BY_COLOR[trailColor];
   const hasTrailHeaderImage = Boolean(trailHeaderImage);
   const seoImage = trailHeaderImage ?? albiTrailAreaImage;
-  const seoTitle = `${trail.name}, trail MTB a Ellera`;
+  const seoTitle = trail.name;
   const seoDescription = summarizeText(
     [
       trail.desc,

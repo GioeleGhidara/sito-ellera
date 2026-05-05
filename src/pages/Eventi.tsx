@@ -97,6 +97,11 @@ const Eventi = () => {
 
   return (
     <Layout>
+      <Seo
+        title="Eventi"
+        description="Esplora il calendario degli eventi di Ellera: feste, cultura e outdoor nel borgo."
+        image={luceTerrazzoImage}
+      />
       <PageHero
         imageSrc={luceTerrazzoImage}
         imageAlt="Luce dorata su un terrazzo affacciato sul borgo di Ellera"

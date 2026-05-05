@@ -44,7 +44,7 @@ const GalleriaArte = () => {
   return (
     <Layout>
       <Seo
-        title="Galleria a cielo aperto di Ellera"
+        title="Galleria d'Arte"
         description="Visita la galleria a cielo aperto di Ellera: 50 pannelli ceramici, artisti italiani e internazionali e un borgo trasformato in percorso d'arte."
         image={galleriaArteImage}
         imageAlt="Pannello ceramico della Galleria a Cielo Aperto di Ellera"

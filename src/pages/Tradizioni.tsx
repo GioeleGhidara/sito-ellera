@@ -49,7 +49,7 @@ const Tradizioni = () => {
     return (
       <Layout>
         <Seo
-          title="Tradizioni e storie di Ellera"
+          title="Tradizioni"
           description="Scopri tradizioni, leggende, mestieri e memorie di Ellera attraverso i racconti che hanno plasmato l'identità del borgo."
           image={gattoNeroImage}
           imageAlt="Gatto nero tra i vicoli di Ellera, simbolo della leggenda delle gatte-streghe"
@@ -70,7 +70,7 @@ const Tradizioni = () => {
   return (
     <Layout>
       <Seo
-        title="Tradizioni e storie di Ellera"
+        title="Tradizioni"
         description="Scopri tradizioni, leggende, mestieri e memorie di Ellera attraverso i racconti che hanno plasmato l'identità del borgo."
         image={gattoNeroImage}
         imageAlt="Gatto nero tra i vicoli di Ellera, simbolo della leggenda delle gatte-streghe"

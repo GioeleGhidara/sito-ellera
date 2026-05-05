@@ -124,7 +124,7 @@ const Storia = () => {
   return (
     <Layout>
       <Seo
-        title="La Storia di Ellera: dalle origini benedettine all'arte"
+        title="Storia"
         description="Scopri la storia di Ellera: l'etimologia dal latino Hedera, la fondazione dei monaci benedettini, i mulini del colore e la rinascita come borgo d'arte."
         image={heroStoriaImage}
       />

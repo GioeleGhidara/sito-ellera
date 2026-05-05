@@ -29,7 +29,7 @@ const News = () => {
   return (
     <Layout>
       <Seo
-        title="News da Ellera"
+        title="News"
         description="Leggi le ultime news da Ellera: progetti del Comitato Ellerese, eventi, cultura, outdoor e novità dal borgo."
         image={heroNewsImage}
         imageAlt="Un caruggio del borgo di Ellera"

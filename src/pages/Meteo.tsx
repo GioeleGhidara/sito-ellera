@@ -474,7 +474,7 @@ const Meteo = () => {
   return (
     <Layout>
       <Seo
-        title="Meteo e Allerte - Ellera"
+        title="Meteo"
         description="Previsioni meteo per Ellera e stato di allerta ARPAL per la Zona B della Liguria. Condizioni aggiornate per escursioni e attività outdoor."
         image={meteoHeroImage}
         imageAlt="Paesaggio montano della Liguria con cielo atmosferico"

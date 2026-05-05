@@ -64,7 +64,7 @@ export default function ChiSiamo() {
   return (
     <Layout>
       <Seo
-        title="Chi Siamo - Comitato Ellerese"
+        title="Chi Siamo"
         description="Il Comitato Ellerese: chi siamo, la nostra missione e il nostro impegno per la valorizzazione del borgo di Ellera."
         image={heroChiSiamo}
         imageAlt="Il borgo di Ellera visto dall'alto"

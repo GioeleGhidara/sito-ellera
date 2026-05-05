@@ -81,7 +81,7 @@ const Trekking = () => {
     return (
       <Layout>
         <Seo
-          title="Trekking a Ellera nella Valle Sansobbia"
+          title="Trekking"
           description="Scopri i principali percorsi trekking da Ellera tra boschi, crinali panoramici e sentieri storici dell'entroterra savonese."
           image={trekkingImage}
           imageAlt="Escursionisti sui sentieri di Ellera"
@@ -124,7 +124,7 @@ const Trekking = () => {
   return (
     <Layout>
       <Seo
-        title="Trekking a Ellera nella Valle Sansobbia"
+        title="Trekking"
         description="Scopri i principali percorsi trekking da Ellera tra boschi, crinali panoramici e sentieri storici dell'entroterra savonese."
         image={trekkingImage}
         imageAlt="Escursionisti sui sentieri di Ellera"
