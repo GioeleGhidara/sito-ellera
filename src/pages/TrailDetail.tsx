@@ -2,10 +2,10 @@ import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Clock, Download, ExternalLink, ImageIcon, MapPin, Mountain, Ruler, TrendingDown, TrendingUp, type IconType } from "@/lib/icons";
-import FloatingBackLink from "@/components/FloatingBackLink";
-import Layout from "@/components/Layout";
-import MapFallback from "@/components/MapFallback";
-import Seo from "@/components/Seo";
+import FloatingBackLink from "@/components/layout/FloatingBackLink";
+import Layout from "@/components/layout/Layout";
+import MapFallback from "@/components/features/trail/MapFallback";
+import Seo from "@/components/shared/Seo";
 import { Button } from "@/components/ui/button";
 import { getTrailBySlug } from "@/data/trails";
 import { summarizeText } from "@/lib/seo";
@@ -25,7 +25,7 @@ import {
   biciPrimopianoImage,
 } from "@/assets/images";
 
-const TrailMiniMap = React.lazy(() => import("@/components/TrailMiniMap"));
+const TrailMiniMap = React.lazy(() => import("@/components/features/trail/TrailMiniMap"));
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -227,3 +227,4 @@ const TrailDetail = () => {
 };
 
 export default TrailDetail;
+

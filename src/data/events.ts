@@ -49,7 +49,12 @@ export interface EventItem {
 
 export type EventCategory = "Cultura" | "Outdoor" | "Festa" | "Teatro" | "Altro";
 
-const toTimestamp = (date: string) => new Date(`${date}T00:00:00`).getTime();
+const toTimestamp = (date: string) => {
+  if (!date) return 0;
+  const t = new Date(`${date}T00:00:00`).getTime();
+  return isNaN(t) ? 0 : t;
+};
+
 const getReferenceDayTimestamp = (referenceDate: Date) => {
   const day = new Date(referenceDate);
   day.setHours(0, 0, 0, 0);
@@ -191,9 +196,8 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
   {
     slug: "san-bartolomeo",
     title: "San Bartolomeo",
-    date: "22-23 Agosto 2026",
-    startDate: "2026-08-22",
-    endDate: "2026-08-23",
+    date: "23 Agosto 2026",
+    startDate: "2026-08-23",
     image: chiesaSanBartolomeoEventImage,
     desc: "La festa del patrono di Ellera, titolare della parrocchia inaugurata nel 1642. La sera del 23 agosto la comunità si ritrova per la messa e per l'annuale falò della vigilia, rito che accende la festa del 24 e richiama la tradizione contadina della Valle Sansobbia.",
     location: EVENT_LOCATIONS.CENTRO_STORICO.name,

@@ -10,14 +10,13 @@ import {
   Instagram,
   Mail,
   Paypal,
-  Phone,
   Users,
   Wrench,
 } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { teatroBalomaExteriorImage as teatroHero } from "@/assets/images";
 import {
   teatroBalomaContacts,
@@ -346,16 +345,6 @@ const TeatroBalomaSupport = () => {
                 <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
               </a>
 
-              <a
-                href={`tel:${teatroBalomaContacts.phone}`}
-                className="flex items-center justify-between rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-accent/30 hover:text-primary"
-              >
-                <span className="inline-flex items-center gap-3">
-                  <Phone className="h-4 w-4 text-accent" />
-                  {teatroBalomaContacts.phone}
-                </span>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
-              </a>
             </div>
           </motion.div>
         </div>
@@ -365,3 +354,4 @@ const TeatroBalomaSupport = () => {
 };
 
 export default TeatroBalomaSupport;
+

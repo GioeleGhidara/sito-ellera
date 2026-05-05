@@ -201,6 +201,8 @@ const useZoneBAlert = (enabled: boolean) => {
     const cached = readArpalCache();
     if (cached?.zones?.B) {
       setZoneAlert(cached.zones.B);
+      // Se la cache è valida (controllata dentro readArpalCache), non facciamo nulla.
+      // readArpalCache restituisce null se scaduta (TTL 15min).
       return;
     }
 
@@ -245,6 +247,15 @@ const useWeather = () => {
 
   useEffect(() => {
     const fetchWeather = async () => {
+      // 1. Controllo cache prima di tutto (TTL 15 minuti per il meteo)
+      const cached = readWeatherCache();
+      const CACHE_TTL = 15 * 60 * 1000;
+      
+      if (cached && (Date.now() - cached.updatedAt < CACHE_TTL)) {
+        setState({ current: cached.current, days: cached.days, loading: false, error: null });
+        return;
+      }
+
       try {
         // 2. Richiediamo 5 giorni di previsione all'API
         const res = await fetch(
@@ -315,8 +326,12 @@ const useWeather = () => {
           .map((datePrefix, dayIndex) => {
             const isToday = dayIndex === 0;
 
+            const activeSlotHour = [...DAY_SLOTS]
+              .reverse()
+              .find((s) => s.hour <= currentHour)?.hour;
+
             const visibleSlots = DAY_SLOTS.filter(
-              ({ hour }) => !isToday || hour > currentHour
+              ({ hour }) => !isToday || hour >= (activeSlotHour ?? 0)
             );
 
             const firstHourToday = isToday ? visibleSlots[0]?.hour : null;
@@ -338,7 +353,7 @@ const useWeather = () => {
         writeWeatherCache({ current, days, updatedAt: Date.now() });
         setState({ current, days, loading: false, error: null });
       } catch {
-        const cached = readWeatherCache();
+        // Se l'API fallisce, proviamo comunque la cache anche se scaduta come ultima spiaggia
         if (cached) {
           setState({ current: cached.current, days: cached.days, loading: false, error: null });
           return;
@@ -417,6 +432,7 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
       <Link
         to={ROUTES.meteo}
         onClick={() => triggerHaptic(HAPTIC_PATTERNS.LIGHT)}
+        aria-label={`Meteo Ellera: ${current.temp} gradi, ${info.label}. Clicca per i dettagli e allerte ARPAL.`}
         className="inline-block rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
       >
         <motion.div
@@ -430,7 +446,7 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
             }`}
         >
           <span className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ring-1 ${info.iconSurfaceClassName}`}>
-            <Icon className={`w-5 h-5 ${info.iconClassName}`} />
+            <Icon className={`w-5 h-5 ${info.iconClassName}`} aria-hidden="true" />
           </span>
           <div className="flex min-w-0 flex-col">
             <span className={`text-sm font-semibold leading-none ${current.isDay ? "text-foreground" : "text-slate-50"}`}>
@@ -446,11 +462,6 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
           {current.precipitationProbability > 0 && (
             <span className={`hidden sm:inline text-xs border-l pl-3 ${current.isDay ? "text-muted-foreground border-border" : "text-slate-300 border-slate-700"}`}>
               <Droplets className="w-3.5 h-3.5 inline mr-1" />{current.precipitationProbability}%
-            </span>
-          )}
-          {!current.isDay && (
-            <span className="hidden sm:inline border-l border-slate-700 pl-3 text-xs text-slate-300">
-              <Moon className="w-3.5 h-3.5 inline mr-1" />Notte
             </span>
           )}
           {compactAlertLevel && compactAlertLevel !== "sconosciuto" && (

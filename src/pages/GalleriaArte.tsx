@@ -2,10 +2,10 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Brush, Download, Droplets, Image, MapPin, Palette, Quote, Search, Users } from "@/lib/icons";
 import { Input } from "@/components/ui/input";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
-import TableOfContents from "@/components/TableOfContents";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
+import TableOfContents from "@/components/layout/TableOfContents";
 import { Link } from "react-router-dom";
 import { artists } from "@/data/galleriaArte";
 import {
@@ -14,7 +14,7 @@ import {
   mappaPannelliImage,
 } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
-import CeramicCube from "@/components/CeramicCube";
+import CeramicCube from "@/components/features/art/CeramicCube";
 
 const gallerySections = [
   { id: "storia", title: "Un sogno diventato realtà" },
@@ -351,3 +351,4 @@ const GalleriaArte = () => {
 };
 
 export default GalleriaArte;
+

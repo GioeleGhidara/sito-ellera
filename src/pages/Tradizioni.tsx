@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Candy, Cat, Church, Clapperboard, Cow, Leaf, Scale, Sparkles, WaterMill } from "@/lib/icons";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { stories, type Story } from "@/data/stories";
 import { gattoNeroImage } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
-import MaintenanceView from "@/components/MaintenanceView";
+import MaintenanceView from "@/components/shared/MaintenanceView";
 import { MAINTENANCE_CONFIG } from "@/config/maintenance";
 
 const IS_UNDER_MAINTENANCE = MAINTENANCE_CONFIG.TRADIZIONI;
@@ -133,3 +133,4 @@ const Tradizioni = () => {
 };
 
 export default Tradizioni;
+

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, MessageCircle, Phone } from "@/lib/icons";
+import { Facebook, Instagram, Mail } from "@/lib/icons";
 import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
 import { cn } from "@/lib/utils";
 
@@ -17,16 +17,10 @@ const FloatingContact = () => {
 
   const items = [
     {
-      icon: Phone,
-      label: "Chiama Ora",
-      href: "tel:+390000000000",
+      icon: Mail,
+      label: "Scrivici",
+      href: "mailto:info@ellera.it",
       className: "bg-primary text-primary-foreground hover:opacity-90",
-    },
-    {
-      icon: MessageCircle,
-      label: "WhatsApp",
-      href: "https://wa.me/390000000000",
-      className: "bg-[hsl(142,70%,40%)] text-primary-foreground hover:opacity-90",
     },
     {
       icon: Facebook,
@@ -56,8 +50,8 @@ const FloatingContact = () => {
             : "bg-accent px-5"
         }`}
       >
-        <MessageCircle className={`w-6 h-6 transition-transform ${open ? "rotate-90" : ""}`} />
-        <span className={`text-sm font-semibold ${isScrolled ? "hidden md:inline" : ""}`}>Contattaci</span>
+        <Mail className={`w-6 h-6 transition-transform ${open ? "rotate-90" : ""}`} />
+        <span className={`text-sm font-semibold ${isScrolled ? "hidden md:inline" : ""}`}>Scrivici</span>
       </button>
 
       {open && (

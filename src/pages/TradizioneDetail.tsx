@@ -3,17 +3,21 @@ import { createPortal } from "react-dom";
 import { Link, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, BookOpen, Candy, Cat, ChevronLeft, ChevronRight, Church, Clapperboard, Cow, Leaf, Scale, Sparkles, WaterMill, X } from "@/lib/icons";
-import FloatingBackLink from "@/components/FloatingBackLink";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
-import TableOfContents from "@/components/TableOfContents";
+import FloatingBackLink from "@/components/layout/FloatingBackLink";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
+import TableOfContents from "@/components/layout/TableOfContents";
 import { stories, type Story } from "@/data/stories";
 import { tradizioneReferenceImagesBySlug } from "@/data/tradizioneReferences";
 import { tradizioneGalleryBySlug, type GallerySlide } from "@/data/tradizioneGallery";
 import { tradizioniHeroImage } from "@/assets/images";
 import { ROUTES } from "@/lib/routes";
 import { summarizeText } from "@/lib/seo";
+import MaintenanceView from "@/components/shared/MaintenanceView";
+import { MAINTENANCE_CONFIG } from "@/config/maintenance";
+
+const IS_UNDER_MAINTENANCE = MAINTENANCE_CONFIG.TRADIZIONI;
 
 const iconMap: Record<Story["icon"], React.ElementType> = {
   sparkles: Sparkles,
@@ -284,6 +288,24 @@ const GalleryCarousel = ({ slides }: { slides: GallerySlide[] }) => {
 /* Page */
 const TradizioneDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+
+  if (IS_UNDER_MAINTENANCE) {
+    return (
+      <Layout>
+        <Seo title="Tradizioni in manutenzione" noindex />
+        <div className="h-16 lg:h-20 bg-slate-900" aria-hidden="true"></div>
+        <section className="bg-background pt-12 pb-12 lg:pt-20 lg:pb-24">
+          <div className="container mx-auto px-4">
+            <MaintenanceView 
+              title="Racconto in Manutenzione"
+              message="Stiamo perfezionando i testi e i riferimenti storici di questa sezione. Torna presto per leggere la versione completa."
+            />
+          </div>
+        </section>
+      </Layout>
+    );
+  }
+
   const story = stories.find((item) => item.slug === slug || item.id === slug);
 
   if (!story) {
@@ -437,3 +459,4 @@ const TradizioneDetail = () => {
 };
 
 export default TradizioneDetail;
+

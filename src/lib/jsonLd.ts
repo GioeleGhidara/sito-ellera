@@ -35,9 +35,13 @@ const createOrganizationNode = (siteUrl = getSiteUrl()) => ({
   "@type": "Organization",
   name: "Comitato Ellerese",
   url: siteUrl,
-  email: "comitato@ellera.it",
+  email: "comitatoellera@gmail.com",
   logo: toAbsoluteUrl("/favicon.ico", siteUrl),
   address: createPostalAddress(),
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61578504275210#",
+    "https://www.instagram.com/comitatoellerese",
+  ],
 });
 
 const toOrganizerNode = (organizer: EventOrganizer, siteUrl: string) => ({
@@ -49,6 +53,22 @@ const toOrganizerNode = (organizer: EventOrganizer, siteUrl: string) => ({
 export const createComitatoOrganizationJsonLd = (siteUrl = getSiteUrl()): JsonLdObject => ({
   "@context": "https://schema.org",
   ...createOrganizationNode(siteUrl),
+});
+
+export const createWebSiteJsonLd = (siteUrl = getSiteUrl()): JsonLdObject => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Ellera",
+  url: siteUrl,
+  description: "Borgo medievale nella Valle del Sansobbia, Albisola Superiore.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 });
 
 export const createEventJsonLd = (event: EventItem, siteUrl = getSiteUrl()): JsonLdObject => {

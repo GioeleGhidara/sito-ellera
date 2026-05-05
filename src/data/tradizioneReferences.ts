@@ -1,7 +1,7 @@
-import mulinoChiappeRef from "@/assets/images/tradizioni/mulini-riferimenti/mulino delle Chiappe.avif";
-import muliniAltoRef from "@/assets/images/tradizioni/mulini-riferimenti/mulini d'alto.avif";
-import mulinoCentroBeoRef from "@/assets/images/tradizioni/mulini-riferimenti/mulino del suffragio e del beo.avif";
-import digaMaroneRef from "@/assets/images/tradizioni/mulini-riferimenti/diga del mulino di Marone con il mulino di besin o impianto per la produzione dell energia elettrica.avif";
+import mulinoChiappeRef from "@/assets/images/tradizioni/mulini-riferimenti/mulino-chiappe.avif";
+import muliniAltoRef from "@/assets/images/tradizioni/mulini-riferimenti/mulini-alto.avif";
+import mulinoCentroBeoRef from "@/assets/images/tradizioni/mulini-riferimenti/mulino-suffragio-beo.avif";
+import digaMaroneRef from "@/assets/images/tradizioni/mulini-riferimenti/diga-mulino-marone-besin.avif";
 
 export interface TradizioneReferenceImage {
   src: string;

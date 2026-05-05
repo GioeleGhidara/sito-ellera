@@ -12,9 +12,9 @@ import {
   Thermometer,
   Wind,
 } from "@/lib/icons";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -30,7 +30,7 @@ import {
   type ZonePhenomena,
 } from "@/lib/arpal";
 
-const WeatherWidget = React.lazy(() => import("@/components/WeatherWidget"));
+const WeatherWidget = React.lazy(() => import("@/components/features/weather/WeatherWidget"));
 
 import meteoHeroImage from "@/assets/images/meteo/meteo-hero.webp";
 import regioneLiguriaLogo from "@/assets/images/reg-liguria/regione-liguria-seeklogo.png";
@@ -701,3 +701,4 @@ const Meteo = () => {
 };
 
 export default Meteo;
+

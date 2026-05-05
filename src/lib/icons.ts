@@ -50,6 +50,7 @@ export {
   LuHandshake as Handshake,
   LuHandCoins as HandCoins,
   LuHardHat as HardHat,
+  LuHistory as History,
   LuHouse as House,
   LuImage as Image,
   LuImage as ImageIcon,
@@ -96,6 +97,8 @@ export {
   LuZap as Zap,
   LuSettings as Settings,
   LuConstruction as Construction,
+  LuRotateCcw as RefreshCcw,
+  LuHouse as Home,
 } from "react-icons/lu";
 
 export { FaCow as Cow } from "react-icons/fa6";

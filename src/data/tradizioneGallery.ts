@@ -1,4 +1,4 @@
-import caruggiEllera from "@/assets/images/places/caruggiEllera.jpg";
+import caruggiEllera from "@/assets/images/places/caruggiEllera.avif";
 import fieraBestiame from "@/assets/images/fiera-pesa/f.bestiame.avif";
 import pesaPubblica from "@/assets/images/fiera-pesa/pasa_pubblica.avif";
 import heroImage from "@/assets/images/home/hero_image.avif";
@@ -11,16 +11,16 @@ import alberoCuccagna2 from "@/assets/images/tradizioni/albero-cuccagna/albero-c
 import gattaVicoli from "@/assets/images/tradizioni/streghe/gatta-vicoli.avif";
 import gattoMano from "@/assets/images/tradizioni/gattoMano.avif";
 import tradizionePlaceholder from "@/assets/images/tradizioni/placeholders/tradizione-placeholder.svg";
-import digaMulinoMaroneBesin from "@/assets/images/tradizioni/mulini-riferimenti/diga del mulino di Marone con il mulino di besin o impianto per la produzione dell energia elettrica.avif";
-import mappaMulini from "@/assets/images/tradizioni/mulini-riferimenti/mappa mulini.avif";
-import muliniAlto from "@/assets/images/tradizioni/mulini-riferimenti/mulini d'alto.avif";
-import mulinoCampasso from "@/assets/images/tradizioni/mulini-riferimenti/mulino del Campasso.avif";
-import mulinoSuffragioBeo from "@/assets/images/tradizioni/mulini-riferimenti/mulino del suffragio e del beo.avif";
-import mulinoChiappe from "@/assets/images/tradizioni/mulini-riferimenti/mulino delle Chiappe.avif";
-import mulinoBarban from "@/assets/images/tradizioni/mulini-riferimenti/mulino di Barb\u00e0n.avif";
-import mulinoGalo from "@/assets/images/tradizioni/mulini-riferimenti/mulino di Gal\u00f2.avif";
-import mulinoMarone from "@/assets/images/tradizioni/mulini-riferimenti/mulino di marone.avif";
-import mulinoRemenun from "@/assets/images/tradizioni/mulini-riferimenti/mulino di Remenun.avif";
+import digaMulinoMaroneBesin from "@/assets/images/tradizioni/mulini-riferimenti/diga-mulino-marone-besin.avif";
+import mappaMulini from "@/assets/images/tradizioni/mulini-riferimenti/mappa-mulini.avif";
+import muliniAlto from "@/assets/images/tradizioni/mulini-riferimenti/mulini-alto.avif";
+import mulinoCampasso from "@/assets/images/tradizioni/mulini-riferimenti/mulino-campasso.avif";
+import mulinoSuffragioBeo from "@/assets/images/tradizioni/mulini-riferimenti/mulino-suffragio-beo.avif";
+import mulinoChiappe from "@/assets/images/tradizioni/mulini-riferimenti/mulino-chiappe.avif";
+import mulinoBarban from "@/assets/images/tradizioni/mulini-riferimenti/mulino-barban.avif";
+import mulinoGalo from "@/assets/images/tradizioni/mulini-riferimenti/mulino-galo.avif";
+import mulinoMarone from "@/assets/images/tradizioni/mulini-riferimenti/mulino-marone.avif";
+import mulinoRemenun from "@/assets/images/tradizioni/mulini-riferimenti/mulino-remenun.avif";
 
 export interface GallerySlide {
   src: string;

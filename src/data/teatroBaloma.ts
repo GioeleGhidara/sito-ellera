@@ -8,7 +8,6 @@ export type TeatroBalomaIconKey =
   | "heart"
   | "mail"
   | "music"
-  | "phone"
   | "sparkles"
   | "theater"
   | "users"
@@ -300,8 +299,7 @@ export const teatroBalomaRecentEvents: TeatroBalomaRecentEvent[] = [
 
 export const teatroBalomaContacts = {
   address: "Via Natale Rosselli 4, Ellera",
-  phone: "3282875949",
-  email: "teatrobaloma@ellera.it",
+  email: "info@ellera.it",
   instagramUrl: "https://instagram.com/excinemateatro_baloma",
   instagramLabel: "@excinemateatro_baloma",
   supportEmail: "comitatoellera@gmail.com",

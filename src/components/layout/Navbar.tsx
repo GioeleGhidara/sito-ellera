@@ -9,6 +9,7 @@ const navItems = [
     label: "Il Borgo",
     children: [
       { label: "Galleria a cielo aperto", to: ROUTES.galleriaArte },
+      { label: "Storia", to: ROUTES.storia },
       { label: "Teatro Balomà", to: ROUTES.teatroBaloma },
       { label: "Tradizioni", to: ROUTES.tradizioni },
     ],
@@ -348,6 +349,7 @@ const Navbar = ({
       {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Chiudi menu" : "Apri menu"}
             className={`lg:hidden ml-auto p-2 rounded-md ${effectiveScrolled || mobileOpen ? "text-foreground" : "text-primary-foreground"}`}
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

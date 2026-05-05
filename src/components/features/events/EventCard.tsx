@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -6,14 +6,10 @@ import {
   MapPin,
   ShieldCheck,
   CalendarPlus,
-  ArrowUpRight,
   Calendar,
-  Clock,
-  ExternalLink,
 } from "@/lib/icons";
 import { downloadIcs } from "@/lib/ics";
 import type {
-  EventCategory,
   EventItem,
   EventOrganizer,
   EventOrganizersSource,
@@ -24,92 +20,9 @@ import {
 } from "@/data/events";
 import { eventDetailPath } from "@/lib/routes";
 import { albiTrailAreaLogo } from "@/assets/images";
+import { useEventCountdown } from "@/hooks/useEventCountdown";
+import { categoryClasses, formatEventDate } from "@/lib/events";
 
-export const categoryClasses: Record<EventCategory, string> = {
-  Cultura: "bg-secondary text-secondary-foreground",
-  Outdoor: "bg-primary text-primary-foreground",
-  Festa: "bg-accent text-accent-foreground",
-  Teatro: "bg-[hsl(18,55%,20%)] text-[hsl(35,100%,92%)]",
-  Altro: "bg-muted text-muted-foreground",
-};
-
-export const formatEventDate = (
-  startDate: string,
-  endDate?: string,
-  dateToBeConfirmed?: boolean,
-) => {
-  if (dateToBeConfirmed) {
-    return { day: "TBD", month: "", weekday: "", full: "Data da definire" };
-  }
-
-  const sDate = new Date(`${startDate}T00:00:00`);
-  const eDate = endDate ? new Date(`${endDate}T00:00:00`) : null;
-  let day = sDate.toLocaleDateString("it-IT", { day: "2-digit" });
-
-  if (eDate) {
-    day =
-      sDate.getMonth() === eDate.getMonth()
-        ? `${sDate.getDate()}-${eDate.getDate()}`
-        : `${sDate.getDate()}/${eDate.getDate()}`;
-  }
-
-  return {
-    day,
-    month: sDate.toLocaleDateString("it-IT", { month: "short" }),
-    weekday: sDate.toLocaleDateString("it-IT", { weekday: "short" }),
-    full: sDate.toLocaleDateString("it-IT", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    }),
-  };
-};
-
-export const useEventCountdown = (startDate: string, dateToBeConfirmed?: boolean) => {
-  const [now, setNow] = useState(() => new Date());
-
-  useEffect(() => {
-    if (dateToBeConfirmed) {
-      return;
-    }
-
-    const intervalId = setInterval(() => setNow(new Date()), 1_000);
-    return () => clearInterval(intervalId);
-  }, [dateToBeConfirmed]);
-
-  if (dateToBeConfirmed) {
-    return null;
-  }
-
-  const eventDay = new Date(`${startDate}T00:00:00`);
-  const todayStart = new Date(now);
-  todayStart.setHours(0, 0, 0, 0);
-
-  const diffMs = eventDay.getTime() - now.getTime();
-  const isEventToday = eventDay.getTime() === todayStart.getTime();
-
-  if (diffMs <= 0 && !isEventToday) {
-    return null;
-  }
-
-  if (isEventToday) {
-    return { label: "- 00 | 00 | 00 | 00", short: "oggi!", isToday: true };
-  }
-
-  const safeDiffMs = Math.max(diffMs, 0);
-  const totalSeconds = Math.floor(safeDiffMs / 1_000);
-  const diffDays = Math.floor(totalSeconds / 86_400);
-  const hh = String(Math.floor((totalSeconds % 86_400) / 3_600)).padStart(2, "0");
-  const mm = String(Math.floor((totalSeconds % 3_600) / 60)).padStart(2, "0");
-  const ss = String(totalSeconds % 60).padStart(2, "0");
-  const dd = String(diffDays).padStart(2, "0");
-
-  return {
-    label: `- ${dd} | ${hh} | ${mm} | ${ss}`,
-    short: `-${diffDays} gg`,
-    isToday: false,
-  };
-};
 
 export const EventPoster = ({
   image,
@@ -320,6 +233,7 @@ export const FeaturedEventCard = ({ event }: { event: EventItem }) => {
               <button
                 onClick={() => downloadIcs(event)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-all hover:border-accent/40 hover:bg-accent/5 hover:text-accent"
+                aria-label={`Aggiungi ${event.title} al tuo calendario`}
                 title="Aggiungi al calendario (.ics)"
               >
                 <CalendarPlus className="h-5 w-5" />

@@ -4,23 +4,20 @@ import {
   ArrowRight,
   Calendar,
   CalendarDays,
-  CalendarPlus,
   Clock3,
   MapPin,
 } from "@/lib/icons";
 import type { EventCategory } from "@/data/events";
 import { events, getFeaturedEvent, hasEventDetail, isEventPast } from "@/data/events";
-import { downloadIcs } from "@/lib/ics";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import DecorativeSeparator from "@/components/DecorativeSeparator";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import DecorativeSeparator from "@/components/shared/DecorativeSeparator";
 import {
-  categoryClasses,
   EventOrganizerBadges,
   EventPoster,
   FeaturedEventCard,
-  formatEventDate,
-} from "@/components/EventCard";
+} from "@/components/features/events/EventCard";
+import { categoryClasses, formatEventDate } from "@/lib/events";
 import { luceTerrazzoImage } from "@/assets/images";
 import { eventDetailPath } from "@/lib/routes";
 import { type Variants } from "framer-motion";
@@ -66,14 +63,16 @@ const Eventi = () => {
   const filteredSporadicEvents =
     activeFilter === "Tutti"
       ? baseEvents
-      : baseEvents.filter((event) => event.category === activeFilter);
+      : baseEvents.filter((event) => event && event.category === activeFilter);
+  
+  const featured = getFeaturedEvent();
   const closestEvent =
     (activeFilter === "Tutti" && !isArchive)
-      ? (getFeaturedEvent() ?? baseEvents[0])
-      : (filteredSporadicEvents[0] ?? null);
+      ? (featured ?? (baseEvents.length > 0 ? baseEvents[0] : null))
+      : (filteredSporadicEvents.length > 0 ? filteredSporadicEvents[0] : null);
 
-  const remainingEvents = closestEvent
-    ? filteredSporadicEvents.filter((e) => e.slug !== closestEvent.slug)
+  const remainingEvents = (closestEvent && filteredSporadicEvents.length > 0)
+    ? filteredSporadicEvents.filter((e) => e && e.slug !== closestEvent.slug)
     : filteredSporadicEvents;
 
   const handleFilterChange = (filter: SporadicFilter) => {
@@ -211,16 +210,16 @@ const Eventi = () => {
                   <motion.article
                     key={event.title}
                     variants={fadeUp}
-                    className="rounded-2xl border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:border-accent/30 hover:shadow-warm md:p-4 lg:p-5 group"
+                    className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:border-accent/30 hover:shadow-warm group"
                   >
-                    <div className="flex flex-col gap-4 md:flex-row md:items-stretch md:gap-4 lg:gap-5">
-                      <div className="flex shrink-0 justify-center overflow-hidden rounded-t-2xl sm:rounded-[1.25rem] sm:rounded-r-none border-b sm:border-b-0 sm:border-r border-border bg-card md:max-w-[40%] lg:max-w-[30%] min-w-[120px]">
-                        <div className="relative flex h-full min-h-[96px] flex-row items-center text-white md:flex-col md:justify-center">
+                    <div className="flex flex-col md:flex-row md:items-stretch">
+                      <div className="relative shrink-0 overflow-hidden border-b md:border-b-0 md:border-r border-border bg-muted md:max-w-[40%] lg:max-w-[30%]">
+                        <div className="relative flex h-[180px] md:h-full items-center justify-center text-white">
                           <EventPoster
                             image={event.image}
                             alt={event.title}
                             placeholderLabel={event.posterPlaceholderLabel}
-                            className="h-[140px] w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full md:min-h-[200px] md:w-auto md:object-cover"
+                            className="h-[200px] w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full md:min-h-[200px] md:w-auto md:object-cover"
                           />
                           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/70 md:bg-black/40" />
                           <div className="pointer-events-none absolute inset-0 flex flex-row items-center gap-3 px-4 py-4 md:flex-col md:justify-center md:gap-1">
@@ -237,7 +236,7 @@ const Eventi = () => {
                         </div>
                       </div>
 
-                      <div className="min-w-0 flex-1 flex flex-col">
+                      <div className="min-w-0 flex-1 flex flex-col p-4 md:p-4 lg:p-5">
                         <div className="flex flex-col gap-3">
                           <div>
                             <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -300,13 +299,6 @@ const Eventi = () => {
                               </Link>
                             )}
 
-                            <button
-                              onClick={() => downloadIcs(event)}
-                              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-all hover:border-accent/40 hover:bg-accent/5 hover:text-accent"
-                              title="Aggiungi al calendario (.ics)"
-                            >
-                              <CalendarPlus className="h-3.5 w-3.5" />
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -333,3 +325,4 @@ const Eventi = () => {
 };
 
 export default Eventi;
+

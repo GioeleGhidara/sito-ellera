@@ -17,7 +17,6 @@ export const businesses: Business[] = [
     type: "food",
     description:
       "Ristorante nel borgo di Ellera con cucina del territorio.",
-    phone: "348 118 5808",
     address: "Via Natale Rosselli n. 29, Ellera",
     image: "/placeholder.svg",
     mapUrl: "https://maps.app.goo.gl/AprHiR1aFzVJ6roeA",
@@ -37,7 +36,6 @@ export const businesses: Business[] = [
     name: "Alimentari da Elena",
     type: "shop",
     description: "Alimentari e prodotti di prima necessità nel borgo.",
-    phone: "3495316992",
     address: "Piazza Fratelli Bandiera, 6, Ellera",
     image: "/placeholder.svg",
     mapUrl:

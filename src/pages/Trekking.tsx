@@ -11,10 +11,10 @@ import {
   Route,
   TrendingUp,
 } from "@/lib/icons";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
-import MaintenanceView from "@/components/MaintenanceView";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
+import MaintenanceView from "@/components/shared/MaintenanceView";
 import { trekkingPageImage as trekkingImage } from "@/assets/images";
 import {
   trekkingRoutes,
@@ -435,3 +435,4 @@ const Trekking = () => {
 };
 
 export default Trekking;
+

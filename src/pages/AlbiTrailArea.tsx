@@ -15,11 +15,11 @@ import {
   TrendingDown,
   TrendingUp,
 } from "@/lib/icons";
-import { FeaturedEventCard } from "@/components/EventCard";
-import Layout from "@/components/Layout";
-import MapFallback from "@/components/MapFallback";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import { FeaturedEventCard } from "@/components/features/events/EventCard";
+import Layout from "@/components/layout/Layout";
+import MapFallback from "@/components/features/trail/MapFallback";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Accordion,
@@ -50,8 +50,8 @@ import {
 } from "@/lib/arpal";
 import { ROUTES } from "@/lib/routes";
 
-const TrailMap = React.lazy(() => import("@/components/TrailMap"));
-const WeatherWidget = React.lazy(() => import("@/components/WeatherWidget"));
+const TrailMap = React.lazy(() => import("@/components/features/trail/TrailMap"));
+const WeatherWidget = React.lazy(() => import("@/components/features/weather/WeatherWidget"));
 
 const ARPAL_CACHE_KEY = "ellera_arpal_cache_v3";
 const ARPAL_CACHE_TTL = 15 * 60 * 1000;
@@ -523,3 +523,4 @@ const AlbiTrailArea = () => {
 };
 
 export default AlbiTrailArea;
+

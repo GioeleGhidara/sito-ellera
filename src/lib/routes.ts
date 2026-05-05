@@ -1,4 +1,4 @@
-﻿export const ROUTES = {
+export const ROUTES = {
   home: "/",
   trekking: "/trekking",
   albiTrailArea: "/albi-trail-area",
@@ -7,6 +7,7 @@
   teatroBaloma: "/teatro-baloma",
   teatroBalomaSupport: "/teatro-baloma/sostieni",
   galleriaArte: "/galleria-arte",
+  storia: "/storia",
   comitato: "/comitato",
   chiSiamo: "/chi-siamo",
   eventi: "/eventi",

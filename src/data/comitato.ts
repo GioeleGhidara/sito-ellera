@@ -11,7 +11,6 @@ export const consiglieri = [
 ];
 
 export const contattiComitato = [
-  { label: "Sagre", email: "info@ellera.it" },
-  { label: "Albi Trail", email: "albitrail@ellera.it" },
-  { label: "Comitato", email: "comitato@ellera.it" },
+  { label: "Informazioni", email: "info@ellera.it" },
+  { label: "Comitato", email: "comitatoellera@gmail.com" },
 ];

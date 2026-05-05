@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { BusFront, Clock3, Download, Globe, MapPin, Phone, ShoppingBag, Utensils, type IconType } from "@/lib/icons";
+import { BusFront, Clock3, Download, Globe, MapPin, ShoppingBag, Utensils, type IconType } from "@/lib/icons";
 import { useLocation } from "react-router-dom";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { Button } from "@/components/ui/button";
 import { heroImage } from "@/assets/images";
 import { foodBusinesses, shopBusinesses } from "@/data/businesses";
@@ -77,14 +77,6 @@ const BusinessCard = ({ biz }: { biz: Business }) => (
       <p className="text-xs text-muted-foreground mb-2">{biz.address}</p>
       <p className="text-sm text-muted-foreground leading-relaxed mb-4">{biz.description}</p>
       <div className="flex gap-2 flex-wrap">
-        {biz.phone && (
-          <Button variant="outline" size="sm" asChild>
-            <a href={`tel:${biz.phone.replace(/\s/g, "")}`}>
-              <Phone className="w-3.5 h-3.5" />
-              Chiama
-            </a>
-          </Button>
-        )}
         <Button variant="outline" size="sm" asChild>
           <a href={biz.mapUrl} target="_blank" rel="noopener noreferrer">
             <MapPin className="w-3.5 h-3.5" />
@@ -261,3 +253,4 @@ const Servizi = () => {
 };
 
 export default Servizi;
+

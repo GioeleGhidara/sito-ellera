@@ -12,7 +12,6 @@ import {
   Mail,
   MapPin,
   Music,
-  Phone,
   Sparkles,
   Theater,
   Users,
@@ -25,15 +24,14 @@ import {
   GhostTheater,
   GhostWrench,
   GhostFilm,
-  GhostPhone,
   GhostMail,
   GhostHandCoins,
   GhostHardHat,
 } from "@/lib/icons";
-import { FeaturedEventCard } from "@/components/EventCard";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import { FeaturedEventCard } from "@/components/features/events/EventCard";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ROUTES } from "@/lib/routes";
@@ -72,7 +70,6 @@ const iconMap: Record<TeatroBalomaIconKey, ElementType> = {
   heart: Heart,
   mail: Mail,
   music: Music,
-  phone: Phone,
   sparkles: Sparkles,
   theater: Theater,
   users: Users,
@@ -88,7 +85,6 @@ const ghostIconMap: Record<TeatroBalomaIconKey, ElementType> = {
   heart: GhostHeart,
   mail: GhostMail,
   music: GhostMusic,
-  phone: GhostPhone,
   sparkles: GhostSparkles,
   theater: GhostTheater,
   users: GhostUsers,

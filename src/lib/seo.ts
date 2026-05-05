@@ -49,7 +49,7 @@ export const createOrganizationJsonLd = (siteUrl = getSiteUrl()) => ({
   "@type": "Organization",
   name: "Comitato Ellerese",
   url: siteUrl,
-  email: "comitato@ellera.it",
+  email: "comitatoellera@gmail.com",
   logo: toAbsoluteUrl("/favicon.ico", siteUrl),
   address: {
     "@type": "PostalAddress",

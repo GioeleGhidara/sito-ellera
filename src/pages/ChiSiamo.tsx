@@ -10,10 +10,11 @@ import {
   MapPin,
   Sparkles,
 } from "@/lib/icons";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
-import { comitatoHeroImage, logoComitato } from "@/assets/images";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
+import { heroChiSiamo, logoComitato } from "@/assets/images";
+import { createComitatoOrganizationJsonLd } from "@/lib/jsonLd";
 import { contattiComitato } from "@/data/comitato";
 import { ROUTES } from "@/lib/routes";
 
@@ -63,15 +64,17 @@ export default function ChiSiamo() {
   return (
     <Layout>
       <Seo
-        title="Comitato Ellerese"
-        description="Il Comitato Ellerese è un gruppo di volontari che coordina eventi, cura i sentieri, valorizza le tradizioni e promuove la vita sociale del borgo di Ellera."
-        image={comitatoHeroImage}
-        imageAlt="Comitato Ellerese"
+        title="Chi Siamo - Comitato Ellerese"
+        description="Il Comitato Ellerese: chi siamo, la nostra missione e il nostro impegno per la valorizzazione del borgo di Ellera."
+        image={heroChiSiamo}
+        imageAlt="Il borgo di Ellera visto dall'alto"
+        jsonLd={createComitatoOrganizationJsonLd()}
         canonicalPath={ROUTES.comitato}
       />
       <PageHero
-        imageSrc={comitatoHeroImage}
-        imageAlt="Comitato Ellerese"
+        imageSrc={heroChiSiamo}
+        imageAlt="Il Comitato Ellerese"
+        imageClassName="object-[center_25%]"
         eyebrow="Chi Siamo"
         eyebrowIcon={Users}
         title="Il Comitato"
@@ -85,7 +88,7 @@ export default function ChiSiamo() {
               <Heart className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
               <span>La nostra missione</span>
             </div>
-            <p className="mx-auto max-w-3xl text-base lg:text-2xl leading-relaxed text-slate-700 font-light">
+            <p className="mx-auto max-w-3xl text-base lg:text-lg leading-relaxed text-slate-700">
               Il <strong className="font-semibold text-foreground">Comitato Ellerese</strong> è il cuore pulsante della comunità di Ellera — un gruppo di cittadini uniti dalla passione per il proprio territorio, impegnati ogni giorno a tenerlo vivo, a raccontarlo e a condividerlo.
             </p>
           </motion.div>
@@ -98,7 +101,7 @@ export default function ChiSiamo() {
             className="bg-accent/10 border border-accent/20 rounded-2xl p-5 lg:p-10 relative overflow-hidden text-left"
           >
             <UserPlus className="absolute bottom-3 right-3 lg:bottom-4 lg:right-4 w-16 h-16 lg:w-24 lg:h-24 text-accent/10 pointer-events-none" />
-            <h3 className="text-accent font-heading font-semibold text-base lg:text-2xl mb-2 lg:mb-4 relative z-10">
+            <h3 className="text-accent font-heading font-semibold text-lg lg:text-2xl mb-2 lg:mb-4 relative z-10">
               Nessun "socio", solo volontari
             </h3>
             <p className="text-slate-700 leading-relaxed text-sm lg:text-base lg:max-w-2xl lg:mx-auto relative z-10">
@@ -114,8 +117,8 @@ export default function ChiSiamo() {
           <div className="grid grid-cols-3 gap-4 lg:gap-8 text-center">
             {NUMERI.map(({ value, label }) => (
               <motion.div key={label} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                <p className="text-2xl lg:text-5xl font-heading font-bold text-accent mb-0.5 lg:mb-2">{value}</p>
-                <p className="text-[10px] lg:text-sm uppercase tracking-widest text-background/60">{label}</p>
+                <p className="text-3xl lg:text-4xl font-heading font-bold text-accent mb-0.5 lg:mb-2">{value}</p>
+                <p className="text-[10px] lg:text-xs uppercase tracking-widest text-background/60">{label}</p>
               </motion.div>
             ))}
           </div>
@@ -130,8 +133,8 @@ export default function ChiSiamo() {
               <Sparkles className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
               <span>Le nostre attività</span>
             </div>
-            <h2 className="text-2xl lg:text-4xl font-heading font-semibold text-foreground mb-1.5 lg:mb-3">Cosa Facciamo</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-sm lg:text-lg hidden lg:block">
+            <h2 className="text-2xl lg:text-3xl font-heading font-semibold text-foreground mb-1.5 lg:mb-3">Cosa Facciamo</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm lg:text-base hidden lg:block">
               Trasformiamo l'amore per Ellera in azioni concrete — ogni settimana, tutto l'anno.
             </p>
           </motion.div>
@@ -151,8 +154,8 @@ export default function ChiSiamo() {
                   <Icon className="w-4 h-4 lg:w-6 lg:h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-sm lg:text-xl font-heading font-semibold text-foreground mb-1 lg:mb-3">{title}</h3>
-                  <p className="text-xs lg:text-base text-muted-foreground leading-relaxed">{body}</p>
+                  <h3 className="text-base lg:text-xl font-heading font-semibold text-foreground mb-1 lg:mb-3">{title}</h3>
+                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">{body}</p>
                 </div>
               </motion.div>
             ))}
@@ -170,8 +173,8 @@ export default function ChiSiamo() {
                 <div className="flex items-center gap-4 lg:gap-6 mb-5 lg:mb-8">
                   <img src={logoComitato} alt="Logo Comitato Ellerese" className="h-12 w-12 lg:h-20 lg:w-20 flex-shrink-0" />
                   <div>
-                    <h2 className="text-base lg:text-2xl font-heading font-semibold text-foreground mb-0.5 lg:mb-2">Il Consiglio</h2>
-                    <p className="text-xs lg:text-base text-muted-foreground leading-relaxed">
+                    <h2 className="text-xl lg:text-2xl font-heading font-semibold text-foreground mb-0.5 lg:mb-2">Il Consiglio</h2>
+                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
                       Il Comitato è guidato da un Consiglio operativo strutturato attorno alle principali anime del territorio.
                     </p>
                   </div>
@@ -235,15 +238,15 @@ export default function ChiSiamo() {
               <UserPlus className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
               <span>Unisciti a noi</span>
             </div>
-            <h2 className="text-2xl lg:text-4xl font-heading font-semibold text-foreground mb-2 lg:mb-4">Fai parte di Ellera</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-sm lg:text-lg leading-relaxed">
+            <h2 className="text-2xl lg:text-3xl font-heading font-semibold text-foreground mb-2 lg:mb-4">Fai parte di Ellera</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm lg:text-base leading-relaxed">
               Non serve un curriculum: basta voler bene a questo posto. Scrivici per qualsiasi idea.
             </p>
           </motion.div>
 
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <div className="bg-card border border-border rounded-2xl p-5 lg:p-8 shadow-warm">
-              <p className="text-muted-foreground mb-4 text-xs lg:text-sm">
+              <p className="text-muted-foreground mb-4 text-sm">
                 Scrivi direttamente in base al tema della tua richiesta.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">

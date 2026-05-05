@@ -9,22 +9,22 @@ icon: sparkles
 ---
 Tra i giochi popolari che meglio raccontano l'identità comunitaria di un paese, l'albero della cuccagna è uno dei più riconoscibili: una sfida fisica, ma soprattutto un esercizio di fiducia reciproca. A Ellera, questo racconto vive nel contesto delle feste locali, quando il borgo torna a riempirsi di famiglie, bambini, gruppi e volontari.
 
-## Il contesto locale: feste di borgo, prato e comunità
+## Il contesto locale: feste di borgo
 
-Le fonti online istituzionali su Albisola confermano che la Castagnata di Ellera viene organizzata nel grande prato adiacente alla Chiesa di San Bartolomeo, con il coinvolgimento del Comitato Ellerese e attività dedicate anche ai più piccoli. Questo contesto aiuta a leggere il ruolo dell'albero della cuccagna nella vita del paese: non come spettacolo isolato, ma come momento che unisce pubblico e partecipanti anche in altre giornate di festa.
+Durante l'annuale festa dell'uva di Ellera, organizzata per le strade del paese, viene riproposto l'albero della cuccagna, con il coinvolgimento del Comitato Ellerese. Questo contesto aiuta a leggere il ruolo dell'albero della cuccagna nella vita del paese: non come spettacolo isolato, ma come momento che unisce pubblico e partecipanti anche in altre giornate di festa.
 
-Nella memoria locale, il valore del gioco non sta solo nella vittoria finale, ma nella tensione condivisa del tentativo: ogni squadra sale insieme, cade insieme, riparte insieme. Il pubblico segue, incita, consiglia, e la festa diventa un racconto corale.
+Nella memoria locale, il valore del gioco non sta solo nella vittoria finale degli ambiti premi, ma nella tensione condivisa del tentativo: ogni squadra sale insieme, cade insieme, riparte insieme. Il pubblico segue, incita, consiglia, e la festa diventa un racconto corale.
 
 ## Come si svolge la prova
 
 La tradizione dell'albero della cuccagna, documentata in molte comunità italiane, segue una dinamica precisa: il palo viene reso scivoloso (spesso con grasso), e la squadra deve organizzarsi in una progressione di corpi, forza ed equilibrio per raggiungere la bandiera o il premio in cima.
 
-Le descrizioni delle comunità di gioco italiane mostrano elementi ricorrenti: base robusta, passaggi intermedi stabili, ultimo arrampicatore agile, uso di materiali come farina o cenere per migliorare la presa. È una prova che allena coordinazione, lettura del gesto tecnico e capacità di adattamento continuo.
+Le descrizioni delle comunità di gioco italiane mostrano elementi ricorrenti: base robusta, arrampicatore agile, e anche l'uso di materiali come farina o cenere per migliorare la presa. È una prova che allena coordinazione, capacità di lettura del gesto tecnico e capacità di adattamento continuo.
 
 ## Un rito sociale, prima ancora che una gara
 
-Per un borgo come Ellera, l'albero della cuccagna e anche un linguaggio sociale: mette in relazione generazioni diverse, rende visibile il valore del gruppo e trasforma la piazza in un luogo di partecipazione attiva.
+Per un borgo come Ellera, l'albero della cuccagna è anche un linguaggio sociale: mette in relazione generazioni diverse, rende visibile il valore del gruppo attraverso la partecipazione attiva e la solidarietà che ne deriva.
 
-In anni in cui molte tradizioni popolari rischiano di ridursi a semplice intrattenimento, raccontare questa pratica significa conservarne il senso originario: fare comunità attraverso un gesto condiviso, dove l'abilità individuale conta, ma conta di più il patto collettivo.
+In anni in cui molte tradizioni popolari rischiano di ridursi a semplice intrattenimento, raccontare questa pratica significa conservarne il senso originario: fare comunità attraverso un gesto condiviso, dove l'abilità individuale conta, ma conta di più la solidarietà e il patto collettivo.
 
-Fonti: https://www.albisolaturismo.it/index.php/eventi/393-le-castagnate-di-ottobre; https://www.albisolaturismo.it/index.php/eventi/332-autunno-ad-albisola; https://www.associazionegiochiantichi.it/comunita-di-gioco/palo-della-cuccagna/
+Fonte: tradizione orale locale e foto d'archivio.

@@ -1,11 +1,12 @@
-﻿import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import ErrorBoundary from "@/components/shared/ErrorBoundary";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-import { ROUTES, eventDetailPath, tradizioneDetailPath } from "./lib/routes";
+import ScrollToTop from "@/components/layout/ScrollToTop";
+import { ROUTES, tradizioneDetailPath } from "./lib/routes";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const TeatroBaloma = lazy(() => import("./pages/TeatroBaloma"));
 const TeatroBalomaSupport = lazy(() => import("./pages/TeatroBalomaSupport"));
 const GalleriaArte = lazy(() => import("./pages/GalleriaArte"));
 const ChiSiamo = lazy(() => import("./pages/ChiSiamo"));
+const Storia = lazy(() => import("./pages/Storia"));
 const Eventi = lazy(() => import("./pages/Eventi"));
 const EventDetail = lazy(() => import("./pages/EventDetail"));
 const News = lazy(() => import("./pages/News"));
@@ -50,6 +52,7 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
   { path: ROUTES.teatroBaloma, element: <TeatroBaloma /> },
   { path: ROUTES.teatroBalomaSupport, element: <TeatroBalomaSupport /> },
   { path: ROUTES.galleriaArte, element: <GalleriaArte /> },
+  { path: ROUTES.storia, element: <Storia /> },
   { path: ROUTES.comitato, element: <ChiSiamo /> },
   { path: ROUTES.chiSiamo, element: <Navigate to={ROUTES.comitato} replace /> },
   { path: ROUTES.eventi, element: <Eventi /> },
@@ -73,20 +76,22 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Suspense fallback={<RouteFallback />}>
-          <Routes>
-            {appRoutes.map((route) => (
-              <Route key={route.path} path={route.path} element={route.element} />
-            ))}
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ErrorBoundary>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <ScrollToTop />
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              {appRoutes.map((route) => (
+                <Route key={route.path} path={route.path} element={route.element} />
+              ))}
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ErrorBoundary>
   </QueryClientProvider>
 );
 

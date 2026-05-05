@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Newspaper } from "@/lib/icons";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { news } from "@/data/news";
 import { heroNewsImage } from "@/assets/images";
 import { newsDetailPath } from "@/lib/routes";
@@ -102,3 +102,4 @@ const News = () => {
 };
 
 export default News;
+

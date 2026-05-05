@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import Seo from "@/components/Seo";
+import Seo from "@/components/shared/Seo";
 
 const NotFound = () => {
   const location = useLocation();
@@ -24,3 +24,4 @@ const NotFound = () => {
 };
 
 export default NotFound;
+

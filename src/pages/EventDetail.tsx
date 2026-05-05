@@ -3,11 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, CalendarPlus } from "@/lib/icons";
 import { downloadIcs } from "@/lib/ics";
-import Layout from "@/components/Layout";
-import FloatingBackLink from "@/components/FloatingBackLink";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
-import { EventPoster, EventOrganizerBadges } from "@/components/EventCard";
+import Layout from "@/components/layout/Layout";
+import FloatingBackLink from "@/components/layout/FloatingBackLink";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
+import { EventPoster, EventOrganizerBadges } from "@/components/features/events/EventCard";
 import { getEventBySlug, hasEventDetail } from "@/data/events";
 import { ROUTES } from "@/lib/routes";
 import { createEventJsonLd } from "@/lib/jsonLd";
@@ -220,3 +220,4 @@ const EventDetail = () => {
 };
 
 export default EventDetail;
+

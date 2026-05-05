@@ -2,10 +2,10 @@ import type { ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Newspaper } from "@/lib/icons";
-import FloatingBackLink from "@/components/FloatingBackLink";
-import Layout from "@/components/Layout";
-import PageHero from "@/components/PageHero";
-import Seo from "@/components/Seo";
+import FloatingBackLink from "@/components/layout/FloatingBackLink";
+import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/layout/PageHero";
+import Seo from "@/components/shared/Seo";
 import { news } from "@/data/news";
 import { ROUTES } from "@/lib/routes";
 import { toAbsoluteUrl } from "@/lib/seo";
@@ -178,4 +178,5 @@ const NewsDetail = () => {
 };
 
 export default NewsDetail;
+
 
