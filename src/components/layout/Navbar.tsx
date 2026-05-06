@@ -212,6 +212,7 @@ const Navbar = ({
       return location.pathname.startsWith(target.path);
     });
 
+  const isHome = location.pathname === "/";
   const effectiveScrolled = showOnlyAtTop ? false : isScrolled;
 
   // Determine navbar background
@@ -246,23 +247,26 @@ const Navbar = ({
             </div>
           ) : (
             <div className="flex items-center min-w-[180px]">
-              <div className={`transition-all duration-500 ${effectiveScrolled || mobileOpen ? "opacity-0 invisible absolute -translate-x-4" : "opacity-100 visible translate-x-0"}`}>
+              {/* Weather: Only on Home, only when at top */}
+              <div className={`transition-all duration-500 ${!isHome || effectiveScrolled || mobileOpen ? "opacity-0 invisible absolute -translate-x-4" : "opacity-100 visible translate-x-0"}`}>
                 <Suspense fallback={<div className="h-10 w-32 bg-muted/20 animate-pulse rounded-full" />}>
                   <WeatherWidget variant="compact" />
                 </Suspense>
               </div>
+              
+              {/* Logo: Always on other pages, or on Home when scrolled */}
               <Link 
                 to={ROUTES.home} 
                 className={`flex flex-col items-start transition-all duration-500 ${
-                  effectiveScrolled || mobileOpen 
+                  !isHome || effectiveScrolled || mobileOpen 
                     ? "opacity-100 visible translate-x-0" 
                     : "opacity-0 invisible absolute translate-x-4"
                 }`}
               >
-                <span className="text-xl lg:text-2xl font-heading font-bold text-primary leading-tight">
+                <span className={`text-xl lg:text-2xl font-heading font-bold leading-tight ${effectiveScrolled ? "text-primary" : "text-primary-foreground " + transparentNavTextShadow}`}>
                   Ellera
                 </span>
-                <span className="text-[10px] lg:text-xs font-medium tracking-wider uppercase text-muted-foreground leading-tight">
+                <span className={`text-[10px] lg:text-xs font-medium tracking-wider uppercase leading-tight ${effectiveScrolled ? "text-muted-foreground" : "text-primary-foreground/80 " + transparentNavTextShadow}`}>
                   Galleria a cielo aperto & Outdoor
                 </span>
               </Link>
