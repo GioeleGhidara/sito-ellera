@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ellera.it/sitemap.xml
+Sitemap: https://www.ellera.it/sitemap.xml

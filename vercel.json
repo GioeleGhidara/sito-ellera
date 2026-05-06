@@ -1,0 +1,25 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "sito-ellera.vercel.app"
+        }
+      ],
+      "destination": "https://www.ellera.it/$1",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/eventi/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/((?!api|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

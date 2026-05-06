@@ -1,5 +1,5 @@
 export const SITE_NAME = "Ellera";
-export const SITE_URL_FALLBACK = "https://your-site.example";
+export const SITE_URL_FALLBACK = "https://www.ellera.it";
 export const DEFAULT_OG_IMAGE = "/social-preview.svg";
 export const DEFAULT_LOCALE = "it_IT";
 export const DEFAULT_DESCRIPTION =
@@ -8,11 +8,7 @@ export const DEFAULT_ROBOTS =
   "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
 
 export const getSiteUrl = () =>
-  (
-    import.meta.env.VITE_SITE_URL ||
-    (typeof window !== "undefined" ? window.location.origin : SITE_URL_FALLBACK) ||
-    SITE_URL_FALLBACK
-  ).replace(/\/+$/, "");
+  (import.meta.env.VITE_SITE_URL || SITE_URL_FALLBACK).replace(/\/+$/, "");
 
 export const toAbsoluteUrl = (value: string, siteUrl = getSiteUrl()) => {
   try {
