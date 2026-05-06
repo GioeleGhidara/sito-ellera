@@ -25,7 +25,7 @@ const HomeHero = () => {
         <div className="w-full max-w-3xl text-left">
           <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4 mb-1 md:mb-4">
             <h1 className="text-6xl lg:text-9xl font-heading font-bold text-white tracking-tighter drop-shadow-lg">
-              Ellia
+              Èllia
             </h1>
             <div className="flex items-center gap-2">
               <span className="text-lg lg:text-2xl font-serif italic text-white/90 tracking-tight drop-shadow-md">
@@ -55,7 +55,7 @@ const HomeHero = () => {
                 2
               </span>
               <p className="text-base lg:text-2xl text-white font-serif drop-shadow-xl leading-relaxed">
-                <span className="font-sans italic text-white/90">Sta seia vaggü à Ellia</span>
+                <span className="font-sans italic text-white/90">Sta seia vago à Èllia</span>
               </p>
             </div>
           </div>
