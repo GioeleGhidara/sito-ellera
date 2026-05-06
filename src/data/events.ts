@@ -1,5 +1,6 @@
 import {
   albiTrailAreaImage,
+  albiTrailAreaLogo,
   barrabravaLogoSvg,
   caruggiEventImage,
   caruggiLanterneImage,
@@ -99,9 +100,9 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
     desc: "Pedalata in beneficenza tra Albisola Superiore ed Ellera con percorsi per tutti i livelli, incluso il giro famiglie su strada con passaggio nel golf.",
     location: EVENT_LOCATIONS.ALBISOLA_ELLERA.name,
     status: "In programma",
-    organizerName: "Comitato Ellerese",
-    organizerLogo: logoComitatoRidotto,
-    organizerLogoAlt: "Logo Comitato Ellerese",
+    organizerName: "Albi Trail Area",
+    organizerLogo: albiTrailAreaLogo,
+    organizerLogoAlt: "Logo Albi Trail Area",
     organizers: [
       {
         name: "Barrabrava",
@@ -109,9 +110,9 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
         logoAlt: "Logo Barrabrava",
       },
       {
-        name: "Comitato Ellerese",
-        logo: logoComitatoRidotto,
-        logoAlt: "Logo Comitato Ellerese",
+        name: "Albi Trail Area",
+        logo: albiTrailAreaLogo,
+        logoAlt: "Logo Albi Trail Area",
       },
       {
         name: "Quiliano Bike",
