@@ -24,6 +24,7 @@ export { default as caruggioAvif } from "./places/caruggio.avif";
 
 
 export { default as castagnataImage } from "./events/castagnata.avif";
+export { default as castagnataHeroImage } from "./events/castagnataHero.avif";
 export { default as caruggiImage } from "./places/caruggiEllera.avif";
 export { default as caruggiEventImage } from "./events/caruggi_event.avif";
 export { default as caruggiLanterneImage } from "./events/caruggiLanterne.avif";

@@ -93,7 +93,8 @@ const EventDetail = () => {
       />
 
       <PageHero
-        imageSrc={event.image}
+        imageSrc={event.heroImage ?? event.image}
+        imageClassName={event.heroImagePosition}
         imageAlt={event.title}
         eyebrow="Evento"
         eyebrowIcon={Calendar}

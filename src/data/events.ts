@@ -5,6 +5,7 @@ import {
   caruggiLanterneImage,
   comuneAlbisolaSupLogoSvg,
   castagnataImage,
+  castagnataHeroImage,
   heroImage,
   logoComitatoRidotto,
   quilianoBikeLogoSvg,
@@ -46,6 +47,8 @@ export interface EventItem {
   showOnHome?: boolean;
   category?: EventCategory;
   dateToBeConfirmed?: boolean;
+  heroImage?: string;
+  heroImagePosition?: string;
 }
 
 export type EventCategory = "Cultura" | "Outdoor" | "Festa" | "Teatro" | "Altro";
@@ -225,6 +228,8 @@ La sera prima della vera e propria ricorrenza, l'intera Valle Sansobbia si riuni
     date: "Autunno 2026",
     startDate: "2026-10-01",
     image: castagnataImage,
+    heroImage: castagnataHeroImage,
+    heroImagePosition: "object-[center_25%]",
     desc: "La tradizione autunnale per eccellenza. Il profumo delle caldarroste riempie le vie del borgo, accompagnato da vino novello e allegria.",
     location: EVENT_LOCATIONS.PRATO_FESTE.name,
     locationUrl: EVENT_LOCATIONS.PRATO_FESTE.url,
