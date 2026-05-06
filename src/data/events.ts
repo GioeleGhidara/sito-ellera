@@ -202,7 +202,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     date: "23 Agosto 2026",
     startDate: "2026-08-23",
     image: chiesaSanBartolomeoEventImage,
-    desc: "La festa del patrono di Ellera, titolare della parrocchia inaugurata nel 1642. La sera del 23 agosto la comunità si ritrova per la messa e per l'annuale falò della vigilia, rito che accende la festa del 24 e richiama la tradizione contadina della Valle Sansobbia.",
+    desc: "La festa del patrono di Ellera, titolare della parrocchia inaugurata nel 1642. La sera del 22 agosto la comunità si ritrova per la messa e per l'annuale falò della vigilia, rito che accende la festa del 24 e richiama la tradizione contadina della Valle Sansobbia.",
     location: EVENT_LOCATIONS.CENTRO_STORICO.name,
     locationUrl: EVENT_LOCATIONS.CENTRO_STORICO.url,
     category: "Festa",
@@ -216,7 +216,6 @@ La sera prima della vera e propria ricorrenza, l'intera Valle Sansobbia si riuni
 
 **La Festa del Patrono (24 Agosto):**
 - **Celebrazioni religiose**: Messa solenne e processione per le vie del borgo, accompagnata dalla cassa del Santo ornata dai classici crocifissi liguri.
-- **Cena della comunità**: il Comitato e le realtà locali organizzano una tavolata comune per condividere ricette tipiche e festeggiare il patrono in allegria.
 
 *Unisciti a noi per rivivere il folklore sano e genuino che da secoli caratterizza il cuore pulsante di Ellera.*`,
   },
