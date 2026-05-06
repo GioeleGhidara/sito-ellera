@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 const Footer = lazy(() => import("@/components/layout/Footer"));
 const SeasonalEffects = lazy(() => import("@/components/shared/SeasonalEffects"));
 const FloatingContact = lazy(() => import("@/components/layout/FloatingContact"));
-const InstallPrompt = lazy(() => import("@/components/shared/InstallPrompt"));
+
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -39,9 +39,7 @@ const Layout = ({
       <Suspense fallback={null}>
         <FloatingContact />
       </Suspense>
-      <Suspense fallback={null}>
-        <InstallPrompt />
-      </Suspense>
+
     </div>
   );
 };
