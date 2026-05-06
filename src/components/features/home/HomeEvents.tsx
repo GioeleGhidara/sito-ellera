@@ -30,7 +30,7 @@ const HomeEvents = ({ highlightedEvents, fadeUp }: HomeEventsProps) => {
         >
           <motion.h3 variants={fadeUp} className="mb-6 flex items-center gap-2 text-lg font-heading font-semibold text-foreground lg:text-xl">
             <Calendar className="h-5 w-5 text-accent" />
-            Eventi Tradizionali
+            Eventi
           </motion.h3>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {highlightedEvents.map((event) => (
