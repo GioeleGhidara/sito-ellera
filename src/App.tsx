@@ -56,6 +56,14 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
   { path: ROUTES.comitato, element: <ChiSiamo /> },
   { path: ROUTES.chiSiamo, element: <Navigate to={ROUTES.comitato} replace /> },
   { path: ROUTES.eventi, element: <Eventi /> },
+  {
+    path: ROUTES.laPedaliamoInsieme2026,
+    element: <StaticPageRedirect to="/la-pedaliamo-insieme-2026.html" />,
+  },
+  {
+    path: "/eventi/albi-trail-ebike-fest",
+    element: <StaticPageRedirect to="/albi-trail-ebike-fest.html" />,
+  },
   { path: `${ROUTES.eventi}/:slug`, element: <EventDetail /> },
   { path: ROUTES.servizi, element: <Servizi /> },
   { path: ROUTES.tradizioni, element: <Tradizioni /> },

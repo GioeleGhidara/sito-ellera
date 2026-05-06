@@ -182,9 +182,15 @@ export const FeaturedEventCard = ({ event }: { event: EventItem }) => {
           </div>
           <h2 className="mt-3 font-heading text-2xl font-semibold leading-tight text-foreground md:text-3xl">
             {event.externalUrl ? (
-              <a href={event.externalUrl} className="hover:text-accent">
-                {event.title}
-              </a>
+              event.externalUrl.startsWith("http") || event.externalUrl.endsWith(".html") ? (
+                <a href={event.externalUrl} className="hover:text-accent">
+                  {event.title}
+                </a>
+              ) : (
+                <Link to={event.externalUrl} className="hover:text-accent">
+                  {event.title}
+                </Link>
+              )
             ) : hasEventDetail(event) ? (
               <Link to={eventDetailPath(event.slug)} className="hover:text-accent">
                 {event.title}
@@ -225,13 +231,23 @@ export const FeaturedEventCard = ({ event }: { event: EventItem }) => {
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4">
               {event.externalUrl ? (
-                <a
-                  href={event.externalUrl}
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-all hover:bg-accent/90 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
-                >
-                  Ulteriori informazioni
-                  <ArrowRight className="h-4 w-4" />
-                </a>
+                event.externalUrl.startsWith("http") || event.externalUrl.endsWith(".html") ? (
+                  <a
+                    href={event.externalUrl}
+                    className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-all hover:bg-accent/90 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+                  >
+                    Ulteriori informazioni
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                ) : (
+                  <Link
+                    to={event.externalUrl}
+                    className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-all hover:bg-accent/90 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+                  >
+                    Ulteriori informazioni
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                )
               ) : hasEventDetail(event) && (
                 <Link
                   to={eventDetailPath(event.slug)}
@@ -328,13 +344,23 @@ export const FeaturedEventCardCompact = ({ event }: { event: EventItem }) => {
               <span>{event.location}</span>
             </div>
             {event.externalUrl ? (
-              <a
-                href={event.externalUrl}
-                className="inline-flex flex-shrink-0 items-center gap-1.5 text-xs font-semibold text-accent transition-all hover:gap-2.5"
-              >
-                Scheda evento
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
+              event.externalUrl.startsWith("http") || event.externalUrl.endsWith(".html") ? (
+                <a
+                  href={event.externalUrl}
+                  className="inline-flex flex-shrink-0 items-center gap-1.5 text-xs font-semibold text-accent transition-all hover:gap-2.5"
+                >
+                  Scheda evento
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              ) : (
+                <Link
+                  to={event.externalUrl}
+                  className="inline-flex flex-shrink-0 items-center gap-1.5 text-xs font-semibold text-accent transition-all hover:gap-2.5"
+                >
+                  Scheda evento
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              )
             ) : hasEventDetail(event) && (
               <Link
                 to={eventDetailPath(event.slug)}

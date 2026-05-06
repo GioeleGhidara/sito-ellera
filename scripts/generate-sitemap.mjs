@@ -68,7 +68,7 @@ const siteUrl = (
   process.env.VITE_SITE_URL ||
   loadedEnv.SITE_URL ||
   loadedEnv.VITE_SITE_URL ||
-  "https://www.ellera.it"
+  "https://your-site.example"
 ).replace(/\/+$/, "");
 
 const siteNoIndex = /^(1|true|yes)$/i.test(
@@ -118,7 +118,7 @@ const getDetailedEventSlugs = (source) => {
       continue;
     }
 
-    if (currentSlug && (line.includes("detailContent:") || line.includes("externalUrl:"))) {
+    if (currentSlug && line.includes("detailContent:")) {
       slugs.push(currentSlug);
       currentSlug = null;
     }
