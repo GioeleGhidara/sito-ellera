@@ -11,6 +11,7 @@ export { default as lanternImage } from "./home/lantern.avif";
 export { default as tradizioniHeroImage } from "./tradizioni/hero-tradizioni.webp";
 export { default as gattoNeroImage } from "./tradizioni/gattoNero.avif";
 export { default as gattoManoImage } from "./tradizioni/gattoMano.avif";
+export { default as sanBartolomeoPannelloImage } from "./tradizioni/chiese/sanBartolomeoPannello.avif";
 
 export { default as galleriaArteImage } from "./places/galleria_arte.avif";
 export { default as trekkingPageImage } from "./places/trekking_page.avif";

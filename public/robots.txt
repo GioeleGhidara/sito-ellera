@@ -1,4 +1,6 @@
 User-agent: *
+Disallow: /trekking
+Disallow: /tradizioni
 Allow: /
 
 Sitemap: https://ellera.it/sitemap.xml

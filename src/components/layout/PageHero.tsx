@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { ElementType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -57,12 +56,10 @@ const PageHero = ({
       <div className="absolute inset-0 bg-gradient-hero" />
 
       <div className={cn("relative z-10 container mx-auto px-4 lg:px-8 pb-12", containerClassName)}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
           className={cn("max-w-4xl", contentClassName)}
         >
+
           {eyebrow && (
             <div className="flex items-center gap-3 mb-2">
               {EyebrowIcon && <EyebrowIcon className="w-5 h-5 text-accent" />}
@@ -96,7 +93,8 @@ const PageHero = ({
           )}
 
           {footerChildren}
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );

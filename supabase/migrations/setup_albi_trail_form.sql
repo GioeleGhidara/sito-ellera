@@ -12,17 +12,11 @@ CREATE TABLE IF NOT EXISTS public.albi_trail_registrations (
 -- 2. Enable Row Level Security (RLS)
 ALTER TABLE public.albi_trail_registrations ENABLE ROW LEVEL SECURITY;
 
--- 3. Create the policy to allow ANYONE to insert rows
--- (this is necessary since the form is public and users are not authenticated)
-CREATE POLICY "Allow public insert"
-ON public.albi_trail_registrations
-FOR INSERT
-TO public
-WITH CHECK (true);
-
--- 4. Create the policy to allow ONLY authenticated admins to select/read rows
--- (adjust this to your needs if you have a specific admin role, 
--- but 'authenticated' prevents public scraping)
+-- 3. Inserimenti permessi SOLO tramite Edge Function (service_role)
+-- Rimuoviamo la policy pubblica per evitare che chiunque possa scrivere nel DB 
+-- bypassando i controlli di sicurezza (Turnstile).
+-- Nota: La Edge Function usa la service_role key, quindi ignora le policy RLS.
+-- 4. Lettura permessa SOLO ad amministratori autenticati
 CREATE POLICY "Allow admins to read"
 ON public.albi_trail_registrations
 FOR SELECT

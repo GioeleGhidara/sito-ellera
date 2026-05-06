@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+
 import { Mountain, Palette, MapPin, ChevronDown, History } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
 import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
@@ -11,21 +11,16 @@ const WeatherWidget = lazy(() => import("@/components/features/weather/WeatherWi
 const HomeHero = () => {
   return (
     <section className="relative flex h-[85vh] min-h-[500px] items-center justify-center overflow-hidden">
-      <motion.img
+      <img
         src={elleraDalPonteImage}
         alt="Il borgo di Ellera visto dal ponte sul Sansobbia"
         className="absolute inset-0 h-full w-full object-cover object-center"
-        initial={{ scale: 1.08 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 12, ease: "easeOut" }}
       />
       <div className="absolute inset-0 bg-gradient-hero" />
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+      <div
         className="relative z-10 max-w-3xl px-4 text-center"
       >
+
         <h1 className="mb-4 text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
           Ellera
         </h1>
@@ -58,7 +53,8 @@ const HomeHero = () => {
             La storia
           </Link>
         </div>
-      </motion.div>
+      </div>
+
 
       <div className="absolute left-4 top-20 z-20 lg:left-8 lg:top-24">
         <Suspense
@@ -72,20 +68,15 @@ const HomeHero = () => {
         </Suspense>
       </div>
 
-      <motion.div
+      <div
         className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-1"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
       >
         <span className="text-xs uppercase tracking-wider text-primary-foreground/60">Scorri</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
+        <div>
           <ChevronDown className="h-6 w-6 text-primary-foreground/70" />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
+
     </section>
   );
 };

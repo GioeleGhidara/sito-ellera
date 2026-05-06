@@ -36,16 +36,15 @@ Deno.serve(async (req: Request) => {
   try {
     const { token, registrationData } = await req.json();
 
-    if (!token) {
-      throw new Error("Missing Turnstile token");
-    }
-    if (!registrationData) {
-      throw new Error("Missing registration data");
-    }
+    if (!token) throw new Error("Missing security token");
+    if (!registrationData) throw new Error("Missing data");
 
-    const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY") || "1x0000000000000000000000000000000AA";
+    const turnstileSecret = Deno.env.get("TURNSTILE_SECRET_KEY");
+    if (!turnstileSecret) {
+      throw new Error("Server configuration error: security key missing");
+    }
     
-    // Verify Turnstile Token
+    // 1. Verify Turnstile Token
     const verifyFormData = new FormData();
     verifyFormData.append("secret", turnstileSecret);
     verifyFormData.append("response", token);
@@ -56,29 +55,66 @@ Deno.serve(async (req: Request) => {
     });
 
     const turnstileData = await turnstileRes.json();
-    
     if (!turnstileData.success) {
-      console.error("Turnstile verification failed:", turnstileData);
-      throw new Error("CAPTCHA verification failed");
+      throw new Error("Security verification failed. Please try again.");
     }
 
-    // Initialize Supabase admin client
+    // 2. Strict Whitelisting & Validation
+    const allowedFields = [
+      "nome_cognome", "email", "telefono", "pacchetto", "menu", "note",
+      "pagamento", "chk_regolamento", "chk_responsabilita", "chk_privacy",
+      "chk_media", "regolamento_version", "timestamp", "user_agent", 
+      "ip_address", "paypal_order_id", "stripe_payment_intent_id"
+    ];
+
+    const cleanData: Record<string, unknown> = {};
+    for (const field of allowedFields) {
+      if (registrationData[field] !== undefined) {
+        cleanData[field] = registrationData[field];
+      }
+    }
+
+    // Basic required fields check
+    if (!cleanData.nome_cognome || !cleanData.email || !cleanData.pacchetto) {
+      throw new Error("Missing required fields (Name, Email, Package)");
+    }
+
+    // Consents check
+    if (!cleanData.chk_regolamento || !cleanData.chk_responsabilita || !cleanData.chk_privacy) {
+      throw new Error("Mandatory consents missing");
+    }
+
+    // 3. Initialize Supabase admin client
     const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
     const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 
     if (!supabaseUrl || !supabaseServiceRoleKey) {
-      throw new Error("Server configuration error (missing Supabase keys)");
+      throw new Error("Database configuration error");
     }
 
     const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
 
-    // Insert into DB
+    // 4. Insert into DB
     const { data, error } = await supabaseAdmin
       .from("albi_trail_registrations")
-      .insert([registrationData]);
+      .insert([cleanData]);
 
     if (error) {
-      throw new Error("Database insert failed: " + error.message);
+      console.error("Supabase Error:", error);
+      throw new Error("Failed to save registration. Please contact support.");
+    }
+
+    // 5. Sync to Google Sheets (optional but recommended to be server-side)
+    const sheetsUrl = Deno.env.get("GOOGLE_SHEETS_URL");
+    if (sheetsUrl) {
+      try {
+        await fetch(sheetsUrl, {
+          method: "POST",
+          body: JSON.stringify(cleanData),
+        });
+      } catch (err) {
+        console.warn("Google Sheets sync failed:", err);
+      }
     }
 
     return new Response(JSON.stringify({ success: true, data }), {
@@ -89,7 +125,7 @@ Deno.serve(async (req: Request) => {
     });
   } catch (error) {
     console.error("Registration error:", error);
-    const errorMessage = error instanceof Error ? error.message : "Internal server error";
+    const errorMessage = error instanceof Error ? error.message : "Unexpected error";
     
     return new Response(JSON.stringify({ success: false, error: errorMessage }), {
       status: 400,

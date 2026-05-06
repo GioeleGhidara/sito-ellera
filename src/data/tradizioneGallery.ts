@@ -21,6 +21,8 @@ import mulinoBarban from "@/assets/images/tradizioni/mulini-riferimenti/mulino-b
 import mulinoGalo from "@/assets/images/tradizioni/mulini-riferimenti/mulino-galo.avif";
 import mulinoMarone from "@/assets/images/tradizioni/mulini-riferimenti/mulino-marone.avif";
 import mulinoRemenun from "@/assets/images/tradizioni/mulini-riferimenti/mulino-remenun.avif";
+import sanBartolomeoPannello from "@/assets/images/tradizioni/chiese/sanBartolomeoPannello.avif";
+
 
 export interface GallerySlide {
   src: string;
@@ -86,10 +88,10 @@ export const tradizioneGalleryBySlug: Record<string, GallerySlide[]> = {
         "Il capolavoro ligneo di Santa Maria Maddalena penitente, un'opera dei primi del Settecento attribuita al grande scultore Anton Maria Maragliano.",
     },
     {
-      src: tradizionePlaceholder,
-      alt: "Interno affrescato della parrocchiale di San Bartolomeo",
+      src: sanBartolomeoPannello,
+      alt: "Pannello ceramico del martirio di San Bartolomeo a Ellera",
       caption:
-        "L'interno della parrocchiale: un cantiere pittorico durato sessant'anni, che culmina nel catino absidale dipinto da Resio e nella grandiosa volta affrescata nel 1927 dal maestro Eso Peluzzi.",
+        "Pannello n. 40 – Opera in ceramica di Bartolomeo Delfino. Raffigura il drammatico martirio di San Bartolomeo, patrono del borgo, scorticato vivo sotto una luce divina.",
     },
     {
       src: tradizionePlaceholder,

@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import { Construction, Settings, AlertTriangle } from "@/lib/icons";
+import { useNavigate } from "react-router-dom";
+import { Construction, Settings, AlertTriangle, ArrowLeft } from "@/lib/icons";
+import { Button } from "@/components/ui/button";
+
 
 interface MaintenanceViewProps {
   title?: string;
@@ -10,7 +13,10 @@ export default function MaintenanceView({
   title = "Lavori in Corso",
   message = "Questa sezione è attualmente in stato di manutenzione. Stiamo lavorando per offrirti un'esperienza migliore."
 }: MaintenanceViewProps) {
+  const navigate = useNavigate();
+
   return (
+
     <div className="flex min-h-[60vh] flex-col items-center justify-center p-6 text-center">
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
@@ -52,10 +58,26 @@ export default function MaintenanceView({
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="max-w-md text-base leading-relaxed text-muted-foreground"
+        className="max-w-md text-base leading-relaxed text-muted-foreground mb-8"
       >
         {message}
       </motion.p>
+
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
+        <Button
+          variant="outline"
+          onClick={() => navigate(-1)}
+          className="gap-2 rounded-full px-6"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Torna indietro
+        </Button>
+      </motion.div>
+
     </div>
   );
 }

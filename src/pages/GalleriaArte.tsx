@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Brush, Download, Droplets, Image, MapPin, Palette, Quote, Search, Users } from "@/lib/icons";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,7 @@ import {
   mappaPannelliImage,
 } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
-import CeramicCube from "@/components/features/art/CeramicCube";
+const CeramicCube = lazy(() => import("@/components/features/art/CeramicCube"));
 
 const gallerySections = [
   { id: "storia", title: "Un sogno diventato realtà" },
@@ -161,8 +161,10 @@ const GalleriaArte = () => {
                   <Image className="w-4 h-4 text-accent" />
                   <h4 className="font-heading font-semibold text-foreground text-sm">Esplora i Pannelli in 3D</h4>
                 </div>
-                <div className="w-full max-w-sm">
-                  <CeramicCube />
+                <div className="w-full max-w-sm min-h-[300px] flex items-center justify-center">
+                  <Suspense fallback={<div className="h-20 w-20 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />}>
+                    <CeramicCube />
+                  </Suspense>
                 </div>
                 <p className="text-xs text-muted-foreground mt-3 text-center lg:text-left italic w-full max-w-sm">
                   Trascina il cubo per ruotarlo, usa scorrimento per lo zoom.
