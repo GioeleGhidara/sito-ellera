@@ -17,9 +17,9 @@ const HomeHero = () => {
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-gradient-hero" />
-      
+
       <div className="absolute inset-0 bg-gradient-hero" />
-      
+
       {/* Glossary Block - Perfectly centered in the Hero */}
       <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
         <div className="w-full max-w-3xl text-left">
@@ -98,7 +98,7 @@ const HomeHero = () => {
       <div
         className="hidden md:flex absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex-col items-center gap-1"
       >
-        <span className="text-xs uppercase tracking-wider text-primary-foreground/60">Scorri</span>
+        <span className="text-xs uppercase tracking-wider text-primary-foreground/60"></span>
         <div>
           <ChevronDown className="h-6 w-6 text-primary-foreground/70" />
         </div>
