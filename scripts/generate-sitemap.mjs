@@ -7,12 +7,15 @@ const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
 const publicDir = path.join(projectRoot, "public");
 
+// ---------------------------------------------------------------------------
+// CLI / env helpers
+// ---------------------------------------------------------------------------
+
 const getMode = () => {
   const modeFlagIndex = process.argv.indexOf("--mode");
   if (modeFlagIndex >= 0 && process.argv[modeFlagIndex + 1]) {
     return process.argv[modeFlagIndex + 1];
   }
-
   return process.env.MODE || process.env.NODE_ENV || "production";
 };
 
@@ -21,7 +24,6 @@ const parseEnvFile = (source) => {
 
   for (const rawLine of source.split(/\r?\n/)) {
     const line = rawLine.trim();
-
     if (!line || line.startsWith("#")) continue;
 
     const match = line.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/);
@@ -61,23 +63,33 @@ const loadEnv = async (mode) => {
   return loaded;
 };
 
+// ---------------------------------------------------------------------------
+// Config
+// ---------------------------------------------------------------------------
+
 const mode = getMode();
 const loadedEnv = await loadEnv(mode);
+
 const siteUrl = (
   process.env.SITE_URL ||
   process.env.VITE_SITE_URL ||
   loadedEnv.SITE_URL ||
   loadedEnv.VITE_SITE_URL ||
-  "https://your-site.example"
+  "https://ellera.it"
 ).replace(/\/+$/, "");
 
 const siteNoIndex = /^(1|true|yes)$/i.test(
   process.env.SITE_NOINDEX ||
-    process.env.VITE_SITE_NOINDEX ||
-    loadedEnv.SITE_NOINDEX ||
-    loadedEnv.VITE_SITE_NOINDEX ||
-    ""
+  process.env.VITE_SITE_NOINDEX ||
+  loadedEnv.SITE_NOINDEX ||
+  loadedEnv.VITE_SITE_NOINDEX ||
+  ""
 );
+
+// ---------------------------------------------------------------------------
+// Static routes
+// NOTE: trail detail pages use /mtb/<slug>, not /trekking (which is the list page)
+// ---------------------------------------------------------------------------
 
 const staticRoutes = [
   "/",
@@ -92,6 +104,10 @@ const staticRoutes = [
   "/news",
 ];
 
+// ---------------------------------------------------------------------------
+// Utilities
+// ---------------------------------------------------------------------------
+
 const unique = (items) => [...new Set(items)];
 
 const escapeXml = (value) =>
@@ -102,34 +118,80 @@ const escapeXml = (value) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
 
-const readFile = (relativePath) => fs.readFile(path.join(projectRoot, relativePath), "utf8");
+const readFile = (relativePath) =>
+  fs.readFile(path.join(projectRoot, relativePath), "utf8");
 
 const getMatches = (source, pattern) =>
   Array.from(source.matchAll(pattern), (match) => match[1]).filter(Boolean);
 
-const getDetailedEventSlugs = (source) => {
-  const slugs = [];
-  let currentSlug = null;
+// ---------------------------------------------------------------------------
+// Event routes parser
+// Handles one event object at a time: accumulates all relevant fields before
+// deciding which route (if any) to emit, so field order within the object
+// never matters.
+// ---------------------------------------------------------------------------
 
-  for (const line of source.split(/\r?\n/)) {
+const getEventRoutes = (source) => {
+  const routes = [];
+
+  // Split into per-event blocks heuristically: a new "slug:" at the start of
+  // a trimmed line signals the beginning of a new event entry.
+  let currentSlug = null;
+  let hasDetail = false;
+  let externalUrl = null;
+
+  const flush = () => {
+    if (!currentSlug) return;
+    if (externalUrl) {
+      // Solo link interni (che iniziano con /) devono finire nella sitemap
+      if (externalUrl.startsWith("/")) {
+        routes.push(externalUrl);
+      }
+    } else if (hasDetail) {
+      routes.push(`/eventi/${currentSlug}`);
+    }
+  };
+
+  for (const rawLine of source.split(/\r?\n/)) {
+    const line = rawLine.trim();
+
     const slugMatch = line.match(/slug:\s*"([^"]+)"/);
     if (slugMatch?.[1]) {
+      flush();
       currentSlug = slugMatch[1];
+      hasDetail = false;
+      externalUrl = null;
       continue;
     }
 
-    if (currentSlug && line.includes("detailContent:")) {
-      slugs.push(currentSlug);
-      currentSlug = null;
-    }
+    if (line.includes("detailContent:")) hasDetail = true;
+
+    const urlMatch = line.match(/externalUrl:\s*"([^"]+)"/);
+    if (urlMatch?.[1]) externalUrl = urlMatch[1];
   }
 
-  return slugs;
+  flush(); // last event
+  return routes;
 };
+
+// ---------------------------------------------------------------------------
+// Tradizioni slugs loader
+// ---------------------------------------------------------------------------
 
 const loadTradizioneSlugs = async () => {
   const dir = path.join(projectRoot, "src", "content", "tradizioni");
-  const entries = await fs.readdir(dir, { withFileTypes: true });
+
+  let entries;
+  try {
+    entries = await fs.readdir(dir, { withFileTypes: true });
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      console.warn(`[sitemap] Directory not found, skipping tradizioni: ${dir}`);
+      return [];
+    }
+    throw error;
+  }
+
   const slugs = [];
 
   for (const entry of entries) {
@@ -144,9 +206,18 @@ const loadTradizioneSlugs = async () => {
   return slugs;
 };
 
+// ---------------------------------------------------------------------------
+// XML / robots builders
+// ---------------------------------------------------------------------------
+
+const todayIso = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
 const buildSitemapXml = (routes) => {
   const urls = routes
-    .map((route) => `  <url>\n    <loc>${escapeXml(`${siteUrl}${route}`)}</loc>\n  </url>`)
+    .map(
+      (route) =>
+        `  <url>\n    <loc>${escapeXml(`${siteUrl}${route}`)}</loc>\n    <lastmod>${todayIso}</lastmod>\n  </url>`
+    )
     .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -157,7 +228,13 @@ const buildRobotsTxt = () =>
     ? "User-agent: *\nDisallow: /\n"
     : `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
 
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
 const main = async () => {
+  console.log(`[sitemap] mode=${mode}  siteUrl=${siteUrl}  noindex=${siteNoIndex}`);
+
   const [trailsSource, newsSource, eventsSource, tradizioneSlugs] = await Promise.all([
     readFile("src/data/trails.ts"),
     readFile("src/data/news.ts"),
@@ -167,22 +244,30 @@ const main = async () => {
 
   const trailSlugs = getMatches(trailsSource, /slug:\s*"([^"]+)"/g);
   const newsSlugs = getMatches(newsSource, /slug:\s*"([^"]+)"/g);
-  const eventSlugs = getDetailedEventSlugs(eventsSource);
+  const eventRoutes = getEventRoutes(eventsSource);
 
   const routes = unique([
     ...staticRoutes,
     ...trailSlugs.map((slug) => `/mtb/${slug}`),
-    ...eventSlugs.map((slug) => `/eventi/${slug}`),
+    ...eventRoutes,
     ...tradizioneSlugs.map((slug) => `/tradizioni/${slug}`),
     ...newsSlugs.map((slug) => `/news/${slug}`),
   ]);
 
+  console.log(
+    `[sitemap] ${routes.length} URL trovati` +
+    ` (trails: ${trailSlugs.length}, news: ${newsSlugs.length},` +
+    ` eventi: ${eventRoutes.length}, tradizioni: ${tradizioneSlugs.length})`
+  );
+
   await fs.mkdir(publicDir, { recursive: true });
   await fs.writeFile(path.join(publicDir, "sitemap.xml"), buildSitemapXml(routes), "utf8");
   await fs.writeFile(path.join(publicDir, "robots.txt"), buildRobotsTxt(), "utf8");
+
+  console.log("[sitemap] ✓ public/sitemap.xml e public/robots.txt generati");
 };
 
 main().catch((error) => {
-  console.error("Failed to generate sitemap/robots files:", error);
+  console.error("[sitemap] Errore durante la generazione:", error);
   process.exitCode = 1;
 });
