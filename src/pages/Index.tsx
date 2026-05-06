@@ -15,6 +15,7 @@ import HomeEvents from "@/components/features/home/HomeEvents";
 import HomeStories from "@/components/features/home/HomeStories";
 import HomeExplore from "@/components/features/home/HomeExplore";
 
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },

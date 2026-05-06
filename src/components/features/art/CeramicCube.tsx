@@ -1,67 +1,85 @@
-import { useRef, Suspense } from 'react';
-import { Canvas, useLoader, useFrame } from '@react-three/fiber';
-import { TrackballControls } from '@react-three/drei';
-import * as THREE from 'three';
+import { useState, useEffect, useMemo } from 'react';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 
-const CUBE_SIZE = 3;
-const TEXTURE_PATHS = Array.from({ length: 6 }, (_, i) => `/textures/${i + 1}.avif`);
-const ROTATION = { y: 0.25, x: 0.1 } as const;
+/**
+ * CeramicCube Component
+ * 
+ * A lightweight alternative to the Three.js version.
+ * Simulates a 3D rotating cube using CSS 3D transforms and Framer Motion.
+ * This approach significantly reduces the bundle size and improves performance on mobile.
+ */
 
-const Cube = ({ isDragging }: { isDragging: React.RefObject<boolean> }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
+const TEXTURES = Array.from({ length: 6 }, (_, i) => `/textures/${i + 1}.avif`);
+const INTERVAL_MS = 2800;
+const ANIMATION_DURATION = 0.65;
 
-  useFrame((_, delta) => {
-    if (!meshRef.current || isDragging.current) return;
-    meshRef.current.rotation.y += delta * ROTATION.y;
-    meshRef.current.rotation.x += delta * ROTATION.x;
-  });
-
-  const textures = useLoader(THREE.TextureLoader, TEXTURE_PATHS);
-  textures.forEach((t) => {
-    t.colorSpace = THREE.SRGBColorSpace;
-    t.generateMipmaps = true;
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      <boxGeometry args={[CUBE_SIZE, CUBE_SIZE, CUBE_SIZE]} />
-      {textures.map((texture, i) => (
-        <meshStandardMaterial key={i} attach={`material-${i}`} map={texture} roughness={0.15} metalness={0.05} />
-      ))}
-    </mesh>
-  );
-};
-
-const wireframeFallback = (
-  <mesh>
-    <boxGeometry args={[CUBE_SIZE, CUBE_SIZE, CUBE_SIZE]} />
-    <meshStandardMaterial color="#e5e5e5" wireframe />
-  </mesh>
-);
+// Rotation axis mapping for each face index:
+// 'y' = horizontal rotation, 'x' = vertical flip
+const ROTATION_AXES: ('x' | 'y')[] = ['y', 'y', 'y', 'y', 'x', 'x'];
 
 export default function CeramicCube() {
-  const isDragging = useRef(false);
+  const [faceIndex, setFaceIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFaceIndex((prev) => (prev + 1) % TEXTURES.length);
+    }, INTERVAL_MS);
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentAxis = ROTATION_AXES[faceIndex];
+
+  // Memoize variants for performance
+  const variants: Variants = useMemo(() => ({
+    initial: (axis: 'x' | 'y') => ({
+      rotateY: axis === 'y' ? 90 : 0,
+      rotateX: axis === 'x' ? -90 : 0,
+      opacity: 0,
+      scale: 0.95
+    }),
+    animate: { 
+      rotateY: 0, 
+      rotateX: 0, 
+      opacity: 1,
+      scale: 1
+    },
+    exit: (axis: 'x' | 'y') => ({
+      rotateY: axis === 'y' ? -90 : 0,
+      rotateX: axis === 'x' ? 90 : 0,
+      opacity: 0,
+      scale: 0.95
+    }),
+  }), []);
 
   return (
     <div
-      className="w-full aspect-square rounded-xl overflow-hidden border border-border shadow-sm cursor-grab active:cursor-grabbing bg-gradient-to-br from-amber-100 via-orange-100 to-stone-200"
+      className="relative w-full aspect-square rounded-xl overflow-hidden border border-border shadow-sm bg-stone-100"
+      style={{ perspective: '1000px' }}
+      aria-label="Galleria opere in ceramica"
     >
-      <Canvas camera={{ position: [5, 4, 5], fov: 45 }} gl={{ alpha: true }}>
-        <Suspense fallback={wireframeFallback}>
-          <ambientLight intensity={0.6} />
-          <directionalLight position={[10, 10, 5]} intensity={1.5} />
-          <directionalLight position={[-10, 10, -5]} intensity={0.5} />
-          <Cube isDragging={isDragging} />
-          <TrackballControls
-            noPan
-            noZoom={false}
-            rotateSpeed={3}
-            dynamicDampingFactor={0.4}
-            onStart={() => { isDragging.current = true; }}
-            onEnd={() => { isDragging.current = false; }}
-          />
-        </Suspense>
-      </Canvas>
+      <AnimatePresence mode="sync" custom={currentAxis}>
+        <motion.div
+          key={faceIndex}
+          custom={currentAxis}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ 
+            duration: ANIMATION_DURATION, 
+            ease: [0.4, 0, 0.2, 1] // Custom cubic-bezier for a more "physical" feel
+          }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
+          style={{ 
+            backgroundImage: `url(${TEXTURES[faceIndex]})`,
+            backfaceVisibility: 'hidden'
+          }}
+        />
+      </AnimatePresence>
+
+      {/* Optional subtle gradient overlay for depth */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-black/5 to-transparent" />
     </div>
   );
 }

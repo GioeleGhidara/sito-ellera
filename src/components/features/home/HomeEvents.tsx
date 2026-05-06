@@ -13,7 +13,7 @@ interface HomeEventsProps {
 const HomeEvents = ({ highlightedEvents, fadeUp }: HomeEventsProps) => {
   return (
     <section className="bg-background pb-10 lg:pb-12">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -28,7 +28,7 @@ const HomeEvents = ({ highlightedEvents, fadeUp }: HomeEventsProps) => {
           }}
           className="mb-8 lg:mb-10"
         >
-          <motion.h3 variants={fadeUp} className="mb-6 flex items-center gap-2 text-xl font-heading font-semibold text-foreground">
+          <motion.h3 variants={fadeUp} className="mb-6 flex items-center gap-2 text-lg font-heading font-semibold text-foreground lg:text-xl">
             <Calendar className="h-5 w-5 text-accent" />
             Eventi Tradizionali
           </motion.h3>
@@ -47,8 +47,8 @@ const HomeEvents = ({ highlightedEvents, fadeUp }: HomeEventsProps) => {
                   />
                 </div>
                 <div className="p-5">
-                  <span className="text-xs font-semibold uppercase text-accent">{event.date}</span>
-                  <h4 className="mt-1 font-heading text-lg font-bold text-foreground">
+                  <span className="text-[10px] font-semibold uppercase text-accent lg:text-xs">{event.date}</span>
+                  <h4 className="mt-1 font-heading text-base font-bold text-foreground lg:text-lg">
                     {hasEventDetail(event) ? (
                       <Link to={eventDetailPath(event.slug)} className="hover:text-accent transition-colors">
                         {event.title}
@@ -62,6 +62,7 @@ const HomeEvents = ({ highlightedEvents, fadeUp }: HomeEventsProps) => {
               </motion.div>
             ))}
           </div>
+
 
           <motion.div variants={fadeUp} className="mt-8 text-center">
             <Link

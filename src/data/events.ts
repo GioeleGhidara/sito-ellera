@@ -42,6 +42,7 @@ export interface EventItem {
   organizers?: EventOrganizer[];
   posterPlaceholderLabel?: string;
   detailContent?: string;
+  externalUrl?: string;
   showOnHome?: boolean;
   category?: EventCategory;
   dateToBeConfirmed?: boolean;
@@ -92,6 +93,7 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
     date: "31 Maggio 2026",
     startDate: "2026-05-31",
     image: locandinaPedaliamoInsieme,
+    externalUrl: "/la-pedaliamo-insieme-2026.html",
     desc: "Pedalata in beneficenza tra Albisola Superiore ed Ellera con percorsi per tutti i livelli, incluso il giro famiglie su strada con passaggio nel golf.",
     location: EVENT_LOCATIONS.ALBISOLA_ELLERA.name,
     status: "In programma",
@@ -156,10 +158,11 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     date: "14 Giugno 2026",
     startDate: "2026-06-14",
     image: albiTrailAreaImage,
+    externalUrl: "/albi-trail-ebike-fest.html",
     desc: "Raduno esclusivo e-bike sui sentieri tecnici di Ellera. Giro guidato di 3h+ e pranzo finale con panino, birra e patatine.",
     location: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.name,
     locationUrl: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.url,
-    status: "Iscrizioni Aperte",
+    status: "In arrivo",
     organizerName: "Comitato Ellerese",
     organizerLogo: logoComitatoRidotto,
     showOnHome: true,

@@ -22,7 +22,7 @@ const HomeNews = ({ featuredNews, fadeUp }: HomeNewsProps) => {
 
   return (
     <section className="bg-background pt-10 pb-10 lg:pt-16 lg:pb-12">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -43,7 +43,7 @@ const HomeNews = ({ featuredNews, fadeUp }: HomeNewsProps) => {
             </span>
           </motion.div>
           
-          <motion.h2 variants={fadeUp} className="mb-10 text-3xl font-bold text-foreground lg:text-4xl">
+          <motion.h2 variants={fadeUp} className="mb-8 text-2xl font-bold text-foreground lg:text-4xl lg:mb-10">
             Ultime Novità
           </motion.h2>
 
@@ -54,7 +54,7 @@ const HomeNews = ({ featuredNews, fadeUp }: HomeNewsProps) => {
             >
               <div className="flex flex-col md:flex-row md:items-stretch">
                 {featuredNews.image && (
-                  <div className="relative h-48 w-full shrink-0 overflow-hidden md:h-auto md:w-1/3 lg:w-1/4">
+                  <div className="hidden md:block relative h-48 w-full shrink-0 overflow-hidden md:h-auto md:w-1/3 lg:w-1/4">
                     <img
                       src={featuredNews.image}
                       alt={featuredNews.title}
@@ -64,6 +64,7 @@ const HomeNews = ({ featuredNews, fadeUp }: HomeNewsProps) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent md:bg-gradient-to-r" />
                   </div>
                 )}
+
                 <div className="flex flex-1 flex-col p-5 md:p-6 lg:p-8">
                   <div className="mb-3 flex flex-wrap items-center gap-3">
                     <span
@@ -76,10 +77,10 @@ const HomeNews = ({ featuredNews, fadeUp }: HomeNewsProps) => {
                       {formatDateLong(featuredNews.date)}
                     </span>
                   </div>
-                  <h3 className="mb-2.5 font-heading text-xl font-bold leading-tight text-foreground transition-colors group-hover:text-primary md:text-2xl">
+                  <h3 className="mb-2 font-heading text-lg font-bold leading-tight text-foreground transition-colors group-hover:text-primary md:text-2xl md:mb-2.5">
                     {featuredNews.title}
                   </h3>
-                  <p className="mb-8 lg:mb-10 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3 md:text-base md:line-clamp-2">
+                  <p className="mb-6 lg:mb-10 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3 md:text-base md:line-clamp-2">
                     {featuredNews.excerpt}
                   </p>
                   <div className="flex items-center">

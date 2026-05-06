@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X } from "@/lib/icons";
+import { ChevronDown, Menu, X, MapPin } from "@/lib/icons";
 import { logoComitatoRidotto } from "@/assets/images";
 import { ROUTES, serviziSectionPath } from "@/lib/routes";
+
+const WeatherWidget = lazy(() => import("@/components/features/weather/WeatherWidget"));
 
 const navItems = [
   {
@@ -243,22 +245,28 @@ const Navbar = ({
               <img src={logoComitatoRidotto} alt="Logo Comitato Ellerese" className="h-10 w-10" />
             </div>
           ) : (
-            <Link to={ROUTES.home} className="flex flex-col items-start">
-              <span
-                className={`text-xl lg:text-2xl font-heading font-bold transition-colors leading-tight ${
-                  effectiveScrolled || mobileOpen ? "text-primary" : `text-primary-foreground ${transparentNavTextShadow}`
+            <div className="flex items-center min-w-[180px]">
+              <div className={`transition-all duration-500 ${effectiveScrolled || mobileOpen ? "opacity-0 invisible absolute -translate-x-4" : "opacity-100 visible translate-x-0"}`}>
+                <Suspense fallback={<div className="h-10 w-32 bg-muted/20 animate-pulse rounded-full" />}>
+                  <WeatherWidget variant="compact" />
+                </Suspense>
+              </div>
+              <Link 
+                to={ROUTES.home} 
+                className={`flex flex-col items-start transition-all duration-500 ${
+                  effectiveScrolled || mobileOpen 
+                    ? "opacity-100 visible translate-x-0" 
+                    : "opacity-0 invisible absolute translate-x-4"
                 }`}
               >
-                Ellera
-              </span>
-              <span
-                className={`text-[10px] lg:text-xs font-medium tracking-wider uppercase transition-colors leading-tight ${
-                  effectiveScrolled || mobileOpen ? "text-muted-foreground" : `text-primary-foreground/85 ${transparentNavTextShadow}`
-                }`}
-              >
-                Galleria a cielo aperto & Outdoor
-              </span>
-            </Link>
+                <span className="text-xl lg:text-2xl font-heading font-bold text-primary leading-tight">
+                  Ellera
+                </span>
+                <span className="text-[10px] lg:text-xs font-medium tracking-wider uppercase text-muted-foreground leading-tight">
+                  Galleria a cielo aperto & Outdoor
+                </span>
+              </Link>
+            </div>
           )}
 
           {/* Desktop nav */}

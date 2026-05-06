@@ -167,7 +167,7 @@ const GalleriaArte = () => {
                   </Suspense>
                 </div>
                 <p className="text-xs text-muted-foreground mt-3 text-center lg:text-left italic w-full max-w-sm">
-                  Trascina il cubo per ruotarlo, usa scorrimento per lo zoom.
+                  Una selezione delle 50 opere ceramiche che trasformano il borgo in una galleria d'arte.
                 </p>
               </div>
             </div>
@@ -203,7 +203,7 @@ const GalleriaArte = () => {
                 />
               </div>
               <p className="text-xs text-muted-foreground mt-3 text-center italic">
-                Il murales «Il Ceramista» in Piazza dell'Elce — Foto: IVG.it / Archivio Fotografico del Comune di Albisola Superiore
+                Il murales «Il Ceramista» in Piazza dell'Elce - Foto: IVG.it / Archivio Fotografico del Comune di Albisola Superiore
               </p>
             </motion.div>
 

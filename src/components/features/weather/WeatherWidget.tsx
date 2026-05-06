@@ -409,11 +409,11 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
   if (variant === "compact") {
     if (loading) {
       return (
-        <div className="inline-flex items-center gap-3 bg-card/60 backdrop-blur-sm border border-white/30 rounded-full px-3 py-2 shadow-sm">
-          <Skeleton className="w-9 h-9 rounded-full bg-muted/40" />
-          <div className="flex flex-col gap-1.5">
-            <Skeleton className="w-10 h-3.5 bg-muted/40" />
-            <Skeleton className="w-14 h-2.5 bg-muted/40" />
+        <div className="inline-flex items-center gap-2 md:gap-3 bg-card/60 backdrop-blur-sm border border-white/30 rounded-full px-2 py-1.5 md:px-3 md:py-2 shadow-sm">
+          <Skeleton className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-muted/40" />
+          <div className="flex flex-col gap-1 md:gap-1.5">
+            <Skeleton className="w-8 h-3 md:w-10 md:h-3.5 bg-muted/40" />
+            <Skeleton className="w-12 h-2 md:w-14 md:h-2.5 bg-muted/40" />
           </div>
           <div className="hidden sm:flex border-l border-border/40 pl-3 gap-2">
             <Skeleton className="w-16 h-3 bg-muted/30" />
@@ -440,22 +440,23 @@ const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
           animate={{ opacity: 1, y: 0 }}
           whileHover={{ y: -1, scale: 1.01 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className={`inline-flex max-w-[calc(100vw-2rem)] items-center gap-3 rounded-full border px-3 py-2 shadow-sm backdrop-blur-md transition-shadow hover:shadow-md ${current.isDay
+          className={`inline-flex max-w-[calc(100vw-2rem)] items-center gap-2 md:gap-3 rounded-full border px-2 py-1.5 md:px-3 md:py-2 shadow-sm backdrop-blur-md transition-shadow hover:shadow-md ${current.isDay
             ? "bg-card/70 border-white/40"
             : "bg-slate-950/70 border-slate-700/70 text-slate-50"
             }`}
         >
-          <span className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ring-1 ${info.iconSurfaceClassName}`}>
-            <Icon className={`w-5 h-5 ${info.iconClassName}`} aria-hidden="true" />
+          <span className={`inline-flex h-7 w-7 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full ring-1 ${info.iconSurfaceClassName}`}>
+            <Icon className={`w-4 h-4 md:w-5 md:h-5 ${info.iconClassName}`} aria-hidden="true" />
           </span>
           <div className="flex min-w-0 flex-col">
-            <span className={`text-sm font-semibold leading-none ${current.isDay ? "text-foreground" : "text-slate-50"}`}>
+            <span className={`text-[13px] md:text-sm font-semibold leading-none ${current.isDay ? "text-foreground" : "text-slate-50"}`}>
               {current.temp}°C
             </span>
-            <span className={`mt-1 text-[11px] leading-none ${current.isDay ? "text-muted-foreground" : "text-slate-300"}`}>
+            <span className={`mt-0.5 md:mt-1 text-[10px] md:text-[11px] leading-none ${current.isDay ? "text-muted-foreground" : "text-slate-300"}`}>
               {info.label}
             </span>
           </div>
+
           <span className={`hidden sm:inline text-xs border-l pl-3 ${current.isDay ? "text-muted-foreground border-border" : "text-slate-300 border-slate-700"}`}>
             <Wind className="w-3.5 h-3.5 inline mr-1" />{current.windSpeed} km/h
           </span>

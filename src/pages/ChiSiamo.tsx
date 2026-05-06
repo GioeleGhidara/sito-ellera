@@ -37,7 +37,7 @@ const ATTIVITA = [
   {
     icon: BookOpen,
     title: "Memoria e Tradizioni",
-    body: "Preserviamo le storie di Ellera — dalle Streghe ai mulini del colore — e il patrimonio rurale della frazione.",
+    body: "Preserviamo le storie di Ellera - dalle Streghe ai mulini del colore - e il patrimonio rurale della frazione.",
   },
   {
     icon: Users,
@@ -89,7 +89,7 @@ export default function ChiSiamo() {
               <span>La nostra missione</span>
             </div>
             <p className="mx-auto max-w-3xl text-base lg:text-lg leading-relaxed text-slate-700">
-              Il <strong className="font-semibold text-foreground">Comitato Ellerese</strong> è il cuore pulsante della comunità di Ellera — un gruppo di cittadini uniti dalla passione per il proprio territorio, impegnati ogni giorno a tenerlo vivo, a raccontarlo e a condividerlo.
+              Il <strong className="font-semibold text-foreground">Comitato Ellerese</strong> è il cuore pulsante della comunità di Ellera - un gruppo di cittadini uniti dalla passione per il proprio territorio, impegnati ogni giorno a tenerlo vivo, a raccontarlo e a condividerlo.
             </p>
           </motion.div>
 
@@ -135,7 +135,7 @@ export default function ChiSiamo() {
             </div>
             <h2 className="text-2xl lg:text-3xl font-heading font-semibold text-foreground mb-1.5 lg:mb-3">Cosa Facciamo</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-sm lg:text-base hidden lg:block">
-              Trasformiamo l'amore per Ellera in azioni concrete — ogni settimana, tutto l'anno.
+              Trasformiamo l'amore per Ellera in azioni concrete - ogni settimana, tutto l'anno.
             </p>
           </motion.div>
 
@@ -221,7 +221,7 @@ export default function ChiSiamo() {
                   <span>Il Nostro Impegno</span>
                 </div>
                 <p className="text-muted-foreground leading-relaxed text-sm lg:text-base">
-                  Ogni provento degli eventi viene reinvestito interamente per tenere vivo il borgo — <strong className="text-foreground">nessun altro scopo, nessuna eccezione</strong>.
+                  Ogni provento degli eventi viene reinvestito interamente per tenere vivo il borgo - <strong className="text-foreground">nessun altro scopo, nessuna eccezione</strong>.
                 </p>
               </div>
             </div>

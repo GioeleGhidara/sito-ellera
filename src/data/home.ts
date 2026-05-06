@@ -47,7 +47,7 @@ export const homeExploreItems: HomeExploreItem[] = [
     to: ROUTES.teatroBaloma,
   },
   {
-    title: "Galleria a Cielo Aperto",
+    title: "Galleria",
     icon: "palette",
     image: galleriaArteImage,
     desc: "Oltre 50 pannelli ceramici sulle facciate raccontano la storia del borgo.",

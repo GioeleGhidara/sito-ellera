@@ -19,23 +19,24 @@ export interface NewsItem {
 const newsData: NewsItem[] = [
   {
     id: 8,
-    slug: "calendario-eventi-2026-caruggi-pastaparty",
+    slug: "calendario-eventi-2026-ufficializzati",
     date: "2026-02-27",
-    title: "Definite le prime date del 2026: Caruggi e Lanterne il 21 e 22 agosto",
+    title: "Ufficializzate le date 2026: Caruggi, Pedaliamo Insieme e E-Bike Fest",
     excerpt:
-      "Il Comitato Ellerese fissa i primi appuntamenti del 2026: Caruggi e Lanterne il 21-22 agosto, La Pedaliamo Insieme il 31 maggio ed Ellera Bike Fest il 14 giugno.",
-    content: `In data **27 febbraio 2026** il Comitato Ellerese ha definito i primi appuntamenti del calendario eventi per la stagione 2026, con l'obiettivo di dare riferimenti chiari a volontari, residenti e visitatori.
+      "Il Comitato Ellerese annuncia il calendario eventi 2026: La Pedaliamo Insieme il 31 maggio, Albi Trail E-Bike Fest il 14 giugno e Caruggi e Lanterne il 21-22 agosto.",
+    content: `Il **Comitato Ellerese** ha ufficializzato il calendario degli eventi per la stagione 2026, consolidando appuntamenti storici e nuove collaborazioni dedicate al territorio e alla solidarietà.
 
-La data scelta per **Caruggi e Lanterne** è quella di **venerdì 21 e sabato 22 agosto 2026**. La manifestazione resterà il momento centrale dell'estate ellerese, con i caruggi illuminati, musica, installazioni e punti ristoro diffusi nel borgo.
+Il primo appuntamento è fissato per il **31 maggio 2026** con **"La Pedaliamo Insieme"**. L'evento, organizzato in stretta sinergia tra **Barrabrava**, **Comitato Ellerese**, **Quiliano Bike** e il **Comune di Albisola Superiore**, vedrà centinaia di ciclisti percorrere i sentieri e le strade tra Albisola ed Ellera per una giornata di sport e beneficenza.
 
-Nel programma è stato inserito anche un appuntamento per il **31 maggio 2026**, in concomitanza con una giornata ciclistica tra Albisola ed Ellera. Il Comitato affiancherà la manifestazione con una presenza locale dedicata all'accoglienza e alla valorizzazione del paese.
+Domenica **14 giugno 2026** sarà la volta della seconda edizione di **Albi Trail E-Bike Fest**. Si terrà un vero e proprio raduno dedicato alle e-bike. Il programma prevede una bella pedalata sui sentieri della **Albi Trail Area** con ritrovo e pranzo finale (panino con salsiccia, patatine e birra) presso il **Prato Feste**. Le iscrizioni saranno aperte a breve online sulla pagina dedicata.
 
-Per il **14 giugno 2026** è invece in preparazione un appuntamento organizzato direttamente dal Comitato nell'area del **prato adibita alle feste di paese**. La formula prevista comprende un **pasta party** e un momento conviviale aperto a soci, residenti e amici di Ellera.
+Infine, l'estate ellerese culminerà **venerdì 21 e sabato 22 agosto 2026** con l'attesissima edizione di **Caruggi e Lanterne**. La manifestazione trasformerà come sempre il borgo in un percorso enogastronomico magico, illuminato dalle lanterne e accompagnato da musica dal vivo e rassegne artistiche.
 
-I dettagli operativi, compresi orari, modalità di iscrizione e programma completo delle singole giornate, saranno comunicati con aggiornamenti dedicati nelle prossime settimane.`,
+Nelle prossime settimane verranno rilasciati i dettagli operativi e le locandine ufficiali per ogni singolo appuntamento.`,
     category: "Associazione",
     image: caruggiLanterneImage,
   },
+
   {
     id: 7,
     slug: "insediamento-nuovo-direttivo-comitato-ellerese-2026",
