@@ -181,8 +181,12 @@ export const FeaturedEventCard = ({ event }: { event: EventItem }) => {
             )}
           </div>
           <h2 className="mt-3 font-heading text-2xl font-semibold leading-tight text-foreground md:text-3xl">
-            {hasEventDetail(event) || event.externalUrl ? (
-              <Link to={event.externalUrl || eventDetailPath(event.slug)} className="hover:text-accent">
+            {event.externalUrl ? (
+              <a href={event.externalUrl} className="hover:text-accent">
+                {event.title}
+              </a>
+            ) : hasEventDetail(event) ? (
+              <Link to={eventDetailPath(event.slug)} className="hover:text-accent">
                 {event.title}
               </Link>
             ) : (
@@ -220,9 +224,17 @@ export const FeaturedEventCard = ({ event }: { event: EventItem }) => {
               )}
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4">
-              {(hasEventDetail(event) || event.externalUrl) && (
+              {event.externalUrl ? (
+                <a
+                  href={event.externalUrl}
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-all hover:bg-accent/90 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+                >
+                  Ulteriori informazioni
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              ) : hasEventDetail(event) && (
                 <Link
-                  to={event.externalUrl || eventDetailPath(event.slug)}
+                  to={eventDetailPath(event.slug)}
                   className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-all hover:bg-accent/90 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
                 >
                   Ulteriori informazioni
@@ -315,9 +327,17 @@ export const FeaturedEventCardCompact = ({ event }: { event: EventItem }) => {
               <MapPin className="h-3.5 w-3.5 text-primary" />
               <span>{event.location}</span>
             </div>
-            {(hasEventDetail(event) || event.externalUrl) && (
+            {event.externalUrl ? (
+              <a
+                href={event.externalUrl}
+                className="inline-flex flex-shrink-0 items-center gap-1.5 text-xs font-semibold text-accent transition-all hover:gap-2.5"
+              >
+                Scheda evento
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            ) : hasEventDetail(event) && (
               <Link
-                to={event.externalUrl || eventDetailPath(event.slug)}
+                to={eventDetailPath(event.slug)}
                 className="inline-flex flex-shrink-0 items-center gap-1.5 text-xs font-semibold text-accent transition-all hover:gap-2.5"
               >
                 Scheda evento
