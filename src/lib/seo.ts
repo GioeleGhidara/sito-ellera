@@ -1,5 +1,5 @@
 export const SITE_NAME = "Ellera";
-export const SITE_URL_FALLBACK = "https://your-site.example";
+export const SITE_URL_FALLBACK = "https://www.ellera.it";
 export const DEFAULT_OG_IMAGE = "/social-preview.svg";
 export const DEFAULT_LOCALE = "it_IT";
 export const DEFAULT_DESCRIPTION =

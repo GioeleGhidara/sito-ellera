@@ -68,7 +68,7 @@ const siteUrl = (
   process.env.VITE_SITE_URL ||
   loadedEnv.SITE_URL ||
   loadedEnv.VITE_SITE_URL ||
-  "https://ellera.it"
+  "https://www.ellera.it"
 ).replace(/\/+$/, "");
 
 const siteNoIndex = /^(1|true|yes)$/i.test(
