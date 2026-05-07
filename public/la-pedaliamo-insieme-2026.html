@@ -2225,7 +2225,7 @@
     <a href="#programma" class="sticky-menu-link" data-section="programma" data-menu-link>Programma</a>
     <a href="#percorsi" class="sticky-menu-link" data-section="percorsi" data-menu-link>Percorsi</a>
     <a href="#iscrizione" class="sticky-menu-link" data-section="iscrizione" data-menu-link>Iscrizione</a>
-    <a href="#lotteria" class="sticky-menu-link" data-section="lotteria" data-menu-link>Lotteria</a>
+    <a href="#estrazione-premi" class="sticky-menu-link" data-section="estrazione-premi" data-menu-link>Estrazione a premi</a>
   </div>
 
   <!-- -- HERO -- -->
@@ -2296,7 +2296,7 @@
       <a href="#programma" class="nav-link" data-section="programma">Programma</a>
       <a href="#percorsi" class="nav-link" data-section="percorsi">Percorsi</a>
       <a href="#iscrizione" class="nav-link" data-section="iscrizione">Iscrizione</a>
-      <a href="#lotteria" class="nav-link" data-section="lotteria">Lotteria</a>
+      <a href="#estrazione-premi" class="nav-link" data-section="estrazione-premi">Estrazione a premi</a>
     </div>
   </nav>
 
@@ -2311,7 +2311,7 @@
         <a href="#programma" class="sidebar-nav-link" data-section="programma">Programma</a>
         <a href="#percorsi" class="sidebar-nav-link" data-section="percorsi">Percorsi</a>
         <a href="#iscrizione" class="sidebar-nav-link" data-section="iscrizione">Iscrizione</a>
-        <a href="#lotteria" class="sidebar-nav-link" data-section="lotteria">Lotteria</a>
+        <a href="#estrazione-premi" class="sidebar-nav-link" data-section="estrazione-premi">Estrazione a premi</a>
       </aside>
 
       <!-- MAIN -->
@@ -2492,7 +2492,7 @@
             </div>
           </div>
           <p style="margin-top:20px; font-size:13px; color:var(--ink); line-height: 1.6; opacity:0.9;">
-            L'intero ricavato delle iscrizioni e della lotteria sarà devoluto in ugual misura a sostegno di:
+            L'intero ricavato delle iscrizioni e dell'estrazione a premi sarà devoluto in ugual misura a sostegno di:
             <strong>Croce Verde Albisola</strong>, <strong>Protezione Civile Albisola</strong> e <strong>Centro
               Polifunzionale Balomà</strong>.
           </p>
@@ -2520,7 +2520,7 @@
                   <div class="timeline-dot"></div>
                 </div>
                 <div class="timeline-text">Apertura in <strong>zona Scacchiera</strong>: apertura iscrizioni in loco e
-                  inizio vendita biglietti della <strong>Lotteria</strong>.</div>
+                  inizio vendita biglietti dell'<strong>estrazione a premi</strong>.</div>
               </div>
               <div class="timeline-row">
                 <div class="timeline-time">fino alle 12:30</div>
@@ -2583,7 +2583,7 @@
                 <div class="timeline-dot-col">
                   <div class="timeline-dot"></div>
                 </div>
-                <div class="timeline-text">Debriefing della giornata ed <strong>estrazione della lotteria</strong> con i
+                <div class="timeline-text">Debriefing della giornata ed <strong>estrazione a premi</strong> con i
                   premi degli sponsor.</div>
               </div>
               <div class="timeline-row">
@@ -2782,7 +2782,7 @@
             <div class="pricing-row">
               <div>
                 <div class="pricing-who">Adulti</div>
-                <div class="pricing-sub">qualsiasi percorso · include 1 biglietto lotteria</div>
+                <div class="pricing-sub">qualsiasi percorso · include 1 biglietto per l'estrazione a premi</div>
               </div>
               <div class="pricing-price">€ 10</div>
             </div>
@@ -2836,8 +2836,8 @@
 
         </section>
 
-        <!-- LOTTERIA -->
-        <section id="lotteria" class="section">
+        <!-- ESTRAZIONE A PREMI -->
+        <section id="estrazione-premi" class="section">
           <div class="section-header">
             <div class="section-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -2850,7 +2850,7 @@
                 <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
               </svg>
             </div>
-            <h2 class="section-title">La Lotteria</h2>
+            <h2 class="section-title">Estrazione a premi</h2>
           </div>
           <div class="section-divider"></div>
           <div class="lottery-card">
@@ -2867,10 +2867,10 @@
             </div>
             <p class="lottery-desc">
               Al termine della giornata, di ritorno alla <strong>zona Scacchiera</strong>,
-              si terrà la lotteria dell'evento. I biglietti sono acquistabili in loco durante
+              si terrà l'estrazione a premi dell'evento. I biglietti sono acquistabili in loco durante
               la giornata (il costo è di <strong>10€</strong> a biglietto, ma ricorda che con ogni iscrizione adulto ne
               riceverai già uno incluso!). I <strong>premi sono offerti dagli sponsor</strong> che hanno scelto
-              di sostenere questa iniziativa. L'<strong>intero ricavato della lotteria andrà in
+              di sostenere questa iniziativa. L'<strong>intero ricavato dell'estrazione a premi andrà in
                 beneficienza</strong>, insieme al ricavato delle iscrizioni.
             </p>
             <div class="lottery-price">
@@ -3488,7 +3488,7 @@
     window.addEventListener('scroll', syncStickyUi, { passive: true });
 
     /* -- ACTIVE SECTION -- */
-    const SECTION_IDS = ['info', 'programma', 'percorsi', 'iscrizione', 'lotteria'];
+    const SECTION_IDS = ['info', 'programma', 'percorsi', 'iscrizione', 'estrazione-premi'];
     const OFFSET = 120;
     function updateActiveSection() {
       let best = SECTION_IDS[0];
