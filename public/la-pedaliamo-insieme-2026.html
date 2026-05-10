@@ -1238,6 +1238,74 @@
       font-weight: 600;
     }
 
+    /* -- ROUTE STATS -- */
+    .route-stats {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .route-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--forest);
+      background: rgba(26, 48, 40, .07);
+      border: 1px solid rgba(26, 48, 40, .1);
+      border-radius: 6px;
+      padding: 3px 9px 3px 7px;
+      line-height: 1.3;
+    }
+
+    .route-stat svg {
+      color: var(--moss);
+      flex-shrink: 0;
+    }
+
+    /* -- ROUTE CARD MOBILE ACCORDION -- */
+    .route-card-chevron {
+      display: none;
+      margin-left: auto;
+      flex-shrink: 0;
+      color: var(--stone);
+      transition: transform .25s;
+    }
+
+    @media (max-width: 639px) {
+      .route-card {
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .route-card-chevron {
+        display: flex;
+        align-items: center;
+      }
+
+      .route-card.open .route-card-chevron {
+        transform: rotate(180deg);
+      }
+
+      .route-collapsible {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height .35s ease;
+      }
+
+      .route-card.open .route-collapsible {
+        max-height: 700px;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .route-collapsible {
+        /* always visible on desktop */
+      }
+    }
+
     .event-map-wrap {
       margin-top: 22px;
       border-radius: 16px;
@@ -2696,111 +2764,197 @@
 
           <div class="routes-grid">
 
-            <div class="route-card" style="--route-color: #FF0000">
+            <div class="route-card open" style="--route-color: #FF0000" onclick="toggleRouteCard(this)">
               <div class="route-accent"></div>
               <div class="route-body">
                 <div class="route-head">
                   <span class="route-name">Giro Rosso</span>
                   <span class="route-tag" style="background:#fee2e2;color:#b91c1c">E-bike</span>
+                  <svg class="route-card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
                 </div>
-                <div class="route-poi-row">
-                  <span class="route-poi-label">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    POI
-                  </span>
-                  <div class="route-poi-list">
-                    <span class="route-poi-chip">Scacchiera</span>
-                    <span class="route-poi-chip">Boraxe</span>
-                    <span class="route-poi-chip">Pian del Pero</span>
-                    <span class="route-poi-chip">Bric Genova</span>
-                    <span class="route-poi-chip">Cima Bricco</span>
-                    <span class="route-poi-chip">Piazza dell'Elce (murale)</span>
-                    <span class="route-poi-chip">Società Luceto</span>
+                <div class="route-collapsible">
+                  <div class="route-stats">
+                    <span class="route-stat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                          d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z" />
+                        <path d="m7.5 10.5 2 2" />
+                        <path d="m10.5 7.5 2 2" />
+                        <path d="m13.5 4.5 2 2" />
+                        <path d="m4.5 13.5 2 2" />
+                      </svg>
+                      ~18 km
+                    </span>
+                    <span class="route-stat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 17 4-8 4 4 4-6 4 10" />
+                      </svg>
+                      480 m Dislivello+
+                    </span>
                   </div>
-                </div>
-                <p class="route-desc">Salita comune per <strong>Rio Boraxe</strong>, giro Ellera zona
-                  <strong>Caeffo</strong>. I
-                  partecipanti saranno
-                  accolti in <strong>Piazza dell'Elce</strong>, sotto al murale <em>Il Ceramista</em>, per una sosta
-                  veloce e un rinfresco, prima di convergere tutti alla <strong>Società Luceto</strong>.</p>
-                <div class="route-pills">
-                  <span class="route-pill route-pill-alert">Protezioni OBBLIGATORIE</span>
-                  <span class="route-pill route-pill-alert">Difficoltà ALTA</span>
+                  <div class="route-poi-row">
+                    <span class="route-poi-label">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      POI
+                    </span>
+                    <div class="route-poi-list">
+                      <span class="route-poi-chip">Scacchiera</span>
+                      <span class="route-poi-chip">Rio Buraxe</span>
+                      <span class="route-poi-chip">Pian del Pero</span>
+                      <span class="route-poi-chip">Bric Genova</span>
+                      <span class="route-poi-chip">Cima Bricco</span>
+                      <span class="route-poi-chip">Piazza dell'Elce (Murale)</span>
+                      <span class="route-poi-chip">Società Luceto</span>
+                    </div>
+                  </div>
+                  <p class="route-desc">Salita comune per <strong>Rio Buraxe</strong>, giro Ellera zona
+                    <strong>Caeffo</strong>. I
+                    partecipanti saranno
+                    accolti in <strong>Piazza dell'Elce</strong>, sotto al murale <em>Il Ceramista</em>, per una sosta
+                    veloce e un rinfresco, prima di convergere tutti alla <strong>Società Luceto</strong>.
+                  </p>
+                  <div class="route-pills">
+                    <span class="route-pill route-pill-alert">Protezioni OBBLIGATORIE</span>
+                    <span class="route-pill route-pill-alert">Difficoltà ALTA</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="route-card" style="--route-color: #00AA00">
+            <div class="route-card" style="--route-color: #00AA00" onclick="toggleRouteCard(this)">
               <div class="route-accent"></div>
               <div class="route-body">
                 <div class="route-head">
                   <span class="route-name">Giro Verde</span>
                   <span class="route-tag" style="background:#dcfce7;color:#166534">Muscolare</span>
+                  <svg class="route-card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
                 </div>
-                <div class="route-poi-row">
-                  <span class="route-poi-label">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    POI
-                  </span>
-                  <div class="route-poi-list">
-                    <span class="route-poi-chip">Scacchiera</span>
-                    <span class="route-poi-chip">Boraxe</span>
-                    <span class="route-poi-chip">Pian del Pero</span>
-                    <span class="route-poi-chip">Banin</span>
-                    <span class="route-poi-chip">Società Luceto</span>
+                <div class="route-collapsible">
+                  <div class="route-stats">
+                    <span class="route-stat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                          d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z" />
+                        <path d="m7.5 10.5 2 2" />
+                        <path d="m10.5 7.5 2 2" />
+                        <path d="m13.5 4.5 2 2" />
+                        <path d="m4.5 13.5 2 2" />
+                      </svg>
+                      ~12 km
+                    </span>
+                    <span class="route-stat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 17 4-8 4 4 4-6 4 10" />
+                      </svg>
+                      240 m Dislivello+
+                    </span>
                   </div>
-                </div>
-                <p class="route-desc">Percorso su forze proprie tra i versanti di Albisola, con un tratto di
-                  <strong>strada sterrata tranquilla nel bosco</strong>. Rientro diretto su <strong>Società
-                    Luceto</strong>, senza passaggio da Ellera.
-                </p>
-                <div class="route-pills">
-                  <span class="route-pill">Dislivello +500 m</span>
-                  <span class="route-pill">Difficoltà media</span>
+                  <div class="route-poi-row">
+                    <span class="route-poi-label">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      POI
+                    </span>
+                    <div class="route-poi-list">
+                      <span class="route-poi-chip">Scacchiera</span>
+                      <span class="route-poi-chip">Rio Buraxe</span>
+                      <span class="route-poi-chip">Pian del Pero</span>
+                      <span class="route-poi-chip">Banin</span>
+                      <span class="route-poi-chip">Società Luceto</span>
+                    </div>
+                  </div>
+                  <p class="route-desc">Percorso su forze proprie tra i versanti di Albisola, con un tratto di
+                    <strong>strada sterrata tranquilla nel bosco</strong>. Rientro diretto su <strong>Società
+                      Luceto</strong>, senza passaggio da Ellera.
+                  </p>
+                  <div class="route-pills">
+                    <span class="route-pill">Dislivello +500 m</span>
+                    <span class="route-pill">Difficoltà media</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="route-card" style="--route-color: #FFFFFF; border: 1px solid rgba(0,0,0,0.1)">
+            <div class="route-card" style="--route-color: #FFFFFF; border: 1px solid rgba(0,0,0,0.1)"
+              onclick="toggleRouteCard(this)">
               <div class="route-accent" style="border: 1px solid #000"></div>
               <div class="route-body">
                 <div class="route-head">
                   <span class="route-name">Giro Bianco</span>
                   <span class="route-tag" style="background:#ffffff;color:#4b5563;border:1px solid #e5e7eb">Qualsiasi
                     bici</span>
+                  <svg class="route-card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
                 </div>
-                <div class="route-poi-row">
-                  <span class="route-poi-label">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    POI
-                  </span>
-                  <div class="route-poi-list">
-                    <span class="route-poi-chip">Scacchiera</span>
-                    <span class="route-poi-chip">Piazza dell'Elce (Murale)</span>
-                    <span class="route-poi-chip">Società Luceto</span>
+                <div class="route-collapsible">
+                  <div class="route-stats">
+                    <span class="route-stat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                          d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z" />
+                        <path d="m7.5 10.5 2 2" />
+                        <path d="m10.5 7.5 2 2" />
+                        <path d="m13.5 4.5 2 2" />
+                        <path d="m4.5 13.5 2 2" />
+                      </svg>
+                      ~14 km
+                    </span>
+                    <span class="route-stat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 17 4-8 4 4 4-6 4 10" />
+                      </svg>
+                      80 m Dislivello+
+                    </span>
                   </div>
-                </div>
-                <p class="route-desc">Su strada, adatto a tutta la famiglia con un tratto di <strong>sterrato</strong>
-                  agevole verso Mulino d'alto.
-                  Tappa a
-                  <strong>Piazza dell'Elce</strong>
-                  a Ellera per il rinfresco, poi ritrovo comune alla <strong>Società Luceto</strong>.
-                </p>
-                <div class="route-pills">
-                  <span class="route-pill route-pill-alert">Dai 12 anni</span>
-                  <span class="route-pill">Difficoltà bassa</span>
+                  <div class="route-poi-row">
+                    <span class="route-poi-label">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      POI
+                    </span>
+                    <div class="route-poi-list">
+                      <span class="route-poi-chip">Scacchiera</span>
+                      <span class="route-poi-chip">Piazza dell'Elce (Murale)</span>
+                      <span class="route-poi-chip">Società Luceto</span>
+                    </div>
+                  </div>
+                  <p class="route-desc">Su strada, adatto a tutta la famiglia con un tratto di <strong>sterrato</strong>
+                    agevole verso Mulino d'alto.
+                    Tappa a
+                    <strong>Piazza dell'Elce</strong>
+                    a Ellera per il rinfresco, poi ritrovo comune alla <strong>Società Luceto</strong>.
+                  </p>
+                  <div class="route-pills">
+                    <span class="route-pill route-pill-alert">Dai 12 anni</span>
+                    <span class="route-pill">Difficoltà bassa</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3588,6 +3742,12 @@
     function toggleAccordion(id) {
       const el = document.getElementById(id);
       el.classList.toggle('open');
+    }
+
+    /* -- ROUTE CARD MOBILE ACCORDION -- */
+    function toggleRouteCard(card) {
+      if (window.innerWidth >= 640) return;
+      card.classList.toggle('open');
     }
 
     /* -- MODAL -- */
