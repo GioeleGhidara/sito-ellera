@@ -16,7 +16,7 @@
   <meta property="og:type" content="event" />
   <meta property="og:title" content="Albi Trail E-Bike Fest 2026" />
   <meta property="og:description"
-    content="Domenica 14 Giugno 2026 - Giro in E-Bike e MTB sui sentieri dell'Albi Trail, pranzo finale con salsiccia e birra al Prato Feste. Ellera, Albisola Superiore." />
+    content="Domenica 14 Giugno 2026 - Giro in E-Bike e MTB sui sentieri dell'Albi Trail, pranzo finale con salsiccia/wurstel e birra al Prato Feste. Ellera, Albisola Superiore." />
   <meta property="og:url" content="https://ellera.it/albi-trail-ebike-fest.html" />
   <meta property="og:image" content="https://ellera.it/loghi/ebike-fest-2026.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -135,6 +135,31 @@
       cursor: crosshair;
     }
 
+    input,
+    select,
+    textarea {
+      cursor: text;
+    }
+
+    button,
+    a,
+    label,
+    [onclick],
+    .quota-card,
+    .nav-cta,
+    .btn-primary,
+    .btn-secondary,
+    .gpx-btn {
+      cursor: pointer;
+    }
+
+    button:disabled,
+    input:disabled,
+    select:disabled,
+    textarea:disabled {
+      cursor: not-allowed;
+    }
+
     /* NOISE */
     body::before {
       content: '';
@@ -160,9 +185,12 @@
         background: var(--red-hot);
         border-radius: 50%;
         position: fixed;
+        top: 0;
+        left: 0;
+        margin: -4px 0 0 -4px;
         pointer-events: none;
         z-index: 10000;
-        transform: translate(-50%, -50%);
+        will-change: transform;
       }
 
       .cursor-ring {
@@ -172,10 +200,13 @@
         border: 1px solid rgba(232, 77, 42, 0.5);
         border-radius: 50%;
         position: fixed;
+        top: 0;
+        left: 0;
+        margin: -15px 0 0 -15px;
         pointer-events: none;
         z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: all 0.15s ease;
+        transition: transform 0.15s ease-out;
+        will-change: transform;
       }
     }
 
@@ -1512,12 +1543,18 @@
         top: -10px;
       }
 
-      /* Include cards: compatte su mobile */
-      .include-grid {
-        gap: 0.4rem;
-        width: calc(100% + 3rem);
-        margin-left: -1.5rem;
-        margin-right: -1.5rem;
+      /* Sections */
+      section {
+        padding: 4rem 1.2rem;
+      }
+
+      #form-iscrizione-container {
+        padding: 2rem 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .cal-btn-text {
+        display: none;
       }
 
       /* Include cards: compatte su mobile */
@@ -1551,7 +1588,6 @@
         color: var(--white) !important;
       }
 
-      /* Ripristina icone piccole e centrate */
       .include-grid .ghost-card svg {
         display: block !important;
         width: 32px !important;
@@ -1560,10 +1596,6 @@
         bottom: 0.2rem !important;
         right: 0.2rem !important;
         opacity: 0.12 !important;
-      }
-
-      .cal-btn-text {
-        display: none;
       }
     }
 
@@ -1659,30 +1691,6 @@
 
       .count-sep {
         display: none;
-      }
-
-      /* Sections */
-      section {
-        padding: 4rem 1.2rem;
-      }
-
-      #iscrizione {
-        padding: 4rem 1.2rem;
-      }
-
-      #form-iscrizione-container {
-        padding: 2rem 1.5rem;
-        margin-top: 2rem;
-      }
-
-      @media (max-width: 500px) {
-        #form-iscrizione-container {
-          padding: 1.5rem 1rem;
-        }
-
-        .grid-auto-fit-250 {
-          grid-template-columns: 1fr;
-        }
       }
 
       /* Schedule */
@@ -1816,6 +1824,147 @@
 
       .stat-box {
         padding: 1.2rem 1rem;
+      }
+    }
+
+    /* ============ CAL BUTTON ============ */
+    .cal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0 1.2rem;
+      height: 42px;
+      background: rgba(9, 8, 7, 0.4);
+      color: var(--grey-lt);
+      border: 1px solid var(--grey);
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 6px 100%);
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-top: 2.2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1.2s forwards;
+    }
+
+    .cal-btn:hover,
+    .cal-btn:focus {
+      color: var(--red-warm);
+      border-color: var(--red-warm);
+      background: rgba(196, 50, 26, 0.05);
+    }
+
+    /* ============ MAP LINK ============ */
+    .map-link {
+      color: var(--white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      border-bottom: 1px solid rgba(244, 237, 230, 0.2);
+      transition: border-color 0.2s;
+      padding-bottom: 2px;
+    }
+
+    .map-link:hover {
+      border-color: var(--red-warm);
+    }
+
+    /* ============ STICKY CTA (mobile) ============ */
+    .sticky-cta {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .sticky-cta {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.9rem 1.5rem calc(0.9rem + env(safe-area-inset-bottom));
+        background: linear-gradient(to top, rgba(9, 8, 7, 0.98) 60%, transparent);
+        z-index: 800;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        pointer-events: none;
+      }
+
+      .sticky-cta.visible {
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .sticky-cta-btn {
+        width: 100%;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        background: var(--red);
+        color: var(--white);
+        border: none;
+        padding: 1rem;
+        cursor: pointer;
+        clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .sticky-cta-btn:active {
+        background: var(--red-hot);
+      }
+
+      .sticky-cta-price {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        color: rgba(244, 237, 230, 0.6);
+        border-left: 1px solid rgba(244, 237, 230, 0.2);
+        padding-left: 0.75rem;
+      }
+
+      /* HERO GRID MOBILE */
+      .hero-eyebrow {
+        display: none;
+      }
+
+      .hero-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-top: 2rem;
+      }
+
+      .hero-meta-item {
+        padding: 0.9rem 1rem;
+        border: 1px solid rgba(58, 54, 50, 0.5);
+        margin-right: -1px;
+        margin-bottom: -1px;
+      }
+
+      .hero-meta-label {
+        font-size: 0.58rem;
+        letter-spacing: 0.28em;
+      }
+
+      .hero-meta-value {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.03em;
+        line-height: 1.1;
+        color: var(--white);
+      }
+
+      .hero-sep {
+        display: none;
       }
     }
 
@@ -2110,7 +2259,8 @@
         position: relative;
         height: 180px;
         margin-top: 0.5rem;
-        touch-action: pan-y; /* Permette lo scroll verticale della pagina */
+        touch-action: pan-y;
+        /* Permette lo scroll verticale della pagina */
         user-select: none;
       }
 
@@ -2127,7 +2277,7 @@
         justify-content: center;
         gap: 0.5rem;
         background: var(--black3);
-        
+
         /* Transizione attiva di default (per i cambi e lo snap-back) */
         transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease;
         will-change: transform, opacity;
@@ -2139,39 +2289,41 @@
       }
 
       /* Gestione gerarchia e posizioni */
-      .gear-stack-wrap .gear-item[data-stack="0"] { 
-        transform: translateY(0) scale(1); 
-        opacity: 1; 
-        z-index: 10; 
-        box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-        pointer-events: auto; /* Solo la prima carta è toccabile */
+      .gear-stack-wrap .gear-item[data-stack="0"] {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        z-index: 10;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        pointer-events: auto;
+        /* Solo la prima carta è toccabile */
       }
-      
-      .gear-stack-wrap .gear-item[data-stack="1"] { 
-        transform: translateY(8px) scale(0.96); 
-        opacity: 0.7; 
-        z-index: 2; 
-        pointer-events: none; 
+
+      .gear-stack-wrap .gear-item[data-stack="1"] {
+        transform: translateY(8px) scale(0.96);
+        opacity: 0.7;
+        z-index: 2;
+        pointer-events: none;
       }
-      
-      .gear-stack-wrap .gear-item[data-stack="2"] { 
-        transform: translateY(15px) scale(0.92); 
-        opacity: 0.4; 
-        z-index: 1; 
-        pointer-events: none; 
+
+      .gear-stack-wrap .gear-item[data-stack="2"] {
+        transform: translateY(15px) scale(0.92);
+        opacity: 0.4;
+        z-index: 1;
+        pointer-events: none;
       }
 
       /* RISOLUZIONE BUG: Definisce le carte oltre la terza nascoste in fondo */
-      .gear-stack-wrap .gear-item[data-stack="hidden"] { 
-        transform: translateY(20px) scale(0.88); 
-        opacity: 0; 
-        z-index: 0; 
-        pointer-events: none; 
+      .gear-stack-wrap .gear-item[data-stack="hidden"] {
+        transform: translateY(20px) scale(0.88);
+        opacity: 0;
+        z-index: 0;
+        pointer-events: none;
       }
 
       /* Animazione di uscita allo swipe completato */
       .gear-stack-wrap .gear-item.swiping-out {
-        transform: translateX(-120%) rotate(-10deg) !important; /* Swipe naturale verso sinistra */
+        transform: translateX(-120%) rotate(-10deg) !important;
+        /* Swipe naturale verso sinistra */
         opacity: 0 !important;
         transition: transform 0.3s ease-out, opacity 0.2s ease !important;
       }
@@ -2211,6 +2363,7 @@
         justify-content: center;
         gap: 0.4rem;
       }
+
       .gear-swipe-hint.hidden {
         opacity: 0;
         pointer-events: none;
@@ -2253,7 +2406,7 @@
     <a href="/" onclick="closeDrawer()" style="font-size:1.2rem;color:var(--grey-lt);">← ellera.it</a>
     <a href="/eventi" onclick="closeDrawer()" style="font-size:1.2rem;color:var(--grey-lt);">Prossimi eventi</a>
     <button class="drawer-cta"
-      onclick="closeDrawer();document.getElementById('iscrizione').scrollIntoView({behavior:'smooth'})">
+      onclick="closeDrawer();document.getElementById('form-iscrizione-container').scrollIntoView({behavior:'smooth',block:'start'})">
       Iscriviti ora
     </button>
   </div>
@@ -2311,7 +2464,7 @@
       <li><a href="#attrezzatura">Cosa portare</a></li>
     </ul>
     <button class="nav-cta"
-      onclick="document.getElementById('iscrizione').scrollIntoView({behavior:'smooth'})">Iscriviti</button>
+      onclick="document.getElementById('form-iscrizione-container').scrollIntoView({behavior:'smooth',block:'start'})">Iscriviti</button>
     <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -2328,7 +2481,8 @@
         Albi Trail<em>E-Bike Fest</em>
       </h1>
       <p class="hero-subtitle">
-        Il giro in bici è il cuore dell'evento. Il pranzo con salsiccia, birra e patatine arriva alla fine, al prato
+        Il giro in bici è il cuore dell'evento. Il pranzo con salsiccia/wurstel, birra e patatine arriva alla fine, al
+        prato
         feste del Comitato.
       </p>
       <div class="hero-meta">
@@ -2354,10 +2508,7 @@
       </div>
 
       <!-- AGGIUNGI AL CALENDARIO -->
-      <button onclick="addToCalendar()" title="Aggiungi al calendario (.ics)"
-        style="margin-top:2.2rem;display:inline-flex;align-items:center;gap:0.6rem;padding:0 1.2rem;height:42px;background:rgba(9,8,7,0.4);color:var(--grey-lt);border:1px solid var(--grey);cursor:pointer;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 100%,6px 100%);transition:all 0.25s;opacity:0;animation:fadeUp 0.9s ease 1.2s forwards;font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;"
-        onmouseover="this.style.color='var(--red-warm)';this.style.borderColor='var(--red-warm)';this.style.background='rgba(196,50,26,0.05)'"
-        onmouseout="this.style.color='var(--grey-lt)';this.style.borderColor='var(--grey)';this.style.background='rgba(9,8,7,0.4)'">
+      <button onclick="addToCalendar()" title="Aggiungi al calendario (.ics)" class="cal-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -2485,7 +2636,7 @@
         <div class="pasta-band-label">Pranzo<span><br>Finale</span></div>
       </div>
       <div class="pasta-band-text">
-        Panino con salsiccia, birra o acqua, patatine fritte.<br>
+        Panino con salsiccia/wurstel, birra o acqua, patatine fritte.<br>
         <span style="color:rgba(244,237,230,0.5);display:inline-flex;align-items:center;gap:0.35rem;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
@@ -2714,12 +2865,12 @@
         const grid = document.getElementById('gearGrid');
         const dotsContainer = document.getElementById('gearDots');
         const hint = document.getElementById('gearHint');
-        
+
         if (!grid) return;
 
         const items = Array.from(grid.querySelectorAll('.gear-item'));
         let current = 0;
-        
+
         // Variabili per la fisica del tocco
         let startX = 0;
         let currentX = 0;
@@ -2729,7 +2880,7 @@
         // Inizializzazione UI
         grid.classList.add('gear-stack-wrap');
         if (hint) hint.style.display = 'flex';
-        
+
         // Creazione Dots
         if (dotsContainer) {
           dotsContainer.style.display = 'flex';
@@ -2741,7 +2892,7 @@
           items.forEach((el, i) => {
             const diff = (i - current + items.length) % items.length;
             el.dataset.stack = diff === 0 ? '0' : (diff === 1 ? '1' : (diff === 2 ? '2' : 'hidden'));
-            
+
             // Ripulisce gli stili inline lasciati dal drag
             el.style.transform = '';
           });
@@ -2755,7 +2906,7 @@
         function nextCard() {
           const topEl = items[current];
           topEl.classList.add('swiping-out');
-          
+
           setTimeout(() => {
             topEl.classList.remove('swiping-out');
             current = (current + 1) % items.length;
@@ -2776,14 +2927,14 @@
 
         grid.addEventListener('touchmove', (e) => {
           if (!isDragging) return;
-          
+
           currentX = e.touches[0].clientX;
           const diffX = currentX - startX;
 
           // Aggiunge una leggera rotazione basata sullo spostamento
-          const rotate = diffX * 0.05; 
+          const rotate = diffX * 0.05;
           const topEl = items[current];
-          
+
           // Muove la carta istantaneamente sotto il dito
           topEl.style.transform = `translateX(${diffX}px) rotate(${rotate}deg)`;
         }, { passive: true });
@@ -2804,7 +2955,7 @@
             // Altrimenti, la transizione CSS riattivata farà scattare la carta dolcemente al centro
             topEl.style.transform = '';
           }
-          
+
           currentX = 0; // Reset
         });
 
@@ -2878,11 +3029,8 @@
       <div style="flex:2;min-width:300px;max-width:700px;">
         <p style="font-size:0.95rem;color:var(--grey-lt);line-height:1.8;margin:0;">
           Parcheggio principale al <a href="https://maps.app.goo.gl/Gpw5GoGWVWiAaKhi8" target="_blank" rel="noopener"
-            style="color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;border-bottom:1px solid rgba(244,237,230,0.2);transition:border-color 0.2s;padding-bottom:2px;"
-            onmouseover="this.style.borderColor='var(--red-warm)'"
-            onmouseout="this.style.borderColor='rgba(244,237,230,0.2)'"><svg width="14" height="14" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              style="flex-shrink:0;">
+            class="map-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>Campo Sportivo</a> (circa 15 posti auto), a breve distanza dal prato feste.<br><br>
@@ -3202,8 +3350,11 @@
                   style="width:100%;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;background:#ffc439;color:rgba(0,0,0,0.5);border:none;padding:1.1rem;cursor:not-allowed;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%);opacity:0.6;">
                   <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                      <path d="M20.067 8.478c.492.26.85.57.94 1.02.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H9.36c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z"/>
-                      <path d="M16.93 6.94c.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H5.22c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z" opacity="0.6"/>
+                      <path
+                        d="M20.067 8.478c.492.26.85.57.94 1.02.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H9.36c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z" />
+                      <path
+                        d="M16.93 6.94c.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H5.22c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z"
+                        opacity="0.6" />
                     </svg>
                     PAGAMENTI PAYPAL DISABILITATI
                   </div>
@@ -3287,6 +3438,15 @@
       </div>
     </div>
 
+    <!-- STICKY CTA (mobile) -->
+    <div class="sticky-cta" id="stickyCta">
+      <button class="sticky-cta-btn"
+        onclick="document.getElementById('form-iscrizione-container').scrollIntoView({behavior:'smooth',block:'start'})">
+        <span>Iscriviti ora</span>
+        <span class="sticky-cta-price">€ 20</span>
+      </button>
+    </div>
+
     <!-- FOOTER -->
     <footer>
       <div class="footer-logo">Albi Trail <span>E-Bike Fest</span></div>
@@ -3310,7 +3470,7 @@
         const menuGroup = document.getElementById('menu-group');
 
         function aggiornaMenu(valore) {
-          if (valore === 'Solo Ride (€ 10)') {
+          if (valore === 'Solo Ride (€ 12)') {
             menuSelect.value = 'Nessun Pranzo';
             menuSelect.required = false;
             menuGroup.style.display = 'none';
@@ -3824,15 +3984,26 @@
           }
         });
       }
+      /* STICKY CTA */
+      const stickyCta = document.getElementById('stickyCta');
+      const iscrizioneSection = document.getElementById('iscrizione');
+      if (stickyCta && iscrizioneSection) {
+        const toggleStickyCta = () => {
+          const scrolled = window.scrollY > 280;
+          const pastForm = window.scrollY + window.innerHeight > iscrizioneSection.getBoundingClientRect().bottom + window.scrollY + 100;
+          stickyCta.classList.toggle('visible', scrolled && !pastForm);
+        };
+        window.addEventListener('scroll', toggleStickyCta, { passive: true });
+        toggleStickyCta();
+      }
+
       /* CURSOR */
       const dot = document.getElementById('dot');
       const ring = document.getElementById('ring');
       if (dot && ring) {
         document.addEventListener('mousemove', e => {
-          dot.style.left = e.clientX + 'px';
-          dot.style.top = e.clientY + 'px';
-          ring.style.left = e.clientX + 'px';
-          ring.style.top = e.clientY + 'px';
+          dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+          ring.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
         });
       }
 
@@ -3845,9 +4016,57 @@
         document.body.style.overflow = open ? 'hidden' : '';
       }
       function closeDrawer() {
-        document.getElementById('navDrawer').classList.remove('open');
-        document.getElementById('hamburger').classList.remove('open');
+        const drawer = document.getElementById('navDrawer');
+        const btn = document.getElementById('hamburger');
+        if (drawer) drawer.classList.remove('open');
+        if (btn) btn.classList.remove('open');
         document.body.style.overflow = '';
+      }
+
+      /* DYNAMIC CALENDAR (.ics) */
+      function addToCalendar() {
+        const title = "Albi Trail E-Bike Fest 2026";
+        const description = "Giro in E-Bike e MTB sui sentieri dell'Albi Trail Area, pranzo finale al Prato Feste del Comitato Ellerese. Ritrovo ore 09:00.";
+        const location = "Prato Feste Comitato Ellerese, Ellera (SV)";
+
+        // Dates in UTC format for ICS: YYYYMMDDTHHMMSSZ
+        // 14 June 2026 09:00 CEST (UTC+2) -> 14 June 2026 07:00 UTC
+        const start = "20260614T070000Z";
+        const end = "20260614T130000Z"; // 15:00 locale (Fine stimata)
+
+        const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+        const sanitize = (str) => str.replace(/,/g, "\\,").replace(/;/g, "\\;").replace(/\n/g, "\\n");
+
+        const icsContent = [
+          "BEGIN:VCALENDAR",
+          "VERSION:2.0",
+          "PRODID:-//Ellera//IT",
+          "CALSCALE:GREGORIAN",
+          "METHOD:PUBLISH",
+          "BEGIN:VEVENT",
+          "UID:albi-trail-ebike-fest-2026@ellera.it",
+          "DTSTAMP:" + now,
+          "DTSTART:" + start,
+          "DTEND:" + end,
+          "SUMMARY:" + sanitize(title),
+          "DESCRIPTION:" + sanitize(description),
+          "LOCATION:" + sanitize(location),
+          "STATUS:CONFIRMED",
+          "TRANSP:OPAQUE",
+          "END:VEVENT",
+          "END:VCALENDAR"
+        ].join("\r\n");
+
+        const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "albi-trail-ebike-fest.ics");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
       }
 
       /* COUNTDOWN to 14 June 2026 09:00 CEST (UTC+2) */

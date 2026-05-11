@@ -28,7 +28,7 @@ const newsData: NewsItem[] = [
 
 Il primo appuntamento è fissato per il **31 maggio 2026** con **"La Pedaliamo Insieme"**. L'evento, organizzato in stretta sinergia tra **Barrabrava**, **Comitato Ellerese**, **Quiliano Bike** e il **Comune di Albisola Superiore**, vedrà centinaia di ciclisti percorrere i sentieri e le strade tra Albisola ed Ellera per una giornata di sport e beneficenza.
 
-Domenica **14 giugno 2026** sarà la volta della seconda edizione di **Albi Trail E-Bike Fest**. Si terrà un vero e proprio raduno dedicato alle e-bike. Il programma prevede una bella pedalata sui sentieri della **Albi Trail Area** con ritrovo e pranzo finale (panino con salsiccia, patatine e birra) presso il **Prato Feste**. Le iscrizioni saranno aperte a breve online sulla pagina dedicata.
+Domenica **14 giugno 2026** sarà la volta della seconda edizione di **Albi Trail E-Bike Fest**. Si terrà un vero e proprio raduno dedicato alle e-bike. Il programma prevede una bella pedalata sui sentieri della **Albi Trail Area** con ritrovo e pranzo finale (panino con salsiccia/wurstel, patatine e birra) presso il **Prato Feste**. Le iscrizioni saranno aperte a breve online sulla pagina dedicata.
 
 Infine, l'estate ellerese culminerà **venerdì 21 e sabato 22 agosto 2026** con l'attesissima edizione di **Caruggi e Lanterne**. La manifestazione trasformerà come sempre il borgo in un percorso enogastronomico magico, illuminato dalle lanterne e accompagnato da musica dal vivo e rassegne artistiche.
 

@@ -4,7 +4,7 @@ import type { EventItem } from "@/data/events";
  * Generates an iCalendar (.ics) file content for a given event.
  */
 export const generateIcsContent = (event: EventItem): string => {
-  const sanitize = (str: string) => str.replace(/[,;]/g, "\\$1").replace(/\n/g, "\\n");
+  const sanitize = (str: string) => str.replace(/,/g, "\\,").replace(/;/g, "\\;").replace(/\n/g, "\\n");
 
   const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
   

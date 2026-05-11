@@ -172,7 +172,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     detailContent: `Giro guidato tecnico sui sentieri della Albi Trail Area. 
   - **Ritrovo**: 08:30 al Prato Feste. 
   - **Prezzi**: €20 (giro + pranzo). 
-  - **Menu**: Panino salsiccia/hot-dog, patatine e birra (opzione vegana disponibile).`,
+  - **Menu**: Panino salsiccia/wurstel, patatine e birra (opzione vegana disponibile).`,
     posterPlaceholderLabel: "locandina",
     category: "Outdoor",
     externalUrl: "/albi-trail-ebike-fest.html",
