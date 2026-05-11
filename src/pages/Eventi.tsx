@@ -65,7 +65,7 @@ const Eventi = () => {
     activeFilter === "Tutti"
       ? baseEvents
       : baseEvents.filter((event) => event && event.category === activeFilter);
-  
+
   const featured = getFeaturedEvent();
   const closestEvent =
     (activeFilter === "Tutti" && !isArchive)
@@ -94,6 +94,29 @@ const Eventi = () => {
       nextSearchParams.set("tab", tab);
     }
     setSearchParams(nextSearchParams, { replace: true });
+  };
+
+  const EventLink = ({ event, children, className }: { event: any, children: React.ReactNode, className?: string }) => {
+    const hasDetail = hasEventDetail(event);
+    const target = event.externalUrl || (hasDetail ? eventDetailPath(event.slug) : null);
+
+    if (!target) return <div className={className}>{children}</div>;
+
+    const isExternal = target.startsWith("http") || target.endsWith(".html");
+
+    if (isExternal) {
+      return (
+        <a href={target} className={className}>
+          {children}
+        </a>
+      );
+    }
+
+    return (
+      <Link to={target} className={className}>
+        {children}
+      </Link>
+    );
   };
 
   return (
@@ -160,7 +183,7 @@ const Eventi = () => {
                   Calendario
                 </h2>
                 <p className="mt-2.5 text-sm leading-7 text-muted-foreground md:text-base">
-                  {isArchive 
+                  {isArchive
                     ? "Rivivi i momenti passati e scopri gli eventi che si sono già tenuti a Ellera."
                     : "Esplora tutti gli eventi in programma nel borgo di Ellera. Usa i filtri per trovare più facilmente quello che ti interessa."}
                 </p>
@@ -170,18 +193,16 @@ const Eventi = () => {
                   <button
                     type="button"
                     onClick={() => handleTabChange("programma")}
-                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${
-                      !isArchive ? "bg-background text-accent shadow-sm" : "text-muted-foreground hover:text-foreground"
-                    }`}
+                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${!isArchive ? "bg-background text-accent shadow-sm" : "text-muted-foreground hover:text-foreground"
+                      }`}
                   >
                     In Programma
                   </button>
                   <button
                     type="button"
                     onClick={() => handleTabChange("archivio")}
-                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${
-                      isArchive ? "bg-background text-accent shadow-sm" : "text-muted-foreground hover:text-foreground"
-                    }`}
+                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors ${isArchive ? "bg-background text-accent shadow-sm" : "text-muted-foreground hover:text-foreground"
+                      }`}
                   >
                     Archivio
                   </button>
@@ -220,26 +241,28 @@ const Eventi = () => {
                   >
                     <div className="flex flex-col md:flex-row md:items-stretch">
                       <div className="relative shrink-0 overflow-hidden border-b md:border-b-0 md:border-r border-border bg-muted md:max-w-[40%] lg:max-w-[30%]">
-                        <div className="relative flex h-[180px] md:h-full items-center justify-center text-white">
-                          <EventPoster
-                            image={event.image}
-                            alt={event.title}
-                            placeholderLabel={event.posterPlaceholderLabel}
-                            className="h-[200px] w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full md:min-h-[200px] md:w-auto md:object-cover"
-                          />
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/70 md:bg-black/40" />
-                          <div className="pointer-events-none absolute inset-0 flex flex-row items-center gap-3 px-4 py-4 md:flex-col md:justify-center md:gap-1">
-                            <span className={`font-heading font-semibold leading-none text-center ${formattedDate.day.length > 2 ? 'text-2xl tracking-tighter md:text-3xl' : 'text-4xl'}`}>
-                              {formattedDate.day}
-                            </span>
-                            <div className="flex flex-col text-center md:items-center">
-                              <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/95">
-                                {formattedDate.month}
+                        <EventLink event={event} className="relative block h-[180px] md:h-full">
+                          <div className="relative flex h-full items-center justify-center text-white">
+                            <EventPoster
+                              image={event.image}
+                              alt={event.title}
+                              placeholderLabel={event.posterPlaceholderLabel}
+                              className="h-[200px] w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full md:min-h-[200px] md:w-auto md:object-cover"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/70 md:bg-black/40" />
+                            <div className="pointer-events-none absolute inset-0 flex flex-row items-center gap-3 px-4 py-4 md:flex-col md:justify-center md:gap-1">
+                              <span className={`font-heading font-semibold leading-none text-center ${formattedDate.day.length > 2 ? 'text-2xl tracking-tighter md:text-3xl' : 'text-4xl'}`}>
+                                {formattedDate.day}
                               </span>
-                              <span className="text-[11px] text-white/70">{formattedDate.weekday}</span>
+                              <div className="flex flex-col text-center md:items-center">
+                                <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/95">
+                                  {formattedDate.month}
+                                </span>
+                                <span className="text-[11px] text-white/70">{formattedDate.weekday}</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </EventLink>
                       </div>
 
                       <div className="min-w-0 flex-1 flex flex-col p-4 md:p-4 lg:p-5">
@@ -264,7 +287,9 @@ const Eventi = () => {
                               )}
                             </div>
                             <h3 className="font-heading text-xl font-semibold leading-tight text-foreground md:text-2xl">
-                              {event.title}
+                              <EventLink event={event} className="hover:text-accent transition-colors">
+                                {event.title}
+                              </EventLink>
                             </h3>
                             <div className="mt-3">
                               <EventOrganizerBadges event={event} />
