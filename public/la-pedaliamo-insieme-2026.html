@@ -3550,8 +3550,9 @@
           const { t, coords } = r;
           const display = offsetted[i];
 
+          let shadow = null;
           if (t.color.toUpperCase() === '#FFFFFF') {
-            L.polyline(display, {
+            shadow = L.polyline(display, {
               color: '#000000', weight: t.weight + 2, opacity: 0.8,
               pane: `ep-${t.slug}`, interactive: false,
             }).addTo(map);
@@ -3567,7 +3568,7 @@
             pane: `ep-${t.slug}`,
           }).addTo(map);
 
-          const state = { line, hit, pinned: false, visible: true, t };
+          const state = { line, hit, shadow, pinned: false, visible: true, t };
           trackLayers[t.slug] = state;
 
           hit.on('mouseover', () => {
@@ -3621,10 +3622,12 @@
             if (!state) return;
             state.visible = this.checked;
             if (this.checked) {
+              if (state.shadow) state.shadow.addTo(map);
               state.line.addTo(map);
               state.hit.addTo(map);
             } else {
               if (state.pinned) { state.pinned = false; activePinned = null; }
+              if (state.shadow) map.removeLayer(state.shadow);
               map.removeLayer(state.line);
               map.removeLayer(state.hit);
             }
