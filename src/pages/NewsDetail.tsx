@@ -134,7 +134,7 @@ const NewsDetail = () => {
         type="article"
         publishedTime={item.date}
         section={item.category}
-        structuredData={structuredData}
+        jsonLd={structuredData}
       />
       <PageHero
         imageSrc={item.image}

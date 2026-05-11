@@ -24,8 +24,7 @@ interface SeoProps {
   publishedTime?: string;
   modifiedTime?: string;
   section?: string;
-  jsonLd?: object | object[];
-  structuredData?: JsonLd;
+  jsonLd?: JsonLd;
 }
 
 const removeIfPresent = (selector: string) => {
@@ -76,7 +75,6 @@ const Seo = ({
   modifiedTime,
   section,
   jsonLd,
-  structuredData,
 }: SeoProps) => {
   const location = useLocation();
 
@@ -117,19 +115,13 @@ const Seo = ({
 
     document.head.querySelectorAll('script[data-seo-jsonld="true"]').forEach((node) => node.remove());
 
-    const structuredDataItems = structuredData
-      ? Array.isArray(structuredData)
-        ? structuredData
-        : [structuredData]
-      : [];
     const jsonLdItems = jsonLd
       ? Array.isArray(jsonLd)
         ? jsonLd
         : [jsonLd]
       : [];
-    const allJsonLdItems = [...structuredDataItems, ...jsonLdItems];
 
-    for (const item of allJsonLdItems) {
+    for (const item of jsonLdItems) {
       const script = document.createElement("script");
       script.type = "application/ld+json";
       script.dataset.seoJsonld = "true";
@@ -155,7 +147,6 @@ const Seo = ({
     jsonLd,
     robots,
     section,
-    structuredData,
     title,
     type,
   ]);
