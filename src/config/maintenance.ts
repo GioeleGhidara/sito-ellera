@@ -5,5 +5,4 @@
 export const MAINTENANCE_CONFIG = {
   TREKKING: true,
   TRADIZIONI: true,
-  EBIKE_FEST: true,
 } as const;
