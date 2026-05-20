@@ -175,7 +175,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
   - **Menu**: Panino salsiccia/wurstel, patatine e birra (opzione vegana disponibile).`,
     posterPlaceholderLabel: "locandina",
     category: "Outdoor",
-    externalUrl: "/albi-trail-ebike-fest.html",
+    externalUrl: "/albi-trail-ebike-fest",
   },
   {
     slug: "caruggi-e-lanterne",

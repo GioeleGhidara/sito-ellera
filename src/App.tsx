@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "@/components/shared/ErrorBoundary";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -28,6 +29,7 @@ const TrailDetail = lazy(() => import("./pages/TrailDetail"));
 const Servizi = lazy(() => import("./pages/Servizi"));
 const Tradizioni = lazy(() => import("./pages/Tradizioni"));
 const TradizioneDetail = lazy(() => import("./pages/TradizioneDetail"));
+const AlbiTrailEbikeFest = lazy(() => import("./pages/AlbiTrailEbikeFest"));
 
 const RouteFallback = () => (
   <section className="min-h-screen bg-background flex items-center justify-center">
@@ -62,7 +64,7 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
   },
   {
     path: "/eventi/albi-trail-ebike-fest",
-    element: <StaticPageRedirect to="/albi-trail-ebike-fest.html" />,
+    element: <Navigate to="/albi-trail-ebike-fest" replace />,
   },
   { path: `${ROUTES.eventi}/:slug`, element: <EventDetail /> },
   { path: ROUTES.servizi, element: <Servizi /> },
@@ -71,28 +73,31 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
   { path: `${ROUTES.tradizioni}/:slug`, element: <TradizioneDetail /> },
   { path: ROUTES.news, element: <News /> },
   { path: `${ROUTES.news}/:slug`, element: <NewsDetail /> },
+  { path: "/albi-trail-ebike-fest", element: <AlbiTrailEbikeFest /> },
   { path: "*", element: <NotFound /> },
 ];
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ErrorBoundary>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <ScrollToTop />
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
-              {appRoutes.map((route) => (
-                <Route key={route.path} path={route.path} element={route.element} />
-              ))}
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ErrorBoundary>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <ErrorBoundary>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <ScrollToTop />
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                {appRoutes.map((route) => (
+                  <Route key={route.path} path={route.path} element={route.element} />
+                ))}
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </TooltipProvider>
+      </ErrorBoundary>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
