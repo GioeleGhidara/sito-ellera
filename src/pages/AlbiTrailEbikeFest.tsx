@@ -98,14 +98,23 @@ export default function AlbiTrailEbikeFest() {
                 <script src="https://www.paypal.com/sdk/js?client-id=AYdERqNakZl6ULR3SR5P33b3ERgIqc6WEhVpc9KsEHzkSx-jsQCuf4hCokgIOe_2CmqrSWHvYqTYDmo6&currency=EUR&locale=it_IT" />
                 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
                 <script type="application/ld+json">{`{
-  "@context":"https://schema.org","@type":"SportsEvent",
+  "@context":"https://schema.org",
+  "@type":"SportsEvent",
   "name":"Albi Trail E-Bike Fest 2026",
   "description":"Giro in E-Bike e MTB sui sentieri dell'Albi Trail Area, pranzo finale al Prato Feste del Comitato Ellerese.",
-  "startDate":"2026-06-14T09:00:00+02:00","endDate":"2026-06-14T15:00:00+02:00",
+  "image": "https://ellera.it/loghi/ebike-fest-2026.jpg",
+  "startDate":"2026-06-14T09:00:00+02:00",
+  "endDate":"2026-06-14T15:00:00+02:00",
   "eventStatus":"https://schema.org/EventScheduled",
   "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
   "location":{"@type":"Place","name":"Prato Feste Comitato Ellerese","address":{"@type":"PostalAddress","addressLocality":"Ellera","addressRegion":"Liguria","addressCountry":"IT"}},
   "organizer":{"@type":"Organization","name":"Comitato Ellerese","url":"https://ellera.it"},
+  "performer":{"@type":"Organization","name":"Albi Trail Area"},
+  "offers":[
+    {"@type":"Offer","name":"Ride + Pranzo","price":"20.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest"},
+    {"@type":"Offer","name":"Solo Ride","price":"12.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest"},
+    {"@type":"Offer","name":"Solo Pranzo","price":"12.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest"}
+  ],
   "url":"https://ellera.it/albi-trail-ebike-fest"
 }`}</script>
             </Helmet>
