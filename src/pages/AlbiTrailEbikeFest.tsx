@@ -83,7 +83,7 @@ export default function AlbiTrailEbikeFest() {
                 <meta property="og:title" content="Albi Trail E-Bike Fest 2026" />
                 <meta property="og:description" content="Domenica 14 Giugno 2026 - Giro in E-Bike e MTB sui sentieri dell'Albi Trail, pranzo finale con salsiccia/wurstel e birra al Prato Feste. Ellera, Albisola Superiore." />
                 <meta property="og:url" content="https://ellera.it/albi-trail-ebike-fest" />
-                <meta property="og:image" content="https://ellera.it/loghi/ebike-fest-2026.jpg" />
+                <meta property="og:image" content="https://ellera.it/og/ebike-fest-2026.jpg" />
                 <meta property="og:locale" content="it_IT" />
                 <meta property="og:site_name" content="Comitato Ellerese" />
                 <meta name="twitter:card" content="summary_large_image" />
@@ -102,7 +102,7 @@ export default function AlbiTrailEbikeFest() {
   "@type":"SportsEvent",
   "name":"Albi Trail E-Bike Fest 2026",
   "description":"Giro in E-Bike e MTB sui sentieri dell'Albi Trail Area, pranzo finale al Prato Feste del Comitato Ellerese.",
-  "image": "https://ellera.it/loghi/ebike-fest-2026.jpg",
+  "image": "https://ellera.it/og/ebike-fest-2026.jpg",
   "startDate":"2026-06-14T09:00:00+02:00",
   "endDate":"2026-06-14T15:00:00+02:00",
   "eventStatus":"https://schema.org/EventScheduled",

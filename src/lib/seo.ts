@@ -1,6 +1,6 @@
 export const SITE_NAME = "Ellera";
 export const SITE_URL_FALLBACK = "https://www.ellera.it";
-export const DEFAULT_OG_IMAGE = "/social-preview.svg";
+export const DEFAULT_OG_IMAGE = "/og/comitato-ellerese.jpg";
 export const DEFAULT_LOCALE = "it_IT";
 export const DEFAULT_DESCRIPTION =
   "Scopri Ellera, borgo della Liguria tra galleria a cielo aperto, outdoor nella Valle Sansobbia, tradizioni, teatro ed eventi del Comitato Ellerese.";
