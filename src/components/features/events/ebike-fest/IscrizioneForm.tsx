@@ -86,8 +86,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
             {/* QUOTE CARDS */}
             <div className="quote-container reveal">
-                <div 
-                    className={`quota-card base ${pacchetto === "Solo Ride (€ 12)" ? "selected" : ""}`} 
+                <div
+                    className={`quota-card base ${pacchetto === "Solo Ride (€ 12)" ? "selected" : ""}`}
                     onClick={() => setPacchetto("Solo Ride (€ 12)")}
                 >
                     <div className="quota-title">
@@ -95,11 +95,11 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         <span className="desktop-label">Solo Ride</span>
                     </div>
                     <div className="quota-price">€ 12</div>
-                    <div className="quota-sub">Solo il giro —<br />pranzo non incluso</div>
+                    <div className="quota-sub">Solo il giro -<br />pranzo non incluso</div>
                 </div>
 
-                <div 
-                    className={`quota-card recommended ${pacchetto === "Ride + Pranzo (€ 20)" ? "selected" : ""}`} 
+                <div
+                    className={`quota-card recommended ${pacchetto === "Ride + Pranzo (€ 20)" ? "selected" : ""}`}
                     onClick={() => setPacchetto("Ride + Pranzo (€ 20)")}
                 >
                     <div className="quota-badge-top" style={{ display: "inline-flex", alignItems: "center", gap: ".4rem", whiteSpace: "nowrap" }}>
@@ -116,8 +116,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                     <div className="quota-sub" style={{ color: "var(--white)" }}>Ride + Menù completo (Panino, patatine e birra/acqua)</div>
                 </div>
 
-                <div 
-                    className={`quota-card base ${pacchetto === "Solo Pranzo (€ 12)" ? "selected" : ""}`} 
+                <div
+                    className={`quota-card base ${pacchetto === "Solo Pranzo (€ 12)" ? "selected" : ""}`}
                     onClick={() => setPacchetto("Solo Pranzo (€ 12)")}
                 >
                     <div className="quota-title">
