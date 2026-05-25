@@ -47,6 +47,7 @@ const createOrganizationNode = (siteUrl = getSiteUrl()) => ({
 const toOrganizerNode = (organizer: EventOrganizer, siteUrl: string) => ({
   "@type": "Organization",
   name: organizer.name,
+  url: siteUrl,
   ...(organizer.logo ? { logo: toAbsoluteUrl(organizer.logo, siteUrl) } : {}),
 });
 
@@ -68,6 +69,7 @@ export const createEventJsonLd = (event: EventItem, siteUrl = getSiteUrl()): Jso
     fallbackOrganizer: { name: "Comitato Ellerese" },
   }).map((organizer) => toOrganizerNode(organizer, siteUrl));
   const description = summarizeText(cleanText(event.detailContent ?? event.desc), 400);
+  const mainOrganizer = organizers.length === 1 ? organizers[0] : organizers;
 
   return {
     "@context": "https://schema.org",
@@ -77,13 +79,15 @@ export const createEventJsonLd = (event: EventItem, siteUrl = getSiteUrl()): Jso
     url: toAbsoluteUrl(eventDetailPath(event.slug), siteUrl),
     image: [toAbsoluteUrl(event.image, siteUrl)],
     inLanguage: "it-IT",
+    eventStatus: event.dateToBeConfirmed ? "https://schema.org/EventPostponed" : "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
       name: event.location,
       address: createPostalAddress(),
     },
-    organizer: organizers.length === 1 ? organizers[0] : organizers,
+    organizer: mainOrganizer,
+    performer: mainOrganizer,
     ...(event.dateToBeConfirmed
       ? {}
       : {
