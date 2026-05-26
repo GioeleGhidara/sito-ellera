@@ -41,6 +41,19 @@ export default function AlbiTrailEbikeFest() {
         return () => document.removeEventListener("mousemove", onMove);
     }, [mouseX, mouseY]);
 
+    /* Restore scroll on refresh */
+    useEffect(() => {
+        const key = "scroll_pos_" + window.location.pathname;
+        const savedPos = sessionStorage.getItem(key);
+        if (savedPos) {
+            setTimeout(() => window.scrollTo({ top: parseInt(savedPos, 10), behavior: "instant" }), 0);
+            sessionStorage.removeItem(key);
+        }
+        const onBeforeUnload = () => sessionStorage.setItem(key, window.scrollY.toString());
+        window.addEventListener("beforeunload", onBeforeUnload);
+        return () => window.removeEventListener("beforeunload", onBeforeUnload);
+    }, []);
+
     /* Sticky CTA & Form Scrolling */
     const formRef = useRef<HTMLDivElement>(null);
     const [stickyVisible, setStickyVisible] = useState(false);

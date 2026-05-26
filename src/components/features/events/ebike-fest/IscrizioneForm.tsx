@@ -80,9 +80,9 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
     return (
         <section id="ebike-iscrizione">
             <div className="section-tag reveal" style={{ justifyContent: "center" }}>Iscrizioni</div>
-            <h2 className="reveal">Le iscrizioni<br />apriranno<br />presto</h2>
+            <h2 className="reveal">Le iscrizioni<br />sono<br />aperte</h2>
             <p className="reveal">
-                L'iscrizione online sarà obbligatoria e potrà essere effettuata tramite l'apposito modulo. Il contributo di partecipazione che non sarà saldato in fase di pre-registrazione, si potrà saldare il giorno dell'evento.
+                L'iscrizione tramite l'apposito modulo sottostante ti garantisce un posto per l'edizione 2026. Scegli il pacchetto, registrati ora e paga comodamente in contanti o con carta il giorno dell'evento.
             </p>
 
             {/* QUOTE */}
@@ -142,7 +142,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             <div id="form-iscrizione-container" className="reveal" ref={ref}>
                 <h3 style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: "2.8rem", color: "var(--white)", marginBottom: ".5rem", lineHeight: 1 }}>Modulo di Iscrizione</h3>
                 <p style={{ color: "var(--red-warm)", fontSize: "1.05rem", marginBottom: "2.5rem", lineHeight: 1.6, fontWeight: 600 }}>
-                    Le iscrizioni per l'edizione 2026 apriranno a breve. Torna a trovarci tra qualche giorno per assicurarti il tuo posto!
+                    Assicurati il tuo posto all'edizione 2026! Compila i dati qui sotto per registrarti.
                 </p>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "1.8rem" }}>
