@@ -51,7 +51,10 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             body: JSON.stringify(payload),
         });
         if (res.status === 409) throw new Error("DUPLICATO");
-        if (!res.ok) throw new Error("NETWORK");
+        if (!res.ok) {
+            const errData = await res.text();
+            throw new Error(`NETWORK_DETAILS: Errore ${res.status} - ${errData}`);
+        }
     };
 
     /* Handler cash */
@@ -63,8 +66,14 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             setSuccessModal("✓ Iscrizione completata! Ci vediamo al Prato Feste il 14 Giugno!");
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : "";
-            if (msg === "DUPLICATO") setFormMsg({ text: "Questa email è già registrata. Hai già inviato la tua iscrizione!", ok: false });
-            else setFormMsg({ text: "Ops! Problema di rete. Controlla la connessione e riprova.", ok: false });
+            if (msg === "DUPLICATO") {
+                setFormMsg({ text: "Questa email è già registrata. Hai già inviato la tua iscrizione!", ok: false });
+            } else if (msg.startsWith("NETWORK_DETAILS:")) {
+                // Mostriamo a schermo l'errore esatto del database!
+                setFormMsg({ text: `Impossibile salvare sul database. Dettagli: ${msg.replace("NETWORK_DETAILS: ", "")}`, ok: false });
+            } else {
+                setFormMsg({ text: "Ops! Problema di rete. Controlla la connessione e riprova.", ok: false });
+            }
         }
     };
 
