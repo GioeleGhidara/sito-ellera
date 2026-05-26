@@ -4,6 +4,18 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
     /* Pacchetto selezionato */
     const [pacchetto, setPacchetto] = useState("Ride + Pranzo (€ 20)");
 
+    /* Promo code */
+    const [promoCodeInput, setPromoCodeInput] = useState("");
+    const [appliedPromo, setAppliedPromo] = useState<{code: string, discount: number} | null>(null);
+    const [promoError, setPromoError] = useState<string | null>(null);
+    const [promoLoading, setPromoLoading] = useState(false);
+
+    const getBasePrice = () => {
+        if (pacchetto.includes("20")) return 20;
+        return 12;
+    };
+    const finalPrice = Math.max(0, getBasePrice() - (appliedPromo ? appliedPromo.discount : 0));
+
     /* Form stato */
     const [formData, setFormData] = useState({
         nome_cognome: "", email: "", telefono: "", menu: "Onnivoro (Carne)", note: "",
@@ -16,6 +28,42 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
     /* Pacchetto → menu */
     const showMenu = pacchetto !== "Solo Ride (€ 12)";
+
+    /* Validazione codice sconto */
+    const applyPromo = async () => {
+        const code = promoCodeInput.trim().toUpperCase();
+        if (!code) return;
+        setPromoLoading(true);
+        setPromoError(null);
+        try {
+            const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
+            const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+            const res = await fetch(`${supabaseUrl}/rest/v1/promo_codes?code=eq.${code}&is_active=eq.true`, {
+                headers: { "apikey": supabaseKey, "Authorization": `Bearer ${supabaseKey}` }
+            });
+            if (!res.ok) throw new Error("Errore di rete");
+            const data = await res.json();
+            if (data && data.length > 0) {
+                const promo = data[0];
+                
+                // Controllo scadenza
+                if (promo.expires_at && new Date(promo.expires_at) < new Date()) {
+                    setPromoError("Questo codice sconto è scaduto.");
+                    return;
+                }
+
+                setAppliedPromo({ code: promo.code, discount: promo.discount_amount });
+                setPromoCodeInput("");
+                setPromoError(null);
+            } else {
+                setPromoError("Codice sconto non valido.");
+            }
+        } catch (e) {
+            setPromoError("Errore di connessione. Riprova.");
+        } finally {
+            setPromoLoading(false);
+        }
+    };
 
     /* Validazione */
     const validateForm = () => {
@@ -38,6 +86,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             pacchetto,
             menu: showMenu ? formData.menu : "Nessun Pranzo",
             note: formData.note.trim() || null,
+            codice_sconto_applicato: appliedPromo?.code || null,
+            prezzo_finale: finalPrice,
             ...extra,
         };
         const res = await fetch(`${supabaseUrl}/rest/v1/albi_trail_registrations`, {
@@ -208,13 +258,31 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         </div>
                     ))}
 
+                    {/* Codice Promozionale */}
+                    <div style={{ marginTop: "1.5rem", padding: "1.2rem", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                        <label className="label-upper" htmlFor="promo_code" style={{ color: "rgba(244,237,230,.85)", marginBottom: "0.5rem", display: "block" }}>Hai un codice sconto?</label>
+                        <div style={{ display: "flex", gap: "0.5rem" }}>
+                            <input id="promo_code" type="text" className="form-input" style={{ textTransform: "uppercase" }} value={promoCodeInput} onChange={e => setPromoCodeInput(e.target.value)} placeholder="INSERISCI CODICE" disabled={!!appliedPromo} />
+                            <button type="button" onClick={applyPromo} disabled={!promoCodeInput.trim() || !!appliedPromo || promoLoading} style={{ background: "var(--red-warm)", color: "white", border: "none", padding: "0 1.5rem", fontWeight: 700, fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.1em", cursor: "pointer", opacity: (!promoCodeInput.trim() || !!appliedPromo || promoLoading) ? 0.5 : 1 }}>
+                                {promoLoading ? "..." : "APPLICA"}
+                            </button>
+                        </div>
+                        {promoError && <div style={{ color: "var(--red-hot)", fontSize: "0.85rem", marginTop: "0.5rem", fontWeight: 600 }}>{promoError}</div>}
+                        {appliedPromo && (
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.8rem", padding: "0.6rem 0.8rem", background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.3)", color: "#10b981", fontSize: "0.95rem", fontWeight: 600 }}>
+                                <span>Codice {appliedPromo.code} applicato (-€ {appliedPromo.discount})</span>
+                                <button type="button" onClick={() => setAppliedPromo(null)} style={{ background: "none", border: "none", color: "white", cursor: "pointer", textDecoration: "underline", fontSize: "0.85rem", opacity: .7 }}>Rimuovi</button>
+                            </div>
+                        )}
+                    </div>
+
                     {/* Turnstile */}
                     <div style={{ marginTop: "1.2rem", display: "flex", justifyContent: "center" }}>
                         <div className="cf-turnstile" data-sitekey="0x4AAAAAACzdId3jrskU4ueH" data-theme="dark" />
                     </div>
 
                     {/* Bottoni pagamento */}
-                    <div style={{ marginTop: "1.5rem", borderTop: "1px solid rgba(255,255,255,.05)", paddingTop: "1.5rem" }}>
+                    <div style={{ marginTop: "2rem", borderTop: "1px solid rgba(255,255,255,.05)", paddingTop: "1.5rem" }}>
                         <h4 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "var(--white)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: "1.5rem", textAlign: "center" }}>Completa l'iscrizione</h4>
                         <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem", alignItems: "center" }}>
 
@@ -252,7 +320,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                             {/* Cash */}
                             <button type="button" onClick={handleCash}
                                 style={{ width: "100%", maxWidth: 400, fontFamily: "'Barlow Condensed',sans-serif", fontSize: "1rem", fontWeight: 700, letterSpacing: ".15em", textTransform: "uppercase", background: "var(--red-warm)", color: "var(--white)", border: "none", padding: "1.1rem", cursor: "pointer", clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%)", transition: "all .2s" }}>
-                                ISCRIVITI E PAGA IN LOCO
+                                ISCRIVITI E PAGA IN LOCO (€ {finalPrice})
                             </button>
                         </div>
                     </div>
