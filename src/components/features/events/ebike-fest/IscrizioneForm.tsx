@@ -277,12 +277,12 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                     </div>
 
                     {/* Turnstile */}
-                    <div style={{ marginTop: "1.2rem", display: "flex", justifyContent: "center" }}>
+                    <div style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                         <div className="cf-turnstile" data-sitekey="0x4AAAAAACzdId3jrskU4ueH" data-theme="dark" />
                     </div>
 
                     {/* Bottoni pagamento */}
-                    <div style={{ marginTop: "2rem", borderTop: "1px solid rgba(255,255,255,.05)", paddingTop: "1.5rem" }}>
+                    <div style={{ marginTop: "1rem", borderTop: "1px solid rgba(255,255,255,.05)", paddingTop: "1.2rem" }}>
                         <h4 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "var(--white)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: "1.5rem", textAlign: "center" }}>Completa l'iscrizione</h4>
                         <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem", alignItems: "center" }}>
 
