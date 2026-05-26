@@ -22,6 +22,13 @@ const customPages = [
     description: "14 Giugno 2026 - Ride + pranzo sui sentieri dell'Albi Trail Area di Ellera. Iscriviti ora.",
     image: "https://www.ellera.it/og/ebike-fest-2026.jpg",
     url: "https://www.ellera.it/albi-trail-ebike-fest"
+  },
+  {
+    route: "/eventi/la-pedaliamo-insieme-2026",
+    title: "La Pedaliamo Insieme 2026 | Ellera",
+    description: "31 Maggio 2026 - Una giornata di pedalata collettiva in beneficienza tra Albisola Superiore ed Ellera. Percorsi per tutti i livelli, area bambini e rinfresco finale.",
+    image: "https://www.ellera.it/og/pedaliamo-insieme.jpg",
+    url: "https://www.ellera.it/eventi/la-pedaliamo-insieme-2026"
   }
 ];
 

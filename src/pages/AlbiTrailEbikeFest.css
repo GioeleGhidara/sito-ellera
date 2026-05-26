@@ -98,9 +98,7 @@
 .section-tag::after { content:'';height:1px;background:var(--grey);max-width:70px; }
 .ebike-page h2 { font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6.5vw,6rem);line-height:.9;letter-spacing:.03em; }
 
-/* REVEAL */
-.reveal { opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease; }
-.reveal.visible { opacity:1;transform:translateY(0); }
+/* REVEAL (removed in favor of framer-motion) */
 
 /* INFO + STATS */
 #ebike-info { display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0; }

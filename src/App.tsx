@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, ScrollRestoration, Navigate } from "react-router-dom";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import { ROUTES, tradizioneDetailPath } from "./lib/routes";
 
@@ -30,6 +30,8 @@ const Servizi = lazy(() => import("./pages/Servizi"));
 const Tradizioni = lazy(() => import("./pages/Tradizioni"));
 const TradizioneDetail = lazy(() => import("./pages/TradizioneDetail"));
 const AlbiTrailEbikeFest = lazy(() => import("./pages/AlbiTrailEbikeFest"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Regolamento = lazy(() => import("./pages/Regolamento"));
 
 const RouteFallback = () => (
   <section className="min-h-screen bg-background flex items-center justify-center">
@@ -74,8 +76,35 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
   { path: ROUTES.news, element: <News /> },
   { path: `${ROUTES.news}/:slug`, element: <NewsDetail /> },
   { path: "/albi-trail-ebike-fest", element: <AlbiTrailEbikeFest /> },
+  { path: "/privacy", element: <Privacy /> },
+  { path: "/regolamento", element: <Regolamento /> },
   { path: "*", element: <NotFound /> },
 ];
+
+const Layout = () => (
+  <>
+    <ScrollRestoration />
+    <ScrollToTop />
+    <Suspense fallback={<RouteFallback />}>
+      <Outlet />
+    </Suspense>
+  </>
+);
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: appRoutes.map(r => ({ path: r.path, element: r.element })),
+  }
+], {
+  future: {
+    v7_relativeSplatPath: true,
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_skipActionErrorRevalidation: true,
+  }
+});
 
 const App = () => (
   <HelmetProvider>
@@ -84,16 +113,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-            <ScrollToTop />
-            <Suspense fallback={<RouteFallback />}>
-              <Routes>
-                {appRoutes.map((route) => (
-                  <Route key={route.path} path={route.path} element={route.element} />
-                ))}
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
+          <RouterProvider router={router} />
         </TooltipProvider>
       </ErrorBoundary>
     </QueryClientProvider>

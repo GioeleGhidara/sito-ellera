@@ -186,9 +186,9 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
                     {/* Privacy checkboxes */}
                     {[
-                        { id: "privacy-regolamento", key: "privacyRegolamento", label: <>Dichiaro di aver letto e accettato il <a href="/regolamento" style={{ color: "var(--red-warm)", pointerEvents: "none" }}>Regolamento dell'evento</a>.</> },
+                        { id: "privacy-regolamento", key: "privacyRegolamento", label: <>Dichiaro di aver letto e accettato il <a href="/regolamento" target="_blank" rel="noopener noreferrer" style={{ color: "var(--red-warm)", textDecoration: "underline" }}>Regolamento dell'evento</a>.</> },
                         { id: "privacy-responsabilita", key: "privacyResponsabilita", label: "Dichiaro di partecipare volontariamente, sotto la mia responsabilità, di essere in condizioni psicofisiche idonee per l'attività sportiva e di essere consapevole dei rischi outdoor." },
-                        { id: "privacy", key: "privacy", label: <>Ho letto l'<a href="/privacy" style={{ color: "var(--red-warm)", pointerEvents: "none" }}>Informativa Privacy</a> e acconsento al trattamento dei dati personali.</> },
+                        { id: "privacy", key: "privacy", label: <>Ho letto l'<a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--red-warm)", textDecoration: "underline" }}>Informativa Privacy</a> e acconsento al trattamento dei dati personali.</> },
                         { id: "privacy-media", key: "privacyMedia", label: "Autorizzo l'utilizzo gratuito di immagini e video che mi ritraggono per scopi promozionali dell'evento." },
                     ].map((c) => (
                         <div key={c.id} className="flex-row-gap-08-mt" style={{ opacity: .5 }}>

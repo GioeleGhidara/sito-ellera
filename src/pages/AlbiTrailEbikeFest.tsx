@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 import "./AlbiTrailEbikeFest.css";
 
@@ -15,28 +16,30 @@ import { IscrizioneForm } from "../components/features/events/ebike-fest/Iscrizi
 import { Footer } from "../components/features/events/ebike-fest/Footer";
 import { StickyCTA } from "../components/features/events/ebike-fest/StickyCTA";
 
-export default function AlbiTrailEbikeFest() {
-    /* Scroll reveal */
-    useEffect(() => {
-        const obs = new IntersectionObserver(
-            (entries) => entries.forEach((e) => { if (e.isIntersecting) { (e.target as HTMLElement).classList.add("visible"); obs.unobserve(e.target); } }),
-            { threshold: 0.1 }
-        );
-        document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
-        return () => obs.disconnect();
-    }, []);
+function RevealSection({ children }: { children: React.ReactNode }) {
+    return (
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.8, ease: "easeOut" }}>
+            {children}
+        </motion.div>
+    );
+}
 
-    /* Custom cursor */
-    const dotRef = useRef<HTMLDivElement>(null);
-    const ringRef = useRef<HTMLDivElement>(null);
+export default function AlbiTrailEbikeFest() {
+    /* Custom cursor using Framer Motion */
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const smoothX = useSpring(mouseX, { damping: 20, stiffness: 300, mass: 0.5 });
+    const smoothY = useSpring(mouseY, { damping: 20, stiffness: 300, mass: 0.5 });
+
     useEffect(() => {
         const onMove = (e: MouseEvent) => {
-            if (dotRef.current) dotRef.current.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
-            if (ringRef.current) ringRef.current.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
+            mouseX.set(e.clientX);
+            mouseY.set(e.clientY);
         };
         document.addEventListener("mousemove", onMove);
         return () => document.removeEventListener("mousemove", onMove);
-    }, []);
+    }, [mouseX, mouseY]);
 
     /* Sticky CTA & Form Scrolling */
     const formRef = useRef<HTMLDivElement>(null);
@@ -54,19 +57,6 @@ export default function AlbiTrailEbikeFest() {
         return () => window.removeEventListener("scroll", toggle);
     }, []);
 
-    /* Restore scroll on refresh */
-    useEffect(() => {
-        const key = "scroll_pos_" + window.location.pathname;
-        const savedPos = sessionStorage.getItem(key);
-        if (savedPos) {
-            // Using a tiny timeout ensures the DOM is fully painted after Suspense
-            setTimeout(() => window.scrollTo({ top: parseInt(savedPos, 10), behavior: "instant" }), 0);
-            sessionStorage.removeItem(key);
-        }
-        const onBeforeUnload = () => sessionStorage.setItem(key, window.scrollY.toString());
-        window.addEventListener("beforeunload", onBeforeUnload);
-        return () => window.removeEventListener("beforeunload", onBeforeUnload);
-    }, []);
 
     const scrollToForm = () => {
         formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -94,8 +84,8 @@ export default function AlbiTrailEbikeFest() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
                 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,700&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
                 {/* Stripe + PayPal + Turnstile */}
-                <script src="https://js.stripe.com/v3/" />
-                <script src="https://www.paypal.com/sdk/js?client-id=AYdERqNakZl6ULR3SR5P33b3ERgIqc6WEhVpc9KsEHzkSx-jsQCuf4hCokgIOe_2CmqrSWHvYqTYDmo6&currency=EUR&locale=it_IT" />
+                <script src="https://js.stripe.com/v3/" async defer />
+                <script src="https://www.paypal.com/sdk/js?client-id=AYdERqNakZl6ULR3SR5P33b3ERgIqc6WEhVpc9KsEHzkSx-jsQCuf4hCokgIOe_2CmqrSWHvYqTYDmo6&currency=EUR&locale=it_IT" async defer />
                 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
                 <script type="application/ld+json">{`{
   "@context":"https://schema.org",
@@ -121,18 +111,18 @@ export default function AlbiTrailEbikeFest() {
 
             <div className="ebike-page">
                 {/* ── CURSOR ── */}
-                <div className="ebike-cursor-dot" ref={dotRef} />
-                <div className="ebike-cursor-ring" ref={ringRef} />
+                <motion.div className="ebike-cursor-dot" style={{ x: smoothX, y: smoothY }} />
+                <motion.div className="ebike-cursor-ring" style={{ x: smoothX, y: smoothY }} />
 
                 <Navigation onScrollToForm={scrollToForm} />
                 <Hero />
                 <CountdownSection />
-                <InfoStats />
-                <Programma />
-                <Percorsi />
-                <Attrezzatura />
-                <Organizzatore />
-                <IscrizioneForm ref={formRef} />
+                <RevealSection><InfoStats /></RevealSection>
+                <RevealSection><Programma /></RevealSection>
+                <RevealSection><Percorsi /></RevealSection>
+                <RevealSection><Attrezzatura /></RevealSection>
+                <RevealSection><Organizzatore /></RevealSection>
+                <RevealSection><IscrizioneForm ref={formRef} /></RevealSection>
                 <StickyCTA visible={stickyVisible} onScrollToForm={scrollToForm} />
                 <Footer />
             </div>

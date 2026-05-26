@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Layers } from "@/lib/icons";
@@ -131,6 +132,52 @@ const TrailMap = () => {
     );
   }, []);
 
+  const { data: mapData } = useQuery({
+    queryKey: ["trail-map-data"],
+    queryFn: async () => {
+      const connectorPromises = connectors.map(async (connector) => {
+        try {
+          const coords = await fetchTrackJSON(gpxUrlToJson(connector.gpxUrl));
+          return coords.length > 0 ? { connector, coords } : null;
+        } catch (e) {
+          console.warn(`Failed to load connector GPX: ${connector.name}`, e);
+          return null;
+        }
+      });
+
+      const trailPromises = trails.map(async (trail) => {
+        try {
+          const coords = await fetchTrackJSON(gpxUrlToJson(trail.gpxUrl));
+          return coords.length > 0 ? { trail, coords } : null;
+        } catch (e) {
+          console.warn(`Failed to load JSON: ${trail.name}`, e);
+          return null;
+        }
+      });
+
+      const [connectorResults, trailResults] = await Promise.all([
+        Promise.all(connectorPromises),
+        Promise.all(trailPromises),
+      ]);
+
+      const validConnectors = connectorResults.filter(Boolean) as { connector: ConnectorLayer; coords: [number, number][] }[];
+      const validTrails = trailResults.filter(Boolean) as { trail: TrailLayer; coords: [number, number][] }[];
+
+      const allTrailCoords = validTrails.map((r) => r.coords);
+      const offsetCoords = computeParallelOffsets(allTrailCoords);
+
+      const processedTrails = validTrails.map((r, i) => ({
+        trail: r.trail,
+        hitCoords: r.coords,
+        displayCoords: offsetCoords[i],
+      }));
+
+      return { connectors: validConnectors, trails: processedTrails };
+    },
+    staleTime: Infinity,
+    gcTime: 1000 * 60 * 60 * 24, // 24 hours
+  });
+
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
@@ -151,47 +198,30 @@ const TrailMap = () => {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
+    return () => { map.remove(); mapInstance.current = null; };
+  }, []);
+
+  useEffect(() => {
+    const map = mapInstance.current;
+    if (!map || !mapData || loadedTrails.length > 0) return;
+
     const allBounds = L.latLngBounds([]);
 
-    // ── Connectors (invariati, nessun offset) ─────────────────────────────────
-    const loadConnector = async (connector: ConnectorLayer) => {
-      try {
-        const coords = await fetchTrackJSON(gpxUrlToJson(connector.gpxUrl));
-        if (coords.length === 0) return;
-        const line = L.polyline(coords, {
-          color: CONNECTOR_LINE_COLOR,
-          weight: CONNECTOR_LINE_WEIGHT,
-          opacity: CONNECTOR_LINE_OPACITY,
-          dashArray: CONNECTOR_DASH_ARRAY,
-          interactive: false,
-          pane: CONNECTOR_PANE,
-        }).addTo(map);
-        allBounds.extend(line.getBounds());
-      } catch (e) {
-        console.warn(`Failed to load connector GPX: ${connector.name}`, e);
-      }
-    };
+    // ── Connectors
+    mapData.connectors.forEach(({ coords }) => {
+      const line = L.polyline(coords, {
+        color: CONNECTOR_LINE_COLOR,
+        weight: CONNECTOR_LINE_WEIGHT,
+        opacity: CONNECTOR_LINE_OPACITY,
+        dashArray: CONNECTOR_DASH_ARRAY,
+        interactive: false,
+        pane: CONNECTOR_PANE,
+      }).addTo(map);
+      allBounds.extend(line.getBounds());
+    });
 
-    // ── Fase 1: fetch + parse di tutti i GPX trail ────────────────────────────
-    const fetchTrailCoords = async (
-      trail: TrailLayer,
-    ): Promise<{ trail: TrailLayer; coords: [number, number][] } | null> => {
-      try {
-        const coords = await fetchTrackJSON(gpxUrlToJson(trail.gpxUrl));
-        if (coords.length === 0) return null;
-        return { trail, coords };
-      } catch (e) {
-        console.warn(`Failed to load JSON: ${trail.name}`, e);
-        return null;
-      }
-    };
-
-    // ── Fase 2: crea layer Leaflet con coords opzionalmente offsettate ─────────
-    const createTrailLayer = (
-      trail: TrailLayer,
-      displayCoords: [number, number][],  // coordinate visive (con offset)
-      hitCoords: [number, number][],       // coordinate originali (per hit area)
-    ): LoadedTrail => {
+    // ── Trails
+    const newLoadedTrails = mapData.trails.map(({ trail, displayCoords, hitCoords }) => {
       const line = L.polyline(displayCoords, {
         color: trail.color,
         weight: BASE_LINE_WEIGHT,
@@ -273,47 +303,25 @@ const TrailMap = () => {
 
       allBounds.extend(line.getBounds());
       return loadedTrail;
-    };
-
-    // ── Orchestrazione: fetch → offset → layer ────────────────────────────────
-    Promise.all([
-      ...connectors.map(loadConnector),
-      ...trails.map(fetchTrailCoords),
-    ]).then((results) => {
-      // Separa i risultati dei trail (gli ultimi N elementi)
-      const trailResults = results
-        .slice(connectors.length)
-        .filter(Boolean) as { trail: TrailLayer; coords: [number, number][] }[];
-
-      // Calcola gli offset paralleli su tutte le tracce insieme
-      const allCoords = trailResults.map((r) => r.coords);
-      const offsetCoords = computeParallelOffsets(allCoords);
-
-      // Crea i layer Leaflet con le coordinate offsettate
-      const loadedTrails = trailResults.map((r, i) =>
-        createTrailLayer(r.trail, offsetCoords[i], r.coords),
-      );
-
-      setLoadedTrails(loadedTrails);
-
-      if (allBounds.isValid()) {
-        map.fitBounds(allBounds, { padding: [30, 30] });
-        const fullTrailsZoom = map.getZoom();
-        const minZoomLevel = Math.max(
-          ABSOLUTE_MIN_ZOOM,
-          fullTrailsZoom - MAX_ZOOM_OUT_LEVELS,
-        );
-        map.setMinZoom(minZoomLevel);
-        map.setMaxBounds(allBounds.pad(MAX_BOUNDS_PADDING));
-      } else {
-        map.setMinZoom(
-          Math.max(ABSOLUTE_MIN_ZOOM, DEFAULT_ZOOM - MAX_ZOOM_OUT_LEVELS),
-        );
-      }
     });
 
-    return () => { map.remove(); mapInstance.current = null; };
-  }, []);
+    setLoadedTrails(newLoadedTrails);
+
+    if (allBounds.isValid()) {
+      map.fitBounds(allBounds, { padding: [30, 30] });
+      const fullTrailsZoom = map.getZoom();
+      const minZoomLevel = Math.max(
+        ABSOLUTE_MIN_ZOOM,
+        fullTrailsZoom - MAX_ZOOM_OUT_LEVELS,
+      );
+      map.setMinZoom(minZoomLevel);
+      map.setMaxBounds(allBounds.pad(MAX_BOUNDS_PADDING));
+    } else {
+      map.setMinZoom(
+        Math.max(ABSOLUTE_MIN_ZOOM, DEFAULT_ZOOM - MAX_ZOOM_OUT_LEVELS),
+      );
+    }
+  }, [mapData, loadedTrails.length]);
 
   return (
     <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
@@ -328,14 +336,14 @@ const TrailMap = () => {
             </div>
 
             {/* Mobile FAB + Popover */}
-            <div className="absolute top-3 right-3 z-[1000] lg:hidden">
+            <div className="absolute top-3 right-3 z-[9999] pointer-events-auto lg:hidden">
               <Popover>
                 <PopoverTrigger asChild>
                   <button className="w-10 h-10 rounded-full bg-card/90 backdrop-blur-md border border-border shadow-lg flex items-center justify-center hover:bg-card transition-colors">
                     <Layers className="w-5 h-5 text-foreground" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent side="bottom" align="end" className="w-56 p-3">
+                <PopoverContent side="bottom" align="end" className="w-56 p-3 z-[9999]">
                   <TrailLegend loadedTrails={loadedTrails} toggleTrail={toggleTrail} />
                 </PopoverContent>
               </Popover>
@@ -344,22 +352,22 @@ const TrailMap = () => {
         )}
       </div>
 
-      <div className="bg-card p-3 flex flex-wrap gap-4 text-xs">
+      <div className="bg-card px-5 py-4 flex flex-wrap gap-4 text-xs">
         <span className="flex items-center gap-1.5">
           <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#00AA00" }} />
           Facile
         </span>
         <span className="flex items-center gap-1.5">
           <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#0000FF" }} />
-          Difficolta Media
+          Media
         </span>
         <span className="flex items-center gap-1.5">
           <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#FF0000" }} />
-          Difficolta Elevata
+          Esperti
         </span>
         <span className="flex items-center gap-1.5">
           <span className="inline-block w-3 h-3 rounded-full border border-border" style={{ backgroundColor: "#000000" }} />
-          Molto difficile
+          Difficile
         </span>
         <span className="flex items-center gap-1.5">
           <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#800080" }} />
