@@ -140,25 +140,25 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: "1.5rem" }}>
                         <div className="flex-col-gap-05">
                             <label className="label-upper" htmlFor="nome_cognome" style={{ color: "var(--white)" }}>Nome e Cognome *</label>
-                            <input id="nome_cognome" type="text" disabled maxLength={120} autoComplete="name" className="form-input" value={formData.nome_cognome} onChange={e => setFormData(d => ({ ...d, nome_cognome: e.target.value }))} />
+                            <input id="nome_cognome" type="text" maxLength={120} autoComplete="name" className="form-input" value={formData.nome_cognome} onChange={e => setFormData(d => ({ ...d, nome_cognome: e.target.value }))} />
                         </div>
                         <div className="flex-col-gap-05">
-                            <label className="label-upper" htmlFor="email" style={{ color: "var(--white)", opacity: .5 }}>Email *</label>
-                            <input id="email" type="email" disabled autoComplete="email" className="form-input" value={formData.email} onChange={e => setFormData(d => ({ ...d, email: e.target.value }))} />
+                            <label className="label-upper" htmlFor="email" style={{ color: "var(--white)" }}>Email *</label>
+                            <input id="email" type="email" autoComplete="email" className="form-input" value={formData.email} onChange={e => setFormData(d => ({ ...d, email: e.target.value }))} />
                         </div>
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: "1.5rem" }}>
                         <div className="flex-col-gap-05">
                             <label className="label-upper" htmlFor="telefono" style={{ color: "rgba(244,237,230,.85)" }}>Telefono (Opzionale ma utile)</label>
-                            <input id="telefono" type="tel" disabled autoComplete="tel" className="form-input" value={formData.telefono} onChange={e => setFormData(d => ({ ...d, telefono: e.target.value }))} />
+                            <input id="telefono" type="tel" autoComplete="tel" className="form-input" value={formData.telefono} onChange={e => setFormData(d => ({ ...d, telefono: e.target.value }))} />
                         </div>
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: "1.5rem" }}>
                         <div className="flex-col-gap-05">
                             <label className="label-upper" htmlFor="pacchetto" style={{ color: "var(--white)" }}>Pacchetto Scelto *</label>
-                            <select id="pacchetto" disabled className="form-select" value={pacchetto} onChange={e => setPacchetto(e.target.value)}>
+                            <select id="pacchetto" className="form-select" value={pacchetto} onChange={e => setPacchetto(e.target.value)}>
                                 <option value="Ride + Pranzo (€ 20)">Esperienza Completa (Ride + Pranzo) - € 20</option>
                                 <option value="Solo Ride (€ 12)">Solo Ride (senza pranzo) - € 12</option>
                                 <option value="Solo Pranzo (€ 12)">Solo Pranzo - € 12</option>
@@ -167,7 +167,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         {showMenu && (
                             <div className="flex-col-gap-05">
                                 <label className="label-upper" htmlFor="menu" style={{ color: "var(--white)" }}>Menu Pranzo *</label>
-                                <select id="menu" disabled className="form-select" value={formData.menu} onChange={e => setFormData(d => ({ ...d, menu: e.target.value }))}>
+                                <select id="menu" className="form-select" value={formData.menu} onChange={e => setFormData(d => ({ ...d, menu: e.target.value }))}>
                                     <option value="Onnivoro (Carne)">Classico (Onnivoro / Carne)</option>
                                     <option value="Vegetariano">Vegetariano (Pomodoro e Mozzarella)</option>
                                     <option value="Nessun Pranzo">Non Partecipo al Pranzo</option>
@@ -178,7 +178,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
                     <div className="flex-col-gap-05">
                         <label className="label-upper" htmlFor="note" style={{ color: "rgba(244,237,230,.85)" }}>Note / Intolleranze (Opzionale)</label>
-                        <textarea id="note" disabled rows={3} maxLength={500} className="form-input" style={{ resize: "vertical", opacity: .5 }} placeholder="Se hai intolleranze o richieste speciali scrivile qui." value={formData.note} onChange={e => setFormData(d => ({ ...d, note: e.target.value }))} />
+                        <textarea id="note" rows={3} maxLength={500} className="form-input" style={{ resize: "vertical" }} placeholder="Se hai intolleranze o richieste speciali scrivile qui." value={formData.note} onChange={e => setFormData(d => ({ ...d, note: e.target.value }))} />
                     </div>
 
                     {/* Honeypot */}
@@ -191,8 +191,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         { id: "privacy", key: "privacy", label: <>Ho letto l'<a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--red-warm)", textDecoration: "underline" }}>Informativa Privacy</a> e acconsento al trattamento dei dati personali.</> },
                         { id: "privacy-media", key: "privacyMedia", label: "Autorizzo l'utilizzo gratuito di immagini e video che mi ritraggono per scopi promozionali dell'evento." },
                     ].map((c) => (
-                        <div key={c.id} className="flex-row-gap-08-mt" style={{ opacity: .5 }}>
-                            <input type="checkbox" id={c.id} disabled className="checkbox-red"
+                        <div key={c.id} className="flex-row-gap-08-mt">
+                            <input type="checkbox" id={c.id} className="checkbox-red"
                                 checked={formData[c.key as keyof typeof formData] as boolean}
                                 onChange={e => setFormData(d => ({ ...d, [c.key]: e.target.checked }))} />
                             <label htmlFor={c.id} style={{ fontSize: ".82rem", color: "rgba(244,237,230,.85)", lineHeight: 1.5 }}>{c.label}</label>
@@ -241,9 +241,9 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                             </div>
 
                             {/* Cash */}
-                            <button type="button" disabled onClick={handleCash}
-                                style={{ width: "100%", maxWidth: 400, fontFamily: "'Barlow Condensed',sans-serif", fontSize: ".9rem", fontWeight: 700, letterSpacing: ".15em", textTransform: "uppercase", background: "rgba(255,255,255,.06)", color: "rgba(255,255,255,.4)", border: "none", padding: "1.1rem", cursor: "not-allowed", clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%)", transition: "all .2s" }}>
-                                ISCRIZIONI MOMENTANEAMENTE CHIUSE
+                            <button type="button" onClick={handleCash}
+                                style={{ width: "100%", maxWidth: 400, fontFamily: "'Barlow Condensed',sans-serif", fontSize: "1rem", fontWeight: 700, letterSpacing: ".15em", textTransform: "uppercase", background: "var(--red-warm)", color: "var(--white)", border: "none", padding: "1.1rem", cursor: "pointer", clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%)", transition: "all .2s" }}>
+                                ISCRIVITI E PAGA IN LOCO
                             </button>
                         </div>
                     </div>
