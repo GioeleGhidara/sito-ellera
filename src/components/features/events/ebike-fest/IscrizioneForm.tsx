@@ -1,4 +1,4 @@
-import { useState, ForwardedRef, forwardRef } from "react";
+import { useState, useEffect, ForwardedRef, forwardRef } from "react";
 
 export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: ForwardedRef<HTMLDivElement>) {
     /* Pacchetto selezionato */
@@ -30,8 +30,9 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
     const showMenu = pacchetto !== "Solo Ride (€ 12)";
 
     /* Validazione codice sconto */
-    const applyPromo = async () => {
-        const code = promoCodeInput.trim().toUpperCase();
+    const applyPromo = async (codeOverride?: string | React.MouseEvent) => {
+        const rawCode = typeof codeOverride === "string" ? codeOverride : promoCodeInput;
+        const code = rawCode.trim().toUpperCase();
         if (!code) return;
         setPromoLoading(true);
         setPromoError(null);
@@ -64,6 +65,19 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             setPromoLoading(false);
         }
     };
+
+    /* Auto-applica da URL (?promo=SCONTO5) */
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const promoFromUrl = params.get("promo");
+        if (promoFromUrl) {
+            setPromoCodeInput(promoFromUrl.toUpperCase());
+            // Ritardo per assicurarsi che l'ambiente sia pronto (es. Supabase url)
+            setTimeout(() => {
+                applyPromo(promoFromUrl);
+            }, 300);
+        }
+    }, []);
 
     /* Validazione */
     const validateForm = () => {
