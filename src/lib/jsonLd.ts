@@ -47,7 +47,7 @@ const createOrganizationNode = (siteUrl = getSiteUrl()) => ({
 const toOrganizerNode = (organizer: EventOrganizer, siteUrl: string) => ({
   "@type": "Organization",
   name: organizer.name,
-  url: siteUrl,
+  url: organizer.url ?? siteUrl,
   ...(organizer.logo ? { logo: toAbsoluteUrl(organizer.logo, siteUrl) } : {}),
 });
 
@@ -88,6 +88,14 @@ export const createEventJsonLd = (event: EventItem, siteUrl = getSiteUrl()): Jso
     },
     organizer: mainOrganizer,
     performer: mainOrganizer,
+    offers: {
+      "@type": "Offer",
+      url: toAbsoluteUrl(eventDetailPath(event.slug), siteUrl),
+      price: "0",
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      validFrom: event.startDate,
+    },
     ...(event.dateToBeConfirmed
       ? {}
       : {

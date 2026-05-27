@@ -18,13 +18,14 @@ import { EVENT_LOCATIONS } from "./locations";
 
 export interface EventOrganizer {
   name: string;
+  url?: string;
   logo?: string;
   logoAlt?: string;
 }
 
 export type EventOrganizersSource = Pick<
   EventItem,
-  "organizerLogo" | "organizerLogoAlt" | "organizerName" | "organizers"
+  "organizerLogo" | "organizerLogoAlt" | "organizerName" | "organizerUrl" | "organizers"
 >;
 
 export interface EventItem {
@@ -39,6 +40,7 @@ export interface EventItem {
   locationUrl?: string;
   status?: string;
   organizerName?: string;
+  organizerUrl?: string;
   organizerLogo?: string;
   organizerLogoAlt?: string;
   organizers?: EventOrganizer[];
@@ -305,6 +307,7 @@ export const getEventOrganizers = (
     return [
       {
         name: event.organizerName,
+        url: event.organizerUrl,
         logo: event.organizerLogo,
         logoAlt: event.organizerLogoAlt,
       },
