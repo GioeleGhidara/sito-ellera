@@ -10,7 +10,7 @@ import { fetchTrackJSON, gpxUrlToJson } from "@/lib/trackJson";
 import { trails as trailCatalog, type TrailDirection } from "@/data/trails";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-interface TrailLayer {
+export interface TrailLayer {
   slug: string;
   name: string;
   gpxUrl: string;
@@ -18,12 +18,12 @@ interface TrailLayer {
   direction: TrailDirection;
 }
 
-interface ConnectorLayer {
+export interface ConnectorLayer {
   name: string;
   gpxUrl: string;
 }
 
-const trails: TrailLayer[] = trailCatalog
+const defaultTrails: TrailLayer[] = trailCatalog
   .filter((trail) => Boolean(trail.gpxPath))
   .map((trail) => ({
     slug: trail.slug,
@@ -33,7 +33,7 @@ const trails: TrailLayer[] = trailCatalog
     direction: trail.travelDirection,
   }));
 
-const connectors: ConnectorLayer[] = [
+const defaultConnectors: ConnectorLayer[] = [
   {
     name: "Collegamento Cresta-Luceto",
     gpxUrl: "/tracks/collegamento_cresta-luceto.gpx",
@@ -99,7 +99,13 @@ const TrailLegend = ({ loadedTrails, toggleTrail }: { loadedTrails: LoadedTrail[
   </div>
 );
 
-const TrailMap = () => {
+interface TrailMapProps {
+  customTrails?: TrailLayer[];
+  customConnectors?: ConnectorLayer[];
+  hideLegend?: boolean;
+}
+
+const TrailMap = ({ customTrails, customConnectors, hideLegend }: TrailMapProps = {}) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
   const activeMobileTrailRef = useRef<LoadedTrail | null>(null);
@@ -132,10 +138,13 @@ const TrailMap = () => {
     );
   }, []);
 
+  const activeTrails = customTrails || defaultTrails;
+  const activeConnectors = customConnectors || defaultConnectors;
+
   const { data: mapData } = useQuery({
-    queryKey: ["trail-map-data"],
+    queryKey: ["trail-map-data", activeTrails, activeConnectors],
     queryFn: async () => {
-      const connectorPromises = connectors.map(async (connector) => {
+      const connectorPromises = activeConnectors.map(async (connector) => {
         try {
           const coords = await fetchTrackJSON(gpxUrlToJson(connector.gpxUrl));
           return coords.length > 0 ? { connector, coords } : null;
@@ -145,7 +154,7 @@ const TrailMap = () => {
         }
       });
 
-      const trailPromises = trails.map(async (trail) => {
+      const trailPromises = activeTrails.map(async (trail) => {
         try {
           const coords = await fetchTrackJSON(gpxUrlToJson(trail.gpxUrl));
           return coords.length > 0 ? { trail, coords } : null;
@@ -328,7 +337,7 @@ const TrailMap = () => {
       <div className="relative">
         <div ref={mapRef} style={{ height: 400, width: "100%" }} />
 
-        {loadedTrails.length > 0 && (
+        {loadedTrails.length > 0 && !hideLegend && (
           <>
             {/* Desktop legend */}
             <div className="absolute top-3 right-3 z-[1000] hidden lg:block rounded-lg border border-border bg-card/90 backdrop-blur-md p-3 shadow-lg max-w-[220px]">
