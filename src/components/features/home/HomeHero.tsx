@@ -68,7 +68,7 @@ const HomeHero = () => {
           <Link
             to={ROUTES.trekking}
             onClick={() => triggerHaptic(HAPTIC_PATTERNS.MEDIUM)}
-            className="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 md:gap-2 rounded-lg bg-accent px-3 py-2.5 md:px-6 md:py-3 text-[11px] md:text-base font-semibold text-accent-foreground shadow-warm transition-opacity hover:opacity-90"
+            className="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 md:gap-2 rounded-lg bg-accent px-2 py-2 md:px-6 md:py-3 text-xs md:text-base font-semibold text-accent-foreground shadow-warm transition-opacity hover:opacity-90"
           >
             <Mountain className="h-4 w-4 md:h-5 md:w-5" />
             <span className="whitespace-nowrap">Sentieri</span>
@@ -76,7 +76,7 @@ const HomeHero = () => {
           <Link
             to={ROUTES.galleriaArte}
             onClick={() => triggerHaptic(HAPTIC_PATTERNS.MEDIUM)}
-            className="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 md:gap-2 rounded-lg border border-primary-foreground/30 bg-primary-foreground/15 px-3 py-2.5 md:px-6 md:py-3 text-[11px] md:text-base font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/25"
+            className="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 md:gap-2 rounded-lg border border-primary-foreground/30 bg-primary-foreground/15 px-2 py-2 md:px-6 md:py-3 text-xs md:text-base font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/25"
           >
             <Palette className="h-4 w-4 md:h-5 md:w-5" />
             <span className="whitespace-nowrap">Il Borgo</span>
@@ -84,7 +84,7 @@ const HomeHero = () => {
           <Link
             to={ROUTES.storia}
             onClick={() => triggerHaptic(HAPTIC_PATTERNS.MEDIUM)}
-            className="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 md:gap-2 rounded-lg border border-primary-foreground/30 bg-primary-foreground/15 px-3 py-2.5 md:px-6 md:py-3 text-[11px] md:text-base font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/25"
+            className="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 md:gap-2 rounded-lg border border-primary-foreground/30 bg-primary-foreground/15 px-2 py-2 md:px-6 md:py-3 text-xs md:text-base font-semibold text-primary-foreground backdrop-blur-sm transition-colors hover:bg-primary-foreground/25"
           >
             <History className="h-4 w-4 md:h-5 md:w-5" />
             <span className="whitespace-nowrap">La Storia</span>
