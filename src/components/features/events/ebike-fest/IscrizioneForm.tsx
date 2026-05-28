@@ -90,10 +90,22 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
     };
 
     /* Invia iscrizione a Supabase */
-    const inviaIscrizione = async (extra: Record<string, unknown>) => {
+    interface RegistrationPayload {
+        nome_cognome: string;
+        email: string;
+        telefono: string | null;
+        pacchetto: string;
+        menu: string;
+        note: string | null;
+        codice_sconto_applicato: string | null;
+        prezzo_finale: number;
+        metodo_pagamento: string;
+    }
+
+    const inviaIscrizione = async (extra: Partial<RegistrationPayload>) => {
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
         const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
-        const payload = {
+        const payload: RegistrationPayload = {
             nome_cognome: formData.nome_cognome.trim(),
             email: formData.email.trim().toLowerCase(),
             telefono: formData.telefono.trim() || null,
@@ -102,6 +114,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             note: formData.note.trim() || null,
             codice_sconto_applicato: appliedPromo?.code || null,
             prezzo_finale: finalPrice,
+            metodo_pagamento: extra.metodo_pagamento || "sul_posto",
             ...extra,
         };
         const res = await fetch(`${supabaseUrl}/rest/v1/albi_trail_registrations`, {
@@ -204,33 +217,33 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
             {/* FORM */}
             <div id="form-iscrizione-container" className="reveal" ref={ref}>
-                <h3 style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: "2.8rem", color: "var(--white)", marginBottom: ".5rem", lineHeight: 1 }}>Modulo di Iscrizione</h3>
-                <p style={{ color: "var(--red-warm)", fontSize: "1.05rem", marginBottom: "2.5rem", lineHeight: 1.6, fontWeight: 600 }}>
+                <h3 className="form-title">Modulo di Iscrizione</h3>
+                <p className="form-subtitle">
                     Assicurati il tuo posto all'edizione 2026! Compila i dati qui sotto per registrarti.
                 </p>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "1.8rem" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: "1.5rem" }}>
+                <div className="form-fieldset">
+                    <div className="form-row">
                         <div className="flex-col-gap-05">
-                            <label className="label-upper" htmlFor="nome_cognome" style={{ color: "var(--white)" }}>Nome e Cognome *</label>
+                            <label className="label-upper form-label" htmlFor="nome_cognome">Nome e Cognome *</label>
                             <input id="nome_cognome" type="text" maxLength={120} autoComplete="name" className="form-input" value={formData.nome_cognome} onChange={e => setFormData(d => ({ ...d, nome_cognome: e.target.value }))} />
                         </div>
                         <div className="flex-col-gap-05">
-                            <label className="label-upper" htmlFor="email" style={{ color: "var(--white)" }}>Email *</label>
+                            <label className="label-upper form-label" htmlFor="email">Email *</label>
                             <input id="email" type="email" autoComplete="email" className="form-input" value={formData.email} onChange={e => setFormData(d => ({ ...d, email: e.target.value }))} />
                         </div>
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: "1.5rem" }}>
+                    <div className="form-row">
                         <div className="flex-col-gap-05">
-                            <label className="label-upper" htmlFor="telefono" style={{ color: "rgba(244,237,230,.85)" }}>Telefono (Opzionale ma utile)</label>
+                            <label className="label-upper form-label-opt" htmlFor="telefono">Telefono (Opzionale ma utile)</label>
                             <input id="telefono" type="tel" autoComplete="tel" className="form-input" value={formData.telefono} onChange={e => setFormData(d => ({ ...d, telefono: e.target.value }))} />
                         </div>
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))", gap: "1.5rem" }}>
+                    <div className="form-row">
                         <div className="flex-col-gap-05">
-                            <label className="label-upper" htmlFor="pacchetto" style={{ color: "var(--white)" }}>Pacchetto Scelto *</label>
+                            <label className="label-upper form-label" htmlFor="pacchetto">Pacchetto Scelto *</label>
                             <select id="pacchetto" className="form-select" value={pacchetto} onChange={e => setPacchetto(e.target.value)}>
                                 <option value="Ride + Pranzo (€ 20)">Esperienza Completa (Ride + Pranzo) - € 20</option>
                                 <option value="Solo Ride (€ 12)">Solo Ride (senza pranzo) - € 12</option>
@@ -239,7 +252,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         </div>
                         {showMenu && (
                             <div className="flex-col-gap-05">
-                                <label className="label-upper" htmlFor="menu" style={{ color: "var(--white)" }}>Menu Pranzo *</label>
+                                <label className="label-upper form-label" htmlFor="menu">Menu Pranzo *</label>
                                 <select id="menu" className="form-select" value={formData.menu} onChange={e => setFormData(d => ({ ...d, menu: e.target.value }))}>
                                     <option value="Onnivoro (Carne)">Classico (Onnivoro / Carne)</option>
                                     <option value="Vegetariano">Vegetariano (Pomodoro e Mozzarella)</option>
@@ -250,8 +263,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                     </div>
 
                     <div className="flex-col-gap-05">
-                        <label className="label-upper" htmlFor="note" style={{ color: "rgba(244,237,230,.85)" }}>Note / Intolleranze (Opzionale)</label>
-                        <textarea id="note" rows={3} maxLength={500} className="form-input" style={{ resize: "vertical" }} placeholder="Se hai intolleranze o richieste speciali scrivile qui." value={formData.note} onChange={e => setFormData(d => ({ ...d, note: e.target.value }))} />
+                        <label className="label-upper form-label-opt" htmlFor="note">Note / Intolleranze (Opzionale)</label>
+                        <textarea id="note" rows={3} maxLength={500} className="form-input form-textarea" placeholder="Se hai intolleranze o richieste speciali scrivile qui." value={formData.note} onChange={e => setFormData(d => ({ ...d, note: e.target.value }))} />
                     </div>
 
                     {/* Honeypot */}
@@ -268,41 +281,41 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                             <input type="checkbox" id={c.id} className="checkbox-red"
                                 checked={formData[c.key as keyof typeof formData] as boolean}
                                 onChange={e => setFormData(d => ({ ...d, [c.key]: e.target.checked }))} />
-                            <label htmlFor={c.id} style={{ fontSize: ".82rem", color: "rgba(244,237,230,.85)", lineHeight: 1.5 }}>{c.label}</label>
+                            <label htmlFor={c.id} className="form-checkbox-label">{c.label}</label>
                         </div>
                     ))}
 
                     {/* Codice Promozionale */}
-                    <div style={{ marginTop: "1.5rem", padding: "1.2rem", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-                        <label className="label-upper" htmlFor="promo_code" style={{ color: "rgba(244,237,230,.85)", marginBottom: "0.5rem", display: "block" }}>Hai un codice sconto?</label>
-                        <div style={{ display: "flex", gap: "0.5rem" }}>
-                            <input id="promo_code" type="text" className="form-input" style={{ textTransform: "uppercase" }} value={promoCodeInput} onChange={e => setPromoCodeInput(e.target.value)} placeholder="INSERISCI CODICE" disabled={!!appliedPromo} />
-                            <button type="button" onClick={applyPromo} disabled={!promoCodeInput.trim() || !!appliedPromo || promoLoading} style={{ background: "var(--red-warm)", color: "white", border: "none", padding: "0 1.5rem", fontWeight: 700, fontFamily: "'Barlow Condensed',sans-serif", letterSpacing: "0.1em", cursor: "pointer", opacity: (!promoCodeInput.trim() || !!appliedPromo || promoLoading) ? 0.5 : 1 }}>
+                    <div className="form-promo-container">
+                        <label className="label-upper form-promo-label" htmlFor="promo_code">Hai un codice sconto?</label>
+                        <div className="form-promo-input-group">
+                            <input id="promo_code" type="text" className="form-input form-promo-input" value={promoCodeInput} onChange={e => setPromoCodeInput(e.target.value)} placeholder="INSERISCI CODICE" disabled={!!appliedPromo} />
+                            <button type="button" onClick={applyPromo} disabled={!promoCodeInput.trim() || !!appliedPromo || promoLoading} className="form-promo-btn">
                                 {promoLoading ? "..." : "APPLICA"}
                             </button>
                         </div>
-                        {promoError && <div style={{ color: "var(--red-hot)", fontSize: "0.85rem", marginTop: "0.5rem", fontWeight: 600 }}>{promoError}</div>}
+                        {promoError && <div className="form-promo-error">{promoError}</div>}
                         {appliedPromo && (
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.8rem", padding: "0.6rem 0.8rem", background: "rgba(16,185,129,.1)", border: "1px solid rgba(16,185,129,.3)", color: "#10b981", fontSize: "0.95rem", fontWeight: 600 }}>
+                            <div className="form-promo-success">
                                 <span>Codice {appliedPromo.code} applicato (-€ {appliedPromo.discount})</span>
-                                <button type="button" onClick={() => setAppliedPromo(null)} style={{ background: "none", border: "none", color: "white", cursor: "pointer", textDecoration: "underline", fontSize: "0.85rem", opacity: .7 }}>Rimuovi</button>
+                                <button type="button" onClick={() => setAppliedPromo(null)} className="form-promo-remove">Rimuovi</button>
                             </div>
                         )}
                     </div>
 
                     {/* Turnstile */}
-                    <div style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
+                    <div className="form-turnstile">
                         <div className="cf-turnstile" data-sitekey="0x4AAAAAACzdId3jrskU4ueH" data-theme="dark" />
                     </div>
 
                     {/* Bottoni pagamento */}
-                    <div style={{ marginTop: "1rem", borderTop: "1px solid rgba(255,255,255,.05)", paddingTop: "1.2rem" }}>
-                        <h4 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: "1.1rem", fontWeight: 600, color: "var(--white)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: "1.5rem", textAlign: "center" }}>Completa l'iscrizione</h4>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem", alignItems: "center" }}>
+                    <div className="form-submit-container">
+                        <h4 className="form-submit-title">Completa l'iscrizione</h4>
+                        <div className="form-submit-group">
 
                             {/* PayPal */}
-                            <div style={{ width: "100%", maxWidth: 400 }}>
-                                <button type="button" disabled style={{ width: "100%", fontFamily: "'Barlow Condensed',sans-serif", fontSize: ".9rem", fontWeight: 700, letterSpacing: ".15em", textTransform: "uppercase", background: "#ffc439", color: "rgba(0,0,0,.5)", border: "none", padding: "1.1rem", cursor: "not-allowed", clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%)", opacity: .6 }}>
+                            <div className="form-submit-btn-wrap">
+                                <button type="button" disabled className="form-submit-btn paypal">
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
                                         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.067 8.478c.492.26.85.57.94 1.02.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H9.36c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z" /><path d="M16.93 6.94c.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H5.22c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z" opacity=".6" /></svg>
                                         PAGAMENTI PAYPAL DISABILITATI
@@ -311,29 +324,28 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                             </div>
 
                             {/* Separatore */}
-                            <div style={{ display: "flex", alignItems: "center", gap: "1rem", width: "100%", maxWidth: 400 }}>
-                                <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,.08)" }} />
-                                <span style={{ fontFamily: "'Barlow Condensed',sans-serif", fontSize: ".65rem", color: "rgba(255,255,255,.3)", letterSpacing: ".15em" }}>OPPURE</span>
-                                <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,.08)" }} />
+                            <div className="form-separator">
+                                <div className="form-sep-line" />
+                                <span className="form-sep-text">OPPURE</span>
+                                <div className="form-sep-line" />
                             </div>
 
                             {/* Stripe */}
-                            <div style={{ width: "100%", maxWidth: 400 }}>
-                                <button type="button" disabled style={{ marginTop: ".4rem", width: "100%", fontFamily: "'Barlow Condensed',sans-serif", fontSize: ".9rem", fontWeight: 700, letterSpacing: ".15em", textTransform: "uppercase", background: "#3a3632", color: "rgba(255,255,255,.4)", border: "none", padding: "1.1rem", cursor: "not-allowed", clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%)" }}>
+                            <div className="form-submit-btn-wrap">
+                                <button type="button" disabled className="form-submit-btn stripe">
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
-                                        <span style={{ fontWeight: 700, letterSpacing: ".1em", border: "1px solid rgba(255,255,255,.2)", padding: "2px 8px", borderRadius: 4, fontFamily: "'Barlow',sans-serif", fontSize: ".75rem" }}>Stripe</span>
+                                        <span className="stripe-badge">Stripe</span>
                                         MOMENTANEAMENTE FUORI SERVIZIO
                                     </div>
                                 </button>
                             </div>
 
-                            <div style={{ width: "100%", maxWidth: 400 }}>
-                                <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,.08)" }} />
+                            <div className="form-submit-btn-wrap">
+                                <div className="form-sep-line" />
                             </div>
 
                             {/* Cash */}
-                            <button type="button" onClick={handleCash}
-                                style={{ width: "100%", maxWidth: 400, fontFamily: "'Barlow Condensed',sans-serif", fontSize: "1rem", fontWeight: 700, letterSpacing: ".15em", textTransform: "uppercase", background: "var(--red-warm)", color: "var(--white)", border: "none", padding: "1.1rem", cursor: "pointer", clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%)", transition: "all .2s" }}>
+                            <button type="button" onClick={handleCash} className="form-submit-btn cash">
                                 ISCRIVITI E PAGA IN LOCO (€ {finalPrice})
                             </button>
                         </div>
@@ -341,7 +353,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
                     {/* Form message */}
                     {formMsg && (
-                        <div style={{ display: "block", padding: "1.2rem", fontSize: ".95rem", fontWeight: 500, textAlign: "center", borderLeft: `4px solid ${formMsg.ok ? "#10b981" : "var(--red-hot)"}`, marginTop: ".5rem", background: "rgba(255,255,255,.02)", color: formMsg.ok ? "#10b981" : "var(--red-warm)" }}>
+                        <div className={`form-msg-box ${formMsg.ok ? "success" : "error"}`}>
                             {formMsg.text}
                         </div>
                     )}

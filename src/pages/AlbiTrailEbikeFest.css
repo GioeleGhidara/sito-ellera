@@ -328,3 +328,41 @@
   .ghost-card-sm svg { width:75px!important;height:75px!important; }
   .ghost-card-lg svg { width:100px!important;height:100px!important; }
 }
+
+/* FORM ISCRIZIONE REFACTORING */
+.form-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--white); margin-bottom: 0.5rem; line-height: 1; }
+.form-subtitle { color: var(--red-warm); font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.6; font-weight: 600; }
+.form-fieldset { display: flex; flex-direction: column; gap: 1.8rem; }
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.form-label { color: var(--white); }
+.form-label-opt { color: rgba(244, 237, 230, 0.85); }
+.form-textarea { resize: vertical; }
+.form-checkbox-label { font-size: 0.82rem; color: rgba(244, 237, 230, 0.85); line-height: 1.5; }
+
+.form-promo-container { margin-top: 1.5rem; padding: 1.2rem; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); }
+.form-promo-label { color: rgba(244, 237, 230, 0.85); margin-bottom: 0.5rem; display: block; }
+.form-promo-input-group { display: flex; gap: 0.5rem; }
+.form-promo-input { text-transform: uppercase; }
+.form-promo-btn { background: var(--red-warm); color: white; border: none; padding: 0 1.5rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.1em; cursor: pointer; }
+.form-promo-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-promo-error { color: var(--red-hot); font-size: 0.85rem; margin-top: 0.5rem; font-weight: 600; }
+.form-promo-success { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; padding: 0.6rem 0.8rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; font-size: 0.95rem; font-weight: 600; }
+.form-promo-remove { background: none; border: none; color: white; cursor: pointer; text-decoration: underline; font-size: 0.85rem; opacity: 0.7; }
+
+.form-turnstile { margin-top: 1rem; display: flex; justify-content: center; }
+.form-submit-container { margin-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.2rem; }
+.form-submit-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--white); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; text-align: center; }
+.form-submit-group { display: flex; flex-direction: column; gap: 1.2rem; align-items: center; }
+.form-submit-btn-wrap { width: 100%; max-width: 400px; }
+.form-submit-btn { width: 100%; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: none; padding: 1.1rem; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%); display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
+.form-submit-btn.paypal { background: #ffc439; color: rgba(0, 0, 0, 0.5); opacity: 0.6; cursor: not-allowed; }
+.form-submit-btn.stripe { background: #3a3632; color: rgba(255, 255, 255, 0.4); margin-top: 0.4rem; cursor: not-allowed; }
+.form-submit-btn.cash { background: var(--red-warm); color: var(--white); font-size: 1rem; transition: transform 0.2s; }
+.form-submit-btn.cash:active { transform: scale(0.98); }
+.stripe-badge { font-weight: 700; letter-spacing: 0.1em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 2px 8px; border-radius: 4px; font-family: 'Barlow', sans-serif; font-size: 0.75rem; }
+.form-separator { display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 400px; }
+.form-sep-line { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.08); }
+.form-sep-text { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: rgba(255, 255, 255, 0.3); letter-spacing: 0.15em; }
+.form-msg-box { display: block; padding: 1.2rem; font-size: 0.95rem; font-weight: 500; text-align: center; margin-top: 0.5rem; background: rgba(255, 255, 255, 0.02); border-left: 4px solid; }
+.form-msg-box.success { border-color: #10b981; color: #10b981; }
+.form-msg-box.error { border-color: var(--red-hot); color: var(--red-warm); }
