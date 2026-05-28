@@ -12,6 +12,7 @@ import {
   quilianoBikeLogoSvg,
   sincroresonanceImage,
   locandinaPedaliamoInsieme,
+  locandinaEbikeFest,
   chiesaSanBartolomeoEventImage,
 } from "@/assets/images";
 import { EVENT_LOCATIONS } from "@/data/core/locations";
@@ -169,7 +170,9 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     startDate: "2026-06-14",
     startTime: "08:30",
     endTime: "13:00",
-    image: albiTrailAreaImage,
+    image: locandinaEbikeFest,
+    heroImage: albiTrailAreaImage,
+    heroImagePosition: "object-[center_25%]",
     desc: "Raduno esclusivo e-bike sui sentieri tecnici di Ellera. Giro guidato di 3h+ e pranzo finale con panino, birra e patatine.",
     location: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.name,
     locationUrl: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.url,

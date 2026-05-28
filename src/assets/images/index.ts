@@ -59,6 +59,7 @@ export { default as barrabravaLogoSvg } from "./events/la-pedaliamo-insieme/barr
 export { default as quilianoBikeLogoSvg } from "./events/la-pedaliamo-insieme/quiliano-bike/quiliano-bike-logo.svg";
 export { default as comuneAlbisolaSupLogoSvg } from "./events/la-pedaliamo-insieme/comune-albisola-sup/logo-albi.svg";
 export { default as locandinaPedaliamoInsieme } from "./events/la-pedaliamo-insieme/locandina.avif";
+export { default as locandinaEbikeFest } from "./events/albi-trail-ebike-fest/locandina.avif";
 
 export { default as meteoHeroImage } from "./meteo/meteo-hero.webp";
 export { default as heroStoriaImage } from "./storia/heroStoria.avif";
