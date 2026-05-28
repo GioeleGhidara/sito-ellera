@@ -179,6 +179,20 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     status: "In arrivo",
     organizerName: "Comitato Ellerese",
     organizerLogo: logoComitatoRidotto,
+    organizers: [
+      {
+        name: "Comitato Ellerese",
+        logo: logoComitatoRidotto,
+      },
+      {
+        name: "Albi Trail Area",
+        logo: albiTrailAreaLogo,
+      },
+      {
+        name: "Comune di Albisola Superiore",
+        logo: comuneAlbisolaSupLogoSvg,
+      },
+    ],
     showOnHome: true,
     detailContent: `Giro guidato tecnico sui sentieri della Albi Trail Area. 
   - **Ritrovo**: 08:30 al Prato Feste. 
