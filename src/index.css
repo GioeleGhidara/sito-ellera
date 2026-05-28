@@ -106,7 +106,6 @@
     @apply text-foreground antialiased;
     /* Gradiente coerente: dall'azzurro aria alla pietra, finendo nel verde maiolica chiaro (stessa radice del footer) */
     @apply bg-gradient-to-br from-blue-50 via-slate-50 to-maiolica-light;
-    background-attachment: fixed;
     font-family: "Source Sans 3", system-ui, sans-serif;
   }
 
