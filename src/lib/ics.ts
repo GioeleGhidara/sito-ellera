@@ -1,46 +1,39 @@
-import type { EventItem } from "@/data/events";
+import type { EventItem } from "@/data/events/events";
 
 /**
  * Generates an iCalendar (.ics) file content for a given event.
  */
 export const generateIcsContent = (event: EventItem): string => {
-  const sanitize = (str: string) => str.replace(/,/g, "\\,").replace(/;/g, "\\;").replace(/\n/g, "\\n");
+  const sanitize = (str: string) => str.replace(/\r/g, "").replace(/,/g, "\\,").replace(/;/g, "\\;").replace(/\n/g, "\\n");
 
   const now = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
   
-  // Format dates: YYYYMMDD
-  // Since we don't always have hours, we'll treat them as all-day events unless we can find a time
-  const startDate = event.startDate.replace(/-/g, "");
-  
-  // If there's an end date, use it; otherwise, use the next day for a 1-day event
-  let endDate = startDate;
-  if (event.endDate) {
-    // ICS DTEND for all-day events is non-inclusive, so we add 1 day to the end date
-    const date = new Date(event.endDate);
-    date.setDate(date.getDate() + 1);
-    endDate = date.toISOString().split("T")[0].replace(/-/g, "");
-  } else {
-    const date = new Date(event.startDate);
-    date.setDate(date.getDate() + 1);
-    endDate = date.toISOString().split("T")[0].replace(/-/g, "");
-  }
+  const startStr = event.startDate.replace(/-/g, "");
+  const endStr = event.endDate ? event.endDate.replace(/-/g, "") : startStr;
+
+  const formatTime = (timeStr?: string, defaultTime = "090000") => {
+    return timeStr ? timeStr.replace(/:/g, "") + "00" : defaultTime;
+  };
+
+  const dtStart = `${startStr}T${formatTime(event.startTime, "090000")}`;
+  const dtEnd = `${endStr}T${formatTime(event.endTime, "230000")}`;
 
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Ellera Borgo d'Arte//IT",
+    "PRODID:-//Ellera//IT",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
     `UID:${event.slug}@ellera.it`,
     `DTSTAMP:${now}`,
-    `DTSTART;VALUE=DATE:${startDate}`,
-    `DTEND;VALUE=DATE:${endDate}`,
+    `DTSTART:${dtStart}`,
+    `DTEND:${dtEnd}`,
     `SUMMARY:${sanitize(event.title)}`,
     `DESCRIPTION:${sanitize(event.desc + (event.detailContent ? "\n\n" + event.detailContent : ""))}`,
     `LOCATION:${sanitize(event.location)}`,
     `STATUS:${event.status === "Cancellato" ? "CANCELLED" : "CONFIRMED"}`,
-    "TRANSP:TRANSPARENT",
+    "TRANSP:OPAQUE",
     "END:VEVENT",
     "END:VCALENDAR",
   ];

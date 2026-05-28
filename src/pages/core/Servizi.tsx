@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import { BusFront, Clock3, Download, Globe, MapPin, ShoppingBag, Utensils, type IconType } from "@/lib/icons";
 import { useLocation } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -7,20 +8,16 @@ import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
 import { Button } from "@/components/ui/button";
 import { heroImage } from "@/assets/images";
-import { foodBusinesses, shopBusinesses } from "@/data/businesses";
-import type { Business } from "@/data/businesses";
+import { foodBusinesses, shopBusinesses } from "@/data/core/businesses";
+import type { Business } from "@/data/core/businesses";
 import {
   busLine17NoteDescriptions,
   busLine17NoteUsage,
   busLine17Periods,
   busLine17Schedule,
   type BusTimeEntry,
-} from "@/data/busSchedule";
+} from "@/data/core/busSchedule";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 const TimePills = ({ times }: { times: BusTimeEntry[] }) => (
   <div className="flex flex-wrap gap-2">

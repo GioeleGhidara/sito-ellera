@@ -236,9 +236,9 @@ const main = async () => {
   console.log(`[sitemap] mode=${mode}  siteUrl=${siteUrl}  noindex=${siteNoIndex}`);
 
   const [trailsSource, newsSource, eventsSource, tradizioneSlugs] = await Promise.all([
-    readFile("src/data/trails.ts"),
-    readFile("src/data/news.ts"),
-    readFile("src/data/events.ts"),
+    readFile("src/data/trails/trails.ts"),
+    readFile("src/data/core/news.ts"),
+    readFile("src/data/events/events.ts"),
     loadTradizioneSlugs(),
   ]);
 

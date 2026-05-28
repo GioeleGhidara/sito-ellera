@@ -7,8 +7,8 @@ import {
   Clock3,
   MapPin,
 } from "@/lib/icons";
-import type { EventCategory } from "@/data/events";
-import { events, getFeaturedEvent, hasEventDetail, isEventPast } from "@/data/events";
+import type { EventCategory, EventItem } from "@/data/events/events";
+import { events, getFeaturedEvent, hasEventDetail, isEventPast } from "@/data/events/events";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
@@ -21,33 +21,34 @@ import {
 import { categoryClasses, formatEventDate } from "@/lib/events";
 import { luceTerrazzoImage } from "@/assets/images";
 import { eventDetailPath } from "@/lib/routes";
-import { type Variants } from "framer-motion";
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: "easeOut",
-    },
-  },
-};
-
-const staggerList: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.08,
-    },
-  },
-};
+import { fadeUp, staggerList } from "@/lib/animations";
 
 type SporadicFilter = "Tutti" | EventCategory;
 
 const sporadicFilters: SporadicFilter[] = ["Tutti", "Cultura", "Outdoor", "Festa", "Teatro", "Altro"];
+
+const EventLink = ({ event, children, className }: { event: EventItem, children: React.ReactNode, className?: string }) => {
+  const hasDetail = hasEventDetail(event);
+  const target = event.externalUrl || (hasDetail ? eventDetailPath(event.slug) : null);
+
+  if (!target) return <div className={className}>{children}</div>;
+
+  const isExternal = target.startsWith("http") || target.endsWith(".html");
+
+  if (isExternal) {
+    return (
+      <a href={target} className={className}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={target} className={className}>
+      {children}
+    </Link>
+  );
+};
 
 const Eventi = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -94,29 +95,6 @@ const Eventi = () => {
       nextSearchParams.set("tab", tab);
     }
     setSearchParams(nextSearchParams, { replace: true });
-  };
-
-  const EventLink = ({ event, children, className }: { event: any, children: React.ReactNode, className?: string }) => {
-    const hasDetail = hasEventDetail(event);
-    const target = event.externalUrl || (hasDetail ? eventDetailPath(event.slug) : null);
-
-    if (!target) return <div className={className}>{children}</div>;
-
-    const isExternal = target.startsWith("http") || target.endsWith(".html");
-
-    if (isExternal) {
-      return (
-        <a href={target} className={className}>
-          {children}
-        </a>
-      );
-    }
-
-    return (
-      <Link to={target} className={className}>
-        {children}
-      </Link>
-    );
   };
 
   return (
@@ -228,7 +206,7 @@ const Eventi = () => {
             </div>
           </motion.div>
 
-          <motion.div initial="hidden" animate="visible" variants={staggerList} className="space-y-3.5 lg:space-y-4">
+          <motion.div key={`${activeFilter}-${activeTab}`} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={staggerList} className="space-y-3.5 lg:space-y-4">
             {remainingEvents.length > 0 ? (
               remainingEvents.map((event) => {
                 const formattedDate = formatEventDate(event.startDate, event.endDate, event.dateToBeConfirmed);

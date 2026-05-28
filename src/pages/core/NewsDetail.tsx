@@ -6,7 +6,7 @@ import FloatingBackLink from "@/components/layout/FloatingBackLink";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
-import { news } from "@/data/news";
+import { news } from "@/data/core/news";
 import { ROUTES } from "@/lib/routes";
 import { toAbsoluteUrl } from "@/lib/seo";
 

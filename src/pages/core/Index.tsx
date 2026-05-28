@@ -1,10 +1,10 @@
-import { stories } from "@/data/stories";
-import { events } from "@/data/events";
-import { news } from "@/data/news";
+import { stories } from "@/data/core/stories";
+import { events } from "@/data/events/events";
+import { news } from "@/data/core/news";
 import Layout from "@/components/layout/Layout";
 import Seo from "@/components/shared/Seo";
 import SeasonalHighlight from "@/components/shared/SeasonalHighlight";
-import { homeExploreItems, homeRootsCards } from "@/data/home";
+import { homeExploreItems, homeRootsCards } from "@/data/core/home";
 import { createComitatoOrganizationJsonLd, createWebSiteJsonLd } from "@/lib/jsonLd";
 import { elleraDalPonteImage } from "@/assets/images";
 
@@ -16,10 +16,7 @@ import HomeStories from "@/components/features/home/HomeStories";
 import HomeExplore from "@/components/features/home/HomeExplore";
 
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+import { fadeUp } from "@/lib/animations";
 
 const Index = () => {
   const pageDescription =

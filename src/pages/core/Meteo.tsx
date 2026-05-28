@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import {
   AlertTriangle,
   Cloud,
@@ -225,10 +226,6 @@ const useArpalAlert = () => {
 };
 
 /* ── animations ── */
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 /* ── Section Header ── */
 const SectionHeader = ({

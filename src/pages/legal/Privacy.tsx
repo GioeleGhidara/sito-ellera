@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useCursorDot } from "../hooks/useCursorDot";
+import { useCursorDot } from "@/hooks/useCursorDot";
 import "./EbikeLegal.css";
 
 export default function Privacy() {

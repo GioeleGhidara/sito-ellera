@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Calendar } from "@/lib/icons";
 import { ROUTES, eventDetailPath } from "@/lib/routes";
-import { hasEventDetail } from "@/data/events";
-import type { EventItem } from "@/data/events";
+import { hasEventDetail } from "@/data/events/events";
+import type { EventItem } from "@/data/events/events";
 
 interface HomeEventsProps {
   highlightedEvents: EventItem[];

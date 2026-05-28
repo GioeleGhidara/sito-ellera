@@ -3,7 +3,7 @@ import { motion, Variants } from "framer-motion";
 import { ArrowRight, Megaphone, Newspaper, Calendar } from "@/lib/icons";
 import { ROUTES, newsDetailPath } from "@/lib/routes";
 import { formatDateLong } from "@/lib/date-utils";
-import type { NewsItem } from "@/data/news";
+import type { NewsItem } from "@/data/core/news";
 
 interface HomeNewsProps {
   featuredNews: NewsItem;

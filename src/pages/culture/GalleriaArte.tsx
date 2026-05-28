@@ -7,7 +7,7 @@ import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
 import TableOfContents from "@/components/layout/TableOfContents";
 import { Link } from "react-router-dom";
-import { artists } from "@/data/galleriaArte";
+import { artists } from "@/data/culture/galleriaArte";
 import {
   galleriaArteImage, caruggioImage,
   gruppomurales, ceramista,
@@ -15,6 +15,7 @@ import {
 } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
 const CeramicCube = lazy(() => import("@/components/features/art/CeramicCube"));
+import { fadeUp } from "@/lib/animations";
 
 const gallerySections = [
   { id: "storia", title: "Un sogno diventato realtà" },
@@ -25,10 +26,7 @@ const gallerySections = [
   { id: "brochure", title: "Scarica la Brochure" },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+
 
 const GalleriaArte = () => {
   // stato rimosso
@@ -88,7 +86,7 @@ const GalleriaArte = () => {
                 l'Amministrazione Comunale di Albisola Superiore, il Comitato Ellerese e il Comitato Valle del Sansobbia.
               </p>
 
-              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-5 mt-6 shadow-sm">
+              <div className="bg-card border border-border rounded-xl p-5 mt-6 shadow-sm">
                 <Quote className="w-5 h-5 text-accent mb-2" />
                 <blockquote className="text-foreground italic leading-relaxed">
                   «L'arte ha il compito di non restare in silenzio e di richiamare l'attenzione
@@ -142,7 +140,7 @@ const GalleriaArte = () => {
                   da esibire sulla facciata di casa.
                 </p>
 
-                <div className="flex items-start gap-3 bg-card/60 backdrop-blur-sm border border-border rounded-xl p-4 shadow-sm">
+                <div className="flex items-start gap-3 bg-card border border-border rounded-xl p-4 shadow-sm">
                   <Droplets className="w-5 h-5 text-primary mt-0.5 shrink-0" />
                   <div>
                     <h4 className="font-heading font-semibold text-foreground mb-1">Il Torrente Sansobbia</h4>
@@ -208,7 +206,7 @@ const GalleriaArte = () => {
             </motion.div>
 
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-2">
-              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 shadow-sm mb-4">
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm mb-4">
                 <h3 className="font-heading font-bold text-foreground text-lg mb-1">L'arte e l'artista</h3>
                 <p className="text-sm text-accent font-semibold mb-3">Piazza dell'Elce, Ellera</p>
                 <p className="text-muted-foreground leading-relaxed text-sm mb-4">
@@ -222,7 +220,7 @@ const GalleriaArte = () => {
                 </p>
               </div>
 
-              <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-5 shadow-sm">
+              <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
                 <Quote className="w-4 h-4 text-accent mb-2" />
                 <blockquote className="text-foreground italic leading-relaxed text-sm">
                   «Questo vuole essere un regalo a questo splendido paesino che ha saputo accogliermi e starmi vicino, qui mi sono sentito a casa.»
@@ -254,7 +252,7 @@ const GalleriaArte = () => {
           </motion.div>
 
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-2">
-            <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-4 shadow-sm">
+            <div className="bg-card border border-border rounded-xl p-4 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-1">Orientamento</p>
               <h3 className="font-heading font-bold text-foreground text-lg">Mappa dei Pannelli</h3>
               <img
@@ -302,7 +300,7 @@ const GalleriaArte = () => {
             {filteredArtists.length > 0 ? filteredArtists.map((name) => (
               <div
                 key={name}
-                className="bg-card/60 backdrop-blur-sm border border-border rounded-lg px-3 py-2 text-center hover:shadow-sm transition-shadow"
+                className="bg-card border border-border rounded-lg px-3 py-2 text-center hover:shadow-sm transition-shadow"
               >
                 <span className="text-sm font-medium text-foreground">{name}</span>
               </div>
@@ -317,7 +315,7 @@ const GalleriaArte = () => {
       <section id="brochure" className="scroll-mt-20 py-8 lg:py-12 bg-secondary/50">
         <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center">
-            <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-8 shadow-sm max-w-xl mx-auto mb-8">
+            <div className="bg-card border border-border rounded-xl p-8 shadow-sm max-w-xl mx-auto mb-8">
               <Download className="w-8 h-8 text-accent mx-auto mb-4" />
               <h3 className="text-xl font-heading font-bold text-foreground mb-2">Scarica la Brochure Ufficiale</h3>
               <p className="text-sm text-muted-foreground mb-5">

@@ -3,12 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, CalendarPlus } from "@/lib/icons";
 import { downloadIcs } from "@/lib/ics";
+import { fadeUp } from "@/lib/animations";
 import Layout from "@/components/layout/Layout";
 import FloatingBackLink from "@/components/layout/FloatingBackLink";
 import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
 import { EventPoster, EventOrganizerBadges } from "@/components/features/events/EventCard";
-import { getEventBySlug, hasEventDetail } from "@/data/events";
+import { getEventBySlug, hasEventDetail } from "@/data/events/events";
 import { ROUTES } from "@/lib/routes";
 import { createEventJsonLd } from "@/lib/jsonLd";
 
@@ -141,7 +142,7 @@ const EventDetail = () => {
                 </div>
                 
                 {/* Quick Info Box */}
-                <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 shadow-sm space-y-5">
+                <div className="bg-card border border-border rounded-xl p-6 shadow-sm space-y-5">
                   <h3 className="font-heading font-semibold text-lg border-b border-border/50 pb-3">Dettagli Evento</h3>
                   
                   <div className="space-y-4">
@@ -202,10 +203,11 @@ const EventDetail = () => {
             {/* Right Column: Main Content */}
             <div className="lg:col-span-7">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-card/60 backdrop-blur-sm border border-border rounded-2xl p-6 lg:p-10 shadow-sm"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="bg-card border border-border rounded-2xl p-6 lg:p-10 shadow-sm"
               >
                 <h2 className="text-2xl font-heading font-bold mb-6 text-foreground text-primary">L'Esperienza</h2>
                 <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none text-foreground/90">

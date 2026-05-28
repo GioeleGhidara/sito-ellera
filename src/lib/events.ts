@@ -1,4 +1,4 @@
-import { EventCategory } from "@/data/events";
+import { EventCategory } from "@/data/events/events";
 
 /**
  * Styling classes for event categories

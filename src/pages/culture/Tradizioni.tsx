@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Candy, Cat, Church, Clapperboard, Cow, Leaf, Scale, Sparkles, WaterMill } from "@/lib/icons";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
-import { stories, type Story } from "@/data/stories";
+import { stories, type Story } from "@/data/core/stories";
 import { gattoNeroImage } from "@/assets/images";
 import { tradizioneDetailPath } from "@/lib/routes";
 import MaintenanceView from "@/components/shared/MaintenanceView";
@@ -24,10 +25,6 @@ const iconMap: Record<Story["icon"], React.ElementType> = {
   church: Church,
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 const getStorySummary = (story: Story, maxChars = 220) => {
   if (story.summary?.trim()) {

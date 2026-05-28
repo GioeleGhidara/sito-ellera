@@ -4,17 +4,17 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 import "./AlbiTrailEbikeFest.css";
 
-import { Navigation } from "../components/features/events/ebike-fest/Navigation";
-import { Hero } from "../components/features/events/ebike-fest/Hero";
-import { CountdownSection } from "../components/features/events/ebike-fest/CountdownSection";
-import { InfoStats } from "../components/features/events/ebike-fest/InfoStats";
-import { Programma } from "../components/features/events/ebike-fest/Programma";
-import { Percorsi } from "../components/features/events/ebike-fest/Percorsi";
-import { Attrezzatura } from "../components/features/events/ebike-fest/Attrezzatura";
-import { Organizzatore } from "../components/features/events/ebike-fest/Organizzatore";
-import { IscrizioneForm } from "../components/features/events/ebike-fest/IscrizioneForm";
-import { Footer } from "../components/features/events/ebike-fest/Footer";
-import { StickyCTA } from "../components/features/events/ebike-fest/StickyCTA";
+import { Navigation } from "../../components/features/events/ebike-fest/Navigation";
+import { Hero } from "../../components/features/events/ebike-fest/Hero";
+import { CountdownSection } from "../../components/features/events/ebike-fest/CountdownSection";
+import { InfoStats } from "../../components/features/events/ebike-fest/InfoStats";
+import { Programma } from "../../components/features/events/ebike-fest/Programma";
+import { Percorsi } from "../../components/features/events/ebike-fest/Percorsi";
+import { Attrezzatura } from "../../components/features/events/ebike-fest/Attrezzatura";
+import { Organizzatore } from "../../components/features/events/ebike-fest/Organizzatore";
+import { IscrizioneForm } from "../../components/features/events/ebike-fest/IscrizioneForm";
+import { Footer } from "../../components/features/events/ebike-fest/Footer";
+import { StickyCTA } from "../../components/features/events/ebike-fest/StickyCTA";
 
 function RevealSection({ children }: { children: React.ReactNode }) {
     return (

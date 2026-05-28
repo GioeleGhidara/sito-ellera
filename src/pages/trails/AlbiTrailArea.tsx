@@ -29,14 +29,14 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { albiTrailAreaImage as albiImage, albiTrailAreaLogo } from "@/assets/images";
-import { getNextBikeEvent } from "@/data/events";
-import { trails } from "@/data/trails";
+import { getNextBikeEvent } from "@/data/events/events";
+import { trails } from "@/data/trails/trails";
 import {
   inactiveTrails,
   sortTrailsForSection,
   trailRules,
   trailSections,
-} from "@/data/albiTrailArea";
+} from "@/data/trails/albiTrailArea";
 import {
   formatAlertDateTime,
   formatAlertLevel,
@@ -49,6 +49,7 @@ import {
   type ZoneAlert,
 } from "@/lib/arpal";
 import { ROUTES } from "@/lib/routes";
+import { fadeUp } from "@/lib/animations";
 
 const TrailMap = React.lazy(() => import("@/components/features/trail/TrailMap"));
 const WeatherWidget = React.lazy(() => import("@/components/features/weather/WeatherWidget"));
@@ -56,10 +57,7 @@ const WeatherWidget = React.lazy(() => import("@/components/features/weather/Wea
 const ARPAL_CACHE_KEY = "ellera_arpal_cache_v3";
 const ARPAL_CACHE_TTL = 15 * 60 * 1000;
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+
 
 const trailSectionIconMap = {
   "trending-down": TrendingDown,
@@ -423,7 +421,7 @@ const AlbiTrailArea = () => {
             {groupedTrails.map((section, sectionIndex) => {
               const SectionIcon = trailSectionIconMap[section.icon];
               return (
-                <motion.div key={section.key} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                <div key={section.key}>
                   <div className="mb-2 flex flex-wrap items-center gap-3">
                     <h3 className="flex items-center gap-2 text-xl font-heading font-bold text-foreground">
                       <SectionIcon className="w-5 h-5 text-primary" />
@@ -469,7 +467,7 @@ const AlbiTrailArea = () => {
                       </motion.div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

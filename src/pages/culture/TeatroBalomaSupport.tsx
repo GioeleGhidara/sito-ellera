@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import { toast } from "sonner";
 import {
   ArrowLeft,
@@ -23,13 +24,9 @@ import {
   teatroBalomaNeeds,
   teatroBalomaSupportOptions,
   type TeatroBalomaSupportOption,
-} from "@/data/teatroBaloma";
+} from "@/data/culture/teatroBaloma";
 import { ROUTES } from "@/lib/routes";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
-};
 
 const iconMap = {
   handCoins: Coins,

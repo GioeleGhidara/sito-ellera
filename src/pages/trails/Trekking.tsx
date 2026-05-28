@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import {
   ArrowUpRight,
   BusFront,
@@ -22,13 +23,9 @@ import {
   difficultyColors,
   difficultyOrder,
   routeTypeLabel,
-} from "@/data/trekkingRoutes";
+} from "@/data/trails/trekkingRoutes";
 import { MAINTENANCE_CONFIG } from "@/config/maintenance";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
 
 const stagger = {
   hidden: {},

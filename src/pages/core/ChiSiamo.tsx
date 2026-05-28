@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import {
   Users,
   UserPlus,
@@ -15,13 +16,9 @@ import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
 import { heroChiSiamo, logoComitato } from "@/assets/images";
 import { createComitatoOrganizationJsonLd } from "@/lib/jsonLd";
-import { contattiComitato } from "@/data/comitato";
+import { contattiComitato } from "@/data/core/comitato";
 import { ROUTES } from "@/lib/routes";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 const ATTIVITA = [
   {

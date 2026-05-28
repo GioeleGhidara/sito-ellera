@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getActiveSeason } from "@/data/seasonal";
+import { getActiveSeason } from "@/data/core/seasonal";
 
 /**
  * Renders seasonal visual effects:

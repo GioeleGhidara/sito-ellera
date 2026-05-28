@@ -52,13 +52,9 @@ import {
   type TeatroBalomaIconKey,
   type TeatroBalomaRecentEvent,
   type TeatroBalomaUseCase,
-} from "@/data/teatroBaloma";
-import { getUpcomingEventsByCategory } from "@/data/events";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
-};
+} from "@/data/culture/teatroBaloma";
+import { getUpcomingEventsByCategory } from "@/data/events/events";
+import { fadeUp } from "@/lib/animations";
 
 const MOBILE_BREAKPOINT = "(max-width: 639px)";
 

@@ -1,5 +1,5 @@
 import L from "leaflet";
-import type { TrailDirection } from "@/data/trails";
+import type { TrailDirection } from "@/data/trails/trails";
 
 interface TrailDirectionArrowOptions {
   spacingMeters?: number;

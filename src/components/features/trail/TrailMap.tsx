@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { createDirectionalArrows } from "@/lib/trailDirectionArrows";
 import { computeParallelOffsets } from "@/lib/trailParallelOffset";
 import { fetchTrackJSON, gpxUrlToJson } from "@/lib/trackJson";
-import { trails as trailCatalog, type TrailDirection } from "@/data/trails";
+import { trails as trailCatalog, type TrailDirection } from "@/data/trails/trails";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export interface TrailLayer {

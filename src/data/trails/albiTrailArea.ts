@@ -1,6 +1,6 @@
-import type { TrailData, TrailType } from "@/data/trails";
+import type { TrailData, TrailType } from "@/data/trails/trails";
 import { ROUTES } from "@/lib/routes";
-import { EVENT_LOCATIONS } from "./locations";
+import { EVENT_LOCATIONS } from "@/data/core/locations";
 
 export interface InactiveTrail {
   name: string;

@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import { ArrowRight, Calendar, Newspaper } from "@/lib/icons";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
-import { news } from "@/data/news";
+import { news } from "@/data/core/news";
 import { heroNewsImage } from "@/assets/images";
 import { newsDetailPath } from "@/lib/routes";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 const formatDate = (iso: string) => {
   const d = new Date(iso);

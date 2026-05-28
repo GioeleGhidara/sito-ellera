@@ -14,7 +14,7 @@ import {
   locandinaPedaliamoInsieme,
   chiesaSanBartolomeoEventImage,
 } from "@/assets/images";
-import { EVENT_LOCATIONS } from "./locations";
+import { EVENT_LOCATIONS } from "@/data/core/locations";
 
 export interface EventOrganizer {
   name: string;
@@ -34,6 +34,8 @@ export interface EventItem {
   date: string; // Formato leggibile lungo
   startDate: string; // YYYY-MM-DD
   endDate?: string; // YYYY-MM-DD per eventi di più giorni
+  startTime?: string; // Formato HH:mm (es. 19:00)
+  endTime?: string; // Formato HH:mm (es. 23:59)
   image: string;
   desc: string;
   location: string;
@@ -98,6 +100,8 @@ L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, 
     title: "La Pedaliamo Insieme",
     date: "31 Maggio 2026",
     startDate: "2026-05-31",
+    startTime: "14:00",
+    endTime: "19:00",
     image: locandinaPedaliamoInsieme,
     desc: "Pedalata in beneficenza tra Albisola Superiore ed Ellera con percorsi per tutti i livelli, incluso il giro famiglie su strada con passaggio nel golf.",
     location: EVENT_LOCATIONS.ALBISOLA_ELLERA.name,
@@ -163,6 +167,8 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     title: "Albi Trail E-Bike Fest",
     date: "14 Giugno 2026",
     startDate: "2026-06-14",
+    startTime: "08:30",
+    endTime: "13:00",
     image: albiTrailAreaImage,
     desc: "Raduno esclusivo e-bike sui sentieri tecnici di Ellera. Giro guidato di 3h+ e pranzo finale con panino, birra e patatine.",
     location: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.name,
@@ -185,6 +191,8 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     date: "21-22 Agosto 2026",
     startDate: "2026-08-21",
     endDate: "2026-08-22",
+    startTime: "19:00",
+    endTime: "23:59",
     image: caruggiLanterneImage,
     desc: "Il tradizionale percorso enogastronomico nei caruggi del borgo di Ellera. Tre serate dedicate al buon cibo, street food e convivialità. L'atmosfera magica delle lanterne è accompagnata da musica dal vivo di tutti i generi e rassegne d'arte come 'L'Arte del Fuoco'. Servizio navetta gratuito da Luceto dalle 19:00.",
     location: EVENT_LOCATIONS.CARUGGI.name,

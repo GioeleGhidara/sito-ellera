@@ -2,8 +2,8 @@ import {
   getEventOrganizers,
   type EventItem,
   type EventOrganizer,
-} from "@/data/events";
-import type { TrailData } from "@/data/trails";
+} from "@/data/events/events";
+import type { TrailData } from "@/data/trails/trails";
 import { ROUTES, eventDetailPath } from "@/lib/routes";
 import { getSiteUrl, summarizeText, toAbsoluteUrl } from "@/lib/seo";
 

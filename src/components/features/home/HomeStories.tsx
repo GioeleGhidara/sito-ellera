@@ -14,7 +14,7 @@ import {
   WaterMill,
 } from "@/lib/icons";
 import { ROUTES, tradizioneDetailPath } from "@/lib/routes";
-import type { Story } from "@/data/stories";
+import type { Story } from "@/data/core/stories";
 
 interface HomeStoriesProps {
   stories: Story[];

@@ -11,27 +11,27 @@ import { ROUTES, tradizioneDetailPath } from "./lib/routes";
 
 const queryClient = new QueryClient();
 
-const Index = lazy(() => import("./pages/Index"));
-const Trekking = lazy(() => import("./pages/Trekking"));
-const AlbiTrailArea = lazy(() => import("./pages/AlbiTrailArea"));
-const Meteo = lazy(() => import("./pages/Meteo"));
-const TeatroBaloma = lazy(() => import("./pages/TeatroBaloma"));
-const TeatroBalomaSupport = lazy(() => import("./pages/TeatroBalomaSupport"));
-const GalleriaArte = lazy(() => import("./pages/GalleriaArte"));
-const ChiSiamo = lazy(() => import("./pages/ChiSiamo"));
-const Storia = lazy(() => import("./pages/Storia"));
-const Eventi = lazy(() => import("./pages/Eventi"));
-const EventDetail = lazy(() => import("./pages/EventDetail"));
-const News = lazy(() => import("./pages/News"));
-const NewsDetail = lazy(() => import("./pages/NewsDetail"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const TrailDetail = lazy(() => import("./pages/TrailDetail"));
-const Servizi = lazy(() => import("./pages/Servizi"));
-const Tradizioni = lazy(() => import("./pages/Tradizioni"));
-const TradizioneDetail = lazy(() => import("./pages/TradizioneDetail"));
-const AlbiTrailEbikeFest = lazy(() => import("./pages/AlbiTrailEbikeFest"));
-const Privacy = lazy(() => import("./pages/Privacy"));
-const Regolamento = lazy(() => import("./pages/Regolamento"));
+const Index = lazy(() => import("./pages/core/Index"));
+const Trekking = lazy(() => import("./pages/trails/Trekking"));
+const AlbiTrailArea = lazy(() => import("./pages/trails/AlbiTrailArea"));
+const Meteo = lazy(() => import("./pages/core/Meteo"));
+const TeatroBaloma = lazy(() => import("./pages/culture/TeatroBaloma"));
+const TeatroBalomaSupport = lazy(() => import("./pages/culture/TeatroBalomaSupport"));
+const GalleriaArte = lazy(() => import("./pages/culture/GalleriaArte"));
+const ChiSiamo = lazy(() => import("./pages/core/ChiSiamo"));
+const Storia = lazy(() => import("./pages/culture/Storia"));
+const Eventi = lazy(() => import("./pages/events/Eventi"));
+const EventDetail = lazy(() => import("./pages/events/EventDetail"));
+const News = lazy(() => import("./pages/core/News"));
+const NewsDetail = lazy(() => import("./pages/core/NewsDetail"));
+const NotFound = lazy(() => import("./pages/core/NotFound"));
+const TrailDetail = lazy(() => import("./pages/trails/TrailDetail"));
+const Servizi = lazy(() => import("./pages/core/Servizi"));
+const Tradizioni = lazy(() => import("./pages/culture/Tradizioni"));
+const TradizioneDetail = lazy(() => import("./pages/culture/TradizioneDetail"));
+const AlbiTrailEbikeFest = lazy(() => import("./pages/events/AlbiTrailEbikeFest"));
+const Privacy = lazy(() => import("./pages/legal/Privacy"));
+const Regolamento = lazy(() => import("./pages/legal/Regolamento"));
 
 const RouteFallback = () => (
   <section className="min-h-screen bg-background flex items-center justify-center">

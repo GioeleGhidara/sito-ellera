@@ -53,7 +53,7 @@ const STORY_FRONTMATTER_KEYS = new Set<keyof StoryFrontmatter>([
 
 const FRONTMATTER_PATTERN = /^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
 
-const markdownFiles = import.meta.glob("../content/tradizioni/*.md", {
+const markdownFiles = import.meta.glob("../../content/tradizioni/*.md", {
   eager: true,
   import: "default",
   query: "?raw",

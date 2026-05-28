@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import { 
   BookOpen, 
   History, 
@@ -13,10 +14,6 @@ import { elleraDalPonteImage, heroStoriaImage } from "@/assets/images";
 import { ROUTES, tradizioneDetailPath } from "@/lib/routes";
 import { Link } from "react-router-dom";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 const sections = [
   {

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { createDirectionalArrows } from "@/lib/trailDirectionArrows";
-import type { TrailDirection } from "@/data/trails";
+import type { TrailDirection } from "@/data/trails/trails";
 
 interface TrailMiniMapProps {
   gpxUrl: string;

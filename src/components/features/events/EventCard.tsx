@@ -13,11 +13,11 @@ import type {
   EventItem,
   EventOrganizer,
   EventOrganizersSource,
-} from "@/data/events";
+} from "@/data/events/events";
 import {
   getEventOrganizers,
   hasEventDetail,
-} from "@/data/events";
+} from "@/data/events/events";
 import { eventDetailPath } from "@/lib/routes";
 import { albiTrailAreaLogo } from "@/assets/images";
 import { useEventCountdown } from "@/hooks/useEventCountdown";

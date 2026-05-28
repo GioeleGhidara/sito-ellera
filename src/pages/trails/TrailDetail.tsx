@@ -1,16 +1,17 @@
 import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import { Clock, Download, ExternalLink, ImageIcon, MapPin, Mountain, Ruler, TrendingDown, TrendingUp, type IconType } from "@/lib/icons";
 import FloatingBackLink from "@/components/layout/FloatingBackLink";
 import Layout from "@/components/layout/Layout";
 import MapFallback from "@/components/features/trail/MapFallback";
 import Seo from "@/components/shared/Seo";
 import { Button } from "@/components/ui/button";
-import { getTrailBySlug } from "@/data/trails";
+import { getTrailBySlug } from "@/data/trails/trails";
 import { summarizeText } from "@/lib/seo";
 import { createTouristTripJsonLd } from "@/lib/jsonLd";
-import NotFound from "./NotFound";
+import NotFound from "../core/NotFound";
 import { ROUTES } from "@/lib/routes";
 import {
   trailHeroBlackImage,
@@ -27,10 +28,6 @@ import {
 
 const TrailMiniMap = React.lazy(() => import("@/components/features/trail/TrailMiniMap"));
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
 
 const TRAIL_HEADERS_BY_COLOR: Record<string, string> = {
   "#0000FF": trailHeroBlueImage,

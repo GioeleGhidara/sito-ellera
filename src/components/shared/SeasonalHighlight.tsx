@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Gift, Ghost, Skull, Snowflake } from "@/lib/icons";
-import { getActiveSeason } from "@/data/seasonal";
-import type { SeasonalEvent } from "@/data/seasonal";
+import { getActiveSeason } from "@/data/core/seasonal";
+import type { SeasonalEvent } from "@/data/core/seasonal";
 import { ROUTES } from "@/lib/routes";
 
 const themeConfig: Record<
