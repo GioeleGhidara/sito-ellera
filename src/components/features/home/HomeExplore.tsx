@@ -39,7 +39,7 @@ const HomeExplore = ({ homeExploreItems, fadeUp }: HomeExploreProps) => {
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="relative z-10 w-full p-3 sm:p-5 md:p-6">
+                  <div className="relative z-10 w-full p-2 sm:p-4 md:p-5">
                     <div className="flex flex-col items-center gap-1 text-center sm:flex-row sm:items-center sm:gap-2 sm:text-left">
                       <span className="text-[11px] font-bold leading-tight text-white sm:text-sm sm:font-semibold">
                         {branch.title}

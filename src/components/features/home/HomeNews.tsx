@@ -65,7 +65,7 @@ const HomeNews = ({ featuredNews, fadeUp }: HomeNewsProps) => {
                   </div>
                 )}
 
-                <div className="flex flex-1 flex-col p-5 md:p-6 lg:p-8">
+                <div className="flex flex-1 flex-col p-4 md:p-5 lg:p-6">
                   <div className="mb-3 flex flex-wrap items-center gap-3">
                     <span
                       className={`rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${categoryColor[featuredNews.category]}`}

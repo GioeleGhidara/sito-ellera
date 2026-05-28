@@ -14,6 +14,21 @@ export default {
       },
     },
     extend: {
+      fontSize: {
+        xs: ["0.8125rem", { lineHeight: "1.0625rem" }], // 13px (was 12px)
+        sm: ["0.9375rem", { lineHeight: "1.3125rem" }], // 15px (was 14px)
+        base: ["1.0625rem", { lineHeight: "1.5625rem" }], // 17px (was 16px)
+        lg: ["1.1875rem", { lineHeight: "1.8125rem" }], // 19px (was 18px)
+        xl: ["1.3125rem", { lineHeight: "1.8125rem" }], // 21px (was 20px)
+        "2xl": ["1.5625rem", { lineHeight: "2.0625rem" }], // 25px (was 24px)
+        "3xl": ["1.9375rem", { lineHeight: "2.3125rem" }], // 31px (was 30px)
+        "4xl": ["2.3125rem", { lineHeight: "2.5625rem" }], // 37px (was 36px)
+        "5xl": ["3.0625rem", { lineHeight: "1" }], // 49px (was 48px)
+        "6xl": ["3.8125rem", { lineHeight: "1" }], // 61px (was 60px)
+        "7xl": ["4.5625rem", { lineHeight: "1" }], // 73px (was 72px)
+        "8xl": ["6.0625rem", { lineHeight: "1" }], // 97px (was 96px)
+        "9xl": ["8.0625rem", { lineHeight: "1" }], // 129px (was 128px)
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

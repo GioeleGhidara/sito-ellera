@@ -60,7 +60,7 @@ const HomeStories = ({ stories, fadeUp }: HomeStoriesProps) => {
                 <Link
                   key={story.id}
                   to={tradizioneDetailPath(story.slug)}
-                  className="group rounded-xl border border-border bg-card/60 p-6 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-card hover:shadow-md block"
+                  className="group rounded-xl border border-border bg-card/60 p-5 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-card hover:shadow-md block"
                 >
                   <div className="mb-3 flex items-center gap-2">
                     <Icon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />

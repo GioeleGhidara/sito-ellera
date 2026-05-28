@@ -158,7 +158,7 @@ export const FeaturedEventCard = ({ event }: { event: EventItem }) => {
             className="h-[250px] w-full object-cover transition-transform duration-700 hover:scale-105 md:h-[400px] md:w-auto md:object-cover"
           />
         </div>
-        <div className="flex flex-[1_1_auto] flex-col p-5 md:p-6 lg:p-7">
+        <div className="flex flex-[1_1_auto] flex-col p-4 md:p-5 lg:p-6">
           <div className="flex flex-wrap items-center gap-2">
             <span
               className={`inline-flex rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${event.category ? categoryClasses[event.category] : categoryClasses.Altro}`}
@@ -298,7 +298,7 @@ export const FeaturedEventCardCompact = ({ event }: { event: EventItem }) => {
           </span>
           <span className="text-[10px] text-muted-foreground">{date.weekday}</span>
         </div>
-        <div className="flex flex-1 flex-col p-4 lg:p-5">
+        <div className="flex flex-1 flex-col p-3 lg:p-4">
           <div className="flex flex-wrap items-center gap-2">
             <span
               className={`inline-flex rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] ${event.category ? categoryClasses[event.category] : categoryClasses.Altro}`}

@@ -46,7 +46,7 @@ const HomeEvents = ({ highlightedEvents, fadeUp }: HomeEventsProps) => {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-4">
                   <span className="text-[10px] font-semibold uppercase text-accent lg:text-xs">{event.date}</span>
                   <h4 className="mt-1 font-heading text-base font-bold text-foreground lg:text-lg">
                     {hasEventDetail(event) ? (
