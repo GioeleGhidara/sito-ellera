@@ -1,20 +1,10 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useCursorDot } from "../hooks/useCursorDot";
 import "./EbikeLegal.css";
 
 export default function Regolamento() {
-  useEffect(() => {
-    const dot = document.getElementById("dot");
-    const onMove = (e: MouseEvent) => {
-      if (dot) {
-        dot.style.left = e.clientX + "px";
-        dot.style.top = e.clientY + "px";
-      }
-    };
-    document.addEventListener("mousemove", onMove);
-    return () => document.removeEventListener("mousemove", onMove);
-  }, []);
+  const dotRef = useCursorDot();
 
   return (
     <>
@@ -24,31 +14,30 @@ export default function Regolamento() {
       </Helmet>
 
       <div className="ebike-legal-page">
-        <div className="ebike-legal-cursor-dot" id="dot"></div>
+        <div className="ebike-legal-cursor-dot" ref={dotRef} />
 
         <nav className="ebike-legal-nav">
           <Link to="/albi-trail-ebike-fest" className="ebike-legal-nav-logo">
             <div className="ebike-legal-nav-logo-dot"></div>
-            Comitato<span style={{ color: "var(--red-warm)", marginLeft: "0.15em" }}>Ellerese</span>
+            Comitato<span className="ebike-legal-nav-accent">Ellerese</span>
           </Link>
         </nav>
 
         <main className="ebike-legal-main">
           <div className="section-tag">Norme di Partecipazione</div>
-          <h1>Regolamento<br />Generale Eventi</h1>
+          <h1>Regolamento<br />Albi Trail E-Bike Fest</h1>
 
           <p>
             Il presente regolamento (di seguito, "Regolamento") definisce le norme comportamentali, i requisiti di sicurezza
-            e le responsabilità per la partecipazione a tutte le manifestazioni ciclistiche, escursionistiche e associative
-            organizzate dal <strong>Comitato Ellerese</strong> (di seguito, "Organizzazione"). Ogni partecipante, con l'atto
-            dell'iscrizione, dichiara di aver letto, compreso e accettato integralmente il presente Regolamento. Si consiglia inoltre di leggere l'<Link to="/privacy"><strong>Informativa sulla Privacy</strong></Link>.
+            e le responsabilità per la partecipazione all'evento <strong>Albi Trail E-Bike Fest</strong> e alle relative manifestazioni outdoor 
+            organizzate dal <strong>Comitato Ellerese</strong> in collaborazione con <strong>Albi Trail Area</strong> (di seguito, "Organizzazione"). 
+            Ogni partecipante, con l'atto dell'iscrizione, dichiara di aver letto, compreso e accettato integralmente il presente Regolamento. Si consiglia inoltre di leggere l'<Link to="/privacy"><strong>Informativa sulla Privacy</strong></Link>.
           </p>
 
-          <h2>1. Requisiti di Partecipazione</h2>
+          <h2>1. Requisiti di Partecipazione e Idoneità Fisica</h2>
           <ul>
-            <li>La partecipazione è aperta a tutti i soggetti maggiorenni dotati di idoneità fisica all'attività sportiva. I
-              minorenni possono partecipare solo se accompagnati da un genitore o da chi ne esercita la potestà, che ne assume
-              ogni responsabilità legale e civile.</li>
+            <li>La partecipazione è aperta a tutti i soggetti maggiorenni dotati di idoneità fisica all'attività sportiva. <strong>Non è richiesto il Certificato Medico Sportivo Agonistico</strong>, ma il partecipante dichiara sotto la propria responsabilità di possedere l'idoneità fisica necessaria per affrontare l'attività.</li>
+            <li><strong>Partecipazione di Minori:</strong> I minorenni possono partecipare solo se autorizzati e accompagnati da un genitore o da chi ne esercita la potestà genitoriale. Il genitore/tutore è responsabile civile e penale di qualsiasi danno causato dal minore a sé stesso, ad altri o a cose durante la manifestazione. L'iscrizione del minore <strong>non trasferisce responsabilità all'Organizzazione</strong> in nessun caso.</li>
             <li>L'iscrizione deve essere completata tramite i canali ufficiali indicati dall'Organizzazione.</li>
             <li>Il partecipante dichiara di non trovarsi sotto l'effetto di sostanze stupefacenti, psicotrope o alcoliche
               durante l'evento. L'Organizzazione si riserva il diritto di escludere dalla manifestazione chiunque presenti evidenti segni di alterazione.</li>
@@ -64,7 +53,7 @@ export default function Regolamento() {
           </ul>
 
           <h2>3. Trasferimento da Prato Feste ai Tracciati</h2>
-          <p>Il trasferimento dal punto di ritrovo presso il Prato Feste verso i tracciati ufficiali dell'evento <strong>deve avvenire seguendo rigorosamente le regole della strada</strong>. I partecipanti sono tenuti a:</p>
+          <p>Il trasferimento dal punto di ritrovo presso il Prato Feste verso i tracciati ufficiali dell'evento <strong>deve avvenire seguendo rigorosamente le norme del Codice della Strada</strong>. I partecipanti sono tenuti a:</p>
           <ul>
             <li>Rispettare integralmente il <strong>Codice della Strada Italiano (Decreto Legislativo 30 aprile 1992, n. 285 e successive modifiche)</strong> durante ogni spostamento su viabilità pubblica;</li>
             <li>Mantenere una velocità prudente e moderata in traversamenti urbani o aree abitate;</li>
@@ -83,7 +72,7 @@ export default function Regolamento() {
           </ul>
 
           <h2>5. Prevenzione della Peste Suina Africana</h2>
-          <p>I partecipanti sono tenuti al rigoroso rispetto delle <strong>norme vigenti in materia di contrasto della Peste Suina Africana (PSA)</strong>, come definite dai decreti ministeriali e dalle ordinanze regionali in vigore.</p>
+          <p>I partecipanti sono tenuti al rigoroso rispetto delle <strong>norme vigenti in materia di contrasto della Peste Suina Africana (PSA) e all'obbligo di rispettare le misure di bio sicurezza previste</strong>, come definite dai decreti ministeriali e dalle ordinanze regionali in vigore.</p>
           <ul>
             <li>È <strong>vietato</strong> raccogliere, toccare o alimentare animali selvatici, in particolare suini o loro resti;</li>
             <li>È <strong>vietato</strong> abbandonare avanzi di cibo o rifiuti organici sui tracciati, in aree boschive o in prossimità di habitat naturali;</li>
@@ -118,16 +107,11 @@ export default function Regolamento() {
           <p>Le somme versate per l'iscrizione sono da intendersi come <strong>contributo associativo</strong> finalizzato
             alla copertura delle spese vive e logistiche dell'evento. <strong>Non è previsto rimborso in caso di mancata partecipazione dell'iscritto per qualsiasi ragione</strong>. Nel caso in cui l'evento sia annullato o rinviato per cause imputabili all'Organizzazione o per forza maggiore, l'Organizzazione provvederà a comunicare le modalità di rimborso o di credito futuro in conformità alle norme applicabili.</p>
 
-          <h2>9. Idoneità Fisica e Dichiarazioni per Minori</h2>
-          <p>Per partecipare all'Albi Trail E-Bike Fest <strong>non è richiesto il Certificato Medico Sportivo Agonistico</strong>. Tuttavia, il partecipante dichiara sotto la propria responsabilità di possedere l'idoneità fisica necessaria per affrontare l'attività.</p>
-          
-          <p><strong>Partecipazione di Minori:</strong> L'iscrizione di soggetti minori di 18 anni comporta l'assunzione di responsabilità da parte del genitore o di chi ne esercita la potestà genitoriale. Il genitore/tutore è responsabile civile e penale di qualsiasi danno causato dal minore a sé stesso, ad altri o a cose durante la manifestazione. L'iscrizione del minore <strong>non trasferisce responsabilità all'Organizzazione</strong> in nessun caso.</p>
-
-          <h2>10. Tutela dell'Ambiente</h2>
+          <h2>9. Tutela dell'Ambiente</h2>
           <p>I partecipanti sono tenuti al massimo rispetto del patrimonio naturale. È severamente vietato abbandonare rifiuti
             o molestare la fauna selvatica. <strong>"Non lasciare nulla se non le tracce dei tuoi pneumatici."</strong></p>
 
-          <h2>11. Sicurezza e Assistenza Medica</h2>
+          <h2>10. Sicurezza e Assistenza Medica</h2>
           <p>Per tutta la durata della manifestazione è assicurata l'<strong>assistenza sanitaria con il supporto della Croce Verde di Albisola</strong>. Saranno presenti addetti dell'Organizzazione e volontari impegnati a garantire la massima sicurezza e il giusto supporto in caso di necessità.</p>
           <ul>
             <li>Ogni partecipante deve prestare attenzione a tutte le persone in difficoltà e avvisare immediatamente i soccorsi (volontari, addetti o numeri di emergenza);</li>
@@ -135,11 +119,11 @@ export default function Regolamento() {
             <li>Il partecipante che si allontana volontariamente dal tracciato ufficiale <strong>non è più sotto la responsabilità dell'Organizzazione</strong> e assume piena responsabilità per la propria incolumità.</li>
           </ul>
 
-          <h2>12. Condizioni Meteo e Annullamento dell'Evento</h2>
+          <h2>11. Condizioni Meteo e Annullamento dell'Evento</h2>
           <p>In caso di fenomeni meteo importanti (forti temporali, forte vento, fulmini, ecc.), l'Organizzazione si riserva il diritto di effettuare variazioni di percorso, anche all'ultimo minuto, al fine di eliminare eventuali pericoli o condizioni di forte disagio per i partecipanti. Le variazioni saranno comunicate tempestivamente e segnalate dagli addetti.</p>
           <p><strong>In caso di allerta meteo Arancione o Rossa emessa dalla Protezione Civile Regionale,</strong> la manifestazione sarà <strong>rimandata a data da comunicarsi successivamente</strong>. Nel caso di rinvio per cause meteo o di forza maggiore, non è previsto rimborso, ma è garantito il credito per una futura edizione dell'evento. Nel caso di annullamento definitivo, l'Organizzazione comunicherà le modalità di rimborso in conformità alle norme applicabili.</p>
 
-          <h2>13. Consapevolezza e Autonomia dei Partecipanti</h2>
+          <h2>12. Consapevolezza e Autonomia dei Partecipanti</h2>
           <p>I partecipanti all'Albi Trail E-Bike Fest devono essere pienamente consapevoli della natura dell'attività outdoor e dell'impegno fisico richiesto. È essenziale:</p>
           <ul>
             <li>Essere coscienti della lunghezza e della specificità del percorso e di essere adeguatamente preparati;</li>
@@ -148,12 +132,12 @@ export default function Regolamento() {
             <li>Comprendere che il ruolo dell'Organizzazione non è di assistere un partecipante nella gestione di questi problemi, ma di fornire supporto medico solo in caso di emergenza reale.</li>
           </ul>
 
-          <h2>14. Trattamento Dati e Media</h2>
+          <h2>13. Trattamento Dati e Media</h2>
           <p>L'iscrizione implica l'accettazione dell'<Link to="/privacy"><strong>Informativa Privacy</strong></Link> e, se selezionata la relativa opzione,
             l'autorizzazione all'utilizzo gratuito di immagini e video catturati durante l'evento per scopi promozionali
             dell'Organizzazione.</p>
 
-          <h2>15. Accettazione del Regolamento</h2>
+          <h2>14. Accettazione del Regolamento</h2>
           <p>La partecipazione all'<strong>Albi Trail E-Bike Fest</strong> comporta l'accettazione senza riserve del presente regolamento, disponibile sul sito ufficiale dell'evento.</p>
           <p>Alcune parti del regolamento potranno essere modificate a causa di imprescindibili esigenze organizzative o sopraggiunte condizioni di sicurezza. In caso di variazioni, sarà dato tempestivo avviso e le modifiche diventeranno parte integrante del presente regolamento. È responsabilità del partecipante consultare gli aggiornamenti ufficiali prima della manifestazione.</p>
 

@@ -219,3 +219,8 @@
     padding: 1rem 1.2rem;
   }
 }
+
+.ebike-legal-nav-accent {
+  color: var(--red-warm);
+  margin-left: 0.15em;
+}

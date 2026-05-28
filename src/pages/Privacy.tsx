@@ -1,20 +1,10 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useCursorDot } from "../hooks/useCursorDot";
 import "./EbikeLegal.css";
 
 export default function Privacy() {
-  useEffect(() => {
-    const dot = document.getElementById("dot");
-    const onMove = (e: MouseEvent) => {
-      if (dot) {
-        dot.style.left = e.clientX + "px";
-        dot.style.top = e.clientY + "px";
-      }
-    };
-    document.addEventListener("mousemove", onMove);
-    return () => document.removeEventListener("mousemove", onMove);
-  }, []);
+  const dotRef = useCursorDot();
 
   return (
     <>
@@ -24,12 +14,12 @@ export default function Privacy() {
       </Helmet>
 
       <div className="ebike-legal-page">
-        <div className="ebike-legal-cursor-dot" id="dot"></div>
+        <div className="ebike-legal-cursor-dot" ref={dotRef} />
 
         <nav className="ebike-legal-nav">
           <Link to="/albi-trail-ebike-fest" className="ebike-legal-nav-logo">
             <div className="ebike-legal-nav-logo-dot"></div>
-            Albi Trail<span style={{ color: "var(--red-warm)", marginLeft: "0.15em" }}>E-Bike&nbsp;Fest</span>
+            Albi Trail<span className="ebike-legal-nav-accent">E-Bike&nbsp;Fest</span>
           </Link>
         </nav>
 
