@@ -114,9 +114,9 @@ export default function AlbiTrailEbikeFest() {
   "organizer":{"@type":"Organization","name":"Comitato Ellerese","url":"https://ellera.it"},
   "performer":{"@type":"Organization","name":"Albi Trail Area"},
   "offers":[
-    {"@type":"Offer","name":"Ride + Pranzo","price":"20.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest"},
-    {"@type":"Offer","name":"Solo Ride","price":"12.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest"},
-    {"@type":"Offer","name":"Solo Pranzo","price":"12.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest"}
+    {"@type":"Offer","name":"Ride + Pranzo","price":"20.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest","validFrom":"2026-01-01T00:00:00+01:00"},
+    {"@type":"Offer","name":"Solo Ride","price":"12.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest","validFrom":"2026-01-01T00:00:00+01:00"},
+    {"@type":"Offer","name":"Solo Pranzo","price":"12.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://ellera.it/albi-trail-ebike-fest","validFrom":"2026-01-01T00:00:00+01:00"}
   ],
   "url":"https://ellera.it/albi-trail-ebike-fest"
 }`}</script>
