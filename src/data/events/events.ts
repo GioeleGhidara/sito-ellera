@@ -173,7 +173,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     image: locandinaEbikeFest,
     heroImage: albiTrailAreaImage,
     heroImagePosition: "object-[center_25%]",
-    desc: "Raduno esclusivo e-bike sui sentieri tecnici di Ellera. Giro guidato di 3h+ e pranzo finale con panino, birra e patatine.",
+    desc: "Raduno esclusivo e-bike sui sentieri tecnici di Ellera. Giro accompagnato di 3h+ e pranzo finale con panino, birra e patatine.",
     location: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.name,
     locationUrl: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.url,
     status: "In arrivo",
@@ -194,7 +194,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
       },
     ],
     showOnHome: true,
-    detailContent: `Giro guidato tecnico sui sentieri della Albi Trail Area. 
+    detailContent: `Giro accompagnato tecnico sui sentieri della Albi Trail Area. 
   - **Ritrovo**: 08:30 al Prato Feste. 
   - **Prezzi**: €20 (giro + pranzo). 
   - **Menu**: Panino salsiccia/wurstel, patatine e birra (opzione vegana disponibile).`,

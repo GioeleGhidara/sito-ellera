@@ -4,7 +4,7 @@ export function InfoStats() {
             <div className="info-text reveal">
                 <div className="section-tag">L'Evento</div>
                 <h2>Sentieri,<br />bici e comunità</h2>
-                <p><strong>Albi Trail E-Bike Fest</strong> è una giornata dedicata allo sport e alla comunità. Il cuore dell'evento è il ride guidato sui sentieri della <strong>Albi Trail Area</strong>, con gruppi accompagnati per ogni livello.</p>
+                <p><strong>Albi Trail E-Bike Fest</strong> è una giornata dedicata allo sport e alla comunità. Il cuore dell'evento è il ride accompagnato sui sentieri della <strong>Albi Trail Area</strong>, con gruppi accompagnati per ogni livello.</p>
                 <p style={{ marginTop: "1rem" }}>Per chi non pedala o vuole semplicemente unirsi alla festa, l'appuntamento è al prato feste del Comitato per il <strong>pranzo conviviale</strong>: panini, birra e patatine - l'anima della nostra ospitalità.</p>
             </div>
             <div className="info-stats">
