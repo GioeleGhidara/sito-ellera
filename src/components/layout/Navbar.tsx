@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
+import PrefetchLink from "@/components/PrefetchLink";
 import { ChevronDown, Menu, X, MapPin } from "@/lib/icons";
 import { logoComitatoRidotto } from "@/assets/images";
 import { ROUTES, serviziSectionPath } from "@/lib/routes";
@@ -10,34 +11,36 @@ const navItems = [
   {
     label: "Il Borgo",
     children: [
-      { label: "Galleria a cielo aperto", to: ROUTES.galleriaArte },
-      { label: "Storia", to: ROUTES.storia },
-      { label: "Teatro Balomà", to: ROUTES.teatroBaloma },
-      { label: "Tradizioni", to: ROUTES.tradizioni },
+      { label: "Galleria a cielo aperto", to: ROUTES.galleriaArte, prefetch: () => import("@/pages/culture/GalleriaArte") },
+      { label: "Storia", to: ROUTES.storia, prefetch: () => import("@/pages/culture/Storia") },
+      { label: "Teatro Balomà", to: ROUTES.teatroBaloma, prefetch: () => import("@/pages/culture/TeatroBaloma") },
+      { label: "Tradizioni", to: ROUTES.tradizioni, prefetch: () => import("@/pages/culture/Tradizioni") },
     ],
   },
   {
     label: "Outdoor",
     children: [
-      { label: "Trekking", to: ROUTES.trekking },
-      { label: "Albi Trail Area", to: ROUTES.albiTrailArea },
-      { label: "Meteo e Allerte", to: ROUTES.meteo },
+      { label: "Trekking", to: ROUTES.trekking, prefetch: () => import("@/pages/trails/Trekking") },
+      { label: "Albi Trail Area", to: ROUTES.albiTrailArea, prefetch: () => import("@/pages/trails/AlbiTrailArea") },
+      { label: "Meteo e Allerte", to: ROUTES.meteo, prefetch: () => import("@/pages/core/Meteo") },
     ],
   },
-  { label: "Eventi", to: ROUTES.eventi },
-  { label: "News", to: ROUTES.news },
+  { label: "Eventi", to: ROUTES.eventi, prefetch: () => import("@/pages/events/Eventi") },
+  { label: "News", to: ROUTES.news, prefetch: () => import("@/pages/core/News") },
   {
     label: "Servizi",
     to: ROUTES.servizi,
+    prefetch: () => import("@/pages/core/Servizi"),
     children: [
-      { label: "Bus", to: serviziSectionPath("bus") },
-      { label: "Dove mangiare", to: serviziSectionPath("mangiare") },
-      { label: "Negozi", to: serviziSectionPath("negozi") },
+      { label: "Bus", to: serviziSectionPath("bus"), prefetch: () => import("@/pages/core/Servizi") },
+      { label: "Dove mangiare", to: serviziSectionPath("mangiare"), prefetch: () => import("@/pages/core/Servizi") },
+      { label: "Negozi", to: serviziSectionPath("negozi"), prefetch: () => import("@/pages/core/Servizi") },
     ],
   },
   {
     label: "Chi siamo",
     to: ROUTES.comitato,
+    prefetch: () => import("@/pages/core/ChiSiamo")
   },
 ];
 
@@ -289,12 +292,13 @@ const Navbar = ({
                     >
                       {item.to ? (
                         <div className="flex items-center">
-                          <Link
+                          <PrefetchLink
                             to={item.to}
+                            prefetch={item.prefetch!}
                             className={`flex items-center px-4 py-2 rounded-l-md text-sm font-medium transition-colors ${getTextColor(isActive)}`}
                           >
                             {item.label}
-                          </Link>
+                          </PrefetchLink>
                           <button
                             type="button"
                             aria-label={`Apri sottomenu ${item.label}`}
@@ -320,9 +324,10 @@ const Navbar = ({
                         <div className="absolute left-0 top-full z-50 pt-1">
                           <div className="w-52 overflow-hidden rounded-lg border border-border bg-card shadow-xl">
                             {item.children.map((child) => (
-                              <Link
+                              <PrefetchLink
                                 key={child.to}
                                 to={child.to}
+                                prefetch={child.prefetch!}
                                 className={`block px-4 py-3 text-sm transition-colors ${
                                   isLinkActive(child.to)
                                     ? "text-primary bg-secondary"
@@ -330,7 +335,7 @@ const Navbar = ({
                                 }`}
                               >
                                 {child.label}
-                              </Link>
+                              </PrefetchLink>
                             ))}
                           </div>
                         </div>
@@ -339,13 +344,14 @@ const Navbar = ({
                   );
                 })()
               ) : (
-                <Link
+                <PrefetchLink
                   key={item.to}
                   to={item.to!}
+                  prefetch={item.prefetch!}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${getTextColor(isLinkActive(item.to!))}`}
                 >
                   {item.label}
-                </Link>
+                </PrefetchLink>
               )
             )}
           </div>
@@ -382,14 +388,15 @@ const Navbar = ({
                     <div key={item.label}>
                       {item.to ? (
                         <div className="flex items-center gap-1">
-                          <Link
+                          <PrefetchLink
                             to={item.to}
+                            prefetch={item.prefetch!}
                             className={`flex-1 px-3 py-2.5 font-medium rounded-md hover:bg-secondary ${
                               isActive ? "text-primary" : "text-foreground"
                             }`}
                           >
                             {item.label}
-                          </Link>
+                          </PrefetchLink>
                           <button
                             type="button"
                             onClick={() =>
@@ -421,9 +428,10 @@ const Navbar = ({
                       {openDropdown === item.label && (
                         <div className="overflow-hidden">
                           {item.children.map((child) => (
-                            <Link
+                            <PrefetchLink
                               key={child.to}
                               to={child.to}
+                              prefetch={child.prefetch!}
                               className={`block px-6 py-2.5 text-sm ${
                                 isLinkActive(child.to)
                                   ? "text-primary font-medium"
@@ -431,7 +439,7 @@ const Navbar = ({
                               }`}
                             >
                               {child.label}
-                            </Link>
+                            </PrefetchLink>
                           ))}
                         </div>
                       )}
@@ -439,15 +447,16 @@ const Navbar = ({
                   );
                 })()
               ) : (
-                <Link
+                <PrefetchLink
                   key={item.to}
                   to={item.to!}
+                  prefetch={item.prefetch!}
                   className={`block px-3 py-2.5 font-medium rounded-md hover:bg-secondary ${
                     isLinkActive(item.to!) ? "text-primary" : "text-foreground"
                   }`}
                 >
                   {item.label}
-                </Link>
+                </PrefetchLink>
               )
             )}
           </div>

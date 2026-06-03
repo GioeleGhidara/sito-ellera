@@ -44,6 +44,7 @@ const HomeEvents = ({ highlightedEvents, fadeUp }: HomeEventsProps) => {
                     src={event.image}
                     alt={event.title}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-4">

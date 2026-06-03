@@ -11,7 +11,8 @@ import { ROUTES, tradizioneDetailPath } from "./lib/routes";
 
 const queryClient = new QueryClient();
 
-const Index = lazy(() => import("./pages/core/Index"));
+import Index from "./pages/core/Index";
+
 const Trekking = lazy(() => import("./pages/trails/Trekking"));
 const AlbiTrailArea = lazy(() => import("./pages/trails/AlbiTrailArea"));
 const Meteo = lazy(() => import("./pages/core/Meteo"));
@@ -34,8 +35,14 @@ const Privacy = lazy(() => import("./pages/legal/Privacy"));
 const Regolamento = lazy(() => import("./pages/legal/Regolamento"));
 
 const RouteFallback = () => (
-  <section className="min-h-screen bg-background flex items-center justify-center">
-    <div className="h-10 w-10 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
+  <section className="min-h-screen bg-background flex flex-col items-center p-4 lg:p-8 space-y-8 animate-pulse">
+    <div className="w-full h-16 lg:h-20 bg-muted/10 rounded-md" />
+    <div className="w-full max-w-5xl h-64 lg:h-96 bg-muted/10 rounded-lg" />
+    <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="h-48 bg-muted/10 rounded-lg" />
+      <div className="h-48 bg-muted/10 rounded-lg hidden md:block" />
+      <div className="h-48 bg-muted/10 rounded-lg hidden lg:block" />
+    </div>
   </section>
 );
 

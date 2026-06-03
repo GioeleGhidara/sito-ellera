@@ -10,6 +10,18 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('leaflet')) return 'vendor-maps';
+          if (id.includes('framer-motion')) return 'vendor-ui';
+          if (id.includes('@supabase')) return 'vendor-db';
+          if (id.includes('node_modules')) return 'vendor';
+        }
+      }
+    }
+  },
   plugins: [
     react(),
   ].filter(Boolean),

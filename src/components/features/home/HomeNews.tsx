@@ -59,7 +59,7 @@ const HomeNews = ({ featuredNews, fadeUp }: HomeNewsProps) => {
                       src={featuredNews.image}
                       alt={featuredNews.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="eager"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent md:bg-gradient-to-r" />
                   </div>

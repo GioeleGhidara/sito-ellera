@@ -1,5 +1,5 @@
 import { stories } from "@/data/core/stories";
-import { events } from "@/data/events/events";
+import { events, isEventPast } from "@/data/events/events";
 import { news } from "@/data/core/news";
 import Layout from "@/components/layout/Layout";
 import Seo from "@/components/shared/Seo";
@@ -23,7 +23,9 @@ const Index = () => {
     "Scopri Ellera, borgo ligure tra galleria a cielo aperto, trail MTB, trekking, tradizioni, teatro ed eventi nel cuore della Valle Sansobbia.";
   
   const featuredNews = news[0];
-  const highlightedEvents = events.filter((event) => event.showOnHome !== false).slice(0, 3);
+  const highlightedEvents = events
+    .filter((event) => event.showOnHome !== false && !isEventPast(event))
+    .slice(0, 3);
 
   return (
     <Layout>
