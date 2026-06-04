@@ -104,7 +104,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             if ((window as any).turnstile && turnstileRef.current) {
                 turnstileRef.current.innerHTML = "";
                 turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
-                    sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY || "0x4AAAAAACzdId3jrskU4ueH",
+                    sitekey: "0x4AAAAAACzdId3jrskU4ueH",
                     theme: "dark"
                 });
                 widgetId = turnstileWidgetId.current;
