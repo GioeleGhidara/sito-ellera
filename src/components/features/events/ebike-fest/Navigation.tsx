@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface NavigationProps {
     onScrollToForm: () => void;
@@ -10,6 +10,11 @@ export function Navigation({ onScrollToForm }: NavigationProps) {
 
     const closeDrawer = () => { setDrawerOpen(false); document.body.style.overflow = ""; };
     const openDrawer = () => { setDrawerOpen(true); document.body.style.overflow = "hidden"; };
+
+    useEffect(() => {
+        // Cleanup function: ripristina lo scroll se il componente viene smontato
+        return () => { document.body.style.overflow = ""; };
+    }, []);
 
     return (
         <>

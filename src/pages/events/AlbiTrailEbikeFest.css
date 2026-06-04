@@ -1,368 +1,2206 @@
 .ebike-page {
-  --red:#c4321a;--red-hot:#e84d2a;--red-dark:#7a1e0a;--red-warm:#ff6b3d;
-  --black:#090807;--black2:#121110;--black3:#1c1a18;
-  --white:#f4ede6;--sand:#c8b89a;--grey:#3a3632;--grey-lt:#857c74;
+  --red: #c4321a;
+  --red-hot: #e84d2a;
+  --red-dark: #7a1e0a;
+  --red-warm: #ff6b3d;
+  --black: #090807;
+  --black2: #121110;
+  --black3: #1c1a18;
+  --white: #f4ede6;
+  --sand: #c8b89a;
+  --grey: #3a3632;
+  --grey-lt: #857c74;
+  --green: #10b981;
+  --green-rgb: 16, 185, 129;
+  --paypal: #ffc439;
 }
+
 .ebike-page *,
 .ebike-page *::before,
-.ebike-page *::after { margin:0;padding:0;box-sizing:border-box; }
-.ebike-page { background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:crosshair; }
-.ebike-page input,.ebike-page select,.ebike-page textarea { cursor:text; }
-.ebike-page button,.ebike-page a,.ebike-page label,.ebike-page .quota-card,.ebike-page .nav-cta,.ebike-page .btn-primary,.ebike-page .btn-secondary { cursor:pointer; }
-.ebike-page button:disabled,.ebike-page input:disabled,.ebike-page select:disabled,.ebike-page textarea:disabled { cursor:not-allowed; }
+.ebike-page *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ebike-page {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+.ebike-page input,
+.ebike-page select,
+.ebike-page textarea {
+  cursor: text;
+}
+
+.ebike-page button,
+.ebike-page a,
+.ebike-page label,
+.ebike-page .quota-card,
+.ebike-page .nav-cta,
+.ebike-page .btn-primary,
+.ebike-page .btn-secondary {
+  cursor: pointer;
+}
+
+.ebike-page button:disabled,
+.ebike-page input:disabled,
+.ebike-page select:disabled,
+.ebike-page textarea:disabled {
+  cursor: not-allowed;
+}
 
 /* NOISE */
-.ebike-page::before { content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.032;pointer-events:none;z-index:9999; }
+.ebike-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .032;
+  pointer-events: none;
+  z-index: 9999;
+}
 
 /* CURSOR */
-.ebike-cursor-dot,.ebike-cursor-ring { display:none; }
+.ebike-cursor-dot,
+.ebike-cursor-ring {
+  display: none;
+}
+
 @media (pointer:fine) {
-  .ebike-cursor-dot { display:block;width:8px;height:8px;background:var(--red-hot);border-radius:50%;position:fixed;top:0;left:0;margin:-4px 0 0 -4px;pointer-events:none;z-index:10000;will-change:transform; }
-  .ebike-cursor-ring { display:block;width:30px;height:30px;border:1px solid rgba(232,77,42,.5);border-radius:50%;position:fixed;top:0;left:0;margin:-15px 0 0 -15px;pointer-events:none;z-index:9999;transition:transform .15s ease-out;will-change:transform; }
+  .ebike-cursor-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: var(--red-hot);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: -4px 0 0 -4px;
+    pointer-events: none;
+    z-index: 10000;
+    will-change: transform;
+  }
+
+  .ebike-cursor-ring {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(232, 77, 42, .5);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: -15px 0 0 -15px;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform .15s ease-out;
+    will-change: transform;
+  }
 }
 
 /* LABEL UPPER */
-.label-upper { font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase; }
+.label-upper {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
 
 /* NAV */
-.ebike-nav { position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:linear-gradient(to bottom,rgba(9,8,7,.96),transparent);backdrop-filter:blur(4px); }
-.nav-logo { font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.12em;color:var(--white);display:flex;align-items:center;gap:.5rem; }
-.nav-logo-dot { width:8px;height:8px;border-radius:50%;background:var(--red-hot);margin-bottom:2px;flex-shrink:0; }
-.ebike-nav-links { display:flex;gap:2.5rem;list-style:none; }
-.ebike-nav-links a { font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--grey-lt);text-decoration:none;transition:color .2s; }
-.ebike-nav-links a:hover { color:var(--red-warm); }
-.nav-cta { font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:.6rem 1.6rem;transition:background .2s,transform .15s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 100%,8px 100%); }
-.nav-cta:hover { background:var(--red-hot);transform:skewX(-3deg); }
-.nav-hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none; }
-.nav-hamburger span { display:block;width:22px;height:2px;background:var(--white);transition:all .25s; }
-.nav-hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-.nav-hamburger.open span:nth-child(2) { opacity:0; }
-.nav-hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+.ebike-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(to bottom, rgba(9, 8, 7, .96), transparent);
+  backdrop-filter: blur(4px);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: .12em;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.nav-logo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red-hot);
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.ebike-nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.ebike-nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.ebike-nav-links a:hover {
+  color: var(--red-warm);
+}
+
+.nav-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  padding: .6rem 1.6rem;
+  transition: background .2s, transform .15s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
+}
+
+.nav-cta:hover {
+  background: var(--red-hot);
+  transform: skewX(-3deg);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--white);
+  transition: all .25s;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 
 /* DRAWER */
-.nav-drawer { display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(9,8,7,.97);z-index:900;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem; }
-.nav-drawer.open { display:flex; }
-.nav-drawer a { font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:.08em;color:var(--white);text-decoration:none;transition:color .2s; }
-.nav-drawer a:hover { color:var(--red-warm); }
-.drawer-cta { font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:1rem 2.5rem;cursor:pointer;margin-top:1rem;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%); }
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(9, 8, 7, .97);
+  z-index: 900;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.nav-drawer.open {
+  display: flex;
+}
+
+.nav-drawer a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  letter-spacing: .08em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.nav-drawer a:hover {
+  color: var(--red-warm);
+}
+
+.drawer-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+}
 
 /* SITE MENU (bottom-left desktop) */
-.site-menu-wrap { position:fixed;bottom:1.5rem;left:1.5rem;z-index:1000; }
-.site-menu-toggle { display:inline-flex;align-items:center;gap:.45rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-lt);border:1px solid var(--grey);padding:.45rem .9rem;background:rgba(9,8,7,.85);backdrop-filter:blur(8px);cursor:pointer;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 100%,6px 100%);transition:color .2s,border-color .2s;user-select:none; }
-.site-menu-toggle:hover { color:var(--white);border-color:var(--red-warm); }
-.site-menu-toggle svg { transition:transform .25s; }
-.site-menu-wrap.open .site-menu-toggle svg { transform:rotate(180deg); }
-.site-menu-links { display:flex;flex-direction:column;gap:4px;margin-bottom:6px;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s; }
-.site-menu-wrap.open .site-menu-links { opacity:1;transform:translateY(0);pointer-events:auto; }
-.site-menu-link { display:inline-flex;align-items:center;gap:.5rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-lt);text-decoration:none;border:1px solid var(--grey);padding:.4rem .9rem;background:rgba(9,8,7,.85);backdrop-filter:blur(8px);clip-path:polygon(0 0,calc(100% - 6px) 0,100% 100%,6px 100%);transition:color .2s,border-color .2s;white-space:nowrap; }
-.site-menu-link:hover { color:var(--white);border-color:var(--red-warm); }
+.site-menu-wrap {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 1000;
+}
+
+.site-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  border: 1px solid var(--grey);
+  padding: .45rem .9rem;
+  background: rgba(9, 8, 7, .85);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 6px 100%);
+  transition: color .2s, border-color .2s;
+  user-select: none;
+}
+
+.site-menu-toggle:hover {
+  color: var(--white);
+  border-color: var(--red-warm);
+}
+
+.site-menu-toggle svg {
+  transition: transform .25s;
+}
+
+.site-menu-wrap.open .site-menu-toggle svg {
+  transform: rotate(180deg);
+}
+
+.site-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 6px;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .2s, transform .2s;
+}
+
+.site-menu-wrap.open .site-menu-links {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.site-menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  text-decoration: none;
+  border: 1px solid var(--grey);
+  padding: .4rem .9rem;
+  background: rgba(9, 8, 7, .85);
+  backdrop-filter: blur(8px);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 6px 100%);
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+}
+
+.site-menu-link:hover {
+  color: var(--white);
+  border-color: var(--red-warm);
+}
 
 /* HERO */
-#ebike-hero { position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 5rem;overflow:hidden; }
-.hero-bg { position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 65% 35%,rgba(140,40,10,.3) 0%,transparent 65%),radial-gradient(ellipse 35% 45% at 15% 75%,rgba(90,25,5,.2) 0%,transparent 60%),linear-gradient(160deg,#100604 0%,#090807 50%,#120a06 100%); }
-.hero-slash { position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(to bottom,rgba(196,50,26,.05),transparent 55%);clip-path:polygon(18% 0,100% 0,100% 100%,0% 100%); }
-.hero-slash::after { content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--red-warm),transparent 75%); }
-.hero-bg-word { position:absolute;right:-.05em;bottom:-.12em;font-family:'Bebas Neue',sans-serif;font-size:clamp(10rem,28vw,30rem);color:transparent;-webkit-text-stroke:1px rgba(196,50,26,.1);line-height:1;user-select:none;z-index:1; }
-.hero-content { position:relative;z-index:2;max-width:800px; }
-.hero-eyebrow { font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--red-warm);margin-bottom:1rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp .8s ease .3s forwards; }
-.hero-eyebrow::before { content:'';display:inline-block;width:38px;height:1px;background:var(--red); }
-.hero-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,11rem);line-height:.88;letter-spacing:.02em;color:var(--white);opacity:0;animation:fadeUp .9s ease .5s forwards; }
-.hero-title em { font-style:normal;color:var(--red-hot);display:block; }
-.hero-subtitle { font-family:'Barlow Condensed',sans-serif;font-size:clamp(.95rem,2vw,1.35rem);font-weight:300;font-style:italic;color:var(--grey-lt);margin-top:1.4rem;opacity:0;animation:fadeUp .9s ease .7s forwards; }
-.hero-meta { display:flex;gap:2rem;margin-top:2.5rem;align-items:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease .9s forwards; }
-.hero-meta-item { display:flex;flex-direction:column;gap:.2rem; }
-.hero-meta-label { font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--red); }
-.hero-meta-value { font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;color:var(--white);letter-spacing:.04em; }
-.hero-sep { width:1px;height:38px;background:var(--grey);flex-shrink:0; }
-.hero-scroll { position:absolute;right:3rem;bottom:2.5rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;opacity:0;animation:fadeUp 1s ease 1.2s forwards; }
-.hero-scroll span { font-family:'Barlow Condensed',sans-serif;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--grey-lt);writing-mode:vertical-rl; }
-.scroll-line { width:1px;height:55px;background:linear-gradient(to bottom,var(--red),transparent);animation:scrollPulse 2.2s ease infinite; }
+#ebike-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 70% at 65% 35%, rgba(140, 40, 10, .3) 0%, transparent 65%), radial-gradient(ellipse 35% 45% at 15% 75%, rgba(90, 25, 5, .2) 0%, transparent 60%), linear-gradient(160deg, #100604 0%, #090807 50%, #120a06 100%);
+}
+
+.hero-slash {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(196, 50, 26, .05), transparent 55%);
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.hero-slash::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--red-warm), transparent 75%);
+}
+
+.hero-bg-word {
+  position: absolute;
+  right: -.05em;
+  bottom: -.12em;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(10rem, 28vw, 30rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(196, 50, 26, .1);
+  line-height: 1;
+  user-select: none;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--red-warm);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  animation: fadeUp .8s ease .3s forwards;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 38px;
+  height: 1px;
+  background: var(--red);
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 12vw, 11rem);
+  line-height: .88;
+  letter-spacing: .02em;
+  color: var(--white);
+  opacity: 0;
+  animation: fadeUp .9s ease .5s forwards;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--red-hot);
+  display: block;
+}
+
+.hero-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(.95rem, 2vw, 1.35rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--grey-lt);
+  margin-top: 1.4rem;
+  opacity: 0;
+  animation: fadeUp .9s ease .7s forwards;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .9s ease .9s forwards;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.hero-meta-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .62rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.hero-meta-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: .04em;
+}
+
+.hero-sep {
+  width: 1px;
+  height: 38px;
+  background: var(--grey);
+  flex-shrink: 0;
+}
+
+.hero-scroll {
+  position: absolute;
+  right: 3rem;
+  bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.2s forwards;
+}
+
+.hero-scroll span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .58rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  writing-mode: vertical-rl;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 55px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  animation: scrollPulse 2.2s ease infinite;
+}
 
 /* CAL BUTTON */
-.cal-btn { display:inline-flex;align-items:center;gap:.6rem;padding:0 1.2rem;height:42px;background:rgba(9,8,7,.4);color:var(--grey-lt);border:1px solid var(--grey);cursor:pointer;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 100%,6px 100%);transition:color .25s,border-color .25s,background .25s;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-top:2.2rem;opacity:0;animation:fadeUp .9s ease 1.2s forwards; }
-.cal-btn:hover { color:var(--red-warm);border-color:var(--red-warm);background:rgba(196,50,26,.05); }
+.cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: 0 1.2rem;
+  height: 42px;
+  background: rgba(9, 8, 7, .4);
+  color: var(--grey-lt);
+  border: 1px solid var(--grey);
+  cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 6px 100%);
+  transition: color .25s, border-color .25s, background .25s;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-top: 2.2rem;
+  opacity: 0;
+  animation: fadeUp .9s ease 1.2s forwards;
+}
+
+.cal-btn:hover {
+  color: var(--red-warm);
+  border-color: var(--red-warm);
+  background: rgba(196, 50, 26, .05);
+}
 
 /* COUNTDOWN */
-#ebike-countdown { background:var(--red-dark);overflow:hidden; }
-.countdown-inner { display:flex;align-items:stretch; }
-.countdown-label { background:var(--red);padding:1.2rem 2.2rem;font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;writing-mode:vertical-rl;color:var(--white);flex-shrink:0;display:flex;align-items:center;justify-content:center; }
-.countdown-units { display:flex;flex:1;justify-content:center;padding:1.5rem 3rem;gap:1rem;align-items:center;flex-wrap:wrap; }
-.count-unit { display:flex;flex-direction:column;align-items:center; }
-.count-num { font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4.5vw,4rem);color:var(--white);line-height:1; }
-.count-lbl { font-family:'Barlow Condensed',sans-serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,237,230,.5);margin-top:.2rem; }
-.count-sep { font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:rgba(244,237,230,.25);padding-bottom:.6rem; }
+#ebike-countdown {
+  background: var(--red-dark);
+  overflow: hidden;
+}
+
+.countdown-inner {
+  display: flex;
+  align-items: stretch;
+}
+
+.countdown-label {
+  background: var(--red);
+  padding: 1.2rem 2.2rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  color: var(--white);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-units {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 1.5rem 3rem;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.count-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.count-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  color: var(--white);
+  line-height: 1;
+}
+
+.count-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .6rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(244, 237, 230, .5);
+  margin-top: .2rem;
+}
+
+.count-sep {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: rgba(244, 237, 230, .25);
+  padding-bottom: .6rem;
+}
 
 /* SECTIONS */
-.ebike-section { padding:7rem 3rem; }
-.section-tag { font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--red-warm);margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem; }
-.section-tag::after { content:'';height:1px;background:var(--grey);max-width:70px; }
-.ebike-page h2 { font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6.5vw,6rem);line-height:.9;letter-spacing:.03em; }
+.ebike-section {
+  padding: 7rem 3rem;
+}
+
+.section-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--red-warm);
+  margin-bottom: .8rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.section-tag::after {
+  content: '';
+  height: 1px;
+  background: var(--grey);
+  max-width: 70px;
+}
+
+.ebike-page h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 6.5vw, 6rem);
+  line-height: .9;
+  letter-spacing: .03em;
+}
 
 /* REVEAL (removed in favor of framer-motion) */
 
 /* INFO + STATS */
-#ebike-info { display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0; }
-.info-text { padding:7rem 4rem 7rem 3rem;background:var(--black2);display:flex;flex-direction:column;justify-content:center; }
-.info-text p { font-size:.95rem;line-height:1.85;color:var(--grey-lt);margin-top:1.8rem;max-width:460px; }
-.info-text strong { color:var(--white); }
-.info-stats { padding:7rem 3rem 7rem 4rem;background:var(--black3);display:grid;grid-template-columns:1fr 1fr;gap:0;align-content:center; }
-.stat-box { padding:2.5rem;border-top:1px solid var(--grey);border-left:1px solid var(--grey); }
-.stat-box:nth-child(1),.stat-box:nth-child(2) { border-top-color:transparent; }
-.stat-box:nth-child(1),.stat-box:nth-child(3) { border-left-color:transparent; }
-.stat-num { font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4vw,3.5rem);color:var(--red-hot);line-height:1; }
-.stat-unit { font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--red); }
-.stat-desc { font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey-lt);margin-top:.4rem; }
+#ebike-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+}
+
+.info-text {
+  padding: 7rem 4rem 7rem 3rem;
+  background: var(--black2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-text p {
+  font-size: .95rem;
+  line-height: 1.85;
+  color: var(--grey-lt);
+  margin-top: 1.8rem;
+  max-width: 460px;
+}
+
+.info-text strong {
+  color: var(--white);
+}
+
+.info-stats {
+  padding: 7rem 3rem 7rem 4rem;
+  background: var(--black3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-content: center;
+}
+
+.stat-box {
+  padding: 2.5rem;
+  border-top: 1px solid var(--grey);
+  border-left: 1px solid var(--grey);
+}
+
+.stat-box:nth-child(1),
+.stat-box:nth-child(2) {
+  border-top-color: transparent;
+}
+
+.stat-box:nth-child(1),
+.stat-box:nth-child(3) {
+  border-left-color: transparent;
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  color: var(--red-hot);
+  line-height: 1;
+}
+
+.stat-unit {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--red);
+}
+
+.stat-desc {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  margin-top: .4rem;
+}
 
 /* SCHEDULE */
-#ebike-programma { background:var(--black2); }
-.schedule-list { margin-top:3.5rem; }
-.schedule-row { display:flex;align-items:flex-start;gap:2rem;padding:1.2rem 0;border-bottom:1px solid rgba(58,54,50,.5);transition:border-color .2s; }
-.schedule-row:first-child { border-top:1px solid rgba(58,54,50,.5); }
-.schedule-row:hover { border-bottom-color:var(--red); }
-.sch-time { font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--red-warm);min-width:110px;line-height:1.1;flex-shrink:0; }
-.sch-name { font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:600;color:var(--white);letter-spacing:.02em; }
-.sch-detail { font-size:.82rem;color:var(--grey-lt);line-height:1.6;margin-top:.15rem; }
-.sch-pill { margin-left:auto;flex-shrink:0;align-self:flex-start;display:inline-flex;align-items:center;gap:.35rem;font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:.25rem .75rem;background:rgba(196,50,26,.15);color:var(--red-warm);border:1px solid rgba(196,50,26,.3); }
+#ebike-programma {
+  background: var(--black2);
+}
+
+.schedule-list {
+  margin-top: 3.5rem;
+}
+
+.schedule-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(58, 54, 50, .5);
+  transition: border-color .2s;
+}
+
+.schedule-row:first-child {
+  border-top: 1px solid rgba(58, 54, 50, .5);
+}
+
+.schedule-row:hover {
+  border-bottom-color: var(--red);
+}
+
+.sch-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--red-warm);
+  min-width: 110px;
+  line-height: 1.1;
+  flex-shrink: 0;
+}
+
+.sch-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: .02em;
+}
+
+.sch-detail {
+  font-size: .82rem;
+  color: var(--grey-lt);
+  line-height: 1.6;
+  margin-top: .15rem;
+}
+
+.sch-pill {
+  margin-left: auto;
+  flex-shrink: 0;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: .25rem .75rem;
+  background: rgba(196, 50, 26, .15);
+  color: var(--red-warm);
+  border: 1px solid rgba(196, 50, 26, .3);
+}
 
 /* PASTA BAND */
-.pasta-band { background:var(--red-dark);padding:2.5rem 3rem;display:flex;align-items:center;gap:3rem;overflow:hidden;position:relative; }
-.pasta-band-time { font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);color:var(--red-warm);line-height:1;flex-shrink:0; }
-.pasta-band-label { font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3vw,3rem);color:var(--white);line-height:.9;flex-shrink:0; }
-.pasta-band-label span { color:var(--red-warm); }
-.pasta-band-sep { width:1px;height:50px;background:var(--grey);flex-shrink:0; }
-.pasta-band-text { font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:300;font-style:italic;color:rgba(244,237,230,.7);line-height:1.6; }
+.pasta-band {
+  background: var(--red-dark);
+  padding: 2.5rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.pasta-band-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--red-warm);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pasta-band-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  color: var(--white);
+  line-height: .9;
+  flex-shrink: 0;
+}
+
+.pasta-band-label span {
+  color: var(--red-warm);
+}
+
+.pasta-band-sep {
+  width: 1px;
+  height: 50px;
+  background: var(--grey);
+  flex-shrink: 0;
+}
+
+.pasta-band-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .95rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(244, 237, 230, .7);
+  line-height: 1.6;
+}
 
 /* PERCORSI */
-#ebike-percorsi { background:var(--black); }
-.percorsi-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:4rem;background:var(--grey); }
-.percorso-card { background:var(--black2);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;display:block;color:inherit; }
-.percorso-card:hover { background:#151210; }
-.percorso-card::before { content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s ease; }
-.percorso-card:hover::before { transform:scaleX(1); }
-.percorso-tag { display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;padding:.3rem .85rem;margin-bottom:1.5rem; }
-.tag-medium { background:rgba(120,50,10,.25);color:var(--red-warm); }
-.percorso-name { font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,3vw,2.2rem);letter-spacing:.05em;line-height:1;margin-bottom:1rem; }
-.percorso-desc { font-size:.85rem;line-height:1.75;color:var(--grey-lt); }
-.percorso-num { position:absolute;top:-.1em;right:.8rem;font-family:'Bebas Neue',sans-serif;font-size:7rem;color:transparent;-webkit-text-stroke:1px rgba(196,50,26,.08);line-height:1;user-select:none; }
+#ebike-percorsi {
+  background: var(--black);
+}
+
+.percorsi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-top: 4rem;
+  background: var(--grey);
+}
+
+.percorso-card {
+  background: var(--black2);
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.percorso-card:hover {
+  background: #151210;
+}
+
+.percorso-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s ease;
+}
+
+.percorso-card:hover::before {
+  transform: scaleX(1);
+}
+
+.percorso-tag {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  padding: .3rem .85rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag-medium {
+  background: rgba(120, 50, 10, .25);
+  color: var(--red-warm);
+}
+
+.percorso-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  letter-spacing: .05em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.percorso-desc {
+  font-size: .85rem;
+  line-height: 1.75;
+  color: var(--grey-lt);
+}
+
+.percorso-num {
+  position: absolute;
+  top: -.1em;
+  right: .8rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 7rem;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(196, 50, 26, .08);
+  line-height: 1;
+  user-select: none;
+}
 
 /* ATTREZZATURA */
-#ebike-attrezzatura { background:var(--black2); }
-.gear-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:3.5rem;background:var(--grey); }
-.gear-item { background:var(--black3);padding:2rem 1.8rem;display:flex;flex-direction:column;gap:.5rem;transition:background .3s;position:relative;overflow:hidden; }
-.gear-item:hover { background:#161412; }
-.gear-name { font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:600;color:var(--white);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.4rem; }
-.gear-note { line-height:1.4;font-size:.85rem;color:var(--grey-lt); }
-.gear-bg-icon { position:absolute;bottom:-.5rem;right:-.5rem;color:var(--red-warm);opacity:.08;width:80px;height:80px;pointer-events:none; }
+#ebike-attrezzatura {
+  background: var(--black2);
+}
+
+.gear-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 3.5rem;
+  background: var(--grey);
+}
+
+.gear-item {
+  background: var(--black3);
+  padding: 2rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  transition: background .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.gear-item:hover {
+  background: #161412;
+}
+
+.gear-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+
+.gear-note {
+  line-height: 1.4;
+  font-size: .85rem;
+  color: var(--grey-lt);
+}
+
+.gear-bg-icon {
+  position: absolute;
+  bottom: -.5rem;
+  right: -.5rem;
+  color: var(--red-warm);
+  opacity: .08;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
 
 /* GHOST CARDS */
-.ghost-card { position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;text-align:left;transition:all .3s ease;cursor:default;background:var(--black2);border:1px solid rgba(196,50,26,.15); }
-.ghost-card:hover { border-color:var(--red-warm)!important;transform:translateY(-6px)!important;box-shadow:0 12px 30px rgba(0,0,0,.7)!important; }
-.ghost-card::after { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,transparent 50%);opacity:0;transition:opacity .3s;pointer-events:none; }
-.ghost-card:hover::after { opacity:1; }
-.ghost-bg { pointer-events:none;position:absolute;top:0;left:0;right:0;bottom:0;border-radius:inherit;overflow:hidden; }
-.ghost-bg svg { position:absolute;bottom:-1rem;right:-1rem;color:var(--red-warm);opacity:.12;transition:all .4s cubic-bezier(.175,.885,.32,1.275);filter:grayscale(1) brightness(.8); }
-.ghost-card:hover .ghost-bg svg { transform:scale(1.15) rotate(-8deg) translate(-5px,-5px);opacity:.3;filter:grayscale(0) brightness(1.2) drop-shadow(0 0 15px var(--red-hot)); }
-.ghost-card-lg { padding:2.5rem 2rem;gap:1.5rem;border-radius:1rem; }
-.ghost-card-lg:hover { box-shadow:0 20px 60px -30px rgba(0,0,0,.5)!important; }
-.ghost-card-lg .ghost-bg { border-radius:1rem; }
-.ghost-card-lg .ghost-bg svg { width:120px;height:120px; }
-.ghost-card-sm { padding:1.4rem 1.1rem;gap:1.1rem;border-radius:0; }
-.ghost-card-sm .ghost-bg { border-radius:0; }
-.ghost-card-sm .ghost-bg svg { width:80px;height:80px; }
-.pos-rel-z2 { position:relative;z-index:2; }
-.include-title { font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem; }
+.ghost-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: all .3s ease;
+  cursor: default;
+  background: var(--black2);
+  border: 1px solid rgba(196, 50, 26, .15);
+}
+
+.ghost-card:hover {
+  border-color: var(--red-warm) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .7) !important;
+}
+
+.ghost-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+
+.ghost-card:hover::after {
+  opacity: 1;
+}
+
+.ghost-bg {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.ghost-bg svg {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  color: var(--red-warm);
+  opacity: .12;
+  transition: all .4s cubic-bezier(.175, .885, .32, 1.275);
+  filter: grayscale(1) brightness(.8);
+}
+
+.ghost-card:hover .ghost-bg svg {
+  transform: scale(1.15) rotate(-8deg) translate(-5px, -5px);
+  opacity: .3;
+  filter: grayscale(0) brightness(1.2) drop-shadow(0 0 15px var(--red-hot));
+}
+
+.ghost-card-lg {
+  padding: 2.5rem 2rem;
+  gap: 1.5rem;
+  border-radius: 1rem;
+}
+
+.ghost-card-lg:hover {
+  box-shadow: 0 20px 60px -30px rgba(0, 0, 0, .5) !important;
+}
+
+.ghost-card-lg .ghost-bg {
+  border-radius: 1rem;
+}
+
+.ghost-card-lg .ghost-bg svg {
+  width: 120px;
+  height: 120px;
+}
+
+.ghost-card-sm {
+  padding: 1.4rem 1.1rem;
+  gap: 1.1rem;
+  border-radius: 0;
+}
+
+.ghost-card-sm .ghost-bg {
+  border-radius: 0;
+}
+
+.ghost-card-sm .ghost-bg svg {
+  width: 80px;
+  height: 80px;
+}
+
+.pos-rel-z2 {
+  position: relative;
+  z-index: 2;
+}
+
+.include-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
 
 /* ORGANIZZATORE */
-#ebike-organizzatore { background:var(--black); }
-.org-box { margin-top:3.5rem;border:1px solid var(--grey);display:grid;grid-template-columns:1fr 1fr;overflow:hidden; }
-.org-left { background:var(--black3);padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;border-right:1px solid var(--grey); }
-.org-logo-placeholder { width:80px;height:80px;border:2px solid var(--red-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;padding:8px;background:rgba(9,8,7,.55);margin-bottom:1.5rem;overflow:hidden; }
-.org-logo-placeholder img { width:100%;height:100%;object-fit:contain; }
-.org-name { font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;line-height:1.1; }
-.org-role { font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--red-warm);margin-top:.4rem; }
+#ebike-organizzatore {
+  background: var(--black);
+}
+
+.org-box {
+  margin-top: 3.5rem;
+  border: 1px solid var(--grey);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.org-left {
+  background: var(--black3);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-right: 1px solid var(--grey);
+}
+
+.org-logo-placeholder {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--red-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: rgba(9, 8, 7, .55);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.org-logo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.org-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: .04em;
+  line-height: 1.1;
+}
+
+.org-role {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--red-warm);
+  margin-top: .4rem;
+}
 
 /* ISCRIZIONE */
-#ebike-iscrizione { background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(100,25,5,.35) 0%,transparent 65%),var(--black2);text-align:center;padding:9rem 3rem;position:relative;overflow:hidden; }
-#ebike-iscrizione::before { content:'ISCRIVITI';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(14vw,22vw,22vw);color:transparent;-webkit-text-stroke:1px rgba(196,50,26,.05);white-space:nowrap;pointer-events:none;user-select:none; }
-#ebike-iscrizione h2 { position:relative;z-index:1; }
-#ebike-iscrizione > p { position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;color:var(--grey-lt);margin:1.5rem auto;max-width:480px;line-height:1.7; }
-.cta-group { position:relative;z-index:1;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:3rem; }
-.btn-primary { font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:1.1rem 3rem;transition:background .2s,transform .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%); }
-.btn-primary:hover { background:var(--red-hot);transform:scale(1.03); }
-.btn-secondary { font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;background:transparent;color:var(--white);border:1px solid var(--grey);padding:1.1rem 2.5rem;transition:border-color .2s,color .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%); }
-.btn-secondary:hover { border-color:var(--red);color:var(--red-warm); }
+#ebike-iscrizione {
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(100, 25, 5, .35) 0%, transparent 65%), var(--black2);
+  text-align: center;
+  padding: 9rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#ebike-iscrizione::before {
+  content: 'ISCRIVITI';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(14vw, 22vw, 22vw);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(196, 50, 26, .05);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+#ebike-iscrizione h2 {
+  position: relative;
+  z-index: 1;
+}
+
+#ebike-iscrizione>p {
+  position: relative;
+  z-index: 1;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  color: var(--grey-lt);
+  margin: 1.5rem auto;
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+.cta-group {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.btn-primary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  padding: 1.1rem 3rem;
+  transition: background .2s, transform .2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+}
+
+.btn-primary:hover {
+  background: var(--red-hot);
+  transform: scale(1.03);
+}
+
+.btn-secondary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--grey);
+  padding: 1.1rem 2.5rem;
+  transition: border-color .2s, color .2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+}
+
+.btn-secondary:hover {
+  border-color: var(--red);
+  color: var(--red-warm);
+}
 
 /* QUOTE */
-.quote-container { display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:0.8rem;margin-top:3.5rem;align-items:center;position:relative;z-index:1; }
-.quota-card { background:var(--black3);border:1px solid var(--grey);padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;position:relative;transition:all .3s cubic-bezier(.25,.46,.45,.94);cursor:pointer;border-radius:4px; }
-.quota-card:hover { border-color:var(--red-warm);transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,.5); }
-.quota-card.base { opacity:0.75;transform:scale(0.95); }
-.quota-card.base:hover { opacity:1;border-color:var(--grey-lt);transform:scale(0.98);background:rgba(255,255,255,0.02); }
-.quota-card.recommended { background:linear-gradient(145deg,#1c1a18,#180907);border-color:var(--red-hot);transform:none;box-shadow:0 24px 60px rgba(0,0,0,.7); }
-.quota-card.recommended:hover { transform:none;box-shadow:0 20px 50px rgba(196,50,26,.35); }
+.quote-container {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 0.8rem;
+  margin-top: 3.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.quota-card {
+  background: var(--black3);
+  border: 1px solid var(--grey);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  position: relative;
+  transition: all .3s cubic-bezier(.25, .46, .45, .94);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quota-card:hover {
+  border-color: var(--red-warm);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .5);
+}
+
+.quota-card.base {
+  opacity: 0.75;
+  transform: scale(0.95);
+}
+
+.quota-card.base:hover {
+  opacity: 1;
+  border-color: var(--grey-lt);
+  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.quota-card.recommended {
+  background: linear-gradient(145deg, #1c1a18, #180907);
+  border-color: var(--red-hot);
+  transform: none;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .7);
+}
+
+.quota-card.recommended:hover {
+  transform: none;
+  box-shadow: 0 20px 50px rgba(196, 50, 26, .35);
+}
 
 /* SELECTED STATE */
-.quota-card.selected { border-color:var(--red-hot);background:rgba(232,77,42,.08);box-shadow:0 0 0 1px var(--red-hot),0 12px 30px rgba(232,77,42,.2); }
-.quota-card.recommended.selected { border-color:var(--red-hot);background:rgba(232,77,42,.12);box-shadow:0 0 0 1px var(--red-hot),0 24px 60px rgba(232,77,42,.3); }
+.quota-card.selected {
+  border-color: var(--red-hot);
+  background: rgba(232, 77, 42, .08);
+  box-shadow: 0 0 0 1px var(--red-hot), 0 12px 30px rgba(232, 77, 42, .2);
+}
+
+.quota-card.recommended.selected {
+  border-color: var(--red-hot);
+  background: rgba(232, 77, 42, .12);
+  box-shadow: 0 0 0 1px var(--red-hot), 0 24px 60px rgba(232, 77, 42, .3);
+}
 
 /* LABELS */
-.desktop-label { display:inline; }
-.mobile-label { display:none; }
+.desktop-label {
+  display: inline;
+}
 
-.quota-badge-top { position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red-warm);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:.35rem 1.2rem;border-radius:4px;box-shadow:0 4px 15px rgba(0,0,0,.5);white-space:nowrap; }
-.quota-title { font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-lt);margin-bottom:.5rem;text-align:center;transition:color .3s; }
-.quota-card.recommended .quota-title,.quota-card.selected .quota-title { color:var(--white);font-size:1.2rem; }
-.quota-price { font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--white);line-height:1;margin-bottom:.5rem;transition:color .3s, transform .3s; }
-.quota-card.recommended .quota-price,.quota-card.selected .quota-price { color:var(--red-warm);font-size:5.8rem; }
-.quota-sub { font-size:.75rem;color:var(--grey-lt);text-align:center;max-width:180px;line-height:1.3;font-weight:400; }
+.mobile-label {
+  display: none;
+}
+
+.quota-badge-top {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--red-warm);
+  color: var(--black);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: .35rem 1.2rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .5);
+  white-space: nowrap;
+}
+
+.quota-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+  margin-bottom: .5rem;
+  text-align: center;
+  transition: color .3s;
+}
+
+.quota-card.recommended .quota-title,
+.quota-card.selected .quota-title {
+  color: var(--white);
+  font-size: 1.2rem;
+}
+
+.quota-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: .5rem;
+  transition: color .3s, transform .3s;
+}
+
+.quota-card.recommended .quota-price,
+.quota-card.selected .quota-price {
+  color: var(--red-warm);
+  font-size: 5.8rem;
+}
+
+.quota-sub {
+  font-size: .75rem;
+  color: var(--grey-lt);
+  text-align: center;
+  max-width: 180px;
+  line-height: 1.3;
+  font-weight: 400;
+}
 
 /* FORM CONTAINER */
-#form-iscrizione-container { margin-top:4rem;background:var(--black2);border:1px solid rgba(196,50,26,.15);padding:3.5rem 3rem;border-radius:1rem;max-width:800px;margin-left:auto;margin-right:auto;text-align:left;position:relative;z-index:1; }
-.flex-col-gap-05 { display:flex;flex-direction:column;gap:.5rem; }
-.flex-row-gap-08-mt { display:flex;gap:.8rem;align-items:flex-start;margin-top:.5rem; }
-.form-input { width:100%;background:var(--black);border:1px solid var(--grey);color:var(--white);padding:.9rem 1.2rem;font-family:'Barlow',sans-serif;font-size:1rem;outline:none;transition:border-color .2s; }
-.form-input:focus { border-color:var(--red-warm); }
-.form-select { width:100%;background:var(--black);border:1px solid var(--grey);color:var(--white);padding:.9rem 1.2rem;font-family:'Barlow',sans-serif;font-size:1rem;outline:none;transition:border-color .2s; }
-.form-select:focus { border-color:var(--red-warm); }
-.form-select:disabled,.form-input:disabled { opacity:.5;cursor:not-allowed; }
-.checkbox-red { margin-top:.25rem;cursor:pointer;accent-color:var(--red-warm); }
+#form-iscrizione-container {
+  margin-top: 4rem;
+  background: var(--black2);
+  border: 1px solid rgba(196, 50, 26, .15);
+  padding: 3.5rem 3rem;
+  border-radius: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.flex-col-gap-05 {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.flex-row-gap-08-mt {
+  display: flex;
+  gap: .8rem;
+  align-items: flex-start;
+  margin-top: .5rem;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--black);
+  border: 1px solid var(--grey);
+  color: var(--white);
+  padding: .9rem 1.2rem;
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.form-input:focus {
+  border-color: var(--red-warm);
+}
+
+.form-select {
+  width: 100%;
+  background: var(--black);
+  border: 1px solid var(--grey);
+  color: var(--white);
+  padding: .9rem 1.2rem;
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.form-select:focus {
+  border-color: var(--red-warm);
+}
+
+.form-select:disabled,
+.form-input:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.checkbox-red {
+  margin-top: .25rem;
+  cursor: pointer;
+  accent-color: var(--red-warm);
+}
 
 /* FOOTER */
-.ebike-footer { background:var(--black);padding:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(58,54,50,.3); }
-.footer-logo { font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em; }
-.footer-logo span { color:var(--red-warm); }
-.footer-copy,.footer-org { font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-lt); }
+.ebike-footer {
+  background: var(--black);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid rgba(58, 54, 50, .3);
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: .1em;
+}
+
+.footer-logo span {
+  color: var(--red-warm);
+}
+
+.footer-copy,
+.footer-org {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .72rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--grey-lt);
+}
 
 /* MAP LINK */
-.map-link { color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;border-bottom:1px solid rgba(244,237,230,.2);transition:border-color .2s;padding-bottom:2px; }
-.map-link:hover { border-color:var(--red-warm); }
+.map-link {
+  color: var(--white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  border-bottom: 1px solid rgba(244, 237, 230, .2);
+  transition: border-color .2s;
+  padding-bottom: 2px;
+}
+
+.map-link:hover {
+  border-color: var(--red-warm);
+}
 
 /* STICKY CTA */
-.sticky-cta { display:none; }
+.sticky-cta {
+  display: none;
+}
 
 /* ANIMATIONS */
-@keyframes fadeUp { from { opacity:0;transform:translateY(30px); } to { opacity:1;transform:translateY(0); } }
-@keyframes scrollPulse { 0% { transform:scaleY(1);opacity:1; } 100% { transform:scaleY(.15);opacity:0; } }
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollPulse {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(.15);
+    opacity: 0;
+  }
+}
 
 /* RESPONSIVE */
 @media (max-width:900px) {
-  .ebike-nav { padding:.9rem 1.2rem; }
-  .ebike-nav-links,.nav-cta { display:none; }
-  .nav-hamburger { display:flex; }
-  .site-menu-wrap { display:none; }
-  #ebike-hero { padding:0 1.2rem 5rem;min-height:100svh; }
-  .hero-eyebrow { display:none; }
-  .hero-scroll { right:1.2rem; }
-  .hero-meta { display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2rem; }
-  .hero-meta-item { padding:.9rem 1rem;border:1px solid rgba(58,54,50,.5);margin-right:-1px;margin-bottom:-1px; }
-  .hero-meta-value { font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.03em;line-height:1.1; }
-  .hero-sep { display:none; }
-  #ebike-info { grid-template-columns:1fr; }
-  .info-text { padding:4rem 1.5rem; }
-  .info-stats { padding:3rem 1.5rem; }
-  .stat-box { padding:1.5rem; }
-  .countdown-label { writing-mode:horizontal-tb;padding:.8rem 1.2rem;font-size:.6rem; }
-  .countdown-units { padding:1rem; }
-  .count-sep { display:none; }
-  .ebike-section { padding:4rem 1.2rem; }
-  #form-iscrizione-container { padding:2rem 1.5rem;margin-top:2rem; }
-  .schedule-row { gap:1rem; }
-  .sch-time { min-width:80px;flex-shrink:0;font-size:1.15rem; }
-  .percorsi-grid { grid-template-columns:1fr; }
-  .percorso-card { padding:2rem 1.5rem; }
-  .gear-grid { grid-template-columns:1fr 1fr; }
-  .gear-item { padding:1.5rem; }
-  .org-box { grid-template-columns:1fr!important; }
-  .org-left { border-right:none!important;border-bottom:1px solid var(--grey);padding:2rem 1.5rem!important; }
-  #ebike-iscrizione { padding:6rem 1.5rem; }
-  .cta-group { flex-direction:column;align-items:center; }
-  .btn-primary,.btn-secondary { width:100%;max-width:320px;text-align:center; }
-  .pasta-band { flex-wrap:wrap;gap:1.2rem;padding:2rem 1.5rem; }
-  #ebike-programma .pasta-band { margin-left:-1.2rem !important;margin-right:-1.2rem !important; }
-  .pasta-band-sep { display:none; }
-  .ebike-footer { flex-direction:column;gap:1.2rem;text-align:center;padding:2rem 1.5rem; }
-  .quote-container { gap:.4rem;margin-top:2rem;display:grid!important;grid-template-columns:0.9fr 1.4fr 0.9fr!important; width: calc(100% + 1rem); margin-left: -0.5rem; margin-right: -0.5rem; }
-  .quota-card { padding: .9rem .3rem !important; min-width: 0; justify-content: center; border-radius:4px; }
-  .quota-card.recommended { transform: none; padding: 1.1rem .3rem !important; }
-  .quota-card.recommended:hover { transform: none; }
-  .quota-price { font-size: 1.8rem; }
-  .quota-card.recommended .quota-price, .quota-card.selected .quota-price { font-size: 2rem; }
-  .quota-title { font-size: .6rem; letter-spacing: .03em; line-height: 1.2; }
-  .quota-sub { display: none; }
-  .quota-badge-top { font-size: .5rem; padding: .2rem .5rem; top: -10px; white-space: nowrap; }
-  .desktop-label { display:none; }
-  .mobile-label { display:inline; }
-  .sticky-cta { display:block;position:fixed;bottom:0;left:0;right:0;padding:.9rem 1.5rem calc(.9rem + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(9,8,7,.98) 60%,transparent);z-index:800;transform:translateY(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94);pointer-events:none; }
-  .sticky-cta.visible { transform:translateY(0);pointer-events:auto; }
-  .sticky-cta-btn { width:100%;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:1rem;cursor:pointer;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%);transition:background .2s;display:flex;align-items:center;justify-content:center;gap:.75rem; }
-  .sticky-cta-btn:active { background:var(--red-hot); }
-  .sticky-cta-price { font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;color:rgba(244,237,230,.6);border-left:1px solid rgba(244,237,230,.2);padding-left:.75rem; }
-  .cal-btn-text { display:none; }
-  
-  .include-grid { gap:.4rem!important;width:calc(100% + 3rem);margin-left:-1.5rem;margin-right:-1.5rem;padding-left:1.5rem;padding-right:1.5rem;display:grid!important;grid-template-columns:repeat(3,1fr)!important; }
-  .include-grid .ghost-card { padding:.8rem .4rem!important;align-items:center!important;text-align:center!important;min-height:90px;justify-content:flex-start!important;border-radius:.6rem!important;flex:none; }
-  .include-grid .include-desc { display:block; font-size:.7rem; margin-top:.3rem; color:var(--grey-lt); line-height:1.3; }
-  .include-grid .include-title { font-size:.85rem!important;letter-spacing:.03em!important;line-height:1.1!important;margin-bottom:0!important;color:var(--white)!important; text-align:center; }
-  .include-grid .ghost-card svg { display:block!important;width:40px!important;height:40px!important;position:absolute!important;bottom:-.2rem!important;right:-.2rem!important;opacity:.12!important; }
+  .ebike-nav {
+    padding: .9rem 1.2rem;
+  }
+
+  .ebike-nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .site-menu-wrap {
+    display: none;
+  }
+
+  #ebike-hero {
+    padding: 0 1.2rem 5rem;
+    min-height: 100svh;
+  }
+
+  .hero-eyebrow {
+    display: none;
+  }
+
+  .hero-scroll {
+    right: 1.2rem;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 2rem;
+  }
+
+  .hero-meta-item {
+    padding: .9rem 1rem;
+    border: 1px solid rgba(58, 54, 50, .5);
+    margin-right: -1px;
+    margin-bottom: -1px;
+  }
+
+  .hero-meta-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: .03em;
+    line-height: 1.1;
+  }
+
+  .hero-sep {
+    display: none;
+  }
+
+  #ebike-info {
+    grid-template-columns: 1fr;
+  }
+
+  .info-text {
+    padding: 4rem 1.5rem;
+  }
+
+  .info-stats {
+    padding: 3rem 1.5rem;
+  }
+
+  .stat-box {
+    padding: 1.5rem;
+  }
+
+  .countdown-label {
+    writing-mode: horizontal-tb;
+    padding: .8rem 1.2rem;
+    font-size: .6rem;
+  }
+
+  .countdown-units {
+    padding: 1rem;
+  }
+
+  .count-sep {
+    display: none;
+  }
+
+  .ebike-section {
+    padding: 4rem 1.2rem;
+  }
+
+  #form-iscrizione-container {
+    padding: 2rem 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .schedule-row {
+    gap: 1rem;
+  }
+
+  .sch-time {
+    min-width: 80px;
+    flex-shrink: 0;
+    font-size: 1.15rem;
+  }
+
+  .percorsi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .percorso-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .gear-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gear-item {
+    padding: 1.5rem;
+  }
+
+  .org-box {
+    grid-template-columns: 1fr !important;
+  }
+
+  .org-left {
+    border-right: none !important;
+    border-bottom: 1px solid var(--grey);
+    padding: 2rem 1.5rem !important;
+  }
+
+  #ebike-iscrizione {
+    padding: 6rem 1.5rem;
+  }
+
+  .cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .pasta-band {
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  #ebike-programma .pasta-band {
+    margin-left: -1.2rem !important;
+    margin-right: -1.2rem !important;
+  }
+
+  .pasta-band-sep {
+    display: none;
+  }
+
+  .ebike-footer {
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .quote-container {
+    gap: .4rem;
+    margin-top: 2rem;
+    display: grid !important;
+    grid-template-columns: 0.9fr 1.4fr 0.9fr !important;
+    width: calc(100% + 1rem);
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .quota-card {
+    padding: .9rem .3rem !important;
+    min-width: 0;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  .quota-card.recommended {
+    transform: none;
+    padding: 1.1rem .3rem !important;
+  }
+
+  .quota-card.recommended:hover {
+    transform: none;
+  }
+
+  .quota-price {
+    font-size: 1.8rem;
+  }
+
+  .quota-card.recommended .quota-price,
+  .quota-card.selected .quota-price {
+    font-size: 2rem;
+  }
+
+  .quota-title {
+    font-size: .6rem;
+    letter-spacing: .03em;
+    line-height: 1.2;
+  }
+
+  .quota-sub {
+    display: none;
+  }
+
+  .quota-badge-top {
+    font-size: .5rem;
+    padding: .2rem .5rem;
+    top: -10px;
+    white-space: nowrap;
+  }
+
+  .desktop-label {
+    display: none;
+  }
+
+  .mobile-label {
+    display: inline;
+  }
+
+  .sticky-cta {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: .9rem 1.5rem calc(.9rem + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(9, 8, 7, .98) 60%, transparent);
+    z-index: 800;
+    transform: translateY(100%);
+    transition: transform .35s cubic-bezier(.25, .46, .45, .94);
+    pointer-events: none;
+  }
+
+  .sticky-cta.visible {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .sticky-cta-btn {
+    width: 100%;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+    transition: background .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+  }
+
+  .sticky-cta-btn:active {
+    background: var(--red-hot);
+  }
+
+  .sticky-cta-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: .05em;
+    color: rgba(244, 237, 230, .6);
+    border-left: 1px solid rgba(244, 237, 230, .2);
+    padding-left: .75rem;
+  }
+
+  .cal-btn-text {
+    display: none;
+  }
+
+  .ebike-page .include-grid {
+    gap: .4rem;
+    width: calc(100% + 3rem);
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ebike-page .include-grid .ghost-card {
+    padding: .8rem .4rem;
+    align-items: center;
+    text-align: center;
+    min-height: 90px;
+    justify-content: flex-start;
+    border-radius: .6rem;
+    flex: none;
+  }
+
+  .ebike-page .include-grid .include-desc {
+    display: block;
+    font-size: .7rem;
+    margin-top: .3rem;
+    color: var(--grey-lt);
+    line-height: 1.3;
+  }
+
+  .ebike-page .include-grid .include-title {
+    font-size: .85rem;
+    letter-spacing: .03em;
+    line-height: 1.1;
+    margin-bottom: 0;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .ebike-page .include-grid .ghost-card svg {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: -.2rem;
+    right: -.2rem;
+    opacity: .12;
+  }
 }
-@media (max-width:480px) {
-  .hero-title { font-size:clamp(3.5rem,18vw,6rem); }
-  .gear-grid { grid-template-columns:1fr; }
-  .info-stats { grid-template-columns:1fr 1fr; }
-  .stat-box { padding:1.2rem 1rem; }
-}
-@media (max-width:400px) {
-  .quote-container { grid-template-columns:1fr 1fr!important; }
-  .quota-card.recommended { grid-column:1 / -1;flex-direction:row;justify-content:space-between;align-items:center!important;padding:.9rem 1.2rem!important;gap:.5rem; }
-  .quota-card.recommended:hover { transform:translateY(-2px); }
-  .quota-card.recommended .quota-price { font-size:1.6rem;margin-bottom:0; }
-  .quota-card.recommended .quota-title { margin-bottom:0;text-align:left; }
-  .quota-badge-top { order:2;position:relative;top:auto;left:auto;transform:none;padding:.2rem .6rem;font-size:.6rem; }
-}
+
 @media (max-width:768px) {
-  .ghost-card-sm { padding:1.2rem 1rem;gap:.6rem; }
-  .ghost-card-lg { padding:1.5rem 1.25rem;gap:1rem; }
-  .gear-name { font-size:1.15rem!important;margin-bottom:.1rem!important; }
-  .gear-note { font-size:.8rem!important; }
-  .ghost-card svg { bottom:-.5rem!important;right:-.5rem!important;opacity:.15!important;filter:drop-shadow(0 0 5px var(--red-warm))!important; }
-  .ghost-card-sm svg { width:75px!important;height:75px!important; }
-  .ghost-card-lg svg { width:100px!important;height:100px!important; }
+  .ghost-card-sm {
+    padding: 1.2rem 1rem;
+    gap: .6rem;
+  }
+
+  .ghost-card-lg {
+    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .ebike-page .gear-name {
+    font-size: 1.15rem;
+    margin-bottom: .1rem;
+  }
+
+  .ebike-page .gear-note {
+    font-size: .8rem;
+  }
+
+  .ebike-page .ghost-card svg {
+    bottom: -.5rem;
+    right: -.5rem;
+    opacity: .15;
+    filter: drop-shadow(0 0 5px var(--red-warm));
+  }
+
+  .ghost-card-sm svg {
+    width: 75px;
+    height: 75px;
+  }
+
+  .ghost-card-lg svg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width:480px) {
+  .hero-title {
+    font-size: clamp(3.5rem, 18vw, 6rem);
+  }
+
+  .gear-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-box {
+    padding: 1.2rem 1rem;
+  }
+}
+
+@media (max-width:400px) {
+  .ebike-page .quote-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ebike-page .quota-card.recommended {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: .9rem 1.2rem;
+    gap: .5rem;
+  }
+
+  .quota-card.recommended:hover {
+    transform: translateY(-2px);
+  }
+
+  .ebike-page .quota-card.recommended .quota-price {
+    font-size: 1.6rem;
+    margin-bottom: 0;
+  }
+
+  .ebike-page .quota-card.recommended .quota-title {
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .quota-badge-top {
+    order: 2;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    padding: .2rem .6rem;
+    font-size: .6rem;
+  }
 }
 
 /* FORM ISCRIZIONE REFACTORING */
-.form-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--white); margin-bottom: 0.5rem; line-height: 1; }
-.form-subtitle { color: var(--red-warm); font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.6; font-weight: 600; }
-.form-fieldset { display: flex; flex-direction: column; gap: 1.8rem; }
-.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.form-label { color: var(--white); }
-.form-label-opt { color: rgba(244, 237, 230, 0.85); }
-.form-textarea { resize: vertical; }
-.form-checkbox-label { font-size: 0.82rem; color: rgba(244, 237, 230, 0.85); line-height: 1.5; }
+.form-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  color: var(--white);
+  margin-bottom: .5rem;
+  line-height: 1;
+}
 
-.form-promo-container { margin-top: 1.5rem; padding: 1.2rem; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); }
-.form-promo-label { color: rgba(244, 237, 230, 0.85); margin-bottom: 0.5rem; display: block; }
-.form-promo-input-group { display: flex; gap: 0.5rem; }
-.form-promo-input { text-transform: uppercase; }
-.form-promo-btn { background: var(--red-warm); color: white; border: none; padding: 0 1.5rem; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.1em; cursor: pointer; }
-.form-promo-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.form-promo-error { color: var(--red-hot); font-size: 0.85rem; margin-top: 0.5rem; font-weight: 600; }
-.form-promo-success { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; padding: 0.6rem 0.8rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; font-size: 0.95rem; font-weight: 600; }
-.form-promo-remove { background: none; border: none; color: white; cursor: pointer; text-decoration: underline; font-size: 0.85rem; opacity: 0.7; }
+.form-subtitle {
+  color: var(--red-warm);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  font-weight: 600;
+}
 
-.form-turnstile { margin-top: 1rem; display: flex; justify-content: center; }
-.form-submit-container { margin-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.2rem; }
-.form-submit-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--white); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; text-align: center; }
-.form-submit-group { display: flex; flex-direction: column; gap: 1.2rem; align-items: center; }
-.form-submit-btn-wrap { width: 100%; max-width: 400px; }
-.form-submit-btn { width: 100%; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: none; padding: 1.1rem; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%); display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
-.form-submit-btn.paypal { background: #ffc439; color: rgba(0, 0, 0, 0.5); opacity: 0.6; cursor: not-allowed; }
-.form-submit-btn.stripe { background: #3a3632; color: rgba(255, 255, 255, 0.4); margin-top: 0.4rem; cursor: not-allowed; }
-.form-submit-btn.cash { background: var(--red-warm); color: var(--white); font-size: 1rem; transition: transform 0.2s; }
-.form-submit-btn.cash:active { transform: scale(0.98); }
-.stripe-badge { font-weight: 700; letter-spacing: 0.1em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 2px 8px; border-radius: 4px; font-family: 'Barlow', sans-serif; font-size: 0.75rem; }
-.form-separator { display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 400px; }
-.form-sep-line { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.08); }
-.form-sep-text { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: rgba(255, 255, 255, 0.3); letter-spacing: 0.15em; }
-.form-msg-box { display: block; padding: 1.2rem; font-size: 0.95rem; font-weight: 500; text-align: center; margin-top: 0.5rem; background: rgba(255, 255, 255, 0.02); border-left: 4px solid; }
-.form-msg-box.success { border-color: #10b981; color: #10b981; }
-.form-msg-box.error { border-color: var(--red-hot); color: var(--red-warm); }
+.form-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.form-label {
+  color: var(--white);
+}
+
+.form-label-opt {
+  color: rgba(244, 237, 230, .85);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.form-checkbox-label {
+  font-size: .82rem;
+  color: rgba(244, 237, 230, .85);
+  line-height: 1.5;
+}
+
+.form-promo-container {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, .02);
+  border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.form-promo-label {
+  color: rgba(244, 237, 230, .85);
+  margin-bottom: .5rem;
+  display: block;
+}
+
+.form-promo-input-group {
+  display: flex;
+  gap: .5rem;
+}
+
+.form-promo-input {
+  text-transform: uppercase;
+}
+
+.form-promo-btn {
+  background: var(--red-warm);
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  font-weight: 700;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: .1em;
+  cursor: pointer;
+}
+
+.form-promo-btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.form-promo-error {
+  color: var(--red-hot);
+  font-size: .85rem;
+  margin-top: .5rem;
+  font-weight: 600;
+}
+
+.form-promo-success {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: .8rem;
+  padding: .6rem .8rem;
+  background: rgba(var(--green-rgb), .1);
+  border: 1px solid rgba(var(--green-rgb), .3);
+  color: var(--green);
+  font-size: .95rem;
+  font-weight: 600;
+}
+
+.form-promo-remove {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: .85rem;
+  opacity: .7;
+}
+
+.form-turnstile {
+  margin-top: -.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form-submit-container {
+  margin-top: -.5rem;
+  border-top: none;
+  padding-top: 0;
+}
+
+.form-submit-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-submit-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.form-submit-btn-wrap {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-submit-btn {
+  width: 100%;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  border: none;
+  padding: 1.1rem;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.form-submit-btn.stripe {
+  background: #635bff;
+  color: var(--white);
+  margin-top: .4rem;
+  font-size: 1rem;
+  transition: transform .2s;
+}
+
+.form-submit-btn.stripe:not(:disabled):active {
+  transform: scale(.98);
+}
+
+.form-submit-btn.stripe:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-submit-btn.cash {
+  background: var(--red-warm);
+  color: var(--white);
+  font-size: 1rem;
+  transition: transform .2s;
+}
+
+.form-submit-btn.cash:active {
+  transform: scale(.98);
+}
+
+.stripe-badge {
+  font-weight: 700;
+  letter-spacing: .1em;
+  border: 1px solid rgba(255, 255, 255, .2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Barlow', sans-serif;
+  font-size: .75rem;
+}
+
+.form-separator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-sep-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, .08);
+}
+
+.form-sep-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .65rem;
+  color: rgba(255, 255, 255, .3);
+  letter-spacing: .15em;
+}
+
+.form-msg-box {
+  display: block;
+  padding: 1.2rem;
+  font-size: .95rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: .5rem;
+  background: rgba(255, 255, 255, .02);
+  border-left: 4px solid;
+}
+
+.form-msg-box.success {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.form-msg-box.error {
+  border-color: var(--red-hot);
+  color: var(--red-warm);
+}

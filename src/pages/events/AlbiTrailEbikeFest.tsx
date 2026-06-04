@@ -15,14 +15,7 @@ import { Organizzatore } from "../../components/features/events/ebike-fest/Organ
 import { IscrizioneForm } from "../../components/features/events/ebike-fest/IscrizioneForm";
 import { Footer } from "../../components/features/events/ebike-fest/Footer";
 import { StickyCTA } from "../../components/features/events/ebike-fest/StickyCTA";
-
-function RevealSection({ children }: { children: React.ReactNode }) {
-    return (
-        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.8, ease: "easeOut" }}>
-            {children}
-        </motion.div>
-    );
-}
+import { RevealSection } from "../../components/ui/RevealSection";
 
 export default function AlbiTrailEbikeFest() {
     /* Custom cursor using Framer Motion */
@@ -37,17 +30,21 @@ export default function AlbiTrailEbikeFest() {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
         };
-        document.addEventListener("mousemove", onMove);
-        return () => document.removeEventListener("mousemove", onMove);
-    }, [mouseX, mouseY]);
+        if (window.matchMedia("(pointer:fine)").matches) {
+            document.addEventListener("mousemove", onMove);
+            return () => document.removeEventListener("mousemove", onMove);
+        }
+    }, []);
 
     /* Restore scroll on refresh */
     useEffect(() => {
         const key = "scroll_pos_" + window.location.pathname;
         const savedPos = sessionStorage.getItem(key);
         if (savedPos) {
-            setTimeout(() => window.scrollTo({ top: parseInt(savedPos, 10), behavior: "instant" }), 0);
-            sessionStorage.removeItem(key);
+            requestAnimationFrame(() => {
+                window.scrollTo({ top: parseInt(savedPos, 10), behavior: "instant" });
+                sessionStorage.removeItem(key);
+            });
         }
         const onBeforeUnload = () => sessionStorage.setItem(key, window.scrollY.toString());
         window.addEventListener("beforeunload", onBeforeUnload);
@@ -62,12 +59,16 @@ export default function AlbiTrailEbikeFest() {
         const toggle = () => {
             const scrolled = window.scrollY > 280;
             const formEl = formRef.current;
-            const pastForm = formEl ? window.scrollY + window.innerHeight > formEl.getBoundingClientRect().bottom + window.scrollY + 100 : false;
+            const pastForm = formEl ? formEl.getBoundingClientRect().bottom < window.innerHeight - 100 : false;
             setStickyVisible(scrolled && !pastForm);
         };
         window.addEventListener("scroll", toggle, { passive: true });
+        window.addEventListener("resize", toggle, { passive: true });
         toggle();
-        return () => window.removeEventListener("scroll", toggle);
+        return () => {
+            window.removeEventListener("scroll", toggle);
+            window.removeEventListener("resize", toggle);
+        };
     }, []);
 
 
@@ -96,9 +97,8 @@ export default function AlbiTrailEbikeFest() {
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
                 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,700&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
-                {/* Stripe + PayPal + Turnstile */}
+                {/* Stripe + Turnstile */}
                 <script src="https://js.stripe.com/v3/" async defer />
-                <script src="https://www.paypal.com/sdk/js?client-id=AYdERqNakZl6ULR3SR5P33b3ERgIqc6WEhVpc9KsEHzkSx-jsQCuf4hCokgIOe_2CmqrSWHvYqTYDmo6&currency=EUR&locale=it_IT" async defer />
                 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
                 <script type="application/ld+json">{`{
   "@context":"https://schema.org",

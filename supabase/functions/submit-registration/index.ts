@@ -1,4 +1,5 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.8";
+import { createClient } from "@supabase/supabase-js";
+import Stripe from "stripe";
 
 const allowedOrigins = [
   "https://ellera.it",
@@ -17,6 +18,9 @@ function getCorsHeaders(req: Request) {
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
   };
 }
+
+let supabaseAdmin: ReturnType<typeof createClient> | null = null;
+let stripe: Stripe | null = null;
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
@@ -62,7 +66,7 @@ Deno.serve(async (req: Request) => {
     // 2. Strict Whitelisting & Validation
     const allowedFields = [
       "nome_cognome", "email", "telefono", "pacchetto", "menu", "note",
-      "pagamento", "chk_regolamento", "chk_responsabilita", "chk_privacy",
+      "pagamento", "codice_promo", "codice_sconto_applicato", "chk_regolamento", "chk_responsabilita", "chk_privacy",
       "chk_media", "regolamento_version", "timestamp", "user_agent", 
       "ip_address", "paypal_order_id", "stripe_payment_intent_id"
     ];
@@ -79,6 +83,28 @@ Deno.serve(async (req: Request) => {
       throw new Error("Missing required fields (Name, Email, Package)");
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(String(cleanData.email))) {
+      throw new Error("Invalid email format")
+    }
+
+    if (String(cleanData.nome_cognome || "").length > 100) {
+      throw new Error("Nome troppo lungo");
+    }
+    if (cleanData.note && String(cleanData.note).length > 500) {
+      throw new Error("Note troppo lunghe");
+    }
+
+    if (cleanData.stripe_payment_intent_id) {
+      const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY") || Deno.env.get("STRIPE_TEST_KEY");
+      if (!stripeSecretKey) throw new Error("Stripe non configurato sul server");
+      stripe ??= new Stripe(stripeSecretKey, { apiVersion: "2023-10-16", httpClient: Stripe.createFetchHttpClient() });
+      const intent = await stripe.paymentIntents.retrieve(String(cleanData.stripe_payment_intent_id));
+      if (intent.status !== "succeeded") {
+        throw new Error("Pagamento non completato su Stripe");
+      }
+    }
+
     // Consents check
     if (!cleanData.chk_regolamento || !cleanData.chk_responsabilita || !cleanData.chk_privacy) {
       throw new Error("Mandatory consents missing");
@@ -92,7 +118,29 @@ Deno.serve(async (req: Request) => {
       throw new Error("Database configuration error");
     }
 
-    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
+    supabaseAdmin ??= createClient(supabaseUrl, supabaseServiceRoleKey);
+
+    // Valida codice promo lato server
+    if (cleanData.codice_promo) {
+        const code = String(cleanData.codice_promo).trim().toUpperCase();
+        const { data: promoData, error: promoError } = await supabaseAdmin
+            .from("promo_codes")
+            .select("code, discount_amount, expires_at")
+            .eq("code", code)
+            .eq("is_active", true)
+            .single();
+
+        if (promoError || !promoData) {
+            throw new Error("Codice promo non valido");
+        }
+        if (promoData.expires_at && new Date(promoData.expires_at) < new Date()) {
+            throw new Error("Codice promo scaduto");
+        }
+
+        // Sovrascrive il codice con quello validato server-side
+        cleanData.codice_promo = promoData.code;
+        cleanData.codice_sconto_applicato = promoData.code;
+    }
 
     // 4. Insert into DB
     const { data, error } = await supabaseAdmin
@@ -110,6 +158,7 @@ Deno.serve(async (req: Request) => {
       try {
         await fetch(sheetsUrl, {
           method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(cleanData),
         });
       } catch (err) {

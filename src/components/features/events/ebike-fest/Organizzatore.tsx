@@ -6,7 +6,7 @@ export function Organizzatore() {
             <p className="reveal" style={{ color: "var(--grey-lt)", marginTop: "1rem", fontFamily: "'Barlow Condensed',sans-serif", fontSize: "1.05rem", maxWidth: 560, lineHeight: 1.7 }}>
                 <strong style={{ color: "var(--white)" }}>Albi Trail Area</strong> è la sezione ciclistica del <strong style={{ color: "var(--white)" }}>Comitato Ellerese</strong> - stessa radice, stesso territorio, missioni complementari.
             </p>
-            <div className="org-box reveal" style={{ gridTemplateColumns: "1fr 1fr" }}>
+            <div className="org-box reveal">
                 {/* Albi Trail */}
                 <div className="org-left">
                     <div>

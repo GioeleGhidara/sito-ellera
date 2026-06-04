@@ -1,32 +1,101 @@
-// Follow this setup guide to integrate the Deno language server with your editor:
-// https://deno.land/manual/getting_started/setup_your_environment
-// This enables autocomplete, go to definition, etc.
+import Stripe from "stripe"
 
-// Setup type definitions for built-in Supabase Runtime APIs
-import "@supabase/functions-js/edge-runtime.d.ts"
+const allowedOrigins = [
+  "https://ellera.it",
+  "https://www.ellera.it",
+  "http://localhost:5173",
+  "http://localhost:8080",
+];
 
-console.log("Hello from Functions!")
+function getCorsHeaders(req: Request) {
+  const origin = req.headers.get("origin") || "";
+  const allowOrigin = allowedOrigins.includes(origin) ? origin : "https://ellera.it";
 
-Deno.serve(async (req) => {
-  const { name } = await req.json()
-  const data = {
-    message: `Hello ${name}!`,
+  return {
+    "Access-Control-Allow-Origin": allowOrigin,
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  };
+}
+
+let stripe: Stripe | null = null;
+
+Deno.serve(async (req: Request) => {
+  // Gestione preflight CORS
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: getCorsHeaders(req) })
   }
 
-  return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
-  )
+  // Handle non-POST methods
+  if (req.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: {
+        ...getCorsHeaders(req),
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  try {
+    const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY") || Deno.env.get("STRIPE_TEST_KEY")
+    if (!stripeSecretKey) {
+        throw new Error("STRIPE_SECRET_KEY mancante sul server Supabase")
+    }
+
+    stripe ??= new Stripe(stripeSecretKey, {
+      apiVersion: "2023-10-16",
+      httpClient: Stripe.createFetchHttpClient(),
+    })
+
+    const { email, nome_cognome, pacchetto, amount, return_url } = await req.json()
+
+    const PREZZI: Record<string, number> = {
+      "Ride + Pranzo (€ 20)": 20,
+      "Solo Ride (€ 12)": 12,
+      "Solo Pranzo (€ 12)": 12,
+    };
+    const expectedAmount = PREZZI[pacchetto];
+    
+    if (!expectedAmount || amount !== expectedAmount) {
+      throw new Error("Importo non corrispondente al pacchetto")
+    }
+
+    const allowedReturnDomains = ["https://ellera.it", "https://www.ellera.it", "http://localhost:5173", "http://localhost:8080"];
+    if (!allowedReturnDomains.some(d => return_url?.startsWith(d))) {
+      throw new Error("return_url non valido");
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      customer_email: email,
+      line_items: [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: `Iscrizione Albi Trail - ${pacchetto}`,
+              description: `Iscrizione per ${nome_cognome}`,
+            },
+            unit_amount: amount * 100, // Stripe richiede centesimi
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      success_url: `${return_url}?success=stripe`,
+      cancel_url: `${return_url}?canceled=stripe`,
+    })
+
+    return new Response(JSON.stringify({ url: session.url }), {
+      headers: { ...getCorsHeaders(req), "Content-Type": "application/json" },
+      status: 200,
+    })
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error"
+    return new Response(JSON.stringify({ error: message }), {
+      headers: { ...getCorsHeaders(req), "Content-Type": "application/json" },
+      status: 400,
+    })
+  }
 })
-
-/* To invoke locally:
-
-  1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
-  2. Make an HTTP request:
-
-  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/create-stripe-checkout' \
-    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0' \
-    --header 'Content-Type: application/json' \
-    --data '{"name":"Functions"}'
-
-*/

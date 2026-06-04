@@ -1,4 +1,11 @@
-import { useState, useEffect, ForwardedRef, forwardRef } from "react";
+import { useState, useEffect, ForwardedRef, forwardRef, useRef } from "react";
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+const REGOLAMENTO_VERSION = "v1.0";
+
+const getTurnstileToken = () =>
+    (document.querySelector(".cf-turnstile input[name='cf-turnstile-response']") as HTMLInputElement | null)?.value ?? "";
 
 export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: ForwardedRef<HTMLDivElement>) {
     /* Pacchetto selezionato */
@@ -6,15 +13,12 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
     /* Promo code */
     const [promoCodeInput, setPromoCodeInput] = useState("");
-    const [appliedPromo, setAppliedPromo] = useState<{code: string, discount: number} | null>(null);
+    const [appliedPromo, setAppliedPromo] = useState<{ code: string; discount: number } | null>(null);
     const [promoError, setPromoError] = useState<string | null>(null);
     const [promoLoading, setPromoLoading] = useState(false);
 
-    const getBasePrice = () => {
-        if (pacchetto.includes("20")) return 20;
-        return 12;
-    };
-    const finalPrice = Math.max(0, getBasePrice() - (appliedPromo ? appliedPromo.discount : 0));
+    const basePrice = pacchetto.includes("20") ? 20 : 12;
+    const finalPrice = Math.max(0, basePrice - (appliedPromo?.discount ?? 0));
 
     /* Form stato */
     const [formData, setFormData] = useState({
@@ -22,61 +26,108 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
         privacyRegolamento: false, privacyResponsabilita: false, privacy: false, privacyMedia: false,
     });
     const [formMsg, setFormMsg] = useState<{ text: string; ok: boolean } | null>(null);
-
-    /* Success modal */
+    const [stripeLoading, setStripeLoading] = useState(false);
+    const [cashLoading, setCashLoading] = useState(false);
+    const [formSent, setFormSent] = useState(false);
     const [successModal, setSuccessModal] = useState<string | null>(null);
 
-    /* Pacchetto → menu */
+    // Resetta la promo se l'utente cambia idea sul pacchetto
+    useEffect(() => {
+        setAppliedPromo(null);
+        setPromoCodeInput("");
+    }, [pacchetto]);
+
     const showMenu = pacchetto !== "Solo Ride (€ 12)";
 
     /* Validazione codice sconto */
     const applyPromo = async (codeOverride?: string | React.MouseEvent) => {
-        const rawCode = typeof codeOverride === "string" ? codeOverride : promoCodeInput;
-        const code = rawCode.trim().toUpperCase();
+        const code = (typeof codeOverride === "string" ? codeOverride : promoCodeInput).trim().toUpperCase();
         if (!code) return;
+        
         setPromoLoading(true);
         setPromoError(null);
+        
         try {
-            const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
-            const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
-            const res = await fetch(`${supabaseUrl}/rest/v1/promo_codes?code=eq.${code}&is_active=eq.true`, {
-                headers: { "apikey": supabaseKey, "Authorization": `Bearer ${supabaseKey}` }
+            const res = await fetch(`${SUPABASE_URL}/functions/v1/validate-promo`, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${SUPABASE_KEY}` 
+                },
+                body: JSON.stringify({ code })
             });
-            if (!res.ok) throw new Error("Errore di rete");
-            const data = await res.json();
-            if (data && data.length > 0) {
-                const promo = data[0];
-                
-                // Controllo scadenza
-                if (promo.expires_at && new Date(promo.expires_at) < new Date()) {
-                    setPromoError("Questo codice sconto è scaduto.");
-                    return;
-                }
 
-                setAppliedPromo({ code: promo.code, discount: promo.discount_amount });
-                setPromoCodeInput("");
-                setPromoError(null);
-            } else {
-                setPromoError("Codice sconto non valido.");
+            const data = await res.json();
+
+            if (!res.ok) {
+                // Mostra l'errore che arriva direttamente dalla Edge Function
+                setPromoError(data.error || "Codice sconto non valido.");
+                return;
             }
-        } catch (e) {
+
+            // Se va a buon fine, applica lo sconto
+            setAppliedPromo({ code, discount: data.discount_amount });
+            setPromoCodeInput("");
+
+        } catch {
             setPromoError("Errore di connessione. Riprova.");
         } finally {
             setPromoLoading(false);
         }
     };
 
-    /* Auto-applica da URL (?promo=SCONTO5) */
+    /* Auto-applica da URL (?promo=SCONTO5) e gestisci redirect Stripe */
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const promoFromUrl = params.get("promo");
         if (promoFromUrl) {
             setPromoCodeInput(promoFromUrl.toUpperCase());
-            // Ritardo per assicurarsi che l'ambiente sia pronto (es. Supabase url)
-            setTimeout(() => {
-                applyPromo(promoFromUrl);
-            }, 300);
+            applyPromo(promoFromUrl);
         }
+        if (params.get("success") === "stripe") {
+            setSuccessModal("✓ Iscrizione confermata e pagamento ricevuto con successo! Ci vediamo al Prato Feste il 14 Giugno!");
+            window.history.replaceState({}, document.title, window.location.pathname);
+        } else if (params.get("canceled") === "stripe") {
+            setFormMsg({ text: "Il pagamento è stato annullato. Puoi riprovare quando sei pronto.", ok: false });
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }, []);
+
+    /* Turnstile Explicit Render */
+    const turnstileRef = useRef<HTMLDivElement>(null);
+    const turnstileWidgetId = useRef<string | undefined>(undefined);
+    useEffect(() => {
+        let widgetId: string | undefined;
+        let interval: ReturnType<typeof setInterval>;
+
+        const renderTurnstile = () => {
+            if ((window as any).turnstile && turnstileRef.current) {
+                turnstileRef.current.innerHTML = "";
+                turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
+                    sitekey: import.meta.env.VITE_TURNSTILE_SITE_KEY || "0x4AAAAAACzdId3jrskU4ueH",
+                    theme: "dark"
+                });
+                widgetId = turnstileWidgetId.current;
+            }
+        };
+
+        if ((window as any).turnstile) {
+            renderTurnstile();
+        } else {
+            interval = setInterval(() => {
+                if ((window as any).turnstile) {
+                    clearInterval(interval);
+                    renderTurnstile();
+                }
+            }, 200);
+        }
+
+        return () => {
+            if (interval) clearInterval(interval);
+            if (widgetId && (window as any).turnstile) {
+                (window as any).turnstile.remove(widgetId);
+            }
+        };
     }, []);
 
     /* Validazione */
@@ -89,44 +140,34 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
         return true;
     };
 
-    /* Invia iscrizione a Supabase */
-    interface RegistrationPayload {
-        nome_cognome: string;
-        email: string;
-        telefono: string | null;
-        pacchetto: string;
-        menu: string;
-        note: string | null;
-        codice_sconto_applicato: string | null;
-        prezzo_finale: number;
-        metodo_pagamento: string;
-    }
+    /* Invia iscrizione tramite Edge Function submit-registration */
+    const inviaIscrizione = async (pagamento: string) => {
+        const token = getTurnstileToken();
+        if (!token) throw new Error("Completa la verifica di sicurezza");
 
-    const inviaIscrizione = async (extra: Partial<RegistrationPayload>) => {
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
-        const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
-        const payload: RegistrationPayload = {
+        const registrationData = {
             nome_cognome: formData.nome_cognome.trim(),
             email: formData.email.trim().toLowerCase(),
             telefono: formData.telefono.trim() || null,
             pacchetto,
             menu: showMenu ? formData.menu : "Nessun Pranzo",
             note: formData.note.trim() || null,
-            codice_sconto_applicato: appliedPromo?.code || null,
-            prezzo_finale: finalPrice,
-            metodo_pagamento: extra.metodo_pagamento || "sul_posto",
-            ...extra,
+            codice_promo: appliedPromo?.code ?? null,
+            pagamento,
+            chk_regolamento: formData.privacyRegolamento,
+            chk_responsabilita: formData.privacyResponsabilita,
+            chk_privacy: formData.privacy,
+            chk_media: formData.privacyMedia,
+            regolamento_version: REGOLAMENTO_VERSION,
+            timestamp: new Date().toISOString(),
         };
-        const res = await fetch(`${supabaseUrl}/rest/v1/albi_trail_registrations`, {
+
+        const res = await fetch(`${SUPABASE_URL}/functions/v1/submit-registration`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "apikey": supabaseKey,
-                "Authorization": `Bearer ${supabaseKey}`,
-                "Prefer": "return=minimal",
-            },
-            body: JSON.stringify(payload),
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${SUPABASE_KEY}` },
+            body: JSON.stringify({ token, registrationData }),
         });
+
         if (res.status === 409) throw new Error("DUPLICATO");
         if (!res.ok) {
             const errData = await res.text();
@@ -134,23 +175,66 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
         }
     };
 
+    /* Gestione errori form */
+    const handleError = (err: unknown) => {
+        const msg = err instanceof Error ? err.message : "";
+        if (msg === "DUPLICATO") {
+            setFormMsg({ text: "Questa email è già registrata. Hai già inviato la tua iscrizione!", ok: false });
+        } else if (msg.startsWith("NETWORK_DETAILS:")) {
+            setFormMsg({ text: `Impossibile salvare sul database. Dettagli: ${msg.replace("NETWORK_DETAILS: ", "")}`, ok: false });
+        } else {
+            setFormMsg({ text: `Ops! Problema di rete o server: ${msg}`, ok: false });
+        }
+
+        // Resetta il widget per un nuovo tentativo
+        if ((window as any).turnstile && turnstileWidgetId.current !== undefined) {
+            (window as any).turnstile.reset(turnstileWidgetId.current);
+        }
+    };
+
+    /* Handler Stripe */
+    const handleStripe = async () => {
+        if (!validateForm()) return;
+        setFormMsg(null);
+        setStripeLoading(true);
+        try {
+            await inviaIscrizione("stripe_pending");
+
+            const res = await fetch(`${SUPABASE_URL}/functions/v1/create-stripe-checkout`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${SUPABASE_KEY}` },
+                body: JSON.stringify({
+                    email: formData.email.trim(),
+                    nome_cognome: formData.nome_cognome.trim(),
+                    pacchetto,
+                    amount: finalPrice,
+                    return_url: window.location.origin + window.location.pathname,
+                }),
+            });
+
+            if (!res.ok) throw new Error(`Errore dal server di pagamento: ${await res.text()}`);
+            const { url } = await res.json();
+            if (!url) throw new Error("URL di checkout non ricevuto");
+            window.location.href = url;
+        } catch (err) {
+            handleError(err);
+            setStripeLoading(false);
+        }
+    };
+
     /* Handler cash */
     const handleCash = async () => {
         if (!validateForm()) return;
         setFormMsg(null);
+        setCashLoading(true);
         try {
-            await inviaIscrizione({ metodo_pagamento: "sul_posto" });
+            await inviaIscrizione("sul_posto");
+            setFormSent(true);
             setSuccessModal("✓ Iscrizione completata! Ci vediamo al Prato Feste il 14 Giugno!");
-        } catch (err: unknown) {
-            const msg = err instanceof Error ? err.message : "";
-            if (msg === "DUPLICATO") {
-                setFormMsg({ text: "Questa email è già registrata. Hai già inviato la tua iscrizione!", ok: false });
-            } else if (msg.startsWith("NETWORK_DETAILS:")) {
-                // Mostriamo a schermo l'errore esatto del database!
-                setFormMsg({ text: `Impossibile salvare sul database. Dettagli: ${msg.replace("NETWORK_DETAILS: ", "")}`, ok: false });
-            } else {
-                setFormMsg({ text: "Ops! Problema di rete. Controlla la connessione e riprova.", ok: false });
-            }
+        } catch (err) {
+            handleError(err);
+        } finally {
+            setCashLoading(false);
         }
     };
 
@@ -172,10 +256,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
             {/* QUOTE CARDS */}
             <div className="quote-container reveal">
-                <div
-                    className={`quota-card base ${pacchetto === "Solo Ride (€ 12)" ? "selected" : ""}`}
-                    onClick={() => setPacchetto("Solo Ride (€ 12)")}
-                >
+                <div className={`quota-card base ${pacchetto === "Solo Ride (€ 12)" ? "selected" : ""}`} onClick={() => setPacchetto("Solo Ride (€ 12)")}>
                     <div className="quota-title">
                         <span className="mobile-label">Solo Ride</span>
                         <span className="desktop-label">Solo Ride</span>
@@ -184,10 +265,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                     <div className="quota-sub">Solo il giro -<br />pranzo non incluso</div>
                 </div>
 
-                <div
-                    className={`quota-card recommended ${pacchetto === "Ride + Pranzo (€ 20)" ? "selected" : ""}`}
-                    onClick={() => setPacchetto("Ride + Pranzo (€ 20)")}
-                >
+                <div className={`quota-card recommended ${pacchetto === "Ride + Pranzo (€ 20)" ? "selected" : ""}`} onClick={() => setPacchetto("Ride + Pranzo (€ 20)")}>
                     <div className="quota-badge-top" style={{ display: "inline-flex", alignItems: "center", gap: ".4rem", whiteSpace: "nowrap" }}>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--black)" }}>
                             <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
@@ -202,10 +280,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                     <div className="quota-sub" style={{ color: "var(--white)" }}>Ride + Menù completo (Panino, patatine e birra/acqua)</div>
                 </div>
 
-                <div
-                    className={`quota-card base ${pacchetto === "Solo Pranzo (€ 12)" ? "selected" : ""}`}
-                    onClick={() => setPacchetto("Solo Pranzo (€ 12)")}
-                >
+                <div className={`quota-card base ${pacchetto === "Solo Pranzo (€ 12)" ? "selected" : ""}`} onClick={() => setPacchetto("Solo Pranzo (€ 12)")}>
                     <div className="quota-title">
                         <span className="mobile-label">Solo Pranzo</span>
                         <span className="desktop-label">Solo Pranzo</span>
@@ -223,7 +298,14 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                 </p>
 
                 <div className="form-fieldset">
-                    <div className="form-row">
+                    {formSent ? (
+                        <div style={{ textAlign: "center", padding: "3rem 1rem", color: "var(--white)" }}>
+                            <h4 style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: "2rem", color: "var(--red-warm)" }}>Ci vediamo a Ellera!</h4>
+                            <p>La tua iscrizione è stata confermata. Riceverai a breve una mail di riepilogo.</p>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="form-row">
                         <div className="flex-col-gap-05">
                             <label className="label-upper form-label" htmlFor="nome_cognome">Nome e Cognome *</label>
                             <input id="nome_cognome" type="text" maxLength={120} autoComplete="name" className="form-input" value={formData.nome_cognome} onChange={e => setFormData(d => ({ ...d, nome_cognome: e.target.value }))} />
@@ -305,7 +387,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
                     {/* Turnstile */}
                     <div className="form-turnstile">
-                        <div className="cf-turnstile" data-sitekey="0x4AAAAAACzdId3jrskU4ueH" data-theme="dark" />
+                        <div ref={turnstileRef} className="cf-turnstile" />
                     </div>
 
                     {/* Bottoni pagamento */}
@@ -313,29 +395,12 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         <h4 className="form-submit-title">Completa l'iscrizione</h4>
                         <div className="form-submit-group">
 
-                            {/* PayPal */}
-                            <div className="form-submit-btn-wrap">
-                                <button type="button" disabled className="form-submit-btn paypal">
-                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.067 8.478c.492.26.85.57.94 1.02.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H9.36c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z" /><path d="M16.93 6.94c.4 1.99-1.07 3.14-3.1 3.14h-1.85c-.44 0-.81.31-.89.73l-1.12 5.75c-.05.24-.26.42-.51.42H5.22c-.34 0-.59-.32-.51-.65l2.25-11.45c.08-.42.45-.73.89-.73h4.35c1.84 0 3.16.48 3.72 1.77z" opacity=".6" /></svg>
-                                        PAGAMENTI PAYPAL DISABILITATI
-                                    </div>
-                                </button>
-                            </div>
-
-                            {/* Separatore */}
-                            <div className="form-separator">
-                                <div className="form-sep-line" />
-                                <span className="form-sep-text">OPPURE</span>
-                                <div className="form-sep-line" />
-                            </div>
-
                             {/* Stripe */}
                             <div className="form-submit-btn-wrap">
-                                <button type="button" disabled className="form-submit-btn stripe">
+                                <button type="button" onClick={handleStripe} disabled={stripeLoading} className="form-submit-btn stripe" style={{ opacity: stripeLoading ? 0.7 : 1 }}>
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
                                         <span className="stripe-badge">Stripe</span>
-                                        MOMENTANEAMENTE FUORI SERVIZIO
+                                        {stripeLoading ? "REINDIRIZZAMENTO IN CORSO..." : `PAGA ORA (€ ${finalPrice})`}
                                     </div>
                                 </button>
                             </div>
@@ -345,8 +410,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                             </div>
 
                             {/* Cash */}
-                            <button type="button" onClick={handleCash} className="form-submit-btn cash">
-                                ISCRIVITI E PAGA IN LOCO (€ {finalPrice})
+                            <button type="button" onClick={handleCash} disabled={cashLoading || stripeLoading} className="form-submit-btn cash" style={{ opacity: cashLoading ? 0.7 : 1 }}>
+                                {cashLoading ? "ELABORAZIONE IN CORSO..." : `ISCRIVITI E PAGA IN LOCO (€ ${finalPrice})`}
                             </button>
                         </div>
                     </div>
@@ -356,6 +421,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         <div className={`form-msg-box ${formMsg.ok ? "success" : "error"}`}>
                             {formMsg.text}
                         </div>
+                    )}
+                        </>
                     )}
                 </div>
             </div>
