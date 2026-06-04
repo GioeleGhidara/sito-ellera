@@ -5,7 +5,7 @@ const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 const REGOLAMENTO_VERSION = "v1.0";
 
 const getTurnstileToken = () =>
-    (document.querySelector(".cf-turnstile input[name='cf-turnstile-response']") as HTMLInputElement | null)?.value ?? "";
+    (document.querySelector("input[name='cf-turnstile-response']") as HTMLInputElement | null)?.value ?? "";
 
 export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: ForwardedRef<HTMLDivElement>) {
     /* Pacchetto selezionato */
@@ -96,15 +96,23 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
     /* Turnstile Explicit Render */
     const turnstileRef = useRef<HTMLDivElement>(null);
     const turnstileWidgetId = useRef<string | undefined>(undefined);
+    const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || "0x4AAAAAACzdId3jrskU4ueH";
+
     useEffect(() => {
         let widgetId: string | undefined;
         let interval: ReturnType<typeof setInterval>;
 
         const renderTurnstile = () => {
             if ((window as any).turnstile && turnstileRef.current) {
+                // Pulizia preventiva
+                if (turnstileWidgetId.current !== undefined) {
+                    (window as any).turnstile.remove(turnstileWidgetId.current);
+                }
+                
                 turnstileRef.current.innerHTML = "";
+                
                 turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
-                    sitekey: "0x4AAAAAACzdId3jrskU4ueH",
+                    sitekey: siteKey,
                     theme: "dark"
                 });
                 widgetId = turnstileWidgetId.current;
@@ -387,7 +395,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
                     {/* Turnstile */}
                     <div className="form-turnstile">
-                        <div ref={turnstileRef} className="cf-turnstile" />
+                        <div ref={turnstileRef} />
                     </div>
 
                     {/* Bottoni pagamento */}
