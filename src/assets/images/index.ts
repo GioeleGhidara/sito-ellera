@@ -30,6 +30,8 @@ export { default as caruggiEventImage } from "./events/caruggi_event.avif";
 export { default as caruggiLanterneImage } from "./events/caruggiLanterne.avif";
 export { default as chiesaSanBartolomeoEventImage } from "./events/chiesaSbartolomeo.avif";
 export { default as sincroresonanceImage } from "./events/sincroresonance.jpg";
+export { default as locandinaCulturaInCammino } from "./events/cultura-in-cammino.avif";
+export { default as heroCulturaInCammino } from "./events/hero-cultura-in-cammino.avif";
 
 export { default as teatroBalomaBoxImage } from "./teatro/teatro_baloma_box.avif";
 export { default as teatroBalomaExteriorImage } from "./teatro/teatro_baloma_exterior.avif";

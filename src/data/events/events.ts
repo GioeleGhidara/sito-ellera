@@ -14,6 +14,9 @@ import {
   locandinaPedaliamoInsieme,
   locandinaEbikeFest,
   chiesaSanBartolomeoEventImage,
+  galleriaArteImage,
+  locandinaCulturaInCammino,
+  heroCulturaInCammino,
 } from "@/assets/images";
 import { EVENT_LOCATIONS } from "@/data/core/locations";
 
@@ -72,6 +75,43 @@ const getReferenceDayTimestamp = (referenceDate: Date) => {
 };
 
 export const events: EventItem[] = ([
+  {
+    slug: "cultura-in-cammino",
+    title: "Cultura in cammino – Ellera tra arte e natura",
+    date: "11 Giugno 2026",
+    startDate: "2026-06-11",
+    startTime: "18:00",
+    image: locandinaCulturaInCammino,
+    heroImage: heroCulturaInCammino,
+    desc: "Speciale passeggiata alla scoperta delle bellezze del nostro territorio: la Galleria all'aperto della ceramica d'arte e il suggestivo \"sentiero azzurro\".",
+    location: "Piazza Cairoli, Ellera",
+    status: "In programma",
+    organizerName: "Assessorato alla Cultura",
+    organizers: [
+      {
+        name: "Assessorato alla Cultura",
+      },
+      {
+        name: "Associazione Kalipè",
+      },
+    ],
+    showOnHome: true,
+    detailContent: `L’assessorato alla cultura organizza l’iniziativa **"Cultura in cammino – Ellera tra arte e natura"**, una speciale passeggiata alla scoperta delle bellezze del nostro territorio.
+
+L'evento si terrà il prossimo **giovedì 11 giugno 2026 alle ore 18:00**.
+
+**Programma dell'evento:**
+
+- **Ritrovo:** Ore 18:00 in Piazza Cairoli (Ellera).
+- **Prima tappa:** Visita ad alcuni pannelli della Galleria all'aperto della ceramica d'arte.
+- **Il percorso:** Passeggiata lungo il suggestivo "sentiero azzurro".
+- **Conclusione:** Arrivo e termine dell'itinerario presso la Chiesa di San Bartolomeo.
+
+L'iniziativa è promossa dall'Assessorato alla Cultura in collaborazione con l'associazione Kalipè.
+Vi accompagneranno Monica Nicolini e il professore Roberto Siri.`,
+    posterPlaceholderLabel: "Cultura in cammino",
+    category: "Cultura",
+  },
   {
     slug: "frequenze-cosmiche-baloma-2026",
     title: "Frequenze Cosmiche al Balomà",
