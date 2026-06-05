@@ -108,7 +108,9 @@ L'evento si terrà il prossimo **giovedì 11 giugno 2026 alle ore 18:00**.
 - **Conclusione:** Arrivo e termine dell'itinerario presso la Chiesa di San Bartolomeo.
 
 L'iniziativa è promossa dall'Assessorato alla Cultura in collaborazione con l'associazione Kalipè.
-Vi accompagneranno Monica Nicolini e il professore Roberto Siri.`,
+Vi accompagneranno Monica Nicolini e il professore Roberto Siri.
+
+***La partecipazione è libera e non è necessaria l'iscrizione.**`,
     posterPlaceholderLabel: "Cultura in cammino",
     category: "Cultura",
   },
