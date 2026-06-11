@@ -257,6 +257,9 @@ const useWeather = () => {
       }
 
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 seconds timeout
+
         // 2. Richiediamo 5 giorni di previsione all'API
         const res = await fetch(
           `https://api.open-meteo.com/v1/forecast` +
@@ -264,8 +267,11 @@ const useWeather = () => {
           `&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,is_day` +
           `&hourly=temperature_2m,weather_code,precipitation_probability,uv_index,wind_speed_10m` +
           `&forecast_days=5` +
-          `&timezone=Europe%2FRome`
+          `&timezone=Europe%2FRome`,
+          { signal: controller.signal }
         );
+        clearTimeout(timeoutId);
+
         if (!res.ok) throw new Error("Errore API meteo");
         const data = await res.json() as Record<string, unknown>;
 
