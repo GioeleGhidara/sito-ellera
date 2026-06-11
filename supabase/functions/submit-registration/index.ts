@@ -149,6 +149,18 @@ Deno.serve(async (req: Request) => {
 
     if (error) {
       console.error("Supabase Error:", error);
+      
+      // Controllo se l'errore è una violazione del vincolo UNIQUE (es. email duplicata)
+      if (error.code === '23505') {
+        return new Response(JSON.stringify({ success: false, error: "Email already registered" }), {
+          status: 409,
+          headers: {
+            ...getCorsHeaders(req),
+            "Content-Type": "application/json",
+          },
+        });
+      }
+
       throw new Error("Failed to save registration. Please contact support.");
     }
 
