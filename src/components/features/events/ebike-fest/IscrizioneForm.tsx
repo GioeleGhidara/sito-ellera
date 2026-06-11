@@ -145,6 +145,10 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
         if (!formData.privacyRegolamento) { setFormMsg({ text: "Devi accettare il Regolamento dell'evento.", ok: false }); return false; }
         if (!formData.privacyResponsabilita) { setFormMsg({ text: "Devi accettare la dichiarazione di responsabilità.", ok: false }); return false; }
         if (!formData.privacy) { setFormMsg({ text: "Devi accettare l'Informativa Privacy.", ok: false }); return false; }
+        if (promoCodeInput.trim() !== "" && !appliedPromo) {
+            setFormMsg({ text: "Hai inserito un codice sconto ma non lo hai applicato! Clicca su 'APPLICA' prima di inviare l'iscrizione.", ok: false }); 
+            return false;
+        }
         return true;
     };
 
@@ -239,6 +243,22 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             await inviaIscrizione("sul_posto");
             setFormSent(true);
             setSuccessModal("✓ Iscrizione completata! Ci vediamo al Prato Feste il 14 Giugno!");
+        } catch (err) {
+            handleError(err);
+        } finally {
+            setCashLoading(false);
+        }
+    };
+
+    /* Handler gratuito (0€) */
+    const handleFree = async () => {
+        if (!validateForm()) return;
+        setFormMsg(null);
+        setCashLoading(true);
+        try {
+            await inviaIscrizione("gratuito");
+            setFormSent(true);
+            setSuccessModal("✓ Iscrizione confermata con successo! Ci vediamo al Prato Feste il 14 Giugno!");
         } catch (err) {
             handleError(err);
         } finally {
@@ -403,24 +423,32 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                         <h4 className="form-submit-title">Completa l'iscrizione</h4>
                         <div className="form-submit-group">
 
-                            {/* Stripe */}
-                            <div className="form-submit-btn-wrap">
-                                <button type="button" onClick={handleStripe} disabled={stripeLoading} className="form-submit-btn stripe" style={{ opacity: stripeLoading ? 0.7 : 1 }}>
-                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
-                                        <span className="stripe-badge">Stripe</span>
-                                        {stripeLoading ? "REINDIRIZZAMENTO IN CORSO..." : `PAGA ORA (€ ${finalPrice})`}
-                                    </div>
+                            {finalPrice === 0 ? (
+                                <button type="button" onClick={handleFree} disabled={cashLoading} className="form-submit-btn cash" style={{ opacity: cashLoading ? 0.7 : 1, background: "var(--red-warm)", color: "var(--white)" }}>
+                                    {cashLoading ? "ELABORAZIONE IN CORSO..." : "CONFERMA ISCRIZIONE GRATUITA"}
                                 </button>
-                            </div>
+                            ) : (
+                                <>
+                                    {/* Stripe */}
+                                    <div className="form-submit-btn-wrap">
+                                        <button type="button" onClick={handleStripe} disabled={stripeLoading} className="form-submit-btn stripe" style={{ opacity: stripeLoading ? 0.7 : 1 }}>
+                                            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
+                                                <span className="stripe-badge">Stripe</span>
+                                                {stripeLoading ? "REINDIRIZZAMENTO IN CORSO..." : `PAGA ORA (€ ${finalPrice})`}
+                                            </div>
+                                        </button>
+                                    </div>
 
-                            <div className="form-submit-btn-wrap">
-                                <div className="form-sep-line" />
-                            </div>
+                                    <div className="form-submit-btn-wrap">
+                                        <div className="form-sep-line" />
+                                    </div>
 
-                            {/* Cash */}
-                            <button type="button" onClick={handleCash} disabled={cashLoading || stripeLoading} className="form-submit-btn cash" style={{ opacity: cashLoading ? 0.7 : 1 }}>
-                                {cashLoading ? "ELABORAZIONE IN CORSO..." : `ISCRIVITI E PAGA IN LOCO (€ ${finalPrice})`}
-                            </button>
+                                    {/* Cash */}
+                                    <button type="button" onClick={handleCash} disabled={cashLoading || stripeLoading} className="form-submit-btn cash" style={{ opacity: cashLoading ? 0.7 : 1 }}>
+                                        {cashLoading ? "ELABORAZIONE IN CORSO..." : `ISCRIVITI E PAGA IN LOCO (€ ${finalPrice})`}
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
 
