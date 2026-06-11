@@ -260,12 +260,14 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     detailContent: `L'evento estivo più atteso e suggestivo del borgo di Ellera torna ad accendere i cuori e le vie storiche. **Caruggi e Lanterne** non è solo un percorso enogastronomico, ma un vero e proprio tuffo nella tradizione, cullati dalla magica luce delle lanterne artigianali che decorano ogni angolo del paese.
 
 **Cosa troverai:**
-- **Percorso Gastronomico**: diverse "isole del gusto" sparse nei caruggi, dallo street-food tipico ai piatti della tradizione ligure, il tutto accompagnato da ottimo vino e birra artigianale.
+
+- **Percorso Gastronomico**: diverse "isole del gusto" sparse nei caruggi, dallo street-food tipico ai piatti della tradizione ligure, il tutto accompagnato da ottimo vino e birra.
 - **Musica dal vivo**: ogni vicolo e piazzetta ospiterà musicisti e band di vari generi musicali, per farti cantare e ballare sotto le stelle.
 - **Rassegna "L'Arte del Fuoco"**: artisti, artigiani e ceramisti esporranno le loro opere a cielo aperto, celebrando il legame profondo di Ellera con la lavorazione artistica e l'elemento del fuoco.
 
 **Logistica e Servizi:**
-- Servizio navetta gratuito attivo continuativamente da Luceto a partire dalle ore 19:00, per permetterti di raggiungere l'evento senza preoccupazioni di parcheggio.
+
+- Nuovi spazi adibiti a parcheggi.
 - Ampi spazi per la consumazione ai tavoli.
 - Ingresso libero alle esposizioni e agli eventi musicali.`,
   },
