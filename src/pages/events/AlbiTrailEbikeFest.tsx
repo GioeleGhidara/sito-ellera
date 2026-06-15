@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import "./AlbiTrailEbikeFest.css";
 
 import { Navigation } from "../../components/features/events/ebike-fest/Navigation";
+import { getEventBySlug, isEventPast } from "../../data/events/events";
 import { Hero } from "../../components/features/events/ebike-fest/Hero";
 import { CountdownSection } from "../../components/features/events/ebike-fest/CountdownSection";
 import { InfoStats } from "../../components/features/events/ebike-fest/InfoStats";
@@ -76,6 +77,9 @@ export default function AlbiTrailEbikeFest() {
         formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
+    const event = getEventBySlug("albi-trail-ebike-fest");
+    const isClosed = event ? isEventPast(event) : false;
+
     return (
         <>
             <Helmet>
@@ -98,8 +102,12 @@ export default function AlbiTrailEbikeFest() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
                 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,700&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
                 {/* Stripe + Turnstile */}
-                <script src="https://js.stripe.com/v3/" async defer />
-                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+                {!isClosed && (
+                    <>
+                        <script src="https://js.stripe.com/v3/" async defer />
+                        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+                    </>
+                )}
                 <script type="application/ld+json">{`{
   "@context":"https://schema.org",
   "@type":"SportsEvent",
@@ -135,8 +143,23 @@ export default function AlbiTrailEbikeFest() {
                 <RevealSection><Percorsi /></RevealSection>
                 <RevealSection><Attrezzatura /></RevealSection>
                 <RevealSection><Organizzatore /></RevealSection>
-                <RevealSection><IscrizioneForm ref={formRef} /></RevealSection>
-                <StickyCTA visible={stickyVisible} onScrollToForm={scrollToForm} />
+                {isClosed ? (
+                    <RevealSection>
+                        <div className="reveal" style={{ maxWidth: 700, margin: "5rem auto", textAlign: "center", padding: "0 1rem" }}>
+                            <div style={{ background: "var(--black3)", border: "1px solid rgba(255,255,255,.08)", padding: "3rem 2rem", borderRadius: "16px" }}>
+                                <h3 style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: "2.5rem", letterSpacing: ".05em", color: "var(--red-warm)", marginBottom: "1rem" }}>Evento Concluso</h3>
+                                <p style={{ color: "var(--sand)", lineHeight: 1.6, fontSize: "1.1rem" }}>
+                                    Grazie a tutti i partecipanti dell'Albi Trail E-Bike Fest! Le iscrizioni sono ufficialmente chiuse. Continuate a seguirci per le foto dell'evento e per i prossimi appuntamenti.
+                                </p>
+                            </div>
+                        </div>
+                    </RevealSection>
+                ) : (
+                    <>
+                        <RevealSection><IscrizioneForm ref={formRef} /></RevealSection>
+                        <StickyCTA visible={stickyVisible} onScrollToForm={scrollToForm} />
+                    </>
+                )}
                 <Footer />
             </div>
         </>

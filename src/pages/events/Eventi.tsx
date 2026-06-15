@@ -60,7 +60,10 @@ const Eventi = () => {
   const activeTab = rawTab === "archivio" ? "archivio" : "programma";
   const isArchive = activeTab === "archivio";
 
-  const baseEvents = events.filter((e) => isArchive ? isEventPast(e) : !isEventPast(e));
+  let baseEvents = events.filter((e) => isArchive ? isEventPast(e) : !isEventPast(e));
+  if (isArchive) {
+    baseEvents.reverse();
+  }
 
   const filteredSporadicEvents =
     activeFilter === "Tutti"

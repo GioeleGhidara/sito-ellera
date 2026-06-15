@@ -218,7 +218,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     desc: "Raduno esclusivo e-bike sui sentieri tecnici di Ellera. Giro accompagnato di 3h+ e pranzo finale con panino, birra e patatine.",
     location: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.name,
     locationUrl: EVENT_LOCATIONS.TRAIL_PRATO_FESTE.url,
-    status: "In arrivo",
+    status: "Concluso",
     organizerName: "Comitato Ellerese",
     organizerLogo: logoComitatoRidotto,
     organizers: [

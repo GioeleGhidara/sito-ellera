@@ -18,6 +18,23 @@ export interface NewsItem {
 
 const newsData: NewsItem[] = [
   {
+    id: 9,
+    slug: "successo-albi-trail-ebike-fest-2026",
+    date: "2026-06-15",
+    title: "Grande successo per l'Albi Trail E-Bike Fest 2026",
+    excerpt:
+      "Partecipanti entusiasti, panini con salsiccia e golose sorprese fuori menù. Grazie a tutti gli amici di Ellera per il supporto al progetto!",
+    content: `L'edizione 2026 dell'**Albi Trail E-Bike Fest**, svoltasi ieri, si è conclusa con un bilancio estremamente positivo. L'evento è andato nel migliore dei modi e tutti i partecipanti si sono detti pienamente soddisfatti dell'esperienza, sia per il livello dei percorsi proposti sia per il clima di festa.
+
+A deliziare i ciclisti (e non solo) al rientro presso il **Prato Feste** ci hanno pensato i nostri cuochi volontari: non sono mancati i golosi e tradizionali panini con salsiccia accompagnati da buonissime patatine fritte. A sorpresa, per rendere la giornata ancora più speciale, sono stati serviti dei fuori menù d'eccezione che hanno conquistato tutti: piatti caldi di **trippa**, deliziose **castagne** e l'immancabile **panissa fritta**.
+
+Il Comitato ci tiene a rivolgere un ringraziamento speciale a tutti gli abitanti e agli amici di Ellera che hanno deciso di fare un salto al prato delle feste per mangiare un boccone in compagnia. 
+
+La vostra presenza, i vostri sorrisi e il vostro calore sono stati fondamentali per sostenere il progetto **Albi Trail** e ci permettono di continuare a curare con dedizione la nostra meravigliosa rete sentieristica. Grazie di cuore!`,
+    category: "Outdoor",
+    image: "/loghi/albi-trail-area.png",
+  },
+  {
     id: 8,
     slug: "calendario-eventi-2026-ufficializzati",
     date: "2026-02-27",
