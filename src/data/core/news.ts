@@ -30,9 +30,16 @@ A deliziare i ciclisti (e non solo) al rientro presso il **Prato Feste** ci hann
 
 Il Comitato ci tiene a rivolgere un ringraziamento speciale a tutti gli abitanti e agli amici di Ellera che hanno deciso di fare un salto al prato delle feste per mangiare un boccone in compagnia. 
 
+[carousel]
+/news/albi-trail-2026/video-1.mp4
+/news/albi-trail-2026/photo-1.avif
+/news/albi-trail-2026/photo-2.avif
+/news/albi-trail-2026/photo-3.avif
+[/carousel]
+
 La vostra presenza, i vostri sorrisi e il vostro calore sono stati fondamentali per sostenere il progetto **Albi Trail** e ci permettono di continuare a curare con dedizione la nostra meravigliosa rete sentieristica. Grazie di cuore!`,
     category: "Outdoor",
-    image: "/loghi/albi-trail-area.png",
+    image: "/news/albi-trail-2026/photo-2.avif",
   },
   {
     id: 8,

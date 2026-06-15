@@ -63,6 +63,55 @@ const renderContent = (text: string) =>
       );
     }
 
+    // Carosello Media (formato Markdown: [carousel] \n url1 \n url2 \n [/carousel])
+    if (trimmed.startsWith("[carousel]") && trimmed.endsWith("[/carousel]")) {
+      const urls = trimmed
+        .replace("[carousel]", "")
+        .replace("[/carousel]", "")
+        .trim()
+        .split("\n")
+        .map(u => u.trim())
+        .filter(Boolean);
+
+      return (
+        <div key={index} className="w-full overflow-x-auto flex gap-4 snap-x snap-mandatory pb-4 my-8 scroll-smooth" style={{ scrollbarWidth: 'thin' }}>
+          {urls.map((url, i) => {
+            const isVideo = url.match(/\.(mp4|webm|mov)$/i);
+            if (isVideo) {
+              return (
+                <div key={i} className="snap-center shrink-0 w-[85%] md:w-[70%] first:ml-0 last:mr-0">
+                  <video src={url} controls className="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-sm bg-black/10" />
+                </div>
+              );
+            }
+            return (
+              <div key={i} className="snap-center shrink-0 w-[85%] md:w-[70%] first:ml-0 last:mr-0">
+                <img src={url} alt={`Media ${i}`} className="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-sm" />
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+
+    // Media (Immagini o Video in formato Markdown: ![alt](url))
+    if (trimmed.startsWith("![") && trimmed.includes("](") && trimmed.endsWith(")")) {
+      const altEnd = trimmed.indexOf("](");
+      const alt = trimmed.slice(2, altEnd);
+      const url = trimmed.slice(altEnd + 2, trimmed.length - 1);
+      
+      const isVideo = url.match(/\.(mp4|webm|mov)$/i);
+      
+      if (isVideo) {
+          return (
+              <video key={index} src={url} controls className="w-full rounded-xl my-6 shadow-sm bg-black/5" title={alt} />
+          );
+      }
+      return (
+        <img key={index} src={url} alt={alt} className="w-full h-auto rounded-xl my-6 object-cover shadow-sm" />
+      );
+    }
+
     // Lista
     if (trimmed.startsWith("- ")) {
       const items = trimmed.split("\n").map(l => l.trim()).filter(l => l.startsWith("- "));
