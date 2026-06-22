@@ -4,5 +4,5 @@
  */
 export const MAINTENANCE_CONFIG = {
   TREKKING: true,
-  TRADIZIONI: true,
+  TRADIZIONI: false,
 } as const;
