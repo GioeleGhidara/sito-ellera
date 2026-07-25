@@ -263,7 +263,6 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
 
 - **Percorso Gastronomico**: diverse "isole del gusto" sparse nei caruggi, dallo street-food tipico ai piatti della tradizione ligure, il tutto accompagnato da ottimo vino e birra.
 - **Musica dal vivo**: ogni vicolo e piazzetta ospiterà musicisti e band di vari generi musicali, per farti cantare e ballare sotto le stelle.
-**Logistica e Servizi:**
 
 - Nuovi spazi adibiti a parcheggi.
 - Ampi spazi per la consumazione ai tavoli.
