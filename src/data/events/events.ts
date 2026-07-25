@@ -253,7 +253,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     startTime: "19:00",
     endTime: "23:59",
     image: caruggiLanterneImage,
-    desc: "Il tradizionale percorso enogastronomico nei caruggi del borgo di Ellera. Tre serate dedicate al buon cibo, street food e convivialità. L'atmosfera magica delle lanterne è accompagnata da musica dal vivo di tutti i generi e rassegne d'arte come 'L'Arte del Fuoco'. Servizio navetta gratuito da Luceto dalle 19:00.",
+    desc: "Il tradizionale percorso enogastronomico nei caruggi del borgo di Ellera. Tre serate dedicate al buon cibo, street food e convivialità. L'atmosfera magica delle lanterne è accompagnata da musica dal vivo di tutti i generi.",
     location: EVENT_LOCATIONS.CARUGGI.name,
     locationUrl: EVENT_LOCATIONS.CARUGGI.url,
     category: "Festa",
@@ -263,8 +263,6 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
 
 - **Percorso Gastronomico**: diverse "isole del gusto" sparse nei caruggi, dallo street-food tipico ai piatti della tradizione ligure, il tutto accompagnato da ottimo vino e birra.
 - **Musica dal vivo**: ogni vicolo e piazzetta ospiterà musicisti e band di vari generi musicali, per farti cantare e ballare sotto le stelle.
-- **Rassegna "L'Arte del Fuoco"**: artisti, artigiani e ceramisti esporranno le loro opere a cielo aperto, celebrando il legame profondo di Ellera con la lavorazione artistica e l'elemento del fuoco.
-
 **Logistica e Servizi:**
 
 - Nuovi spazi adibiti a parcheggi.
