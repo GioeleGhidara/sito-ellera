@@ -31,8 +31,9 @@ serve(async (req) => {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
       
-      // Recupera l'email del cliente e l'ID della transazione
-      const email = session.customer_details?.email;
+      // Usa client_reference_id (impostato in create-stripe-checkout all'email normalizzata)
+      // invece di customer_details.email, che non è garantito coincidere con l'iscrizione originale.
+      const email = session.client_reference_id || session.customer_details?.email?.toLowerCase();
       const paymentIntentId = session.payment_intent;
 
       if (email) {

@@ -1,5 +1,22 @@
 import { useState, useEffect, ForwardedRef, forwardRef, useRef } from "react";
 
+interface TurnstileRenderOptions {
+    sitekey: string;
+    theme?: "light" | "dark" | "auto";
+}
+
+interface TurnstileApi {
+    render: (container: HTMLElement, options: TurnstileRenderOptions) => string;
+    remove: (widgetId: string) => void;
+    reset: (widgetId: string) => void;
+}
+
+declare global {
+    interface Window {
+        turnstile?: TurnstileApi;
+    }
+}
+
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 const REGOLAMENTO_VERSION = "v1.0";
@@ -91,6 +108,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             setFormMsg({ text: "Il pagamento è stato annullato. Puoi riprovare quando sei pronto.", ok: false });
             window.history.replaceState({}, document.title, window.location.pathname);
         }
+        // Deve girare solo al mount per consumare i parametri URL una volta; applyPromo non è memoizzata.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     /* Turnstile Explicit Render */
@@ -103,15 +122,15 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
         let interval: ReturnType<typeof setInterval>;
 
         const renderTurnstile = () => {
-            if ((window as any).turnstile && turnstileRef.current) {
+            if (window.turnstile && turnstileRef.current) {
                 // Pulizia preventiva
                 if (turnstileWidgetId.current !== undefined) {
-                    (window as any).turnstile.remove(turnstileWidgetId.current);
+                    window.turnstile.remove(turnstileWidgetId.current);
                 }
-                
+
                 turnstileRef.current.innerHTML = "";
-                
-                turnstileWidgetId.current = (window as any).turnstile.render(turnstileRef.current, {
+
+                turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
                     sitekey: siteKey,
                     theme: "dark"
                 });
@@ -119,11 +138,11 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
             }
         };
 
-        if ((window as any).turnstile) {
+        if (window.turnstile) {
             renderTurnstile();
         } else {
             interval = setInterval(() => {
-                if ((window as any).turnstile) {
+                if (window.turnstile) {
                     clearInterval(interval);
                     renderTurnstile();
                 }
@@ -132,10 +151,12 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
 
         return () => {
             if (interval) clearInterval(interval);
-            if (widgetId && (window as any).turnstile) {
-                (window as any).turnstile.remove(widgetId);
+            if (widgetId && window.turnstile) {
+                window.turnstile.remove(widgetId);
             }
         };
+        // siteKey è una costante di build (env var), non cambia durante il ciclo di vita del componente.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     /* Validazione */
@@ -199,8 +220,8 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
         }
 
         // Resetta il widget per un nuovo tentativo
-        if ((window as any).turnstile && turnstileWidgetId.current !== undefined) {
-            (window as any).turnstile.reset(turnstileWidgetId.current);
+        if (window.turnstile && turnstileWidgetId.current !== undefined) {
+            window.turnstile.reset(turnstileWidgetId.current);
         }
     };
 
@@ -220,6 +241,7 @@ export const IscrizioneForm = forwardRef(function IscrizioneForm(props, ref: For
                     nome_cognome: formData.nome_cognome.trim(),
                     pacchetto,
                     amount: finalPrice,
+                    codice_promo: appliedPromo?.code ?? null,
                     return_url: window.location.origin + window.location.pathname,
                 }),
             });

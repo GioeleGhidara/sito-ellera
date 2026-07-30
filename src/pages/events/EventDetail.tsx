@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, CalendarPlus } from "@/lib/icons";
 import { downloadIcs } from "@/lib/ics";
@@ -68,6 +68,14 @@ const renderContent = (text: string) =>
 const EventDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const event = slug ? getEventBySlug(slug) : undefined;
+
+  if (event?.externalUrl) {
+    if (event.externalUrl.startsWith("http") || event.externalUrl.endsWith(".html")) {
+      window.location.replace(event.externalUrl);
+      return null;
+    }
+    return <Navigate to={event.externalUrl} replace />;
+  }
 
   if (!event || !hasEventDetail(event)) {
     return (

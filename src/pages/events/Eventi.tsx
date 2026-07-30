@@ -60,7 +60,7 @@ const Eventi = () => {
   const activeTab = rawTab === "archivio" ? "archivio" : "programma";
   const isArchive = activeTab === "archivio";
 
-  let baseEvents = events.filter((e) => isArchive ? isEventPast(e) : !isEventPast(e));
+  const baseEvents = events.filter((e) => isArchive ? isEventPast(e) : !isEventPast(e));
   if (isArchive) {
     baseEvents.reverse();
   }
@@ -301,15 +301,15 @@ const Eventi = () => {
                           </div>
 
                           <div className="flex flex-1 items-center justify-end gap-3.5">
-                            {hasEventDetail(event) && (
-                              <Link
-                                to={eventDetailPath(event.slug)}
+                            {hasEventDetail(event) || event.externalUrl ? (
+                              <EventLink
+                                event={event}
                                 className="inline-flex flex-shrink-0 items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent transition-all hover:gap-2.5"
                               >
-                                Dettagli
+                                {event.externalUrl ? "Scopri" : "Dettagli"}
                                 <ArrowRight className="h-4 w-4" />
-                              </Link>
-                            )}
+                              </EventLink>
+                            ) : null}
 
                           </div>
                         </div>

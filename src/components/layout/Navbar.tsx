@@ -91,86 +91,60 @@ const Navbar = ({
     }, 180);
   };
 
+  // Un solo listener di scroll/resize, throttled a un ricalcolo per frame (rAF), invece di
+  // quattro listener indipendenti che leggevano window.scrollY/DOM e aggiornavano lo stato
+  // ad ogni singolo evento nativo di scroll (causa di jank, aggravata da getBoundingClientRect
+  // nel ramo hideAfterHero, che forza un reflow sincrono se chiamato più volte per frame).
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (!showOnlyAtTop) {
-      return;
-    }
-
-    const handleTopOnlyVisibility = () => {
-      setIsHidden(window.scrollY > 0 && !mobileOpen);
-    };
-
-    handleTopOnlyVisibility();
-    window.addEventListener("scroll", handleTopOnlyVisibility, { passive: true });
-    return () => window.removeEventListener("scroll", handleTopOnlyVisibility);
-  }, [showOnlyAtTop, mobileOpen]);
-
-  useEffect(() => {
-    if (hideAfterHero || !hideOnScroll) {
-      if (!hideAfterHero && !showOnlyAtTop) {
-        setIsHidden(false);
-      }
-      return;
-    }
-
     let lastScrollY = window.scrollY;
+    let ticking = false;
 
-    const handleDirectionScroll = () => {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
+    const computeState = () => {
+      ticking = false;
+      const scrollY = window.scrollY;
 
-      if (currentScrollY <= 20 || mobileOpen) {
-        setIsHidden(false);
-      } else if (delta > 4) {
-        setIsHidden(true);
-      } else if (delta < -4) {
+      setIsScrolled(scrollY > 20);
+
+      if (showOnlyAtTop) {
+        setIsHidden(scrollY > 0 && !mobileOpen);
+      } else if (hideAfterHero) {
+        if (mobileOpen) {
+          setIsHidden(false);
+        } else {
+          const hero = document.querySelector<HTMLElement>(heroSelector);
+          setIsHidden(hero ? hero.getBoundingClientRect().bottom <= 0 : false);
+        }
+      } else if (hideOnScroll) {
+        const delta = scrollY - lastScrollY;
+        if (scrollY <= 20 || mobileOpen) {
+          setIsHidden(false);
+        } else if (delta > 4) {
+          setIsHidden(true);
+        } else if (delta < -4) {
+          setIsHidden(false);
+        }
+      } else {
         setIsHidden(false);
       }
 
-      lastScrollY = currentScrollY;
+      lastScrollY = scrollY;
     };
 
-    window.addEventListener("scroll", handleDirectionScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleDirectionScroll);
-  }, [hideOnScroll, hideAfterHero, showOnlyAtTop, mobileOpen]);
-
-  useEffect(() => {
-    if (!hideAfterHero || showOnlyAtTop) {
-      return;
-    }
-
-    const updateVisibilityByHero = () => {
-      if (mobileOpen) {
-        setIsHidden(false);
-        return;
-      }
-
-      const hero = document.querySelector<HTMLElement>(heroSelector);
-      if (!hero) {
-        setIsHidden(false);
-        return;
-      }
-
-      setIsHidden(hero.getBoundingClientRect().bottom <= 0);
+    const onScrollOrResize = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(computeState);
     };
 
-    const rafId = window.requestAnimationFrame(updateVisibilityByHero);
-    window.addEventListener("scroll", updateVisibilityByHero, { passive: true });
-    window.addEventListener("resize", updateVisibilityByHero);
+    computeState();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
 
     return () => {
-      window.cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", updateVisibilityByHero);
-      window.removeEventListener("resize", updateVisibilityByHero);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
     };
-  }, [hideAfterHero, heroSelector, showOnlyAtTop, mobileOpen, location.pathname]);
+  }, [showOnlyAtTop, hideOnScroll, hideAfterHero, heroSelector, mobileOpen]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -240,7 +214,7 @@ const Navbar = ({
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${mobileOpen ? "bg-card shadow-lg border-b border-border" : getNavBg()} ${(hideOnScroll || hideAfterHero || showOnlyAtTop) && isHidden ? "-translate-y-full" : "translate-y-0"}`}
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-[transform,background-color,backdrop-filter,box-shadow,border-color] duration-300 ${mobileOpen ? "bg-card shadow-lg border-b border-border" : getNavBg()} ${(hideOnScroll || hideAfterHero || showOnlyAtTop) && isHidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="relative flex items-center justify-between h-16 lg:h-20">

@@ -7,15 +7,12 @@ import {
   formatAlertDateTime,
   formatAlertLevel,
   formatTimeUntil,
-  hasArpalTimingData,
   isActiveAlertLevel,
   resolveZoneAlertState,
   type AlertLevel,
-  type ArpalData,
-  type ZoneAlert,
 } from "@/lib/arpal";
 import { getWeatherInfo } from "@/lib/weather";
-import { supabase } from "@/integrations/supabase/client";
+import { useArpalAlert } from "@/hooks/useArpalAlert";
 import { ROUTES } from "@/lib/routes";
 import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
 
@@ -23,8 +20,6 @@ const LAT = 44.3671;
 const LON = 8.4611;
 // 1. Aggiornata la chiave di cache per invalidare i vecchi dati a 3 giorni
 const WEATHER_CACHE_KEY = "ellera_weather_cache_v5";
-const ARPAL_CACHE_KEY = "ellera_arpal_cache_v3";
-const ARPAL_CACHE_TTL = 15 * 60 * 1000;
 
 const DAY_SLOTS: { hour: number; label: string }[] = [
   { hour: 8, label: "Mattina" },
@@ -125,37 +120,6 @@ const writeWeatherCache = (payload: WeatherCachePayload) => {
   try { localStorage.setItem(WEATHER_CACHE_KEY, JSON.stringify(payload)); } catch { /* noop */ }
 };
 
-const readArpalCache = (): ArpalData | null => {
-  if (typeof window === "undefined") return null;
-
-  try {
-    const raw = localStorage.getItem(ARPAL_CACHE_KEY);
-    if (!raw) return null;
-
-    const parsed = JSON.parse(raw) as { data?: ArpalData; updatedAt?: number };
-    if (!parsed?.data || typeof parsed.updatedAt !== "number") return null;
-    if (Date.now() - parsed.updatedAt >= ARPAL_CACHE_TTL) return null;
-    if (!hasArpalTimingData(parsed.data)) return null;
-
-    return parsed.data;
-  } catch {
-    return null;
-  }
-};
-
-const writeArpalCache = (data: ArpalData) => {
-  if (typeof window === "undefined") return;
-
-  try {
-    localStorage.setItem(
-      ARPAL_CACHE_KEY,
-      JSON.stringify({ data, updatedAt: Date.now() }),
-    );
-  } catch {
-    // noop
-  }
-};
-
 const COMPACT_ALERT_TEXT_CLASS: Record<
   Exclude<AlertLevel, "sconosciuto">,
   { light: string; dark: string }
@@ -190,51 +154,6 @@ const ALERT_BADGE_CLASS: Record<
     light: "bg-red-500 text-white ring-red-500/80",
     dark: "bg-red-500 text-white ring-red-400/80",
   },
-};
-
-const useZoneBAlert = (enabled: boolean) => {
-  const [zoneAlert, setZoneAlert] = useState<ZoneAlert | null>(null);
-
-  useEffect(() => {
-    if (!enabled) return;
-
-    const cached = readArpalCache();
-    if (cached?.zones?.B) {
-      setZoneAlert(cached.zones.B);
-      // Se la cache è valida (controllata dentro readArpalCache), non facciamo nulla.
-      // readArpalCache restituisce null se scaduta (TTL 15min).
-      return;
-    }
-
-    let mounted = true;
-
-    const fetchAlert = async () => {
-      try {
-        const { data: result, error } = await supabase.functions.invoke("arpal-allerta");
-        if (error) throw new Error(error.message);
-        if (!result?.success || !result.data?.zones?.B) {
-          throw new Error(result?.error ?? "Dati allerta non disponibili");
-        }
-
-        const nextData = result.data as ArpalData;
-        if (!mounted) return;
-
-        writeArpalCache(nextData);
-        setZoneAlert(nextData.zones.B);
-      } catch {
-        if (!mounted) return;
-        setZoneAlert(null);
-      }
-    };
-
-    fetchAlert();
-
-    return () => {
-      mounted = false;
-    };
-  }, [enabled]);
-
-  return zoneAlert;
 };
 
 const useWeather = () => {
@@ -376,7 +295,8 @@ const useWeather = () => {
 
 const WeatherWidget = ({ variant = "compact" }: WeatherWidgetProps) => {
   const { current, days, loading, error } = useWeather();
-  const zoneBAlert = useZoneBAlert(variant === "compact");
+  const { data: arpalData } = useArpalAlert({ enabled: variant === "compact" });
+  const zoneBAlert = arpalData?.zones?.B ?? null;
   const [nowMs, setNowMs] = useState(Date.now());
 
   useEffect(() => {

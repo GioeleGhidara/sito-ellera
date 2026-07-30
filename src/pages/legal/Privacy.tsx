@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { useCursorDot } from "@/hooks/useCursorDot";
+import Seo from "@/components/shared/Seo";
+import { ROUTES } from "@/lib/routes";
 import "./EbikeLegal.css";
 
 export default function Privacy() {
@@ -8,10 +9,12 @@ export default function Privacy() {
 
   return (
     <>
-      <Helmet>
-        <title>Informativa Privacy - Albi Trail E-Bike Fest</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <Seo
+        title="Informativa Privacy - Albi Trail E-Bike Fest"
+        description="Informativa sul trattamento dei dati personali (GDPR) del Comitato Ellerese per l'Albi Trail E-Bike Fest."
+        canonicalPath={ROUTES.privacy}
+        noindex
+      />
 
       <div className="ebike-legal-page">
         <div className="ebike-legal-cursor-dot" ref={dotRef} />

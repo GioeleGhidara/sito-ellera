@@ -96,12 +96,8 @@ export const createEventJsonLd = (event: EventItem, siteUrl = getSiteUrl()): Jso
       availability: "https://schema.org/InStock",
       validFrom: event.startDate,
     },
-    ...(event.dateToBeConfirmed
-      ? {}
-      : {
-          startDate: event.startDate,
-          endDate: event.endDate ?? event.startDate,
-        }),
+    startDate: event.startDate,
+    endDate: event.endDate ?? event.startDate,
   };
 };
 

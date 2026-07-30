@@ -13,11 +13,16 @@ export const ROUTES = {
   eventi: "/eventi",
   // Eventi statici - path legacy diretto (redirect a .html in App.tsx)
   laPedaliamoInsieme2026: "/eventi/la-pedaliamo-insieme-2026",
-  elleraBikeFest2026: "/eventi/ellera-bike-fest-2026",
+  albiTrailEbikeFest: "/albi-trail-ebike-fest",
+  albiTrailEbikeFestLegacy: "/eventi/albi-trail-ebike-fest",
+  tradizioniStregheLegacy: "/tradizioni/streghe",
   servizi: "/servizi",
   tradizioni: "/tradizioni",
   news: "/news",
   attivitaLegacy: "/attivita",
+  caruggiELanterne: "/caruggi-e-lanterne",
+  privacy: "/privacy",
+  regolamento: "/regolamento",
 } as const;
 
 export const tradizioneDetailPath = (slug: string) => `${ROUTES.tradizioni}/${slug}`;

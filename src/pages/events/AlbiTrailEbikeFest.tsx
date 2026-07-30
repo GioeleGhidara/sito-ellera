@@ -35,6 +35,8 @@ export default function AlbiTrailEbikeFest() {
             document.addEventListener("mousemove", onMove);
             return () => document.removeEventListener("mousemove", onMove);
         }
+        // mouseX/mouseY sono useMotionValue di framer-motion: identità stabile tra i render.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     /* Restore scroll on refresh */
@@ -57,18 +59,30 @@ export default function AlbiTrailEbikeFest() {
     const [stickyVisible, setStickyVisible] = useState(false);
 
     useEffect(() => {
+        let ticking = false;
+
         const toggle = () => {
+            ticking = false;
             const scrolled = window.scrollY > 280;
             const formEl = formRef.current;
             const pastForm = formEl ? formEl.getBoundingClientRect().bottom < window.innerHeight - 100 : false;
             setStickyVisible(scrolled && !pastForm);
         };
-        window.addEventListener("scroll", toggle, { passive: true });
-        window.addEventListener("resize", toggle, { passive: true });
+
+        // rAF-throttled: getBoundingClientRect forza un reflow, quindi va richiamato al più
+        // una volta per frame invece che ad ogni singolo evento nativo di scroll.
+        const onScrollOrResize = () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(toggle);
+        };
+
+        window.addEventListener("scroll", onScrollOrResize, { passive: true });
+        window.addEventListener("resize", onScrollOrResize, { passive: true });
         toggle();
         return () => {
-            window.removeEventListener("scroll", toggle);
-            window.removeEventListener("resize", toggle);
+            window.removeEventListener("scroll", onScrollOrResize);
+            window.removeEventListener("resize", onScrollOrResize);
         };
     }, []);
 

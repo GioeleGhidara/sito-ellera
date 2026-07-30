@@ -20,7 +20,7 @@ import Layout from "@/components/layout/Layout";
 import MapFallback from "@/components/features/trail/MapFallback";
 import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
-import { supabase } from "@/integrations/supabase/client";
+import { useArpalAlert } from "@/hooks/useArpalAlert";
 import {
   Accordion,
   AccordionContent,
@@ -41,11 +41,9 @@ import {
   formatAlertDateTime,
   formatAlertLevel,
   formatTimeUntil,
-  hasArpalTimingData,
   isActiveAlertLevel,
   resolveZoneAlertState,
   type AlertLevel,
-  type ArpalData,
   type ZoneAlert,
 } from "@/lib/arpal";
 import { ROUTES } from "@/lib/routes";
@@ -53,11 +51,6 @@ import { fadeUp } from "@/lib/animations";
 
 const TrailMap = React.lazy(() => import("@/components/features/trail/TrailMap"));
 const WeatherWidget = React.lazy(() => import("@/components/features/weather/WeatherWidget"));
-
-const ARPAL_CACHE_KEY = "ellera_arpal_cache_v3";
-const ARPAL_CACHE_TTL = 15 * 60 * 1000;
-
-
 
 const trailSectionIconMap = {
   "trending-down": TrendingDown,
@@ -89,78 +82,6 @@ const ALERT_NOTICE_STYLES: Record<
     badge: "bg-red-600",
     badgeText: "text-white",
   },
-};
-
-const readArpalCache = (): ArpalData | null => {
-  if (typeof window === "undefined") return null;
-
-  try {
-    const raw = localStorage.getItem(ARPAL_CACHE_KEY);
-    if (!raw) return null;
-
-    const parsed = JSON.parse(raw) as { data?: ArpalData; updatedAt?: number };
-    if (!parsed?.data || typeof parsed.updatedAt !== "number") return null;
-    if (Date.now() - parsed.updatedAt >= ARPAL_CACHE_TTL) return null;
-    if (!hasArpalTimingData(parsed.data)) return null;
-
-    return parsed.data;
-  } catch {
-    return null;
-  }
-};
-
-const writeArpalCache = (data: ArpalData) => {
-  if (typeof window === "undefined") return;
-
-  try {
-    localStorage.setItem(
-      ARPAL_CACHE_KEY,
-      JSON.stringify({ data, updatedAt: Date.now() }),
-    );
-  } catch {
-    // noop
-  }
-};
-
-const useZoneBAlert = () => {
-  const [zoneAlert, setZoneAlert] = useState<ZoneAlert | null>(null);
-
-  useEffect(() => {
-    const cached = readArpalCache();
-    if (cached?.zones?.B) {
-      setZoneAlert(cached.zones.B);
-      return;
-    }
-
-    let mounted = true;
-
-    const fetchAlert = async () => {
-      try {
-        const { data: result, error } = await supabase.functions.invoke("arpal-allerta");
-        if (error) throw new Error(error.message);
-        if (!result?.success || !result.data?.zones?.B) {
-          throw new Error(result?.error ?? "Dati allerta non disponibili");
-        }
-
-        const nextData = result.data as ArpalData;
-        if (!mounted) return;
-
-        writeArpalCache(nextData);
-        setZoneAlert(nextData.zones.B);
-      } catch {
-        if (!mounted) return;
-        setZoneAlert(null);
-      }
-    };
-
-    fetchAlert();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  return zoneAlert;
 };
 
 const TrailAreaAlertNotice = ({ zoneAlert }: { zoneAlert: ZoneAlert | null }) => {
@@ -319,7 +240,8 @@ const AlbiTrailArea = () => {
       .sort(sortTrailsForSection(section.key)),
   }));
   const nextBikeEvent = getNextBikeEvent();
-  const zoneBAlert = useZoneBAlert();
+  const { data: arpalData } = useArpalAlert();
+  const zoneBAlert = arpalData?.zones?.B ?? null;
 
   return (
     <Layout>

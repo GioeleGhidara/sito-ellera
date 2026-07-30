@@ -1,0 +1,1192 @@
+/* ============================================
+   CARUGGI & LANTERNE — Sagra del borgo di Ellera
+   Palette: notte ligure, ambra delle lanterne, brace
+   ============================================ */
+
+.cel-page {
+  /* Palette: Notte (Slate / Deep Blue) */
+  --notte: #0a1630;
+  --notte-mid: #123a63;
+  --notte-deep: #020308;
+  --notte-glow: #0b5590;
+  --lanterna: #ca8a04;
+  --lanterna-soft: #facc15;
+  --brace: #1e3a8a;
+  /* navy blue profondo */
+  --brace-dim: #172554;
+  /* blu notte scurissimo */
+  --pietra: #d6d3d1;
+  --oliva: #44403c;
+  --carta: #f5f5f4;
+  --carta-dim: #e7e5e4;
+  --logo-backdrop: #050505;
+  /* nero puro (non --notte-deep) apposta: fonde bene i loghi .webp/jpg su sfondo nero */
+
+  --font-insegna: "Fraunces", Georgia, serif;
+  --font-corpo: "Archivo", "Inter", system-ui, sans-serif;
+
+  /* Spacing System */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6rem;
+
+  /* Fluid Typography */
+  --fs-xs: clamp(0.75rem, 0.7vw + 0.6rem, 0.85rem);
+  --fs-sm: clamp(0.875rem, 0.8vw + 0.7rem, 1rem);
+  --fs-md: clamp(1rem, 1vw + 0.75rem, 1.125rem);
+  --fs-lg: clamp(1.25rem, 1.5vw + 1rem, 1.5rem);
+  --fs-xl: clamp(1.5rem, 2vw + 1.2rem, 2rem);
+  --fs-2xl: clamp(2rem, 3vw + 1.5rem, 3rem);
+  --fs-3xl: clamp(2.5rem, 4vw + 2rem, 4.5rem);
+  --fs-hero: clamp(3.2rem, 9vw, 7rem);
+
+  position: relative;
+  isolation: isolate;
+  /* dà a .cel-page un proprio stacking context, così ::after con z-index:-1 resta sempre dietro ai contenuti, mai fuori pagina */
+  background: var(--notte-deep);
+  /* fallback: il gradiente vero vive in ::after, scorre con la pagina (non più fisso al viewport) */
+  color: var(--carta);
+  font-family: var(--font-corpo);
+  overflow-x: clip;
+}
+
+.cel-page * {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   PANNELLI DI CONTENUTO (informativi, non cliccabili)
+   ============================================ */
+
+.cel-panel {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 2px solid rgba(202, 138, 4, 0.35);
+  border-radius: 4px;
+  color: var(--carta);
+}
+
+/* ============================================
+   ACCESSIBILITA': Skip Link e Focus Ring
+   ============================================ */
+
+.cel-skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-md);
+  z-index: 1000;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--brace);
+  color: var(--carta);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: top 0.3s ease;
+}
+
+.cel-skip-link:focus-visible {
+  top: var(--space-md);
+  outline: 2px solid var(--lanterna-soft);
+  outline-offset: 4px;
+}
+
+/* ---------- Hint di navigazione verso ellera.it (per chi arriva da QR code) ---------- */
+.cel-site-hint {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-md);
+  border-bottom: 1px solid rgba(202, 138, 4, 0.25);
+  background: rgba(2, 3, 8, 0.4);
+  color: rgba(245, 245, 244, 0.75);
+  font-size: var(--fs-xs);
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.cel-site-hint:hover {
+  color: var(--lanterna-soft);
+  background: rgba(2, 3, 8, 0.6);
+}
+
+.cel-site-hint svg:first-child {
+  flex-shrink: 0;
+}
+
+.cel-site-hint svg:last-child {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--lanterna);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.cel-page section {
+  position: relative;
+}
+
+/* ---------- Sfondo: pozze di luce ambra/blu che scorrono con la pagina (non più fisse al viewport) ---------- */
+.cel-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(60px);
+  background:
+    radial-gradient(46vmin 38vmin at 78% 6%, var(--notte-glow) 0%, transparent 68%),
+    radial-gradient(38vmin 32vmin at 12% 27%, rgba(202, 138, 4, 0.16) 0%, transparent 70%),
+    radial-gradient(50vmin 42vmin at 85% 52%, var(--notte-glow) 0%, transparent 65%),
+    radial-gradient(40vmin 34vmin at 10% 74%, rgba(202, 138, 4, 0.14) 0%, transparent 68%),
+    radial-gradient(50vmin 44vmin at 80% 95%, var(--notte-glow) 0%, transparent 65%),
+    linear-gradient(180deg, var(--notte) 0%, var(--notte-mid) 30%, var(--notte-deep) 60%, var(--notte-deep) 100%);
+}
+
+/* ---------- Texture: carta leggera ---------- */
+.cel-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   LANTERNE E GLOW ORBS — GPU Accel
+   ============================================ */
+
+.cel-lantern-rail {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.cel-lantern {
+  --sway: 1;
+  position: absolute;
+  top: 0;
+  transform-origin: top center;
+  animation:
+    cel-sway calc(4.5s + var(--sway) * 1.4s) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate,
+    cel-flicker 4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  will-change: transform, filter;
+  /* GPU acceleration */
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+  opacity: 0.35;
+  transition: opacity 0.9s ease, filter 0.9s ease;
+}
+
+.cel-lantern.is-lit {
+  opacity: 1;
+  filter: drop-shadow(0 0 18px rgba(232, 162, 61, 0.55)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+  animation:
+    cel-sway calc(4.5s + var(--sway) * 1.4s) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate,
+    cel-flicker-lit 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+.cel-lantern .wick {
+  stroke: #5c4a32;
+}
+
+.cel-lantern .body {
+  fill: var(--lanterna);
+  transition: fill 0.9s ease;
+}
+
+.cel-lantern.is-lit .body {
+  fill: var(--lanterna-soft);
+}
+
+@keyframes cel-sway {
+  from {
+    transform: rotate(-5deg);
+  }
+
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes cel-flicker {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+  }
+
+  50% {
+    opacity: 0.45;
+    filter: drop-shadow(0 6px 16px rgba(232, 162, 61, 0.15));
+  }
+}
+
+@keyframes cel-flicker-lit {
+  0% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 16px rgba(232, 162, 61, 0.5)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+  }
+
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 24px rgba(232, 162, 61, 0.75)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+  }
+}
+
+/* Bagliore delle lanterne dietro al titolo — fisso, non un blob fluttuante */
+.cel-hero-glow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cel-hero-glow::before {
+  content: "";
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: min(70vw, 900px);
+  height: min(70vw, 900px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.16) 0%, rgba(202, 138, 4, 0.06) 45%, transparent 72%);
+  filter: blur(40px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cel-lantern,
+  .cel-lantern.is-lit,
+  .cel-hero-scroll .line {
+    animation: none;
+  }
+
+  .cel-coorte-detail {
+    animation: none;
+  }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.cel-hero {
+  position: relative;
+  /* ancora .cel-hero-glow qui dentro, non al box (ora molto più alto) di .cel-page */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-3xl) var(--space-md) calc(var(--space-3xl) + 2rem);
+  /* Rimosso background perché gestito globalmente, lasciamo trasparente */
+  background: transparent;
+  color: var(--carta);
+  isolation: isolate;
+}
+
+.cel-hero-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 18vh;
+  min-height: 140px;
+  z-index: 0;
+  opacity: 0.6;
+  /* Piu tenue per far risaltare il glow */
+}
+
+.cel-hero-eyebrow {
+  font-family: var(--font-corpo);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: var(--fs-xs);
+  color: var(--lanterna-soft);
+  margin-bottom: var(--space-md);
+  z-index: 2;
+}
+
+.cel-hero-title {
+  font-family: var(--font-insegna);
+  font-weight: 900;
+  line-height: 0.96;
+  font-size: var(--fs-hero);
+  letter-spacing: -0.01em;
+  z-index: 2;
+  color: var(--carta);
+  text-wrap: balance;
+  text-shadow: 0 4px 40px rgba(202, 138, 4, 0.4);
+  /* Bagliore dorato rinforzato */
+}
+
+.cel-hero-title em {
+  display: block;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--lanterna-soft);
+  font-size: 0.62em;
+  letter-spacing: 0.01em;
+  margin-top: 0.1em;
+  /* Testo gradientato (fallback gold) */
+  background: linear-gradient(to right, var(--lanterna-soft), var(--lanterna));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cel-hero-sub {
+  z-index: 2;
+  margin-top: var(--space-lg);
+  max-width: 36rem;
+  font-size: var(--fs-md);
+  line-height: 1.65;
+  color: rgba(245, 245, 244, 0.85);
+}
+
+.cel-hero-dates {
+  z-index: 2;
+  margin-top: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cel-date-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid rgba(232, 162, 61, 0.35);
+  border-top: 2px solid var(--lanterna-soft);
+  border-radius: 3px 3px 10px 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cel-date-chip .num {
+  font-family: var(--font-insegna);
+  font-weight: 800;
+  font-size: var(--fs-xl);
+  color: var(--lanterna-soft);
+  line-height: 1;
+}
+
+.cel-date-chip .label {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 244, 0.8);
+}
+
+.cel-countdown {
+  z-index: 2;
+  margin-top: var(--space-lg);
+  font-family: var(--font-insegna);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  color: var(--lanterna-soft);
+}
+
+.cel-hero-scroll {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(246, 237, 222, 0.5);
+  text-decoration: none;
+}
+
+.cel-hero-scroll .line {
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, rgba(246, 237, 222, 0.5), transparent);
+  animation: cel-scroll-pulse 1.8s ease-in-out infinite;
+}
+
+/* ============================================
+   SEZIONE GENERICA / EYEBROW / TITOLI
+   ============================================ */
+
+.cel-section {
+  padding: var(--space-3xl) var(--space-md) calc(var(--space-3xl) + var(--space-md));
+  /* bottom leggermente più ampio: a parità di valore, il superiore sembra sempre più corto */
+  /* Sfondi azzerati, ci pensa cel-page a uniformare */
+  background: transparent;
+  color: var(--carta);
+}
+
+.cel-container {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.cel-container--narrow {
+  max-width: 46rem;
+}
+
+.cel-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lanterna-soft);
+  margin-bottom: var(--space-sm);
+}
+
+.cel-title {
+  font-family: var(--font-insegna);
+  font-weight: 800;
+  font-size: var(--fs-3xl);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin-bottom: var(--space-md);
+}
+
+.cel-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--lanterna-soft);
+}
+
+.cel-lead {
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  color: rgba(245, 245, 244, 0.85);
+  max-width: 42rem;
+}
+
+.cel-lead--section {
+  margin-bottom: 2.8rem;
+}
+
+/* ============================================
+   INTRO NARRATIVA
+   ============================================ */
+
+.cel-intro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.cel-intro-art {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  background: linear-gradient(160deg, var(--notte-mid), var(--notte-deep));
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.cel-intro-quote {
+  font-family: var(--font-insegna);
+  font-style: italic;
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+  color: var(--lanterna-soft);
+  margin-top: var(--space-lg);
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--lanterna-soft);
+}
+
+/* ============================================
+   MAPPA
+   ============================================ */
+
+.cel-map-wrap {
+  position: relative;
+}
+
+.cel-map {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  object-fit: cover;
+}
+
+/* ============================================
+   PALCHI MUSICA
+   ============================================ */
+
+.cel-palchi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+  .cel-palchi-grid {
+    gap: var(--space-lg);
+  }
+}
+
+.cel-palchi-grid>div:first-child {
+  grid-column: 1 / -1;
+}
+
+.cel-pedane-intro {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: var(--fs-md);
+  color: rgba(245, 245, 244, 0.7);
+  margin-top: var(--space-md);
+  font-family: var(--font-insegna);
+}
+
+.cel-palco-card {
+  padding: var(--space-lg);
+}
+
+.cel-palco-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+  color: var(--lanterna-soft);
+}
+
+.cel-palco-head h3 {
+  font-family: var(--font-insegna);
+  font-weight: 800;
+  font-size: var(--fs-lg);
+  color: var(--carta);
+  margin: 0;
+}
+
+.cel-palco-serate {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-lg);
+}
+
+.cel-artista {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs);
+  text-align: center;
+}
+
+.cel-artista-giorno {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 244, 0.6);
+}
+
+.cel-artista-logo {
+  width: auto;
+  max-width: 100%;
+  height: 4.5rem;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.cel-artista-logo-placeholder {
+  height: 4.5rem;
+  color: rgba(245, 245, 244, 0.25);
+}
+
+.cel-artista-nome {
+  font-family: var(--font-insegna);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--carta);
+}
+
+.cel-artista-contatti {
+  font-size: var(--fs-xs);
+  color: var(--lanterna-soft);
+}
+
+.cel-artista-info {
+  font-size: var(--fs-xs);
+  color: rgba(245, 245, 244, 0.7);
+  line-height: 1.4;
+}
+
+.cel-palco-note {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-xs);
+  font-style: italic;
+  color: rgba(245, 245, 244, 0.65);
+  text-align: center;
+}
+
+/* ============================================
+   COME ARRIVARE
+   ============================================ */
+
+.cel-info-card--orari {
+  max-width: 28rem;
+  margin: 0 auto var(--space-xl);
+  text-align: center;
+}
+
+.cel-mezzi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.cel-mezzo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  margin-top: var(--space-2xs);
+  padding: 0;
+}
+
+.cel-mezzo-list li {
+  font-size: var(--fs-sm);
+  color: rgba(245, 245, 244, 0.85);
+}
+
+.cel-mezzo-list strong {
+  color: var(--lanterna-soft);
+}
+
+/* ============================================
+   STAND GASTRONOMICI
+   ============================================ */
+
+.cel-stand-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.cel-stand-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.cel-stand-card {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.cel-stand-marker {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--lanterna);
+  color: var(--notte-deep);
+  font-family: var(--font-insegna);
+  font-weight: 800;
+  font-size: var(--fs-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cel-stand-card h3 {
+  font-family: var(--font-insegna);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-3xs);
+  margin-top: 0;
+  color: var(--carta);
+}
+
+.cel-stand-card ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-3xs);
+  padding: 0;
+}
+
+.cel-stand-card li {
+  font-size: var(--fs-xs);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--lanterna-soft);
+  font-weight: 600;
+}
+
+.cel-stand-card li.cel-stand-note {
+  background: rgba(202, 138, 4, 0.15);
+  border: 1px solid rgba(202, 138, 4, 0.35);
+  font-style: italic;
+}
+
+/* ============================================
+   LA COORTE
+   ============================================ */
+
+.cel-coorte-stage {
+  position: relative;
+  height: clamp(300px, 38vw, 420px);
+  margin: var(--space-xl) 0 var(--space-lg);
+  perspective: 1200px;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.cel-coorte-stage:active {
+  cursor: grabbing;
+}
+
+.cel-coorte-orbit {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.cel-coorte-orbit-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cel-coorte-orbit-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(2, 3, 8, 0.4);
+}
+
+.cel-coorte-orbit-item span {
+  font-family: var(--font-insegna);
+  font-weight: 700;
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--lanterna-soft);
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.cel-coorte-orbit-item.is-selected span {
+  color: var(--carta);
+  opacity: 1 !important;
+}
+
+.cel-coorte-orbit-item:focus-visible {
+  outline: 2px solid var(--lanterna);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
+/* ============================================
+   DETTAGLIO (Coorte) — sotto il carosello, niente modale
+   ============================================ */
+
+.cel-coorte-detail {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(202, 138, 4, 0.25);
+  animation: cel-detail-in 0.25s ease;
+}
+
+.cel-coorte-logo--detail {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.cel-coorte-detail h3 {
+  font-family: var(--font-insegna);
+  font-weight: 800;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  color: var(--lanterna);
+  margin: 0 0 var(--space-2xs) 0;
+}
+
+.cel-coorte-detail p {
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: rgba(245, 245, 244, 0.85);
+  margin: 0;
+}
+
+@keyframes cel-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   LE ISOLE
+   ============================================ */
+
+.cel-isole {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-lg);
+}
+
+.cel-isole--two {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 50rem;
+}
+
+.cel-isola-card {
+  padding: var(--space-lg);
+}
+
+.cel-isola-icon {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lanterna);
+  color: var(--notte-deep);
+  margin-bottom: var(--space-md);
+}
+
+.cel-isola-card h3 {
+  font-family: var(--font-insegna);
+  font-weight: 800;
+  font-size: var(--fs-xl);
+  margin-bottom: var(--space-xs);
+  margin-top: 0;
+  color: var(--carta);
+}
+
+.cel-isola-card p {
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: rgba(245, 245, 244, 0.75);
+  margin: 0;
+}
+
+/* ============================================
+   COME ARRIVARE (General Cards)
+   ============================================ */
+
+.cel-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+}
+
+.cel-info-card {
+  padding: var(--space-lg);
+}
+
+.cel-info-card .label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lanterna-soft);
+  margin-bottom: var(--space-xs);
+}
+
+.cel-info-card h3 {
+  margin: 0 0 var(--space-2xs) 0;
+  font-family: var(--font-insegna);
+  font-size: var(--fs-lg);
+  color: var(--carta);
+}
+
+.cel-info-card p {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: rgba(245, 245, 244, 0.85);
+  margin: var(--space-2xs) 0 0;
+}
+
+/* ============================================
+   SPONSOR
+   ============================================ */
+
+.cel-container--center {
+  text-align: center;
+}
+
+.cel-lead--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cel-sponsor-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-sm);
+  color: var(--brace);
+}
+
+.cel-sponsor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.cel-sponsor-placeholder {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--lanterna-soft);
+}
+
+/* ============================================
+   MAP PLACEHOLDER
+   ============================================ */
+
+.cel-map-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  color: rgba(245, 245, 244, 0.4);
+  margin-top: var(--space-lg);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  background: var(--logo-backdrop);
+}
+
+.cel-map-placeholder-icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.8;
+}
+
+.cel-map-placeholder span {
+  font-size: var(--fs-md);
+  font-style: italic;
+  font-family: var(--font-insegna);
+}
+
+/* ============================================
+   FOOTER ORGANIZZATORI
+   ============================================ */
+
+.cel-footer {
+  position: relative;
+  /* Manteniamo un fondale leggermente staccato per chiudere la pagina */
+  background: var(--notte-deep);
+  color: var(--pietra);
+  padding: var(--space-3xl) var(--space-md) var(--space-xl);
+  text-align: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cel-footer .cel-lantern-rail {
+  position: absolute;
+  height: 70px;
+}
+
+.cel-footer-signature {
+  font-family: var(--font-insegna);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-xl);
+  line-height: 1.4;
+  color: var(--lanterna-soft);
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.cel-footer-rule {
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--lanterna), transparent);
+  margin: var(--space-lg) auto;
+  opacity: 0.6;
+}
+
+.cel-footer-orgs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin: var(--space-lg) 0;
+}
+
+.cel-footer-org {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.03em;
+  color: rgba(245, 245, 244, 0.75);
+}
+
+.cel-footer-logo {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  opacity: 0.85;
+}
+
+.cel-footer-contacts {
+  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  max-width: 26rem;
+  margin: 0 auto var(--space-lg);
+}
+
+.cel-footer-contact-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: rgba(245, 245, 244, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cel-footer-contact-col:hover {
+  color: var(--lanterna-soft);
+}
+
+.cel-footer-contact-email-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xs);
+  text-align: center;
+}
+
+.cel-footer-contact-email-list a {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.03em;
+  color: rgba(245, 245, 244, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cel-footer-contact-email-list a:hover {
+  color: var(--lanterna-soft);
+}
+
+.cel-footer small {
+  display: block;
+  margin-top: var(--space-xl);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  color: rgba(217, 207, 190, 0.6);
+}
+
+/* ============================================
+   BOTTONI
+   ============================================ */
+
+.cel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-family: var(--font-corpo);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 999px;
+  border: 1px solid var(--lanterna);
+  color: var(--notte-deep);
+  background: var(--lanterna);
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.cel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(202, 138, 4, 0.4);
+  background: var(--lanterna-soft);
+}
+
+.cel-btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 2px 8px rgba(202, 138, 4, 0.35);
+}

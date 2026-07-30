@@ -257,6 +257,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     location: EVENT_LOCATIONS.CARUGGI.name,
     locationUrl: EVENT_LOCATIONS.CARUGGI.url,
     category: "Festa",
+    externalUrl: "/caruggi-e-lanterne",
     detailContent: `L'evento estivo più atteso e suggestivo del borgo di Ellera torna ad accendere i cuori e le vie storiche. **Caruggi e Lanterne** non è solo un percorso enogastronomico, ma un vero e proprio tuffo nella tradizione, cullati dalla magica luce delle lanterne artigianali che decorano ogni angolo del paese.
 
 **Cosa troverai:**

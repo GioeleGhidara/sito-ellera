@@ -33,6 +33,7 @@ const TradizioneDetail = lazy(() => import("./pages/culture/TradizioneDetail"));
 const AlbiTrailEbikeFest = lazy(() => import("./pages/events/AlbiTrailEbikeFest"));
 const Privacy = lazy(() => import("./pages/legal/Privacy"));
 const Regolamento = lazy(() => import("./pages/legal/Regolamento"));
+const CaruggiELanterne = lazy(() => import("./pages/events/CaruggiELanterne"));
 
 const RouteFallback = () => (
   <section className="min-h-screen bg-background flex flex-col items-center p-4 lg:p-8 space-y-8 animate-pulse">
@@ -72,19 +73,20 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
     element: <StaticPageRedirect to="/la-pedaliamo-insieme-2026.html" />,
   },
   {
-    path: "/eventi/albi-trail-ebike-fest",
-    element: <Navigate to="/albi-trail-ebike-fest" replace />,
+    path: ROUTES.albiTrailEbikeFestLegacy,
+    element: <Navigate to={ROUTES.albiTrailEbikeFest} replace />,
   },
   { path: `${ROUTES.eventi}/:slug`, element: <EventDetail /> },
   { path: ROUTES.servizi, element: <Servizi /> },
   { path: ROUTES.tradizioni, element: <Tradizioni /> },
-  { path: "/tradizioni/streghe", element: <Navigate to={tradizioneDetailPath("streghe-di-ellera")} replace /> },
+  { path: ROUTES.tradizioniStregheLegacy, element: <Navigate to={tradizioneDetailPath("streghe-di-ellera")} replace /> },
   { path: `${ROUTES.tradizioni}/:slug`, element: <TradizioneDetail /> },
   { path: ROUTES.news, element: <News /> },
   { path: `${ROUTES.news}/:slug`, element: <NewsDetail /> },
-  { path: "/albi-trail-ebike-fest", element: <AlbiTrailEbikeFest /> },
-  { path: "/privacy", element: <Privacy /> },
-  { path: "/regolamento", element: <Regolamento /> },
+  { path: ROUTES.albiTrailEbikeFest, element: <AlbiTrailEbikeFest /> },
+  { path: ROUTES.caruggiELanterne, element: <CaruggiELanterne /> },
+  { path: ROUTES.privacy, element: <Privacy /> },
+  { path: ROUTES.regolamento, element: <Regolamento /> },
   { path: "*", element: <NotFound /> },
 ];
 
@@ -110,6 +112,7 @@ const router = createBrowserRouter([
     v7_normalizeFormMethod: true,
     v7_partialHydration: true,
     v7_skipActionErrorRevalidation: true,
+    v7_startTransition: true,
   }
 });
 
@@ -120,7 +123,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <RouterProvider router={router} />
+          <RouterProvider router={router} future={{ v7_startTransition: true }} />
         </TooltipProvider>
       </ErrorBoundary>
     </QueryClientProvider>

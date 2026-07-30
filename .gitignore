@@ -27,3 +27,12 @@ supabase/.temp/
 *.sln
 *.sw?
 new/
+
+# Claude Code / agent skills (strumenti locali, non fanno parte del sito)
+.claude/
+.agents/
+.agent/
+skills-lock.json
+
+# Script one-off locali
+move.ps1

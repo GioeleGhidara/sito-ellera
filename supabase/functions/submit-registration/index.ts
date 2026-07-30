@@ -95,14 +95,11 @@ Deno.serve(async (req: Request) => {
       throw new Error("Note troppo lunghe");
     }
 
-    if (cleanData.stripe_payment_intent_id) {
-      const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY") || Deno.env.get("STRIPE_TEST_KEY");
-      if (!stripeSecretKey) throw new Error("Stripe non configurato sul server");
-      stripe ??= new Stripe(stripeSecretKey, { apiVersion: "2023-10-16", httpClient: Stripe.createFetchHttpClient() });
-      const intent = await stripe.paymentIntents.retrieve(String(cleanData.stripe_payment_intent_id));
-      if (intent.status !== "succeeded") {
-        throw new Error("Pagamento non completato su Stripe");
-      }
+    // Il client non può auto-dichiararsi "pagato": quello stato è impostato solo dal
+    // webhook Stripe (con service role key) dopo una conferma di pagamento reale.
+    const ALLOWED_PAGAMENTO = ["stripe_pending", "sul_posto", "gratuito"];
+    if (!ALLOWED_PAGAMENTO.includes(String(cleanData.pagamento))) {
+      throw new Error("Valore pagamento non valido");
     }
 
     // Consents check
@@ -119,6 +116,26 @@ Deno.serve(async (req: Request) => {
     }
 
     supabaseAdmin ??= createClient(supabaseUrl, supabaseServiceRoleKey);
+
+    if (cleanData.stripe_payment_intent_id) {
+      const stripeSecretKey = Deno.env.get("STRIPE_SECRET_KEY") || Deno.env.get("STRIPE_TEST_KEY");
+      if (!stripeSecretKey) throw new Error("Stripe non configurato sul server");
+      stripe ??= new Stripe(stripeSecretKey, { apiVersion: "2023-10-16", httpClient: Stripe.createFetchHttpClient() });
+      const intent = await stripe.paymentIntents.retrieve(String(cleanData.stripe_payment_intent_id));
+      if (intent.status !== "succeeded") {
+        throw new Error("Pagamento non completato su Stripe");
+      }
+
+      // Impedisce che lo stesso payment intent venga riusato su più iscrizioni
+      const { data: existingForIntent } = await supabaseAdmin
+        .from("albi_trail_registrations")
+        .select("id")
+        .eq("stripe_payment_intent_id", String(cleanData.stripe_payment_intent_id))
+        .maybeSingle();
+      if (existingForIntent) {
+        throw new Error("Questo pagamento è già stato utilizzato per un'altra iscrizione");
+      }
+    }
 
     // Valida codice promo lato server
     if (cleanData.codice_promo) {

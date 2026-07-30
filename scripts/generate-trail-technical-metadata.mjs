@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
 const tracksDir = path.join(projectRoot, "public", "tracks");
-const outputPath = path.join(projectRoot, "src", "data", "trailTechnicalMetadata.ts");
+const outputPath = path.join(projectRoot, "src", "data", "trails", "trailTechnicalMetadata.ts");
 
 const technicalPattern =
   /^(.*?)\.\s+Lunghezza\s+(.+?)(?:\s+-\s+Salita\s+(.+?)\s+-\s+Discesa\s+(.+?)|\s+-\s+Dislivello\s+(.+?))\.\s+Tempo medio:\s+(.+?)\.$/;

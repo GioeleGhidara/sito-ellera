@@ -15,7 +15,7 @@ const HomeHero = () => {
         src={elleraDalPonteImage}
         alt="Il borgo di Ellera visto dal ponte sul Sansobbia"
         className="absolute inset-0 h-full w-full object-cover object-center"
-        fetchPriority="high"
+        fetchpriority="high"
       />
       <div className="absolute inset-0 bg-gradient-hero" />
 

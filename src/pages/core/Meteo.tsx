@@ -18,15 +18,13 @@ import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
+import { useArpalAlert } from "@/hooks/useArpalAlert";
 import {
   formatAlertDateTime,
   formatAlertLevel,
   formatTimeUntil,
-  hasArpalTimingData,
   isActiveAlertLevel,
   resolveZoneAlertState,
-  type ArpalData,
   type ZoneAlert,
   type ZonePhenomena,
 } from "@/lib/arpal";
@@ -160,70 +158,6 @@ const PHENOMENA_CONFIG: {
     { key: "mare", label: "Mare", Icon: Droplets },
     { key: "disagioFisiologico", label: "Disagio fisiologico", Icon: Thermometer },
   ];
-
-const ARPAL_CACHE_KEY = "ellera_arpal_cache_v3";
-const ARPAL_CACHE_TTL = 15 * 60 * 1000;
-
-/* ── hook ── */
-const useArpalAlert = () => {
-  const [data, setData] = useState<ArpalData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchAlert = async () => {
-      try {
-        const cached = localStorage.getItem(ARPAL_CACHE_KEY);
-        if (cached) {
-          const parsed = JSON.parse(cached);
-          if (
-            Date.now() - parsed.updatedAt < ARPAL_CACHE_TTL &&
-            hasArpalTimingData(parsed.data)
-          ) {
-            setData(parsed.data);
-            setLoading(false);
-            return;
-          }
-        }
-      } catch { /* noop */ }
-
-      try {
-        const { data: result, error: fnError } = await supabase.functions.invoke("arpal-allerta");
-
-        if (fnError) throw new Error(fnError.message);
-        if (!result?.success) throw new Error(result?.error ?? "Errore sconosciuto");
-
-        setData(result.data);
-        try {
-          localStorage.setItem(
-            ARPAL_CACHE_KEY,
-            JSON.stringify({ data: result.data, updatedAt: Date.now() })
-          );
-        } catch { /* noop */ }
-      } catch (err) {
-        console.error("ARPAL fetch error:", err);
-        try {
-          const cached = localStorage.getItem(ARPAL_CACHE_KEY);
-          if (cached) {
-            const parsed = JSON.parse(cached);
-            if (hasArpalTimingData(parsed.data)) {
-              setData(parsed.data);
-              setLoading(false);
-              return;
-            }
-          }
-        } catch { /* noop */ }
-        setError("Dati allerta non disponibili");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAlert();
-  }, []);
-
-  return { data, loading, error };
-};
 
 /* ── animations ── */
 

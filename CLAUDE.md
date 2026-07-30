@@ -57,7 +57,7 @@ first, then wire it into `appRoutes` in `App.tsx`.
 (`src/content/tradizioni/*.md`) for longer-form "tradizioni" articles. GPX tracks live as static
 assets in `public/tracks/`; trail technical metadata (distance/elevation/etc.) is generated at
 build time by `scripts/generate-trail-technical-metadata.mjs` from those GPX files into
-`src/data/trailTechnicalMetadata.ts` — don't hand-edit that generated file.
+`src/data/trails/trailTechnicalMetadata.ts` — don't hand-edit that generated file.
 
 **SEO**: `src/lib/seo.ts` holds shared constants (`SITE_NAME`, `DEFAULT_OG_IMAGE`, etc.) and
 JSON-LD builders (`createWebSiteJsonLd`, `createOrganizationJsonLd`, `createPlaceJsonLd`);
@@ -65,9 +65,8 @@ JSON-LD builders (`createWebSiteJsonLd`, `createOrganizationJsonLd`, `createPlac
 is the per-page `<Helmet>` wrapper — every routed page should render it. `scripts/generate-sitemap.mjs`
 walks routes/data to emit `sitemap.xml` and `robots.txt` at build time using `VITE_SITE_URL`.
 
-**PWA**: service worker registers with `autoUpdate`; GPX files are precached for offline trail use;
-OSM map tiles get runtime-cached after first visit. (Configured via `vite-plugin-pwa`, though the
-plugin registration itself may be conditionally included in `vite.config.ts`.)
+**PWA**: not currently implemented — `vite-plugin-pwa` is not a dependency and `vite.config.ts` has
+no service worker/manifest registration. If this is reintroduced, update this section accordingly.
 
 **Supabase**: `src/integrations/supabase/client.ts` is the browser client (uses
 `VITE_SUPABASE_URL`/`VITE_SUPABASE_PUBLISHABLE_KEY`). Server-side logic lives in

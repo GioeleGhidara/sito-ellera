@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { useCursorDot } from "@/hooks/useCursorDot";
+import Seo from "@/components/shared/Seo";
+import { ROUTES } from "@/lib/routes";
 import "./EbikeLegal.css";
 
 export default function Regolamento() {
@@ -8,10 +9,12 @@ export default function Regolamento() {
 
   return (
     <>
-      <Helmet>
-        <title>Regolamento Generale Eventi - Comitato Ellerese</title>
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <Seo
+        title="Regolamento Generale Eventi - Comitato Ellerese"
+        description="Norme di partecipazione, sicurezza e responsabilità per gli eventi organizzati dal Comitato Ellerese, incluso l'Albi Trail E-Bike Fest."
+        canonicalPath={ROUTES.regolamento}
+        noindex
+      />
 
       <div className="ebike-legal-page">
         <div className="ebike-legal-cursor-dot" ref={dotRef} />

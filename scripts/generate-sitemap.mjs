@@ -88,20 +88,31 @@ const siteNoIndex = /^(1|true|yes)$/i.test(
 
 // ---------------------------------------------------------------------------
 // Static routes
-// NOTE: trail detail pages use /mtb/<slug>, not /trekking (which is the list page)
+// NOTE: trail detail pages use /mtb/<slug>, not /trekking (which is the list page).
+// This list must be kept in sync by hand with the static (non-redirect, non-dynamic)
+// entries in `appRoutes` (src/App.tsx) — including dedicated one-off event pages like
+// /caruggi-e-lanterne or /albi-trail-ebike-fest, which aren't derivable from
+// src/data/events/events.ts the way generic events are.
 // ---------------------------------------------------------------------------
 
 const staticRoutes = [
   "/",
   "/trekking",
   "/albi-trail-area",
+  "/meteo-allerte",
   "/teatro-baloma",
+  "/teatro-baloma/sostieni",
   "/galleria-arte",
+  "/storia",
   "/comitato",
   "/eventi",
   "/servizi",
   "/tradizioni",
   "/news",
+  "/albi-trail-ebike-fest",
+  "/caruggi-e-lanterne",
+  "/privacy",
+  "/regolamento",
 ];
 
 // ---------------------------------------------------------------------------

@@ -1,4 +1,5 @@
 import Stripe from "stripe"
+import { createClient } from "@supabase/supabase-js"
 
 const allowedOrigins = [
   "https://ellera.it",
@@ -19,6 +20,7 @@ function getCorsHeaders(req: Request) {
 }
 
 let stripe: Stripe | null = null;
+let supabaseAdmin: ReturnType<typeof createClient> | null = null;
 
 Deno.serve(async (req: Request) => {
   // Gestione preflight CORS
@@ -48,16 +50,46 @@ Deno.serve(async (req: Request) => {
       httpClient: Stripe.createFetchHttpClient(),
     })
 
-    const { email, nome_cognome, pacchetto, amount, return_url } = await req.json()
+    const { email, nome_cognome, pacchetto, amount, codice_promo, return_url } = await req.json()
 
     const PREZZI: Record<string, number> = {
       "Ride + Pranzo (€ 20)": 20,
       "Solo Ride (€ 12)": 12,
       "Solo Pranzo (€ 12)": 12,
     };
-    const expectedAmount = PREZZI[pacchetto];
-    
-    if (!expectedAmount || amount !== expectedAmount) {
+    const baseAmount = PREZZI[pacchetto];
+    if (!baseAmount) {
+      throw new Error("Pacchetto non valido")
+    }
+
+    // Ricalcola lo sconto lato server: il client non è mai la fonte di verità sul prezzo finale
+    let discount = 0;
+    if (codice_promo) {
+      const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+      const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+      if (!supabaseUrl || !supabaseServiceRoleKey) {
+        throw new Error("Database configuration error");
+      }
+      supabaseAdmin ??= createClient(supabaseUrl, supabaseServiceRoleKey);
+
+      const { data: promoData, error: promoError } = await supabaseAdmin
+        .from("promo_codes")
+        .select("code, discount_amount, expires_at")
+        .eq("code", String(codice_promo).trim().toUpperCase())
+        .eq("is_active", true)
+        .maybeSingle();
+
+      if (promoError || !promoData) {
+        throw new Error("Codice promo non valido")
+      }
+      if (promoData.expires_at && new Date(promoData.expires_at as string) < new Date()) {
+        throw new Error("Codice promo scaduto")
+      }
+      discount = Number(promoData.discount_amount) || 0;
+    }
+
+    const expectedAmount = Math.max(0, baseAmount - discount);
+    if (amount !== expectedAmount) {
       throw new Error("Importo non corrispondente al pacchetto")
     }
 
@@ -66,9 +98,12 @@ Deno.serve(async (req: Request) => {
       throw new Error("return_url non valido");
     }
 
+    const normalizedEmail = String(email).trim().toLowerCase();
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      customer_email: email,
+      customer_email: normalizedEmail,
+      client_reference_id: normalizedEmail,
       line_items: [
         {
           price_data: {
@@ -77,7 +112,7 @@ Deno.serve(async (req: Request) => {
               name: `Iscrizione Albi Trail - ${pacchetto}`,
               description: `Iscrizione per ${nome_cognome}`,
             },
-            unit_amount: amount * 100, // Stripe richiede centesimi
+            unit_amount: expectedAmount * 100, // Stripe richiede centesimi; usa l'importo calcolato server-side
           },
           quantity: 1,
         },

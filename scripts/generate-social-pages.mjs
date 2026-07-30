@@ -29,6 +29,13 @@ const customPages = [
     description: "31 Maggio 2026 - Una giornata di pedalata collettiva in beneficienza tra Albisola Superiore ed Ellera. Percorsi per tutti i livelli, area bambini e rinfresco finale.",
     image: "https://www.ellera.it/og/pedaliamo-insieme.jpg",
     url: "https://www.ellera.it/eventi/la-pedaliamo-insieme-2026"
+  },
+  {
+    route: "/caruggi-e-lanterne",
+    title: "Caruggi & Lanterne 2026 - Ellera (Albisola Superiore)",
+    description: "Il borgo di Ellera si illumina con oltre 200 lanterne e si accende di musica, gastronomia e tradizioni della Notte Ligure.",
+    image: "https://www.ellera.it/images/events/caruggi-lanterne/manifesto.avif",
+    url: "https://www.ellera.it/caruggi-e-lanterne"
   }
 ];
 
