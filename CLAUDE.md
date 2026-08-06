@@ -90,3 +90,10 @@ components live in `src/components/shared/` and `src/components/layout/`.
 **TypeScript** is configured loosely on purpose (`strictNullChecks: false`, `noImplicitAny: false`,
 `noUnusedLocals`/`noUnusedParameters` off) — don't tighten these without discussing, and don't treat
 unused-var/implicit-any as lint errors since the config intentionally allows them.
+
+**CSS Grid `auto-fit`/`minmax()` gotcha**: with a small `minmax()` floor and only 2-3 real grid
+items in a wide container, empty tracks can fail to collapse — leaving undersized items and a large
+unused gap instead of the items filling the row (confirmed empirically, e.g. in
+`CaruggiELanterne.css`'s palchi/pedane cards; not something the CSS spec alone predicts). Prefer
+`display: flex; flex-wrap: wrap` with `flex: 1 1 <basis>px` on children for these small, fixed-count
+side-by-side layouts instead of `grid-template-columns: repeat(auto-fit, minmax(...))`.
