@@ -283,10 +283,6 @@
   .cel-hero-scroll .line {
     animation: none;
   }
-
-  .cel-coorte-detail {
-    animation: none;
-  }
 }
 
 /* ============================================
@@ -369,12 +365,22 @@
   color: rgba(245, 245, 244, 0.85);
 }
 
-.cel-hero-dates {
+.cel-hero-month {
   z-index: 2;
   margin-top: var(--space-xl);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 244, 0.6);
+}
+
+.cel-hero-dates {
+  z-index: 2;
+  margin-top: var(--space-sm);
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -553,9 +559,15 @@
    ============================================ */
 
 .cel-palchi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+@media (min-width: 600px) {
+  .cel-palchi-grid {
+    gap: var(--space-sm);
+  }
 }
 
 @media (min-width: 768px) {
@@ -564,12 +576,17 @@
   }
 }
 
-.cel-palchi-grid>div:first-child {
-  grid-column: 1 / -1;
+.cel-palchi-grid>div:first-child,
+.cel-pedane-intro {
+  flex: 1 1 100%;
+}
+
+.cel-palchi-grid>div:not(:first-child):not(.cel-pedane-intro) {
+  flex: 1 1 125px;
+  min-width: 0;
 }
 
 .cel-pedane-intro {
-  grid-column: 1 / -1;
   text-align: center;
   font-size: var(--fs-md);
   color: rgba(245, 245, 244, 0.7);
@@ -578,7 +595,13 @@
 }
 
 .cel-palco-card {
-  padding: var(--space-lg);
+  padding: var(--space-sm);
+}
+
+@media (min-width: 500px) {
+  .cel-palco-card {
+    padding: var(--space-lg);
+  }
 }
 
 .cel-palco-head {
@@ -598,13 +621,21 @@
 }
 
 .cel-palco-serate {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+@media (min-width: 500px) {
+  .cel-palco-serate {
+    gap: var(--space-lg);
+  }
 }
 
 .cel-artista {
   display: flex;
+  flex: 1 1 130px;
+  min-width: 0;
   flex-direction: column;
   align-items: center;
   gap: var(--space-2xs);
@@ -767,96 +798,41 @@
    LA COORTE
    ============================================ */
 
-.cel-coorte-stage {
-  position: relative;
-  height: clamp(300px, 38vw, 420px);
-  margin: var(--space-xl) 0 var(--space-lg);
-  perspective: 1200px;
-  touch-action: pan-y;
-  cursor: grab;
-}
-
-.cel-coorte-stage:active {
-  cursor: grabbing;
-}
-
-.cel-coorte-orbit {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
-
-.cel-coorte-orbit-item {
-  position: absolute;
+.cel-coorte-carousel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2xs);
-  padding: 0;
-  border: none;
-  background: none;
-  font: inherit;
-  color: inherit;
-  text-align: center;
-  cursor: pointer;
+  margin: var(--space-xl) 0 var(--space-lg);
 }
 
-.cel-coorte-orbit-item img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  pointer-events: none;
-  box-shadow: 0 8px 20px rgba(2, 3, 8, 0.4);
+.cel-coorte-hero {
+  position: relative;
 }
 
-.cel-coorte-orbit-item span {
-  font-family: var(--font-insegna);
-  font-weight: 700;
-  font-style: italic;
-  font-size: var(--fs-sm);
-  color: var(--lanterna-soft);
-  line-height: 1.2;
-  white-space: nowrap;
-  transition: opacity 0.15s ease;
-}
-
-.cel-coorte-orbit-item.is-selected span {
-  color: var(--carta);
-  opacity: 1 !important;
-}
-
-.cel-coorte-orbit-item:focus-visible {
-  outline: 2px solid var(--lanterna);
-  outline-offset: 6px;
-  border-radius: 8px;
-}
-
-/* ============================================
-   DETTAGLIO (Coorte) — sotto il carosello, niente modale
-   ============================================ */
-
-.cel-coorte-detail {
+.cel-coorte-hero-visual {
+  position: absolute;
+  inset: 0;
   display: flex;
-  gap: var(--space-md);
-  align-items: flex-start;
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: var(--space-md) var(--space-lg);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(202, 138, 4, 0.25);
-  animation: cel-detail-in 0.25s ease;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
 }
 
-.cel-coorte-logo--detail {
-  width: 4.5rem;
-  height: 4.5rem;
+.cel-coorte-hero-img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  border-radius: 8px;
-  flex-shrink: 0;
+  color: var(--lanterna-soft);
 }
 
-.cel-coorte-detail h3 {
+.cel-coorte-hero-detail {
+  max-width: 28rem;
+  margin: var(--space-md) 0 var(--space-lg);
+  text-align: center;
+  min-height: 5.5rem;
+}
+
+.cel-coorte-hero-detail h3 {
   font-family: var(--font-insegna);
   font-weight: 800;
   font-style: italic;
@@ -865,23 +841,60 @@
   margin: 0 0 var(--space-2xs) 0;
 }
 
-.cel-coorte-detail p {
+.cel-coorte-hero-detail p {
   font-size: var(--fs-sm);
   line-height: 1.65;
   color: rgba(245, 245, 244, 0.85);
   margin: 0;
 }
 
-@keyframes cel-detail-in {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
+.cel-coorte-arc {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.cel-coorte-arc-btn {
+  position: absolute;
+  left: 50%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.cel-coorte-arc-btn-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.cel-coorte-arc-btn.is-active .cel-coorte-arc-btn-inner {
+  background: var(--carta);
+  border-color: var(--lanterna-soft);
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.35);
+}
+
+.cel-coorte-arc-btn-img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  color: var(--lanterna-soft);
+  pointer-events: none;
+}
+
+.cel-coorte-arc-btn:focus-visible .cel-coorte-arc-btn-inner {
+  outline: 2px solid var(--lanterna);
+  outline-offset: 2px;
 }
 
 /* ============================================

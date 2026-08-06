@@ -46,14 +46,15 @@ export default function Hero() {
         vicolo.
       </p>
 
+      <p className="cel-hero-month">{CARUGGI_EVENT_DATA.dates.meseAnno}</p>
       <div className="cel-hero-dates">
         <div className="cel-date-chip">
           <span className="num">{CARUGGI_EVENT_DATA.dates.giorno1.num}</span>
-          <span className="label">{CARUGGI_EVENT_DATA.dates.giorno1.label} {CARUGGI_EVENT_DATA.dates.meseAnno}</span>
+          <span className="label">{CARUGGI_EVENT_DATA.dates.giorno1.label}</span>
         </div>
         <div className="cel-date-chip">
           <span className="num">{CARUGGI_EVENT_DATA.dates.giorno2.num}</span>
-          <span className="label">{CARUGGI_EVENT_DATA.dates.giorno2.label} {CARUGGI_EVENT_DATA.dates.meseAnno}</span>
+          <span className="label">{CARUGGI_EVENT_DATA.dates.giorno2.label}</span>
         </div>
       </div>
 
