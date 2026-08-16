@@ -46,19 +46,23 @@ export default function ComeArrivare() {
           })}
         </div>
 
-        <a
-          href="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
-          target="_blank"
-          rel="noopener"
-          aria-label="Apri la mappa dei parcheggi a piena risoluzione in una nuova scheda"
-        >
-          <img
-            src="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
-            alt="Mappa dei parcheggi di Caruggi e Lanterne — Ellera, con le aree auto numerate 1–5 (zona Campetto e zona Foglieto) e il parcheggio moto in Piazza Nuova"
-            className="cel-map-image cel-map-image--parcheggi"
-            loading="lazy"
-          />
-        </a>
+        <div className="cel-map-card cel-map-card--parcheggi">
+          <a
+            href="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
+            target="_blank"
+            rel="noopener"
+            aria-label="Apri la mappa dei parcheggi a piena risoluzione in una nuova scheda"
+            className="cel-map-card-frame"
+          >
+            <img
+              src="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
+              alt="Mappa dei parcheggi di Caruggi e Lanterne — Ellera, con le aree auto numerate 1–5 (zona Campetto e zona Foglieto) e il parcheggio moto in Piazza Nuova"
+              className="cel-map-image"
+              loading="lazy"
+            />
+            <span className="cel-map-card-caption">Mappa dei parcheggi — tocca per ingrandire</span>
+          </a>
+        </div>
       </div>
     </section>
   );

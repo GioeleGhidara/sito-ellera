@@ -441,6 +441,12 @@
   text-transform: uppercase;
   color: rgba(246, 237, 222, 0.5);
   text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.cel-hero-scroll:hover,
+.cel-hero-scroll:focus-visible {
+  color: var(--lanterna-soft);
 }
 
 .cel-hero-scroll .line {
@@ -534,7 +540,7 @@
   display: block;
   border-radius: 18px;
   background: linear-gradient(160deg, var(--notte-mid), var(--notte-deep));
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 14px 44px rgba(2, 3, 8, 0.55), 0 0 26px rgba(202, 138, 4, 0.07);
 }
 
 .cel-intro-quote {
@@ -546,23 +552,6 @@
   margin-top: var(--space-lg);
   padding-left: var(--space-md);
   border-left: 3px solid var(--lanterna-soft);
-}
-
-/* ============================================
-   MAPPA
-   ============================================ */
-
-.cel-map-wrap {
-  position: relative;
-}
-
-.cel-map {
-  width: 100%;
-  height: auto;
-  border-radius: 18px;
-  display: block;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  object-fit: cover;
 }
 
 /* ============================================
@@ -751,7 +740,7 @@
 }
 
 .cel-stand-layout > .cel-stand-list,
-.cel-stand-layout > a {
+.cel-stand-layout > .cel-map-card {
   flex: 1 1 300px;
   min-width: 0;
 }
@@ -1039,6 +1028,11 @@
   box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.35);
 }
 
+.cel-coorte-arc-btn:not(.is-active):hover .cel-coorte-arc-btn-inner {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(250, 204, 21, 0.5);
+}
+
 .cel-coorte-arc-btn-img {
   width: 75%;
   height: 75%;
@@ -1056,58 +1050,9 @@
    LE ISOLE
    ============================================ */
 
-.cel-isole {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-lg);
-}
-
-.cel-isole--two {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  max-width: 50rem;
-}
-
-.cel-isola-card {
-  padding: var(--space-lg);
-}
-
-.cel-isola-icon {
-  width: 3.2rem;
-  height: 3.2rem;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--lanterna);
-  color: var(--notte-deep);
-  margin-bottom: var(--space-md);
-}
-
-.cel-isola-card h3 {
-  font-family: var(--font-insegna);
-  font-weight: 800;
-  font-size: var(--fs-xl);
-  margin-bottom: var(--space-xs);
-  margin-top: 0;
-  color: var(--carta);
-}
-
-.cel-isola-card p {
-  font-size: var(--fs-sm);
-  line-height: 1.65;
-  color: rgba(245, 245, 244, 0.75);
-  margin: 0;
-}
-
 /* ============================================
    COME ARRIVARE (General Cards)
    ============================================ */
-
-.cel-info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-lg);
-}
 
 .cel-info-card {
   padding: var(--space-lg);
@@ -1183,54 +1128,64 @@
 }
 
 /* ============================================
-   MAP PLACEHOLDER
-   ============================================ */
-
-.cel-map-placeholder {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-md);
-  color: rgba(245, 245, 244, 0.4);
-  margin-top: var(--space-lg);
-  border: 2px dashed rgba(255, 255, 255, 0.1);
-  background: var(--logo-backdrop);
-}
-
-.cel-map-placeholder-icon {
-  width: 48px;
-  height: 48px;
-  opacity: 0.8;
-}
-
-.cel-map-placeholder span {
-  font-size: var(--fs-md);
-  font-style: italic;
-  font-family: var(--font-insegna);
-}
-
-/* ============================================
    MAPPA EVENTO
    ============================================ */
+
+/* Le mappe sono immagini color carta (#F4E9D2): trattarle come una foto
+   istantanea appoggiata di sbieco sulla pagina — bordo carta spesso, leggera
+   rotazione, ombra calda — le fa sembrare un oggetto reale della sagra
+   invece di un componente UI (card con bordo+ombra) incollato sopra. */
+.cel-map-card {
+  display: flex;
+  justify-content: center;
+}
+
+.cel-map-card-frame {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  background: var(--carta);
+  padding: 10px 10px 38px;
+  box-shadow: 0 22px 40px rgba(2, 3, 8, 0.5), 0 1px 1px rgba(0, 0, 0, 0.2);
+  transform: rotate(-1.6deg);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+
+.cel-map-card--parcheggi .cel-map-card-frame {
+  transform: rotate(1.8deg);
+}
+
+.cel-map-card-frame:hover,
+.cel-map-card-frame:focus-visible {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: 0 32px 52px rgba(2, 3, 8, 0.55), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
 
 .cel-map-image {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 12px;
+}
+
+.cel-map-card-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  text-align: center;
+  font-family: var(--font-insegna);
+  font-style: italic;
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  color: #3a3226;
 }
 
 /* La mappa parcheggi è verticale (333x469): a piena larghezza su desktop
-   diventa altissima. Solo da tablet/desktop in su la limitiamo e la centriamo,
-   su mobile resta piena larghezza com'è già per le altre mappe. */
+   diventa altissima. Solo da tablet/desktop in su la limitiamo, su mobile
+   resta piena larghezza com'è già per l'altra mappa. */
 @media (min-width: 768px) {
-  .cel-map-image--parcheggi {
-    max-width: 22rem;
-    margin: 0 auto;
+  .cel-map-card--parcheggi .cel-map-card-frame {
+    max-width: 20rem;
   }
 }
 
@@ -1298,7 +1253,6 @@
 }
 
 .cel-footer-contacts {
-  display: flex;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
