@@ -1,11 +1,9 @@
 import { Car, Bike, Clock } from "@/lib/icons";
 import { PARCHEGGI, type MezzoParcheggio } from "@/data/events/caruggi-lanterne/parcheggi";
-import MapPlaceholder from "../ui/MapPlaceholder";
 
 const MEZZI: { key: MezzoParcheggio; label: string; icon: typeof Car }[] = [
   { key: "auto", label: "In automobile", icon: Car },
   { key: "moto", label: "In moto", icon: Bike },
-  { key: "bici", label: "In bici", icon: Bike },
 ];
 
 export default function ComeArrivare() {
@@ -35,16 +33,32 @@ export default function ComeArrivare() {
                 <span className="label">
                   <Icon size={15} /> {label}
                 </span>
-                <p>
-                  {par.areeConfermate} {par.areeConfermate === 1 ? "area confermata" : "aree confermate"}
-                  {par.nota && ` (${par.nota})`}
-                </p>
+                {par.dettaglio ? (
+                  <p>{par.dettaglio}</p>
+                ) : (
+                  <p>
+                    {par.areeConfermate} {par.areeConfermate === 1 ? "area confermata" : "aree confermate"}
+                    {par.nota && ` (${par.nota})`}
+                  </p>
+                )}
               </div>
             );
           })}
         </div>
 
-        <MapPlaceholder label="Mappa parcheggi in arrivo.." />
+        <a
+          href="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
+          target="_blank"
+          rel="noopener"
+          aria-label="Apri la mappa dei parcheggi a piena risoluzione in una nuova scheda"
+        >
+          <img
+            src="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
+            alt="Mappa dei parcheggi di Caruggi e Lanterne — Ellera, con le aree auto numerate 1–5 (zona Campetto e zona Foglieto) e il parcheggio moto in Piazza Nuova"
+            className="cel-map-image cel-map-image--parcheggi"
+            loading="lazy"
+          />
+        </a>
       </div>
     </section>
   );

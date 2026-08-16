@@ -4,6 +4,7 @@ import "./CaruggiELanterne.css";
 
 import Hero from "../../components/features/events/caruggi-lanterne/sections/Hero";
 import Intro from "../../components/features/events/caruggi-lanterne/sections/Intro";
+import Ceramica from "../../components/features/events/caruggi-lanterne/sections/Ceramica";
 import StandGastronomici from "../../components/features/events/caruggi-lanterne/sections/StandGastronomici";
 import Coorte from "../../components/features/events/caruggi-lanterne/sections/Coorte";
 import Isole from "../../components/features/events/caruggi-lanterne/sections/Isole";
@@ -43,7 +44,7 @@ export default function CaruggiELanterne() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;0,9..144,900;1,9..144,500;1,9..144,600&family=Archivo:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;0,9..144,900;1,9..144,500;1,9..144,600&family=Archivo:wght@400;500;600;700&family=Inter:wght@700&display=swap"
           rel="stylesheet"
         />
         <script type="application/ld+json">{`{
@@ -75,6 +76,7 @@ export default function CaruggiELanterne() {
         <Hero />
         <main id="main-content">
           <RevealSection><Intro /></RevealSection>
+          <RevealSection><Ceramica /></RevealSection>
           <RevealSection><StandGastronomici /></RevealSection>
           <RevealSection><Isole /></RevealSection>
           <RevealSection><Coorte /></RevealSection>

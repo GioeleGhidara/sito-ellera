@@ -310,6 +310,11 @@
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  /* Necessario perché è un elemento "replaced" (svg): senza width esplicita, un
+     assolutamente posizionato con solo left/right:0 non si stira sul contenitore
+     ma prende la larghezza dal proprio aspect ratio intrinseco (viewBox 1200x200),
+     lasciando vuoto il resto su schermi larghi dove quella larghezza non basta. */
   height: 18vh;
   min-height: 140px;
   z-index: 0;
@@ -510,10 +515,16 @@
    ============================================ */
 
 .cel-intro {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-xl);
   align-items: center;
+}
+
+.cel-intro > div,
+.cel-intro > .cel-intro-art {
+  flex: 1 1 300px;
+  min-width: 0;
 }
 
 .cel-intro-art {
@@ -699,10 +710,15 @@
 }
 
 .cel-mezzi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
+}
+
+.cel-mezzi-grid > div {
+  flex: 1 1 220px;
+  min-width: 0;
 }
 
 .cel-mezzo-list {
@@ -728,10 +744,16 @@
    ============================================ */
 
 .cel-stand-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-xl);
-  align-items: start;
+  align-items: flex-start;
+}
+
+.cel-stand-layout > .cel-stand-list,
+.cel-stand-layout > a {
+  flex: 1 1 300px;
+  min-width: 0;
 }
 
 .cel-stand-list {
@@ -752,13 +774,39 @@
   height: 2.6rem;
   border-radius: 50%;
   background: var(--lanterna);
-  color: var(--notte-deep);
-  font-family: var(--font-insegna);
-  font-weight: 800;
+  color: #0e0e16;
+  font-family: "Inter", var(--font-corpo);
+  font-weight: 700;
   font-size: var(--fs-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1.5px solid #0e0e16;
+}
+
+/* Stesso colore per lettera dei pin sulla mappa (mappa.svg) */
+.cel-stand-marker[data-marker="A"] {
+  background: #00d0bc;
+}
+
+.cel-stand-marker[data-marker="B"] {
+  background: #0b9f00;
+}
+
+.cel-stand-marker[data-marker="C"] {
+  background: #ff6ac4;
+}
+
+.cel-stand-marker[data-marker="D"] {
+  background: #ff9500;
+}
+
+.cel-stand-marker[data-marker="E"] {
+  background: #ddff04;
+}
+
+.cel-stand-marker[data-marker="F"] {
+  background: #8400ff;
 }
 
 .cel-stand-card h3 {
@@ -792,6 +840,113 @@
   background: rgba(202, 138, 4, 0.15);
   border: 1px solid rgba(202, 138, 4, 0.35);
   font-style: italic;
+}
+
+/* ============================================
+   CERAMICA — LUIGI BEVILACQUA
+   ============================================ */
+
+.cel-ceramica-panel {
+  display: grid;
+  grid-template-columns: minmax(90px, 130px) 1fr;
+  column-gap: var(--space-xl);
+  row-gap: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.cel-ceramica-title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: start;
+  text-align: left;
+  font-family: var(--font-insegna);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  margin: 0 0 var(--space-2xs);
+  color: var(--carta);
+}
+
+/* solo da qui in su il titolo intero entra su una riga sola senza andare a capo */
+@media (min-width: 900px) {
+  .cel-ceramica-title {
+    font-size: clamp(1.5rem, 1vw + 1.1rem, 1.85rem);
+    white-space: nowrap;
+  }
+}
+
+/* riga 2: logo + descrizione, centrati sulla stessa linea orizzontale */
+.cel-ceramica-visual {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 120px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(202, 138, 4, 0.35);
+  outline: 2px solid var(--lanterna-soft);
+  outline-offset: 2px;
+  padding: var(--space-2xs);
+}
+
+.cel-ceramica-desc {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: rgba(245, 245, 244, 0.85);
+  margin: 0;
+}
+
+/* riga 3: luogo, a piena larghezza, allineato a sinistra e cliccabile (apre Google Maps) */
+.cel-ceramica-note {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  justify-self: start;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--lanterna-soft);
+  text-decoration: none;
+}
+
+.cel-ceramica-note:hover,
+.cel-ceramica-note:focus-visible {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .cel-ceramica-panel {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .cel-ceramica-title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .cel-ceramica-visual {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .cel-ceramica-desc {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .cel-ceramica-note {
+    grid-column: 1;
+    grid-row: 4;
+  }
 }
 
 /* ============================================
@@ -1056,6 +1211,27 @@
   font-size: var(--fs-md);
   font-style: italic;
   font-family: var(--font-insegna);
+}
+
+/* ============================================
+   MAPPA EVENTO
+   ============================================ */
+
+.cel-map-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* La mappa parcheggi è verticale (333x469): a piena larghezza su desktop
+   diventa altissima. Solo da tablet/desktop in su la limitiamo e la centriamo,
+   su mobile resta piena larghezza com'è già per le altre mappe. */
+@media (min-width: 768px) {
+  .cel-map-image--parcheggi {
+    max-width: 22rem;
+    margin: 0 auto;
+  }
 }
 
 /* ============================================

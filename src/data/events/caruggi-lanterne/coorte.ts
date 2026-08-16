@@ -35,11 +35,6 @@ export const COORTE: RealtaCoorte[] = [
     logo: "/images/events/caruggi-lanterne/loghi-coorte/ciclofficina.webp",
   },
   {
-    nome: "Scuola di Ceramica",
-    descrizione: "Spazio dedicato all'arte della ceramica tradizionale del nostro territorio.",
-    logo: "/images/events/caruggi-lanterne/loghi-coorte/scuola-ceramica.webp",
-  },
-  {
     nome: "Lotteria",
     descrizione: "Il banchetto della lotteria della sagra: biglietti in vendita per tutta la durata dell'evento, con estrazione dei premi in serata.",
     logo: "/images/events/caruggi-lanterne/loghi-coorte/logo-lotteria.webp",

@@ -7,15 +7,26 @@ interface LanternSpec {
   delay: number;
 }
 
-const LANTERN_PATTERN: LanternSpec[] = [
-  { left: "6%", size: 38, swayIndex: 0, delay: 0 },
-  { left: "18%", size: 26, swayIndex: 2, delay: 0.3 },
-  { left: "31%", size: 44, swayIndex: 1, delay: 0.1 },
-  { left: "47%", size: 30, swayIndex: 3, delay: 0.5 },
-  { left: "61%", size: 40, swayIndex: 0, delay: 0.2 },
-  { left: "75%", size: 28, swayIndex: 2, delay: 0.4 },
-  { left: "89%", size: 36, swayIndex: 1, delay: 0.15 },
+// Dimensione/oscillazione/ritardo dei lampioni, riciclati ciclicamente per qualsiasi `count`.
+const LANTERN_STYLES: Omit<LanternSpec, "left">[] = [
+  { size: 38, swayIndex: 0, delay: 0 },
+  { size: 26, swayIndex: 2, delay: 0.3 },
+  { size: 44, swayIndex: 1, delay: 0.1 },
+  { size: 30, swayIndex: 3, delay: 0.5 },
+  { size: 40, swayIndex: 0, delay: 0.2 },
+  { size: 28, swayIndex: 2, delay: 0.4 },
+  { size: 36, swayIndex: 1, delay: 0.15 },
 ];
+
+// I lampioni devono coprire sempre questo intervallo, qualunque sia `count`: prendere solo
+// i primi N stili (con le loro `left` fisse) lasciava vuoto il lato destro per count < 7.
+const RAIL_START_PCT = 6;
+const RAIL_END_PCT = 89;
+
+function leftForIndex(i: number, count: number): string {
+  if (count <= 1) return `${(RAIL_START_PCT + RAIL_END_PCT) / 2}%`;
+  return `${RAIL_START_PCT + ((RAIL_END_PCT - RAIL_START_PCT) * i) / (count - 1)}%`;
+}
 
 function Lantern({ spec, index }: { spec: LanternSpec; index: number }) {
   const ref = useRef<SVGSVGElement>(null);
@@ -66,7 +77,10 @@ interface LanternRailProps {
 }
 
 export default function LanternRail({ count = 7 }: LanternRailProps) {
-  const pattern = LANTERN_PATTERN.slice(0, count);
+  const pattern: LanternSpec[] = Array.from({ length: count }, (_, i) => ({
+    ...LANTERN_STYLES[i % LANTERN_STYLES.length],
+    left: leftForIndex(i, count),
+  }));
   return (
     <div className="cel-lantern-rail">
       {pattern.map((spec, i) => (

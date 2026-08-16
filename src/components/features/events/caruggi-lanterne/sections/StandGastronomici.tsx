@@ -1,5 +1,4 @@
 import { STAND_GASTRONOMICI } from "@/data/events/caruggi-lanterne/standGastronomici";
-import MapPlaceholder from "../ui/MapPlaceholder";
 
 export default function StandGastronomici() {
   return (
@@ -18,7 +17,7 @@ export default function StandGastronomici() {
           <div className="cel-stand-list" role="list">
             {STAND_GASTRONOMICI.map((stand, idx) => (
               <article className="cel-stand-card cel-panel" key={stand.marker} role="listitem" aria-labelledby={`stand-title-${idx}`}>
-                <span className="cel-stand-marker">{stand.marker}</span>
+                <span className="cel-stand-marker" data-marker={stand.marker}>{stand.marker}</span>
                 <div>
                   <h3 id={`stand-title-${idx}`}>{stand.zona}</h3>
                   <ul>
@@ -32,7 +31,19 @@ export default function StandGastronomici() {
             ))}
           </div>
 
-          <MapPlaceholder label="Mappa stand in arrivo.." />
+          <a
+            href="/images/events/caruggi-lanterne/mappa.svg"
+            target="_blank"
+            rel="noopener"
+            aria-label="Apri la mappa a piena risoluzione in una nuova scheda"
+          >
+            <img
+              src="/images/events/caruggi-lanterne/mappa.svg"
+              alt="Mappa di Caruggi e Lanterne — Ellera, con le tappe A–F degli stand, la coorte, il torrente, i ponti e il murale"
+              className="cel-map-image"
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
     </section>

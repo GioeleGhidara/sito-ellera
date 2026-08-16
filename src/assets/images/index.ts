@@ -28,6 +28,7 @@ export { default as castagnataHeroImage } from "./events/castagnataHero.avif";
 export { default as caruggiImage } from "./places/caruggiEllera.avif";
 export { default as caruggiEventImage } from "./events/caruggi_event.avif";
 export { default as caruggiLanterneImage } from "./events/caruggiLanterne.avif";
+export { default as locandinaCaruggiELanterne } from "./events/caruggi-lanterne/locandina.avif";
 export { default as chiesaSanBartolomeoEventImage } from "./events/chiesaSbartolomeo.avif";
 export { default as sincroresonanceImage } from "./events/sincroresonance.jpg";
 export { default as locandinaCulturaInCammino } from "./events/cultura-in-cammino.avif";

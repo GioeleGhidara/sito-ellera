@@ -24,7 +24,7 @@ export const STAND_GASTRONOMICI: StandGastronomico[] = [
   {
     marker: "C",
     zona: "Piazzetta",
-    offerta: ["Trofie al pesto", "Polenta al ragù", "Pesche con il vino"],
+    offerta: ["Trofie al pesto", "Polenta al ragù/formaggi", "Pesche con il vino"],
     note: "Bar 2",
   },
   {
@@ -42,6 +42,6 @@ export const STAND_GASTRONOMICI: StandGastronomico[] = [
     marker: "F",
     zona: "Piazza Nuova",
     offerta: ["Ravioli al ragù"],
-    note: "Laboratorio creativo di ceramica",
+    note: "Laboratorio di ceramica",
   },
 ];
