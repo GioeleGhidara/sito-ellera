@@ -70,9 +70,9 @@ export default {
         cream: "hsl(var(--cream))",
       },
       fontFamily: {
-        // font-heading → Fraunces (serif espressivo, usato in h1-h6 e font-heading)
-        heading: ["Fraunces", "Georgia", "serif"],
-        // font-sans → Source Sans 3 (body, invariato)
+        // font-heading → Playfair Display (serif editoriale ad alto contrasto, usato in h1-h6 e font-heading)
+        heading: ["Playfair Display", "Georgia", "serif"],
+        // font-sans → Source Sans 3 (corpo del testo, invariato)
         sans: ["Source Sans 3", "system-ui", "sans-serif"],
       },
       borderRadius: {

@@ -159,6 +159,14 @@ const Footer = () => (
           <img src={logoComitatoRidotto} alt="Logo Comitato Ellerese" className="h-10 w-10" />
           <span>Copyright {new Date().getFullYear()} Ellera - Comitato Ellerese</span>
         </div>
+        <div className="flex items-center gap-4">
+          <Link to={ROUTES.privacy} className="transition-colors hover:text-primary-foreground/70">
+            Privacy
+          </Link>
+          <Link to={ROUTES.regolamento} className="transition-colors hover:text-primary-foreground/70">
+            Regolamento
+          </Link>
+        </div>
       </div>
     </div>
   </footer>

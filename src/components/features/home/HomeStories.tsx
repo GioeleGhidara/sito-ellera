@@ -79,7 +79,7 @@ const HomeStories = ({ stories, fadeUp }: HomeStoriesProps) => {
           <div className="mt-8 text-center">
             <Link
               to={ROUTES.tradizioni}
-              className="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground shadow-warm transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground shadow-warm transition-opacity hover:opacity-90 active:scale-[0.98]"
             >
               <BookOpen className="h-5 w-5" />
               Tutti i Racconti

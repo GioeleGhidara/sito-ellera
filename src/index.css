@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -103,27 +103,18 @@
   }
 
   body {
-    @apply text-foreground antialiased;
-    /* Gradiente coerente: dall'azzurro aria alla pietra, finendo nel verde maiolica chiaro (stessa radice del footer) */
-    @apply bg-gradient-to-br from-blue-50 via-slate-50 to-maiolica-light;
+    @apply bg-background text-foreground antialiased;
     font-family: "Source Sans 3", system-ui, sans-serif;
   }
 
-  /* Rendi trasparenti le sezioni che usano esplicitamente bg-background in modo da far trasparire il gradiente, 
-     mantenendo invece coprenti le interfacce card e altri overlay. */
-  section.bg-background,
-  div.bg-background {
-    background-color: transparent !important;
-  }
-
-  /* Fraunces per tutti gli heading - stessa logica di LaPedaliamoInsieme */
+  /* Playfair Display per tutti gli heading: serif editoriale ad alto contrasto */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: "Playfair Display", Georgia, serif;
   }
 }
 

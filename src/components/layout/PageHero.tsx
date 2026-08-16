@@ -41,7 +41,7 @@ const PageHero = ({
   return (
     <section
       className={cn(
-        "relative h-[50vh] min-h-[400px] flex items-end overflow-hidden",
+        "relative min-h-[max(400px,50dvh)] flex items-end overflow-hidden",
         sectionClassName,
       )}
     >
@@ -73,7 +73,7 @@ const PageHero = ({
 
           <h1
             className={cn(
-              "text-4xl lg:text-5xl font-bold text-primary-foreground",
+              "text-4xl lg:text-5xl font-bold tracking-tight text-primary-foreground",
               hasBelowTitle && "mb-4",
               titleClassName,
             )}

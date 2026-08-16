@@ -32,8 +32,6 @@ new/
 .claude/
 .agents/
 .agent/
-.codex/
-.impeccable/
 skills-lock.json
 
 # Script one-off locali
