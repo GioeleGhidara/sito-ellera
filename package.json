@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/generate-trail-technical-metadata.mjs && node scripts/generate-sitemap.mjs",
-    "build": "vite build && node scripts/generate-social-pages.mjs",
-    "build:dev": "vite build --mode development && node scripts/generate-social-pages.mjs",
+    "build": "vite build && node scripts/generate-page-shells.mjs",
+    "build:dev": "vite build --mode development && node scripts/generate-page-shells.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "seo:sitemap": "node scripts/generate-sitemap.mjs",

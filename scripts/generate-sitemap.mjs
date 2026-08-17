@@ -111,8 +111,11 @@ const staticRoutes = [
   "/news",
   "/albi-trail-ebike-fest",
   "/caruggi-e-lanterne",
-  "/privacy",
-  "/regolamento",
+  // /privacy e /regolamento NON vanno qui: sono pagine noindex (Seo noindex
+  // in Privacy.tsx/Regolamento.tsx) — elencarle in sitemap.xml è una
+  // contraddizione che Search Console segnala. generate-page-shells.mjs le
+  // genera comunque staticamente (con robots noindex,nofollow corretto),
+  // solo non le mette in questa lista.
 ];
 
 // ---------------------------------------------------------------------------

@@ -12,7 +12,7 @@ Supabase Edge Functions for a few dynamic bits (weather alerts, event registrati
 
 ```bash
 npm run dev              # start Vite dev server (port 8080)
-npm run build             # production build (runs prebuild: sitemap + trail metadata, then vite build + generate-social-pages)
+npm run build             # production build (runs prebuild: sitemap + trail metadata, then vite build + generate-page-shells)
 npm run build:dev         # development-mode build, same post-steps
 npm run lint               # eslint .
 npm test                   # vitest run (single run)
@@ -47,10 +47,23 @@ first, then wire it into `appRoutes` in `App.tsx`.
 2. **Dedicated one-off event pages**: bespoke, heavily-designed events (e.g.
    `AlbiTrailEbikeFest`, `CaruggiELanterne`) get their own route, page component under
    `src/pages/events/`, and often their own data folder under `src/data/events/<slug>/` and
-   components under `src/components/features/events/<slug>/`. These are also added as
-   `customPages` entries in `scripts/generate-social-pages.mjs` so a static, crawler-friendly
-   `index.html` with correct OG/Twitter meta gets emitted into `dist/<route>/` post-build (SPAs
-   can't self-serve per-route OG tags, hence this script).
+   components under `src/components/features/events/<slug>/`.
+
+**Static page shells / SEO prerendering**: this is a client-rendered SPA (`createRoot`, not
+`hydrateRoot`), so Vercel's rewrite (`vercel.json`) would otherwise serve the exact same bare
+`index.html` for every route — same `<title>`, same description, no canonical — until React mounts
+and `Seo.tsx` patches `document.head` client-side. `scripts/generate-page-shells.mjs` runs after
+`vite build`, reads `dist/sitemap.xml` for the full route list, and writes a `dist/<route>/index.html`
+per route with the correct `<title>`, meta description, OG/Twitter tags, and (always, even for routes
+without custom copy) a correct `<link rel="canonical">` — this is what fixes Google treating every
+page as a near-duplicate of the homepage. Metadata for static pages lives in that script's
+`STATIC_PAGES` map (keep in sync by hand with each page's `<Seo>` props); metadata for dynamic routes
+(`/mtb/:slug`, `/news/:slug`, `/tradizioni/:slug`, `/eventi/:slug`) is parsed from the same source
+files the sitemap generator already reads. `/privacy` and `/regolamento` are intentionally **not**
+in `sitemap.xml` (they're `noindex`) but still get a shell here with `robots: noindex,nofollow`
+baked in from byte one. Routes ending in a real file extension (e.g. the legacy
+`la-pedaliamo-insieme-2026.html` in `public/`) are skipped — those are already-standalone static
+files, not SPA routes.
 
 **Content sources**: editorial/static content is split between plain TS data modules
 (`src/data/core/*.ts`, `src/data/culture/*.ts`, `src/data/trails/*.ts`) and Markdown files

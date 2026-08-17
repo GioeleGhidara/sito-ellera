@@ -10,6 +10,16 @@
       ],
       "destination": "https://www.ellera.it/$1",
       "permanent": true
+    },
+    {
+      "source": "/albi-trail-ebike-fest.html",
+      "destination": "/albi-trail-ebike-fest",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy",
+      "permanent": true
     }
   ],
   "rewrites": [
