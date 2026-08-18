@@ -15,7 +15,7 @@ export default function Footer() {
       <p className="cel-footer-signature">
         Si accendono le lanterne,
         <br />
-        si apre il vino, si vive il borgo.
+        si aprono le cantine, si vive il borgo.
       </p>
 
       <div className="cel-footer-rule" />

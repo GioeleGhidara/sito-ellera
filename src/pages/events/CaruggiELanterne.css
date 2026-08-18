@@ -1147,17 +1147,12 @@
   background: var(--carta);
   padding: 10px 10px 38px;
   box-shadow: 0 22px 40px rgba(2, 3, 8, 0.5), 0 1px 1px rgba(0, 0, 0, 0.2);
-  transform: rotate(-1.6deg);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
-}
-
-.cel-map-card--parcheggi .cel-map-card-frame {
-  transform: rotate(1.8deg);
 }
 
 .cel-map-card-frame:hover,
 .cel-map-card-frame:focus-visible {
-  transform: rotate(0deg) translateY(-6px);
+  transform: translateY(-6px);
   box-shadow: 0 32px 52px rgba(2, 3, 8, 0.55), 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
