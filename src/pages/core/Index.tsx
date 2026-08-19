@@ -14,6 +14,7 @@ import HomeNews from "@/components/features/home/HomeNews";
 import HomeEvents from "@/components/features/home/HomeEvents";
 import HomeStories from "@/components/features/home/HomeStories";
 import HomeExplore from "@/components/features/home/HomeExplore";
+import CaruggiELanternePromo from "@/components/features/home/CaruggiELanternePromo";
 
 
 import { fadeUp } from "@/lib/animations";
@@ -36,6 +37,8 @@ const Index = () => {
         imageAlt="Il borgo di Ellera visto dal ponte sul Sansobbia"
         jsonLd={[createComitatoOrganizationJsonLd(), createWebSiteJsonLd()]}
       />
+
+      <CaruggiELanternePromo />
 
       <HomeHero />
 
