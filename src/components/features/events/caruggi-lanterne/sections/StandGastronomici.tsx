@@ -33,14 +33,14 @@ export default function StandGastronomici() {
 
           <div className="cel-map-card">
             <a
-              href="/images/events/caruggi-lanterne/mappa.svg"
+              href="/images/events/caruggi-lanterne/mappa.png"
               target="_blank"
               rel="noopener"
               aria-label="Apri la mappa a piena risoluzione in una nuova scheda"
               className="cel-map-card-frame"
             >
               <img
-                src="/images/events/caruggi-lanterne/mappa.svg"
+                src="/images/events/caruggi-lanterne/mappa.png"
                 alt="Mappa di Caruggi e Lanterne — Ellera, con le tappe A–F degli stand, la coorte, il torrente, i ponti e il murale"
                 className="cel-map-image"
                 loading="lazy"

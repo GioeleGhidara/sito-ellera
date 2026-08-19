@@ -7,7 +7,7 @@ export const CARUGGI_EVENT_DATA = {
     meseAnno: "Agosto 2026"
   },
   startDate: "2026-08-21T19:00:00+02:00",
-  endDate: "2026-08-23T00:30:00+02:00",
+  endDate: "2026-08-23T01:00:00+02:00",
   imageUrl: "https://www.ellera.it/images/events/caruggi-lanterne/manifesto.avif",
   url: "https://www.ellera.it/caruggi-e-lanterne"
 };

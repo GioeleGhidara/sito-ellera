@@ -20,7 +20,7 @@ export default function ComeArrivare() {
             <Clock size={15} /> Orari
           </span>
           <p>
-            Stand aperti dalle 19:00 alle 00:30, entrambe le serate.
+            Stand aperti dalle 19:00 alle 01:00, entrambe le serate.
           </p>
         </div>
 
@@ -48,14 +48,14 @@ export default function ComeArrivare() {
 
         <div className="cel-map-card cel-map-card--parcheggi">
           <a
-            href="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
+            href="/images/events/caruggi-lanterne/mappa-parcheggi.png"
             target="_blank"
             rel="noopener"
             aria-label="Apri la mappa dei parcheggi a piena risoluzione in una nuova scheda"
             className="cel-map-card-frame"
           >
             <img
-              src="/images/events/caruggi-lanterne/mappa-parcheggi.svg"
+              src="/images/events/caruggi-lanterne/mappa-parcheggi.png"
               alt="Mappa dei parcheggi di Caruggi e Lanterne — Ellera, con le aree auto numerate 1–5 (zona Campetto e zona Foglieto) e il parcheggio moto in Piazza Nuova"
               className="cel-map-image"
               loading="lazy"
