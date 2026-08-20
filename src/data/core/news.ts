@@ -3,7 +3,9 @@ import {
   caruggiLanterneImage,
   consiglioNewsImage,
   gruppomurales,
+  locandinaCaruggiELanterne,
 } from "@/assets/images";
+import { ROUTES } from "@/lib/routes";
 
 export interface NewsItem {
   id: number;
@@ -14,9 +16,29 @@ export interface NewsItem {
   content: string;
   category: "Borgo" | "Outdoor" | "Cultura" | "Associazione";
   image: string;
+  /** "contain" evita il ritaglio (es. locandine con testo); default "cover". */
+  imageFit?: "cover" | "contain";
 }
 
 const newsData: NewsItem[] = [
+  {
+    id: 10,
+    slug: "caruggi-e-lanterne-2026-questo-weekend",
+    date: "2026-08-20",
+    title: "Caruggi e Lanterne torna questo weekend",
+    excerpt:
+      "Venerdì 21 e sabato 22 agosto il borgo si accende con oltre 200 lanterne, musica dal vivo e le bancarelle del percorso enogastronomico.",
+    content: `Venerdì e sabato Ellera torna a illuminarsi per **Caruggi e Lanterne**, l'appuntamento che ogni estate porta centinaia di persone tra i vicoli del borgo.
+
+Il programma si sviluppa su due serate. **Venerdì 21 agosto** si parte con Dj Bond, MG Dj e Dj Marco. **Sabato 22 agosto** tocca a I Capovolti, ancora MG Dj e l'animazione itinerante dei DeMueluin. Lungo il percorso trovate le bancarelle gastronomiche del Comitato, i banchi di ceramica e gli stand degli artigiani locali, con le lanterne accese a segnare la strada tra una tappa e l'altra.
+
+Chi arriva in auto può lasciare la macchina nei parcheggi segnalati all'ingresso del paese: da lì il centro storico si raggiunge in pochi minuti a piedi. Il programma completo, gli orari serata per serata e la mappa dei parcheggi sono sulla [pagina dedicata all'evento](${ROUTES.caruggiELanterne}).
+
+Vi aspettiamo in paese.`,
+    category: "Borgo",
+    image: locandinaCaruggiELanterne,
+    imageFit: "contain",
+  },
   {
     id: 9,
     slug: "successo-albi-trail-ebike-fest-2026",

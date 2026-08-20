@@ -14,23 +14,51 @@ import { CATEGORY_COLOR } from "@/lib/news-utils";
 import { cn } from "@/lib/utils";
 
 const BOLD_RE = /\*\*(.+?)\*\*/g;
+const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
 
 const renderInline = (text: string, strongCn?: string): ReactNode[] => {
-  const result: ReactNode[] = [];
+  const withLinks: ReactNode[] = [];
   let lastIndex = 0;
 
-  for (const match of text.matchAll(BOLD_RE)) {
+  for (const match of text.matchAll(LINK_RE)) {
     const idx = match.index ?? 0;
-    if (idx > lastIndex) result.push(text.slice(lastIndex, idx));
-    result.push(
-      <strong key={`b-${idx}`} className={strongCn}>
-        {match[1]}
-      </strong>,
+    if (idx > lastIndex) withLinks.push(text.slice(lastIndex, idx));
+    const [, label, href] = match;
+    withLinks.push(
+      href.startsWith("/") ? (
+        <Link key={`l-${idx}`} to={href} className="text-accent font-semibold underline underline-offset-2 hover:text-accent/80">
+          {label}
+        </Link>
+      ) : (
+        <a key={`l-${idx}`} href={href} target="_blank" rel="noopener noreferrer" className="text-accent font-semibold underline underline-offset-2 hover:text-accent/80">
+          {label}
+        </a>
+      ),
     );
     lastIndex = idx + match[0].length;
   }
+  if (lastIndex < text.length) withLinks.push(text.slice(lastIndex));
 
-  if (lastIndex < text.length) result.push(text.slice(lastIndex));
+  const result: ReactNode[] = [];
+  withLinks.forEach((chunk, chunkIdx) => {
+    if (typeof chunk !== "string") {
+      result.push(chunk);
+      return;
+    }
+    let lastBoldIndex = 0;
+    for (const match of chunk.matchAll(BOLD_RE)) {
+      const idx = match.index ?? 0;
+      if (idx > lastBoldIndex) result.push(chunk.slice(lastBoldIndex, idx));
+      result.push(
+        <strong key={`b-${chunkIdx}-${idx}`} className={strongCn}>
+          {match[1]}
+        </strong>,
+      );
+      lastBoldIndex = idx + match[0].length;
+    }
+    if (lastBoldIndex < chunk.length) result.push(chunk.slice(lastBoldIndex));
+  });
+
   return result.length > 0 ? result : [text];
 };
 
@@ -185,6 +213,7 @@ const NewsDetail = () => {
       <PageHero
         imageSrc={item.image}
         imageAlt={item.title}
+        imageClassName={item.imageFit === "contain" ? "object-contain bg-neutral-900" : undefined}
         eyebrow="News"
         eyebrowIcon={Newspaper}
         title={item.title}
