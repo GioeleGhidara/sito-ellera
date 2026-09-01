@@ -244,20 +244,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     category: "Outdoor",
     externalUrl: "/archivio/albi-trail-ebike-fest-2026",
   },
-  {
-    slug: "caruggi-e-lanterne",
-    title: "Caruggi e Lanterne (Edizione 2027)",
-    date: "Agosto 2027",
-    startDate: "2027-08-01",
-    image: locandinaCaruggiELanterne,
-    desc: "Il tradizionale percorso enogastronomico nei caruggi del borgo di Ellera. L'edizione passata è stata un successo, stiamo già lavorando per la prossima!",
-    location: EVENT_LOCATIONS.CARUGGI.name,
-    locationUrl: EVENT_LOCATIONS.CARUGGI.url,
-    category: "Festa",
-    status: "Prossimamente",
-    dateToBeConfirmed: true,
-    externalUrl: "/caruggi-e-lanterne",
-  },
+
   {
     slug: "caruggi-e-lanterne-2026",
     title: "Caruggi e Lanterne 2026",
