@@ -14,6 +14,7 @@ export {
   LuBrush as Brush,
   LuBusFront as BusFront,
   LuCalendar as Calendar,
+  LuArchiveRestore as ArchiveRestore,
   LuCalendarDays as CalendarDays,
   LuCalendarPlus as CalendarPlus,
   LuCar as Car,

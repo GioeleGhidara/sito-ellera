@@ -23,6 +23,10 @@ export const ROUTES = {
   caruggiELanterne: "/caruggi-e-lanterne",
   privacy: "/privacy",
   regolamento: "/regolamento",
+  
+  // Archivi 2026
+  archivioCaruggiELanterne2026: "/archivio/caruggi-e-lanterne-2026",
+  archivioAlbiTrailEbikeFest2026: "/archivio/albi-trail-ebike-fest-2026",
 } as const;
 
 export const tradizioneDetailPath = (slug: string) => `${ROUTES.tradizioni}/${slug}`;

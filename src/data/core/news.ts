@@ -22,6 +22,27 @@ export interface NewsItem {
 
 const newsData: NewsItem[] = [
   {
+    id: 11,
+    slug: "caruggi-lanterne-2026-archivio-ringraziamenti",
+    date: "2026-09-01",
+    title: "Caruggi e Lanterne 2026 va in archivio: il ringraziamento del Comitato",
+    excerpt: "Due serate da tutto esaurito, musica dal vivo e l'impegno di decine di volontari: l'edizione 2026 chiude con un successo straordinario.",
+    content: `L'edizione 2026 di **Caruggi e Lanterne** si è ufficialmente conclusa, archiviando due serate straordinarie per il borgo di Ellera. I vicoli si sono riempiti di visitatori, i tavoli sono rimasti occupati fino a tarda notte e la musica dal vivo ha animato ogni piazza, confermando l'evento come uno degli appuntamenti più sentiti del territorio.
+
+A nome di tutto il **Comitato Ellerese**, Tommaso ha tenuto a ringraziare personalmente chi ha reso possibile questo risultato. Un ringraziamento speciale è rivolto a chi ha sostenuto il progetto donando il proprio tempo: i volontari che hanno dato una mano nell'allestimento, durante il servizio e nella pulizia finale. L'energia del borgo, vivo e luminoso come non mai, è il riflesso del lavoro di squadra.
+
+Un grazie immenso va ovviamente a tutti i partecipanti. Senza la vostra presenza, la magia delle lanterne non si sarebbe compiuta.
+
+L'impegno del Comitato non si ferma qui. L'appuntamento è già fissato per **ottobre**, quando le strade di Ellera torneranno ad accendersi per la tradizionale **Castagnata**, tra caldarroste, focaccette, birra e buon vino. 
+
+Guarda il video riassuntivo delle due serate con il nostro saluto finale:
+
+[instagram](https://www.instagram.com/reel/DciKMDoNI1m/)`,
+    category: "Borgo",
+    image: caruggiLanterneImage,
+    imageFit: "cover",
+  },
+  {
     id: 10,
     slug: "caruggi-e-lanterne-2026-questo-weekend",
     date: "2026-08-20",

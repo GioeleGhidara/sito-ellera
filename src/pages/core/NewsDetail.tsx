@@ -6,6 +6,7 @@ import FloatingBackLink from "@/components/layout/FloatingBackLink";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/layout/PageHero";
 import Seo from "@/components/shared/Seo";
+import InstagramEmbed from "@/components/shared/InstagramEmbed";
 import { news } from "@/data/core/news";
 import { ROUTES } from "@/lib/routes";
 import { toAbsoluteUrl } from "@/lib/seo";
@@ -138,6 +139,12 @@ const renderContent = (text: string) =>
       return (
         <img key={index} src={url} alt={alt} className="w-full h-auto rounded-xl my-6 object-cover shadow-sm" />
       );
+    }
+
+    // Instagram embed (Markdown: [instagram](url))
+    if (trimmed.startsWith("[instagram](") && trimmed.endsWith(")")) {
+      let url = trimmed.slice(12, -1);
+      return <InstagramEmbed key={index} url={url} />;
     }
 
     // Lista

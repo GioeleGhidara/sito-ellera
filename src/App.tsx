@@ -30,10 +30,12 @@ const TrailDetail = lazy(() => import("./pages/trails/TrailDetail"));
 const Servizi = lazy(() => import("./pages/core/Servizi"));
 const Tradizioni = lazy(() => import("./pages/culture/Tradizioni"));
 const TradizioneDetail = lazy(() => import("./pages/culture/TradizioneDetail"));
-const AlbiTrailEbikeFest = lazy(() => import("./pages/events/AlbiTrailEbikeFest"));
 const Privacy = lazy(() => import("./pages/legal/Privacy"));
 const Regolamento = lazy(() => import("./pages/legal/Regolamento"));
 const CaruggiELanterne = lazy(() => import("./pages/events/CaruggiELanterne"));
+
+const CaruggiELanterne2026 = lazy(() => import("./pages/events/archive/CaruggiELanterne2026"));
+const AlbiTrailEbikeFest2026 = lazy(() => import("./pages/events/archive/AlbiTrailEbikeFest2026"));
 
 const RouteFallback = () => (
   <section className="min-h-screen bg-background flex flex-col items-center p-4 lg:p-8 space-y-8 animate-pulse">
@@ -83,8 +85,10 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
   { path: `${ROUTES.tradizioni}/:slug`, element: <TradizioneDetail /> },
   { path: ROUTES.news, element: <News /> },
   { path: `${ROUTES.news}/:slug`, element: <NewsDetail /> },
-  { path: ROUTES.albiTrailEbikeFest, element: <AlbiTrailEbikeFest /> },
+  { path: ROUTES.albiTrailEbikeFest, element: <Navigate to={ROUTES.archivioAlbiTrailEbikeFest2026} replace /> },
   { path: ROUTES.caruggiELanterne, element: <CaruggiELanterne /> },
+  { path: ROUTES.archivioCaruggiELanterne2026, element: <CaruggiELanterne2026 /> },
+  { path: ROUTES.archivioAlbiTrailEbikeFest2026, element: <AlbiTrailEbikeFest2026 /> },
   { path: ROUTES.privacy, element: <Privacy /> },
   { path: ROUTES.regolamento, element: <Regolamento /> },
   { path: "*", element: <NotFound /> },

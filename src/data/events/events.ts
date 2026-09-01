@@ -242,11 +242,25 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
   - **Menu**: Panino salsiccia/wurstel, patatine e birra (opzione vegana disponibile).`,
     posterPlaceholderLabel: "locandina",
     category: "Outdoor",
-    externalUrl: "/albi-trail-ebike-fest",
+    externalUrl: "/archivio/albi-trail-ebike-fest-2026",
   },
   {
     slug: "caruggi-e-lanterne",
-    title: "Caruggi e Lanterne",
+    title: "Caruggi e Lanterne (Edizione 2027)",
+    date: "Agosto 2027",
+    startDate: "2027-08-01",
+    image: locandinaCaruggiELanterne,
+    desc: "Il tradizionale percorso enogastronomico nei caruggi del borgo di Ellera. L'edizione passata è stata un successo, stiamo già lavorando per la prossima!",
+    location: EVENT_LOCATIONS.CARUGGI.name,
+    locationUrl: EVENT_LOCATIONS.CARUGGI.url,
+    category: "Festa",
+    status: "Prossimamente",
+    dateToBeConfirmed: true,
+    externalUrl: "/caruggi-e-lanterne",
+  },
+  {
+    slug: "caruggi-e-lanterne-2026",
+    title: "Caruggi e Lanterne 2026",
     date: "21-22 Agosto 2026",
     startDate: "2026-08-21",
     endDate: "2026-08-22",
@@ -257,7 +271,7 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     location: EVENT_LOCATIONS.CARUGGI.name,
     locationUrl: EVENT_LOCATIONS.CARUGGI.url,
     category: "Festa",
-    externalUrl: "/caruggi-e-lanterne",
+    externalUrl: "/archivio/caruggi-e-lanterne-2026",
     detailContent: `L'evento estivo più atteso e suggestivo del borgo di Ellera torna ad accendere i cuori e le vie storiche. **Caruggi e Lanterne** non è solo un percorso enogastronomico, ma un vero e proprio tuffo nella tradizione, cullati dalla magica luce delle lanterne artigianali che decorano ogni angolo del paese.
 
 **Cosa troverai:**

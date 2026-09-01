@@ -2,21 +2,23 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-import "./AlbiTrailEbikeFest.css";
+import "../AlbiTrailEbikeFest.css";
 
-import { Navigation } from "../../components/features/events/ebike-fest/Navigation";
-import { getEventBySlug, isEventPast } from "../../data/events/events";
-import { Hero } from "../../components/features/events/ebike-fest/Hero";
-import { CountdownSection } from "../../components/features/events/ebike-fest/CountdownSection";
-import { InfoStats } from "../../components/features/events/ebike-fest/InfoStats";
-import { Programma } from "../../components/features/events/ebike-fest/Programma";
-import { Percorsi } from "../../components/features/events/ebike-fest/Percorsi";
-import { Attrezzatura } from "../../components/features/events/ebike-fest/Attrezzatura";
-import { Organizzatore } from "../../components/features/events/ebike-fest/Organizzatore";
-import { IscrizioneForm } from "../../components/features/events/ebike-fest/IscrizioneForm";
-import { Footer } from "../../components/features/events/ebike-fest/Footer";
-import { StickyCTA } from "../../components/features/events/ebike-fest/StickyCTA";
-import { RevealSection } from "../../components/ui/RevealSection";
+import { Navigation } from "../../../components/features/events/ebike-fest/Navigation";
+import { getEventBySlug, isEventPast } from "../../../data/events/events";
+import { Hero } from "../../../components/features/events/ebike-fest/Hero";
+import { CountdownSection } from "../../../components/features/events/ebike-fest/CountdownSection";
+import { InfoStats } from "../../../components/features/events/ebike-fest/InfoStats";
+import { Programma } from "../../../components/features/events/ebike-fest/Programma";
+import { Percorsi } from "../../../components/features/events/ebike-fest/Percorsi";
+import { Attrezzatura } from "../../../components/features/events/ebike-fest/Attrezzatura";
+import { Organizzatore } from "../../../components/features/events/ebike-fest/Organizzatore";
+import { IscrizioneForm } from "../../../components/features/events/ebike-fest/IscrizioneForm";
+import { Footer } from "../../../components/features/events/ebike-fest/Footer";
+import { StickyCTA } from "../../../components/features/events/ebike-fest/StickyCTA";
+import { RevealSection } from "../../../components/ui/RevealSection";
+import { ArchiveRestore } from "../../../lib/icons";
+import { ROUTES } from "../../../lib/routes";
 
 export default function AlbiTrailEbikeFest() {
     /* Custom cursor using Framer Motion */
@@ -145,6 +147,15 @@ export default function AlbiTrailEbikeFest() {
             </Helmet>
 
             <div className="ebike-page">
+                <div className="bg-accent/10 border-b border-accent/20 px-4 py-3 text-center flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm font-medium text-accent-foreground z-[9999] relative">
+                    <div className="flex items-center gap-2">
+                        <ArchiveRestore size={16} />
+                        <span>Stai visualizzando l'archivio dell'edizione 2026.</span>
+                    </div>
+                    <a href={`${ROUTES.eventi}?tab=archivio`} className="underline decoration-accent/50 underline-offset-4 hover:decoration-accent transition-all font-bold">
+                        Torna all'archivio &rarr;
+                    </a>
+                </div>
                 {/* ── CURSOR ── */}
                 <motion.div className="ebike-cursor-dot" style={{ x: smoothX, y: smoothY }} />
                 <motion.div className="ebike-cursor-ring" style={{ x: smoothX, y: smoothY }} />
