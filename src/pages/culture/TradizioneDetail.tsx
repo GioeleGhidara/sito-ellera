@@ -306,7 +306,16 @@ const TradizioneDetail = () => {
     );
   }
 
-  const story = stories.find((item) => item.slug === slug || item.id === slug);
+  const decodedSlug = slug ? decodeURIComponent(slug).toLowerCase() : "";
+  const normalizedSlug = decodedSlug.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+  const story = stories.find((item) => {
+    if (item.slug === slug || item.id === slug) return true;
+    const itemSlugDecoded = decodeURIComponent(item.slug).toLowerCase();
+    if (itemSlugDecoded === decodedSlug) return true;
+    const itemNorm = itemSlugDecoded.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return itemNorm === normalizedSlug;
+  });
 
   if (!story) {
     return (

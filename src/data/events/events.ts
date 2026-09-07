@@ -83,7 +83,7 @@ export const events: EventItem[] = ([
     startTime: "18:00",
     image: locandinaCulturaInCammino,
     heroImage: heroCulturaInCammino,
-    desc: "Speciale passeggiata alla scoperta delle bellezze del nostro territorio: la Galleria all'aperto della ceramica d'arte e il suggestivo \"sentiero azzurro\".",
+    desc: "Passeggiata guidata alla scoperta della Galleria all'aperto della ceramica d'arte e del sentiero azzurro con Monica Nicolini e il prof. Roberto Siri.",
     location: "Piazza Cairoli, Ellera",
     status: "In programma",
     organizerName: "Assessorato alla Cultura",
@@ -96,21 +96,17 @@ export const events: EventItem[] = ([
       },
     ],
     showOnHome: true,
-    detailContent: `L’assessorato alla cultura organizza l’iniziativa **"Cultura in cammino – Ellera tra arte e natura"**, una speciale passeggiata alla scoperta delle bellezze del nostro territorio.
+    detailContent: `L'Assessorato alla Cultura organizza la passeggiata guidata **"Cultura in cammino – Ellera tra arte e natura"**, in collaborazione con l'associazione Kalipè.
 
-L'evento si terrà il prossimo **giovedì 11 giugno 2026 alle ore 18:00**.
+**Data e orario:** Giovedì 11 giugno 2026, ore 18:00.
 
-**Programma dell'evento:**
+**Programma:**
+- **Ritrovo:** Ore 18:00 in Piazza Cairoli a Ellera.
+- **Tappa artistica:** Visita ad alcuni pannelli della Galleria all'aperto della ceramica d'arte.
+- **Percorso a piedi:** Camminata lungo il sentiero azzurro fino alla Chiesa di San Bartolomeo.
+- **Accompagnatori:** Monica Nicolini e il professor Roberto Siri.
 
-- **Ritrovo:** Ore 18:00 in Piazza Cairoli (Ellera).
-- **Prima tappa:** Visita ad alcuni pannelli della Galleria all'aperto della ceramica d'arte.
-- **Il percorso:** Passeggiata lungo il suggestivo "sentiero azzurro".
-- **Conclusione:** Arrivo e termine dell'itinerario presso la Chiesa di San Bartolomeo.
-
-L'iniziativa è promossa dall'Assessorato alla Cultura in collaborazione con l'associazione Kalipè.
-Vi accompagneranno Monica Nicolini e il professore Roberto Siri.
-
-***La partecipazione è libera e non è necessaria l'iscrizione.**`,
+Partecipazione libera senza obbligo di iscrizione.`,
     posterPlaceholderLabel: "Cultura in cammino",
     category: "Cultura",
   },
@@ -121,22 +117,20 @@ Vi accompagneranno Monica Nicolini e il professore Roberto Siri.
     startDate: "2026-04-17",
     endDate: "2026-04-18",
     image: sincroresonanceImage,
-    desc: "Due giornate al Teatro Balomà dedicate a un concerto di frequenze cosmiche, con appuntamenti distribuiti tra mattino e sera all'interno della sala.",
+    desc: "Due giornate al Teatro Balomà con sessioni di ascolto armonico e bagni sonori con campane tibetane, gong e diapason.",
     location: EVENT_LOCATIONS.TEATRO_BALOMA.name,
     locationUrl: EVENT_LOCATIONS.TEATRO_BALOMA.url,
     status: "In programma",
     organizerName: "Teatro Balomà",
     category: "Teatro",
     showOnHome: false,
-    detailContent: `Rivivi il benessere e l'equilibrio interiore attraverso **SincroResonance**, due giornate interamente dedicate al potere delle frequenze cosmiche. All'interno della suggestiva cornice acustica del **Teatro Balomà**, potrai immergerti in una sessione di bagni di suono progettata per indurre un profondo stato di rilassamento fisico e mentale.
+    detailContent: `Due giornate al **Teatro Balomà** dedicate a bagni di suono e sessioni di ascolto armonico.
 
-L'evento prevede diversi **appuntamenti distribuiti tra il mattino e la sera**, permettendoti di scegliere il momento ideale per la tua esperienza.
+Il programma prevede appuntamenti distribuiti tra mattino e sera:
+- **Frequenze armoniche (432 Hz)** per favorire rilassamento e concentrazione;
+- **Sessioni acustiche** con campane tibetane, campane di cristallo, diapason e gong.
 
-- **Frequenze a 432 Hz e superiori**: suoni armonici che favoriscono il riposo e la meditazione
-- **Strumenti ancestrali**: campane tibetane, gong e diapason per cullare la mente
-- **Benefici concreti**: riduzione dello stress, riequilibrio energetico e maggiore centratura personale
-
-*Ti consigliamo di indossare abiti comodi e, se lo desideri, di portare un tappetino o una copertina personale per massimizzare il comfort durante la sessione.*`,
+Si consiglia abbigliamento comodo; è possibile portare un proprio tappetino.`,
   },
   {
     slug: "la-pedaliamo-insieme-2026",
@@ -254,21 +248,20 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     startTime: "19:00",
     endTime: "23:59",
     image: locandinaCaruggiELanterne,
-    desc: "Il tradizionale percorso enogastronomico nei caruggi del borgo di Ellera. Tre serate dedicate al buon cibo, street food e convivialità. L'atmosfera magica delle lanterne è accompagnata da musica dal vivo di tutti i generi.",
+    desc: "Percorso enogastronomico tra i carruggi del centro storico illuminati da oltre 200 lanterne artigianali, con piatti tipici liguri e musica dal vivo.",
     location: EVENT_LOCATIONS.CARUGGI.name,
     locationUrl: EVENT_LOCATIONS.CARUGGI.url,
     category: "Festa",
     externalUrl: "/archivio/caruggi-e-lanterne-2026",
-    detailContent: `L'evento estivo più atteso e suggestivo del borgo di Ellera torna ad accendere i cuori e le vie storiche. **Caruggi e Lanterne** non è solo un percorso enogastronomico, ma un vero e proprio tuffo nella tradizione, cullati dalla magica luce delle lanterne artigianali che decorano ogni angolo del paese.
+    detailContent: `**Caruggi e Lanterne** è l'appuntamento estivo che anima il centro storico di Ellera con oltre 200 lanterne artigianali accese lungo le vie del borgo.
 
-**Cosa troverai:**
+**Cosa prevede la manifestazione:**
+- **Percorso gastronomico:** stand con piatti della cucina ligure, focaccette, street food locale, vino e birra.
+- **Musica dal vivo:** concerti e dj set distribuiti nelle piazzette e nei carruggi.
+- **Aree ristoro:** tavoli all'aperto distribuiti lungo il tragitto.
+- **Parcheggi:** aree sosta segnalate all'ingresso del paese, a pochi minuti a piedi dal centro storico.
 
-- **Percorso Gastronomico**: diverse "isole del gusto" sparse nei caruggi, dallo street-food tipico ai piatti della tradizione ligure, il tutto accompagnato da ottimo vino e birra.
-- **Musica dal vivo**: ogni vicolo e piazzetta ospiterà musicisti e band di vari generi musicali, per farti cantare e ballare sotto le stelle.
-
-- Nuovi spazi adibiti a parcheggi.
-- Ampi spazi per la consumazione ai tavoli.
-- Ingresso libero alle esposizioni e agli eventi musicali.`,
+Ingresso libero alle vie del borgo e agli spettacoli musicali.`,
   },
   {
     slug: "san-bartolomeo",
@@ -276,22 +269,20 @@ Eventuali dettagli operativi aggiuntivi potranno essere aggiornati in questa sch
     date: "23 Agosto 2026",
     startDate: "2026-08-23",
     image: chiesaSanBartolomeoEventImage,
-    desc: "La festa del patrono di Ellera, titolare della parrocchia inaugurata nel 1642. La sera del 22 agosto la comunità si ritrova per la messa e per l'annuale falò della vigilia, rito che accende la festa del 24 e richiama la tradizione contadina della Valle Sansobbia.",
+    desc: "Festa patronale di San Bartolomeo: messa e tradizionale falò della vigilia la sera del 23 agosto; messa solenne e processione il 24 agosto.",
     location: EVENT_LOCATIONS.CENTRO_STORICO.name,
     locationUrl: EVENT_LOCATIONS.CENTRO_STORICO.url,
     category: "Festa",
-    detailContent: `Una ricorrenza che affonda le sue radici nella storia contadina della nostra comunità. Istituita poco dopo l'inaugurazione della parrocchia omonima nel 1642, la Festa di **San Bartolomeo** è il momento culminante dell'agosto ellerese, unendo devozione e convivialità in un'unica grande celebrazione.
+    detailContent: `Festa patronale di **San Bartolomeo Apostolo**, legata alla parrocchia eretta nel 1642.
 
-**La Tradizione del Falò (Vigilia, 23 Agosto):**
-La sera prima della vera e propria ricorrenza, l'intera Valle Sansobbia si riunisce per uno dei riti più antichi: l'accensione del grande Falò di San Bartolomeo. 
-- Momento di aggregazione storica che una volta segnava il ritmo delle stagioni agricole.
-- Punti di ristoro serali per brindare insieme attorno al fuoco.
-- Santa Messa pre-falò presso la Parrocchia storica.
+**Domenica 23 agosto (Vigilia):**
+- Santa Messa nella chiesa parrocchiale;
+- Tradizionale accensione del grande Falò di San Bartolomeo;
+- Punti ristoro a cura del Comitato Ellerese.
 
-**La Festa del Patrono (24 Agosto):**
-- **Celebrazioni religiose**: Messa solenne e processione per le vie del borgo, accompagnata dalla cassa del Santo ornata dai classici crocifissi liguri.
-
-*Unisciti a noi per rivivere il folklore sano e genuino che da secoli caratterizza il cuore pulsante di Ellera.*`,
+**Lunedì 24 agosto (Festa del Patrono):**
+- Messa solenne in parrocchia;
+- Processione lungo le vie del borgo con la cassa del Santo e i crocifissi tradizionali liguri.`,
   },
   {
     slug: "castagnata",
@@ -301,25 +292,20 @@ La sera prima della vera e propria ricorrenza, l'intera Valle Sansobbia si riuni
     image: castagnataImage,
     heroImage: castagnataHeroImage,
     heroImagePosition: "object-[center_25%]",
-    desc: "La tradizione autunnale per eccellenza. Il profumo delle caldarroste riempie le vie del borgo, accompagnato da vino novello e allegria.",
+    desc: "Pomeriggio al Prato Feste con caldarroste preparate sulle padelle di rame, focaccette, vino e musica.",
     location: EVENT_LOCATIONS.PRATO_FESTE.name,
     locationUrl: EVENT_LOCATIONS.PRATO_FESTE.url,
     status: "Prossimamente",
     category: "Festa",
     dateToBeConfirmed: true,
-    detailContent: `L'autunno a Ellera si accoglie con la festa più calda e saporita della stagione: la **Castagnata** del Prato Feste! Quando l'aria si fa più fresca e i boschi circostanti cambiano colore, il borgo si ritrova per celebrare i sapori tipici e genuini dell'entroterra.
+    detailContent: `La tradizionale **Castagnata** autunnale organizzata dal Comitato Ellerese al Prato Feste.
 
-**Il Menù di Stagione:**
-- **Caldarroste fumanti** preparate sul momento dai maestri fuochisti del Comitato sulle padelle di rame.
-- **Vino novello** e caldo per accompagnare ogni assaggio scaldando l'atmosfera.
-- **Dolci tipici** e altre specialità salate di stagione autunnale.
+**Menù e ristoro:**
+- Caldarroste cotte a legna sulle tradizionali padelle forate di rame;
+- Focaccette, dolci di castagne e panini caldi;
+- Vino novello, birra e bibite.
 
-**L'Autunno in Compagnia:**
-- Ampia area relax attrezzata e protetta presso il Prato Feste, perfetta per famiglie e compagnie numerose.
-- Spazi all'aperto dove i bambini possono giocare in sicurezza godendosi la natura dorata di Ellera.
-- Intrattenimento pomeridiano per accompagnare la degustazione in assoluto relax.
-
-*La data esatta verrà confermata e annunciata nelle prossime settimane seguendo i ritmi della raccolta nei boschi, ma puoi star certo che l'atmosfera sarà quella di sempre: accogliente, festosa e... deliziosa!*`,
+L'evento si svolge all'aperto negli spazi attrezzati del Prato Feste con tavoli e posti a sedere. Data precisa e orari saranno comunicati a ridosso dell'evento in base all'andamento della raccolta nei boschi.`,
   },
 ] satisfies EventItem[]).sort((a, b) => toTimestamp(a.startDate) - toTimestamp(b.startDate));
 

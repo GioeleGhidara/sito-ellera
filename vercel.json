@@ -20,6 +20,31 @@
       "source": "/privacy.html",
       "destination": "/privacy",
       "permanent": true
+    },
+    {
+      "source": "/api/registrazioni",
+      "destination": "/albi-trail-ebike-fest",
+      "permanent": true
+    },
+    {
+      "source": "/search",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tradizioni/cinema-e-teatro-baloma",
+      "destination": "/tradizioni/cinema-e-teatro-balomà",
+      "permanent": true
+    },
+    {
+      "source": "/eventi/caruggi-e-lanterne",
+      "destination": "/caruggi-e-lanterne",
+      "permanent": true
+    },
+    {
+      "source": "/eventi/albi-trail-ebike-fest",
+      "destination": "/albi-trail-ebike-fest",
+      "permanent": true
     }
   ],
   "rewrites": [

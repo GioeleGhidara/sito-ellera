@@ -2,17 +2,15 @@
 id: streghe-di-ellera
 slug: streghe-di-ellera
 order: 1
-title: Le Gatte Stregate: Tra Incanto e Protezione
-subtitle: La Leggenda delle Bellissime Streghe di Ellera
-summary: Ad Ellera, le "gatte stregate" proteggono il borgo da secoli tra mito, natura e memoria popolare.
+title: "La Leggenda delle Gatte Stregate"
+subtitle: Memoria popolare e racconti d'epoca napoleonica a Ellera
+summary: La leggenda di Ellera sulle donne rifugiate nelle caverne sopra il paese, la loro trasformazione in gatte selvatiche nel 1796 e il legame con la memoria dei carruggi.
 icon: cat
 ---
-Ad Ellera, la magia non ha il volto oscuro delle fiabe, ma quello di donne di straordinaria bellezza, dai lunghi capelli corvini e orecchie a punta. La leggenda narra che vivessero in una caverna nascosta tra i rovi sopra il borgo, custodi di un sapere benevolo: guarivano i bambini, aiutavano i viandanti smarriti e soffiavano contro le nuvole per placare le tempeste.
+Secondo la tradizione di Ellera, un gruppo di donne dai capelli scuri e dai tratti singolari viveva in una caverna riparata tra i rovi sulla collina sopra il borgo. Il racconto le descrive come conoscitrici di erbe e rimedi: curavano i bambini febbricitanti, orientavano i viandanti nei boschi e interpretavano i venti per prevedere i temporali.
 
-Il loro destino cambiò durante l'occupazione napoleonica. Si racconta che i soldati francesi, sorpresi dalla loro danza misteriosa in un prato, tentarono di catturarle. Per difendersi, le streghe si mutarono in grosse gatte selvatiche, scomparendo nel folto della macchia. Ancora oggi, molti nel borgo guardano con rispetto ai felini che popolano i carruggi, vedendo in loro le antiche protettrici.
+Il racconto popolare si lega a fatti storici precisi: nella primavera del 1796, durante la prima campagna d'Italia di Napoleone Bonaparte, la Battaglia di Montenotte e gli scontri sul vicino Monte San Giorgio portarono centinaia di soldati francesi attraverso queste valli. La leggenda narra che un distaccamento di fanteria, scorto il rifugio durante una perlustrazione, cercò di catturare le donne. Per sfuggire all'accerchiamento, esse si mutarono in grosse gatte selvatiche, dileguandosi nella macchia mediterranea.
 
-Si dice inoltre che, dai loro antichi legami forzati con gli invasori, nacquero i basilischi, creature mitologiche che vivrebbero ancora oggi nelle profondità delle grotte elleresi, a ricordare un tempo in cui il confine tra realtà e mito era sottile come un soffio di vento.
-
-La tradizione popolare si intreccia con fatti storici reali: nel 1796, durante la campagna d'Italia, la Battaglia di Montenotte e gli scontri sul vicino Monte San Giorgio portarono effettivamente le truppe francesi in quest'area, alimentando nel tempo racconti e reinterpretazioni leggendarie.
+Nel borgo è rimasta l'abitudine di guardare con un occhio di riguardo ai gatti che popolano i carruggi, quasi a rinnovare il legame con le antiche figure della collina. Un'ulteriore variante del mito locale racconta che dagli anfratti più profondi delle cavità carsiche della zona nascessero i basilischi, rettili leggendari nati dall'incontro forzato tra gli invasori e le presenze del bosco.
 
 Fonti: Tradizione orale ellerese; VisitRiviera, "Le Gatte Stregate"; riferimenti storici sulla Battaglia di Montenotte (1796) e sugli scontri nell'area del Monte San Giorgio.

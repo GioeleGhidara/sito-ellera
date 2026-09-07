@@ -78,6 +78,10 @@ const appRoutes: { path: string; element: JSX.Element }[] = [
     path: ROUTES.albiTrailEbikeFestLegacy,
     element: <Navigate to={ROUTES.albiTrailEbikeFest} replace />,
   },
+  {
+    path: ROUTES.caruggiELanterneLegacy,
+    element: <Navigate to={ROUTES.caruggiELanterne} replace />,
+  },
   { path: `${ROUTES.eventi}/:slug`, element: <EventDetail /> },
   { path: ROUTES.servizi, element: <Servizi /> },
   { path: ROUTES.tradizioni, element: <Tradizioni /> },

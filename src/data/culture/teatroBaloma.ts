@@ -58,7 +58,7 @@ export interface TeatroBalomaRecentEvent {
 
 export const teatroBalomaIntro = {
   lead:
-    "Costruito alla fine del Seicento come Oratorio della Confraternita di San Lorenzo, il Teatro Balomà è oggi un ex cinema rinato come spazio culturale polivalente nel cuore di Ellera, restituito alla comunità grazie all'impegno del Comitato Ellerese.",
+    "Costruito alla fine del Seicento come Oratorio della Confraternita di San Lorenzo, il Teatro Balomà è un ex cinema parrocchiale recuperato come spazio culturale polivalente, restituito alla comunità grazie al Comitato Ellerese.",
 };
 
 export const teatroBalomaHighlights: TeatroBalomaHighlight[] = [
@@ -92,32 +92,32 @@ export const teatroBalomaTimeline: TeatroBalomaTimelineEntry[] = [
   {
     year: "Fine '600",
     title: "Nasce l'Oratorio di S. Lorenzo",
-    description: "Costruito con maestria e amore dalla Confraternita. All'epoca un grande salone con un altare in muratura per la devozione rurale e l'associazionismo cittadino.",
+    description: "Edificato dalla Confraternita di San Lorenzo come oratorio a navata unica con altare in muratura per le celebrazioni liturgiche e le assemblee dei confratelli.",
   },
   {
     year: "1830-1860",
     title: "Ampliamenti e vita civile",
-    description: "Cresce includendo magazzini e sagrestia; finisce persino per ospitare l'Ufficio Comunale, mentre il presbiterio scopre un nuovo splendore in marmo.",
+    description: "Ampliamento della struttura con magazzini e sagrestia; i locali ospitano temporaneamente la sede municipale di Ellera e l'altare viene rinnovato in marmo.",
   },
   {
     year: "1960",
     title: "Asilo e Cinematografo",
-    description: "L'Oratorio cambia direzione unendo la fede al tempo libero: i canti dei bambini e le prime mitiche proiezioni al cinema del paese accendono nuovamente la sala.",
+    description: "Conversione degli spazi in asilo infantile e cinematografo parrocchiale, centro di aggregazione per le proiezioni e gli incontri della comunità.",
   },
   {
     year: "Anni '80",
-    title: "Chiusura e abbandono",
-    description: "Un declino prolungato ne porta l'usura e l'abbandono al crepuscolo del millennio, facendolo sembrare perso ai ricordi del paese.",
+    title: "Chiusura e dismissione",
+    description: "Cessazione delle attività ricreative e chiusura della sala, con progressivo degrado dell'immobile.",
   },
   {
     year: "2000",
-    title: "La forza del Comitato Ellerese",
-    description: "Un gruppo di volontari ridà vita al Comitato. Le famose iniziative di paese raccolgono miracolosamente fondi destinati a salvare questo edificio carico di memorie.",
+    title: "Iniziativa del Comitato Ellerese",
+    description: "Il Comitato Ellerese avvia la raccolta fondi attraverso le sagre di paese e Caruggi e Lanterne per finanziare il recupero dell'edificio.",
   },
   {
     year: "Fine 2023",
-    title: "Inaugurazione della sala",
-    description: "Il Balomà torna accessibile, pronto per una programmazione flessibile, inaugurato col botto tramite uno splendido spettacolo danzante durante le festività natalizie.",
+    title: "Riapertura della sala",
+    description: "Conclusione dei restauri e riapertura ufficiale della sala con una programmazione di spettacoli, concerti e incontri pubblici.",
   },
 ];
 
@@ -130,47 +130,47 @@ export const teatroBalomaUseCases: TeatroBalomaUseCase[] = [
   {
     icon: "music",
     title: "Concerti e ascolti",
-    description: "Dalle sonorità acustiche agli incontri immersivi, il Balomà regge format diversi e raccolti.",
+    description: "Dalle sonorità acustiche agli ascolti guidati, la sala accoglie rassegne musicali in una dimensione raccolta.",
   },
   {
     icon: "users",
     title: "Riunioni e convegni",
-    description: "Un luogo semplice da usare per assemblee, incontri pubblici, conferenze e presentazioni.",
+    description: "Spazio attrezzato per assemblee, incontri pubblici, conferenze e presentazioni.",
   },
   {
     icon: "sparkles",
-    title: "Mostre e pratiche olistiche",
-    description: "La sala ospita anche esposizioni, yoga, incontri sul benessere e attività esperienziali.",
+    title: "Mostre e attività formative",
+    description: "La sala ospita esposizioni temporanee, laboratori, corsi e attività per il benessere.",
   },
   {
     icon: "heart",
     title: "Prove e attività di comunità",
-    description: "Ballo liscio, laboratori, prove aperte e iniziative nate dal territorio.",
+    description: "Ballo liscio, laboratori di teatro, prove aperte e iniziative associative locali.",
   },
   {
     icon: "film",
-    title: "Memoria cinematografica attiva",
-    description: "Anche quando cambia forma, il Balomà continua a portarsi dietro il carattere del vecchio cinema.",
+    title: "Proiezioni e cinema",
+    description: "Mantenimento della vocazione originaria del cinema di paese con proiezioni e rassegne.",
   },
 ];
 
 export const teatroBalomaNeeds: TeatroBalomaNeed[] = [
   {
-    title: "Tendoni teatrali e struttura palco",
+    title: "Tendaggi teatrali e quadratura palco",
     description:
-      "Servono i tendoni classici da teatro, con la struttura necessaria per montarli e usare meglio il palco, anche quando va nascosto.",
+      "Fornitura e posa di tendaggi e quinte per delimitare lo spazio scenico e modulare il palco.",
   },
   {
-    title: "Pannelli fonoassorbenti contro i riverberi",
-    description: "L'installazione di nuovi e adeguati pannelli fonoassorbenti per sistemare l'acustica ed espandere appieno concerti, prove e conferenze.",
+    title: "Trattamento acustico",
+    description: "Installazione di pannelli fonoassorbenti per migliorare la resa sonora durante concerti, conferenze e spettacoli.",
   },
   {
-    title: "Nuove sedie per abbellire le quinte",
-    description: "Mancano ancora piccole rifiniture fisiche tra cui la dotazione espansa di sedute e arredi laterali, indicati esplicitamente come prossimo obiettivo del Comitato.",
+    title: "Completamento sedute e arredi",
+    description: "Integrazione delle sedute per il pubblico e rifinitura degli elementi di arredo della sala.",
   },
   {
     title: "Riscaldamento invernale",
-    description: "Stabilizzare il caldo per riuscire a promuovere una robusta stagione invernale al coperto che faccia crescere la sala anche nel lungo periodo.",
+    description: "Potenziamento dell'impianto termico per garantire l'utilizzo continuativo della sala durante i mesi invernali.",
   },
 ];
 

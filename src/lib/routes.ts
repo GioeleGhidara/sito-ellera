@@ -21,6 +21,7 @@ export const ROUTES = {
   news: "/news",
   attivitaLegacy: "/attivita",
   caruggiELanterne: "/caruggi-e-lanterne",
+  caruggiELanterneLegacy: "/eventi/caruggi-e-lanterne",
   privacy: "/privacy",
   regolamento: "/regolamento",
   

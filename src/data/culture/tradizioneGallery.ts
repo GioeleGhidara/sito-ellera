@@ -47,13 +47,13 @@ export const tradizioneGalleryBySlug: Record<string, GallerySlide[]> = {
     {
       src: gattoMano,
       alt: "Dettaglio gatto nei carruggi",
-      caption: "Un incontro suggestivo tra i carruggi, dove la leggenda delle gatte stregate rivive nei dettagli quotidiani del borgo.",
+      caption: "Un gatto tra le pietre dei carruggi, legato alla memoria popolare delle gatte stregate di Ellera.",
     },
     {
       src: gattaVicoli,
       alt: "Gatta nei vicoli di Ellera legata all'immaginario delle gatte stregate",
       caption:
-        "Una gatta tra ombra e pietra nei vicoli del borgo rende concreta la metamorfosi con cui la tradizione trasforma le streghe nelle protettrici feline di Ellera.",
+        "Presenza felina nei vicoli storici, richiamo alla leggenda locale dell'epoca napoleonica.",
     },
   ],
   "chiese-di-ellera": [

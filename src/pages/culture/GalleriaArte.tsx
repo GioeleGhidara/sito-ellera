@@ -119,25 +119,19 @@ const GalleriaArte = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
               <div>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  La <strong>«Galleria all'aperto della ceramica d'arte»</strong> conta esattamente cinquanta opere
-                  di artisti italiani e stranieri di prestigio, realizzate presso la bottega delle Ceramiche San Giorgio.
-                  Nel loro affascinante insieme costituiscono un <em>unicum</em> per il territorio albisolese,
-                  noto da secoli per la produzione ceramica ma che non possedeva ancora una galleria d'arte all'aperto
-                  così ricca e significativa.
+                  La <strong>«Galleria all'aperto della ceramica d'arte»</strong> conta cinquanta pannelli
+                  realizzati da artisti italiani e internazionali presso la bottega delle Ceramiche San Giorgio di Albisola Marina.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Le opere arredano l'antico borgo e ricordano il ruolo che un tempo rivestì Ellera
-                  con i suoi <Link to={tradizioneDetailPath("mulini-del-colore-ellera")} className="text-accent font-semibold hover:underline">mulini del colore</Link>, che fornivano i pigmenti alla produzione ceramica albisolese.
-                  Ogni pannello è un frammento di memoria: dalla figurazione classica di Tony Salem
-                  all'esplosione materica di Bill Michael Linde, dall'ironia pop di Marco Lodola
-                  alle suggestioni informali di Errika Pontevichi.
+                  Le opere richiamano il legame storico tra Ellera e la ceramica costiera, un tempo alimentato
+                  dall'attività dei <Link to={tradizioneDetailPath("mulini-del-colore-ellera")} className="text-accent font-semibold hover:underline">mulini del colore</Link> lungo il torrente.
+                  I pannelli presentano stili e linguaggi diversi: dal figurativo di Tony Salem
+                  all'astrazione materica di Bill Michael Linde, dall'ironia grafica di Marco Lodola
+                  alle ricerche formali di Errika Pontevichi.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  I pannelli costituiscono una felice sorpresa per il visitatore che li va a cercare
-                  e a scoprire non solo nella piazza principale ma anche nelle stradine che si arrampicano
-                  verso l'alto, negli slarghi improvvisi e negli ambiti più periferici del borgo.
-                  Sono ormai una testimonianza irrinunciabile per chi le ha accolte come un privilegio
-                  da esibire sulla facciata di casa.
+                  Le opere sono collocate direttamente sulle facciate delle case private e degli edifici del paese,
+                  distribuite tra la piazza centrale, i carruggi del centro storico e i vicoli che risalgono la collina.
                 </p>
 
                 <div className="flex items-start gap-3 bg-card border border-border rounded-xl p-4 shadow-sm">
@@ -245,9 +239,8 @@ const GalleriaArte = () => {
               a raggiera tra i tipici caruggi e le piazzette del borgo, alla confluenza del rio Montegrosso con il Sansobbia.
             </p>
             <p className="text-muted-foreground mb-6 max-w-4xl leading-relaxed">
-              Le opere costituiscono una felice sorpresa per il visitatore: si incontrano non solo nella piazza oltre
-              il ponte, ma anche nei caruggi che salgono verso l'alto, negli slarghi improvvisi e negli ambiti
-              più periferici, trasformando Ellera in una galleria diffusa da scoprire passo dopo passo.
+              I pannelli si trovano sia nella piazza principale oltre il ponte sul Sansobbia, sia lungo i carruggi
+              che risalgono la collina, formando un itinerario permanente fruibile a piedi.
             </p>
           </motion.div>
 

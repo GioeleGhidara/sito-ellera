@@ -40,18 +40,18 @@ const sections = [
   },
   {
     id: "epoca-oro",
-    title: "L'Epoca d'Oro: I Mulini del Colore",
+    title: "I Mulini del Colore",
     content: (
       <>
         <p>
-          Tra il Seicento e il Novecento, Ellera divenne il motore dell'industria ceramica albisolese. I mulini ad acqua vennero convertiti in{" "}
+          Tra il Seicento e il Novecento, Ellera divenne il centro di macinazione dei minerali per le manifatture ceramiche di Albisola. I mulini ad acqua vennero convertiti in{" "}
           <Link to={tradizioneDetailPath("mulini-del-colore")} className="text-primary font-semibold hover:underline">
             "mulini del colore"
           </Link>
-          : grazie ai <em>beudi</em> (canali), la forza dell'acqua azionava macine che frantumavano minerali per produrre i pigmenti delle celebri maioliche di Albisola.
+          : sfruttando i <em>beudi</em> (canali di derivazione), l'energia del Sansobbia azionava macine in pietra per frantumare la galena e le terre necessarie agli smalti delle maioliche costiere.
         </p>
         <p>
-          Questa ricchezza portò all'autonomia parrocchiale nel 1628 e alla costruzione della <strong>Chiesa di San Bartolomeo</strong> (1643), uno scrigno che vanta opere del <strong>Maragliano</strong> e di <strong>Eso Peluzzi</strong>. Ellera fu persino un Comune autonomo dal 1804 al 1929.
+          Questa crescita economica portò all'autonomia parrocchiale nel 1628 e alla costruzione della <strong>Chiesa di San Bartolomeo</strong> (1643), che conserva opere di <strong>Anton Maria Maragliano</strong> e di <strong>Eso Peluzzi</strong>. Ellera fu comune autonomo dal 1804 al 1929.
         </p>
       </>
     ),
@@ -62,41 +62,41 @@ const sections = [
     content: (
       <>
         <p>
-          L'economia operosa diede vita nel 1897 alle celebri{" "}
+          Nel 1897 nacquero a Ellera le{" "}
           <Link to={tradizioneDetailPath("caramelle-rossella")} className="text-primary font-semibold hover:underline">
             Caramelle Rossella
           </Link>
-          , con il famoso "Fondant '800" e le gelatine di frutta. La vita sociale ruotava attorno alla{" "}
+          , con la ricetta artigianale del "Fondant '800" e le successive gelatine di frutta. La vita sociale del paese ruotava attorno alla{" "}
           <Link to={tradizioneDetailPath("fiera-del-bestiame")} className="text-primary font-semibold hover:underline">
             Fiera del Bestiame
           </Link>{" "}
-          e all'Oratorio di San Lorenzo, rinato oggi come{" "}
+          e all'Oratorio di San Lorenzo, recuperato oggi come{" "}
           <Link to={ROUTES.teatroBaloma} className="text-primary font-semibold hover:underline">
             Teatro Balomà
           </Link>
           .
         </p>
         <p>
-          Riti collettivi come l'{" "}
+          Le feste di paese mantengono vive prove di squadra come l'{" "}
           <Link to={tradizioneDetailPath("albero-della-cuccagna-di-ellera")} className="text-primary font-semibold hover:underline">
             Albero della Cuccagna
           </Link>
-          , riproposto durante la Festa dell'Uva, continuano a unire le generazioni in una prova di forza e fiducia reciproca che rende viva la piazza del borgo.
+          , disputato sul palo ingrassato durante la tradizionale Festa dell'Uva.
         </p>
       </>
     ),
   },
   {
     id: "miti",
-    title: "Mito e Storia: Le Gatte Stregate",
+    title: "Mito e Tradizione: Le Gatte Stregate",
     content: (
       <>
         <p>
-          La leggenda più affascinante riguarda le bellissime{" "}
+          La memoria popolare tramanda il racconto delle{" "}
           <Link to={tradizioneDetailPath("streghe-di-ellera")} className="text-primary font-semibold hover:underline">
-            streghe di Ellera
+            gatte stregate di Ellera
           </Link>
-          , anime gentili che proteggevano il borgo. Si narra che nel 1796, per sfuggire ai soldati napoleonici, si trasformarono in enormi gatti selvatici dal volto umano, scacciando gli invasori e lasciando monete d'oro agli abitanti.
+          , figure femminili rifugiate nelle caverne sopra il borgo. La leggenda si intreccia con il passaggio delle truppe francesi nel 1796 durante la Battaglia di Montenotte, quando le donne si sarebbero trasformate in gatte selvatiche per sfuggire ai soldati.
         </p>
       </>
     ),
@@ -107,10 +107,10 @@ const sections = [
     content: (
       <>
         <p>
-          Dal 2012, Ellera è una <strong>Galleria a Cielo Aperto</strong>. Oltre 50 pannelli ceramici di artisti internazionali ornano i carruggi, trasformando il paese in un museo museo en plein air. 
+          Dal 2012 le vie di Ellera ospitano la <strong>Galleria all'Aperto della Ceramica d'Arte</strong>: cinquanta pannelli realizzati da artisti italiani e internazionali presso la bottega San Giorgio, collocati permanentemente sulle facciate delle abitazioni.
         </p>
         <p>
-          Allo stesso tempo, il borgo è diventato meta d'eccellenza per l'<strong>Outdoor</strong>, con una rete di 65 km di sentieri per trekking e MTB che collegano il mare all'Alta Via dei Monti Liguri.
+          Sui versanti della vallata si sviluppa una rete sentieristica di oltre 65 km per trekking ed e-bike, curata dai volontari e raccordata con l'Alta Via dei Monti Liguri.
         </p>
       </>
     ),

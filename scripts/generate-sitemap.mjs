@@ -240,7 +240,7 @@ const buildSitemapXml = (routes) => {
 const buildRobotsTxt = () =>
   siteNoIndex
     ? "User-agent: *\nDisallow: /\n"
-    : `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
+    : `User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /search\n\nSitemap: ${siteUrl}/sitemap.xml\n`;
 
 // ---------------------------------------------------------------------------
 // Main

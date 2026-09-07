@@ -3,28 +3,21 @@ id: albero-della-cuccagna-di-ellera
 slug: albero-della-cuccagna-di-ellera
 order: 8
 title: "L'Albero della Cuccagna di Ellera"
-subtitle: Forza, equilibrio e spirito di squadra nelle feste del borgo
-summary: A Ellera, l'albero della cuccagna trasforma la festa di paese in un rito collettivo di collaborazione, tecnica e memoria.
+subtitle: La sfida a squadre durante la Festa dell'Uva
+summary: La preparazione del palo ingrassato, la salita a squadre e la partecipazione della piazza durante la tradizionale Festa dell'Uva di Ellera.
 icon: sparkles
 ---
-Tra i giochi popolari che meglio raccontano l'identità comunitaria di un paese, l'albero della cuccagna è uno dei più riconoscibili: una sfida fisica, ma soprattutto un esercizio di fiducia reciproca. A Ellera, questo racconto vive nel contesto delle feste locali, quando il borgo torna a riempirsi di famiglie, bambini, gruppi e volontari.
+A Ellera l'albero della cuccagna è uno dei momenti centrali della Festa dell'Uva, organizzata dal Comitato Ellerese nelle piazze del borgo.
 
-## Il contesto locale: feste di borgo
+## La preparazione del palo e le regole della prova
 
-Durante l'annuale festa dell'uva di Ellera, organizzata per le strade del paese, viene riproposto l'albero della cuccagna, con il coinvolgimento del Comitato Ellerese. Questo contesto aiuta a leggere il ruolo dell'albero della cuccagna nella vita del paese: non come spettacolo isolato, ma come momento che unisce pubblico e partecipanti anche in altre giornate di festa.
+La struttura consiste in un tronco dritto piantato verticalmente a terra e reso viscido mediante spalmatura di grasso animale o sintetico. In cima al palo vengono fissati premi gastronomici tradizionali: salami, formaggi, fiaschi di vino e ceste di prodotti locali.
 
-Nella memoria locale, il valore del gioco non sta solo nella vittoria finale degli ambiti premi, ma nella tensione condivisa del tentativo: ogni squadra sale insieme, cade insieme, riparte insieme. Il pubblico segue, incita, consiglia, e la festa diventa un racconto corale.
+Le squadre partecipanti, formate da giovani e adulti del paese, si organizzano secondo ruoli definiti:
+- **La base:** i concorrenti più robusti si stringono attorno al tronco per formare il primo anello d'appoggio.
+- **La colonna:** i compagni più leggeri salgono sulle spalle della base e avanzano lungo il tronco, pulendo la superficie con stracci, cenere o farina per consentire una presa migliore.
+- **L'arrampicatore:** l'ultimo componente, agile e leggero, sale lungo la piramide umana per raggiungere la cima e afferrare i premi prima di scivolare a terra.
 
-## Come si svolge la prova
+I tentativi si susseguono a rotazione tra le squadre fino al raggiungimento della cima, con il pubblico radunato attorno alla pedana a seguire le ascese e le inevitabili scivolate.
 
-La tradizione dell'albero della cuccagna, documentata in molte comunità italiane, segue una dinamica precisa: il palo viene reso scivoloso (spesso con grasso), e la squadra deve organizzarsi in una progressione di corpi, forza ed equilibrio per raggiungere la bandiera o il premio in cima.
-
-Le descrizioni delle comunità di gioco italiane mostrano elementi ricorrenti: base robusta, arrampicatore agile, e anche l'uso di materiali come farina o cenere per migliorare la presa. È una prova che allena coordinazione, capacità di lettura del gesto tecnico e capacità di adattamento continuo.
-
-## Un rito sociale, prima ancora che una gara
-
-Per un borgo come Ellera, l'albero della cuccagna è anche un linguaggio sociale: mette in relazione generazioni diverse, rende visibile il valore del gruppo attraverso la partecipazione attiva e la solidarietà che ne deriva.
-
-In anni in cui molte tradizioni popolari rischiano di ridursi a semplice intrattenimento, raccontare questa pratica significa conservarne il senso originario: fare comunità attraverso un gesto condiviso, dove l'abilità individuale conta, ma conta di più la solidarietà e il patto collettivo.
-
-Fonte: tradizione orale locale e foto d'archivio.
+Fonti: testimonianze orali e fotografie d'archivio della Festa dell'Uva di Ellera.

@@ -14,7 +14,7 @@ export default function CaruggiELanterneComingSoon() {
         <title>{CARUGGI_EVENT_DATA.title} - Coming Soon</title>
         <meta
           name="description"
-          content="L'edizione passata si è conclusa con successo. Stiamo già preparando le lanterne per il prossimo anno nel borgo di Ellera."
+          content="L'edizione 2026 si è conclusa. Informazioni e aggiornamenti per la prossima edizione nel borgo di Ellera."
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={CARUGGI_EVENT_DATA.url} />
@@ -51,9 +51,9 @@ export default function CaruggiELanterneComingSoon() {
               </h1>
               
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                L'ultima edizione è stata un successo straordinario. I vicoli del borgo si sono accesi di magia, buon cibo e musica. 
+                L'edizione 2026 si è conclusa con una grande partecipazione nel centro storico di Ellera tra lanterne, stand gastronomici e concerti dal vivo.
                 <br/><br/>
-                Stiamo già lavorando per la prossima edizione. Continua a seguirci per scoprire le nuove date!
+                Il Comitato Ellerese comunicherà il calendario e i dettagli della prossima edizione non appena definiti.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">

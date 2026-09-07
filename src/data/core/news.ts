@@ -26,16 +26,16 @@ const newsData: NewsItem[] = [
     slug: "caruggi-lanterne-2026-archivio-ringraziamenti",
     date: "2026-09-01",
     title: "Caruggi e Lanterne 2026 va in archivio: il ringraziamento del Comitato",
-    excerpt: "Due serate da tutto esaurito, musica dal vivo e l'impegno di decine di volontari: l'edizione 2026 chiude con un successo straordinario.",
-    content: `L'edizione 2026 di **Caruggi e Lanterne** si è ufficialmente conclusa, archiviando due serate straordinarie per il borgo di Ellera. I vicoli si sono riempiti di visitatori, i tavoli sono rimasti occupati fino a tarda notte e la musica dal vivo ha animato ogni piazza, confermando l'evento come uno degli appuntamenti più sentiti del territorio.
+    excerpt: "Due serate di grande affluenza, musica dal vivo e l'impegno di decine di volontari: il bilancio dell'edizione 2026.",
+    content: `L'edizione 2026 di **Caruggi e Lanterne** si è conclusa dopo due serate partecipate nel centro storico di Ellera. I vicoli hanno accolto centinaia di visitatori e la musica dal vivo ha accompagnato i punti ristoro fino a tarda sera.
 
-A nome di tutto il **Comitato Ellerese**, Tommaso ha tenuto a ringraziare personalmente chi ha reso possibile questo risultato. Un ringraziamento speciale è rivolto a chi ha sostenuto il progetto donando il proprio tempo: i volontari che hanno dato una mano nell'allestimento, durante il servizio e nella pulizia finale. L'energia del borgo, vivo e luminoso come non mai, è il riflesso del lavoro di squadra.
+A nome di tutto il **Comitato Ellerese**, Tommaso ringrazia chi ha reso possibile l'evento donando il proprio tempo: i volontari impegnati nell'allestimento delle lanterne, nel servizio ai banchi gastronomici e nelle operazioni di pulizia finale.
 
-Un grazie immenso va ovviamente a tutti i partecipanti. Senza la vostra presenza, la magia delle lanterne non si sarebbe compiuta.
+Un ringraziamento va anche a tutte le persone che hanno scelto di passare la serata a Ellera.
 
-L'impegno del Comitato non si ferma qui. L'appuntamento è già fissato per **ottobre**, quando le strade di Ellera torneranno ad accendersi per la tradizionale **Castagnata**, tra caldarroste, focaccette, birra e buon vino. 
+Il prossimo appuntamento è per **ottobre** al Prato Feste per la tradizionale **Castagnata**, con caldarroste cotte a legna, focaccette, birra e vino.
 
-Guarda il video riassuntivo delle due serate con il nostro saluto finale:
+Guarda il video riassuntivo delle due serate:
 
 [instagram](https://www.instagram.com/reel/DciKMDoNI1m/)`,
     category: "Borgo",
@@ -66,21 +66,19 @@ Vi aspettiamo in paese.`,
     date: "2026-06-15",
     title: "Grande successo per l'Albi Trail E-Bike Fest 2026",
     excerpt:
-      "Partecipanti entusiasti, panini con salsiccia e golose sorprese fuori menù. Grazie a tutti gli amici di Ellera per il supporto al progetto!",
-    content: `L'edizione 2026 dell'**Albi Trail E-Bike Fest**, svoltasi ieri, si è conclusa con un bilancio estremamente positivo. L'evento è andato nel migliore dei modi e tutti i partecipanti si sono detti pienamente soddisfatti dell'esperienza, sia per il livello dei percorsi proposti sia per il clima di festa.
+      "Partecipazione numerosa sui sentieri, panini con salsiccia e piatti caldi al Prato Feste. Il ringraziamento del Comitato.",
+    content: `L'edizione 2026 dell'**Albi Trail E-Bike Fest** si è svolta ieri con una grande partecipazione di appassionati sui sentieri della vallata.
 
-A deliziare i ciclisti (e non solo) al rientro presso il **Prato Feste** ci hanno pensato i nostri cuochi volontari: non sono mancati i golosi e tradizionali panini con salsiccia accompagnati da buonissime patatine fritte. A sorpresa, per rendere la giornata ancora più speciale, sono stati serviti dei fuori menù d'eccezione che hanno conquistato tutti: piatti caldi di **trippa**, deliziose **castagne** e l'immancabile **panissa fritta**.
+Al rientro presso il **Prato Feste**, i volontari del Comitato hanno gestito il punto ristoro per i ciclisti e gli accompagnatori, preparando panini con salsiccia, patatine fritte e piatti caldi fuori menù: **trippa**, **castagne** e **panissa fritta**.
 
-Il Comitato ci tiene a rivolgere un ringraziamento speciale a tutti gli abitanti e agli amici di Ellera che hanno deciso di fare un salto al prato delle feste per mangiare un boccone in compagnia. 
+Il Comitato ringrazia gli abitanti di Ellera e tutti i partecipanti per il supporto al progetto **Albi Trail**, che consente di finanziare la manutenzione continuativa della rete sentieristica.
 
 [carousel]
 /news/albi-trail-2026/video-1.mp4
 /news/albi-trail-2026/photo-1.avif
 /news/albi-trail-2026/photo-2.avif
 /news/albi-trail-2026/photo-3.avif
-[/carousel]
-
-La vostra presenza, i vostri sorrisi e il vostro calore sono stati fondamentali per sostenere il progetto **Albi Trail** e ci permettono di continuare a curare con dedizione la nostra meravigliosa rete sentieristica. Grazie di cuore!`,
+[/carousel]`,
     category: "Outdoor",
     image: "/news/albi-trail-2026/photo-2.avif",
   },
@@ -91,15 +89,15 @@ La vostra presenza, i vostri sorrisi e il vostro calore sono stati fondamentali 
     title: "Ufficializzate le date 2026: Caruggi, Pedaliamo Insieme e E-Bike Fest",
     excerpt:
       "Il Comitato Ellerese annuncia il calendario eventi 2026: La Pedaliamo Insieme il 31 maggio, Albi Trail E-Bike Fest il 14 giugno e Caruggi e Lanterne il 21-22 agosto.",
-    content: `Il **Comitato Ellerese** ha ufficializzato il calendario degli eventi per la stagione 2026, consolidando appuntamenti storici e nuove collaborazioni dedicate al territorio e alla solidarietà.
+    content: `Il **Comitato Ellerese** ha ufficializzato il calendario degli eventi per la stagione 2026, consolidando appuntamenti sportivi, solidali e di aggregazione nel borgo.
 
-Il primo appuntamento è fissato per il **31 maggio 2026** con **"La Pedaliamo Insieme"**. L'evento, organizzato in stretta sinergia tra **Barrabrava**, **Comitato Ellerese**, **Quiliano Bike** e il **Comune di Albisola Superiore**, vedrà centinaia di ciclisti percorrere i sentieri e le strade tra Albisola ed Ellera per una giornata di sport e beneficenza.
+Il primo appuntamento è fissato per il **31 maggio 2026** con **"La Pedaliamo Insieme"**. L'evento, organizzato in collaborazione tra **Barrabrava**, **Comitato Ellerese**, **Quiliano Bike** e il **Comune di Albisola Superiore**, vedrà centinaia di ciclisti percorrere i sentieri e le strade tra Albisola ed Ellera per una giornata di sport e beneficenza.
 
-Domenica **14 giugno 2026** sarà la volta della seconda edizione di **Albi Trail E-Bike Fest**. Si terrà un vero e proprio raduno dedicato alle e-bike. Il programma prevede una bella pedalata sui sentieri della **Albi Trail Area** con ritrovo e pranzo finale (panino con salsiccia/wurstel, patatine e birra) presso il **Prato Feste**. Le iscrizioni saranno aperte a breve online sulla pagina dedicata.
+Domenica **14 giugno 2026** sarà la volta della seconda edizione di **Albi Trail E-Bike Fest**, raduno dedicato agli appassionati di e-bike con pedalata guidata sui sentieri della **Albi Trail Area** e pranzo conclusivo presso il **Prato Feste**.
 
-Infine, l'estate ellerese culminerà **venerdì 21 e sabato 22 agosto 2026** con l'attesissima edizione di **Caruggi e Lanterne**. La manifestazione trasformerà come sempre il borgo in un percorso enogastronomico magico, illuminato dalle lanterne e accompagnato da musica dal vivo e rassegne artistiche.
+Infine, **venerdì 21 e sabato 22 agosto 2026** si terrà **Caruggi e Lanterne**: il centro storico ospiterà il percorso enogastronomico tra le vie illuminate dalle lanterne artigianali, accompagnato da musica dal vivo e banchi di ceramica.
 
-Nelle prossime settimane verranno rilasciati i dettagli operativi e le locandine ufficiali per ogni singolo appuntamento.`,
+Nelle prossime settimane verranno rilasciati i dettagli operativi e le locandine per ogni appuntamento.`,
     category: "Associazione",
     image: caruggiLanterneImage,
   },
@@ -138,20 +136,16 @@ Fonte: **Verbale di insediamento del Consiglio Direttivo - Comitato Ellerese, 6 
     id: 1,
     slug: "murales-il-ceramista-750ml",
     date: "2022-07-22",
-    title: "Il Ceramista di 750ml porta la street art nel cuore di Ellera",
+    title: "Il murale di 750ml in Piazza dell'Elce dedicato a Giovanni Poggi",
     excerpt:
-      "Nel luglio 2022 Mario Leuci, in arte 750ml, realizza in Piazza dell'Elce un grande omaggio a Giovanni Poggi e alla tradizione ceramica albisolese.",
-    content: `Nel luglio **2022** l'artista milanese **Mario Leuci**, conosciuto a livello internazionale come **750ml**, ha realizzato in **Piazza dell'Elce** il murale **Il Ceramista**, intervento di urban art dedicato alla memoria ceramica di Ellera e di Albisola.
+      "Nel luglio 2022 Mario Leuci, in arte 750ml, realizza in Piazza dell'Elce un murale dedicato a Giovanni Poggi e alla tradizione ceramica albisolese.",
+    content: `Nel luglio **2022** l'artista milanese **Mario Leuci**, conosciuto come **750ml**, ha dipinto in **Piazza dell'Elce** il murale **Il Ceramista**, dedicato alla memoria artigianale di Ellera e di Albisola.
 
-L'opera nasce come omaggio a **Giovanni Poggi**, figura centrale della storia artistica e ceramica del territorio, fondatore della manifattura **San Giorgio** e protagonista di una stagione che ha legato Albisola ad autori e sperimentazioni di rilievo internazionale.
+L'opera rende omaggio a **Giovanni Poggi**, fondatore della manifattura **San Giorgio** e figura chiave della stagione artistica che ha visto attivi ad Albisola ceramisti e scultori del secondo Novecento.
 
-Secondo le ricostruzioni pubblicate online da **Albisola Turismo** e dalla stampa locale, il progetto è stato costruito insieme al **Comitato Ellerese** per rafforzare il dialogo tra arte contemporanea, identità del borgo e patrimonio ceramico diffuso.
+Il progetto è stato realizzato d'intesa con il **Comitato Ellerese** all'interno del percorso della **Galleria a Cielo Aperto**, affiancandosi agli oltre cinquanta pannelli ceramici già presenti sulle facciate del borgo.
 
-L'inaugurazione del murale ha richiamato pubblico, musica dal vivo, amministratori locali e anche una delegazione danese legata al rapporto storico tra **Poggi** e **Asger Jorn**, segno di come l'opera sia stata letta non solo come decorazione urbana, ma come tassello di un racconto culturale più ampio.
-
-Il murale si inserisce nel contesto della **Galleria a Cielo Aperto di Ellera**, dove oltre **50 pannelli ceramici** trasformano già le facciate del paese in un percorso artistico permanente. In questo quadro, Il Ceramista aggiunge un linguaggio contemporaneo e immediato, capace di parlare sia ai visitatori sia alla comunità locale.
-
-Il risultato è un'opera che unisce memoria industriale, storia dell'arte e rigenerazione dello spazio pubblico, confermando Ellera come uno dei luoghi più originali del paesaggio culturale albisolese.`,
+All'inaugurazione hanno preso parte residenti, amministratori locali e una delegazione danese legata ai trascorsi artistici tra Poggi e **Asger Jorn**, evidenziando il valore storico e documentario dell'iniziativa.`,
     category: "Cultura",
     image: gruppomurales,
   },

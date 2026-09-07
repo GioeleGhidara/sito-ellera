@@ -37,16 +37,35 @@ Alla dimensione scultorea si affiancano quella musicale e pittorica. Nel 1866 la
 
 L'importanza di San Bartolomeo non fu solo spirituale o artistica. Già nel 1642 venne istituita la Cappellania di San Gerolamo per insegnare gratuitamente a leggere e scrivere ai fanciulli del borgo, anticipando di secoli una funzione educativa che solo più tardi sarebbe stata assunta dalla scuola pubblica statale.
 
+### Scheda Architettonica e Storica (Fonte: [BeWeB](https://www.beweb.chiesacattolica.it/edificidiculto/edificio/42381/Chiesa+di+San+Bartolomeo+Apostolo))
+
+**Denominazione principale:** Chiesa di San Bartolomeo Apostolo (chiesa parrocchiale)
+
+Il complesso di San Bartolomeo in Ellera è composto dalla chiesa, dall'ex oratorio di San Lorenzo e dalla casa canonica. La parrocchiale è costituita da un'aula sulla quale si aprono tre cappelle per lato, decorate dal pittore Antonio Novaro (1865), private degli altari e delle balaustrate. Oltre l'arco trionfale si accede al presbiterio e all'abside ove è addossato l'altare pre-conciliare. Gli affreschi del catino, con raffigurata la Gloria di San Bartolomeo (1902) e del lato destro del presbiterio sono opera di Raffaello Resio (1908); la volta a botte lunettata è affrescata da Eso Peluzzi (1927). Il prospetto principale è tripartito da coppie di lesene che sorreggono un cornicione modanato con dentelli a sostenere al centro la vela aperta con serliana. Le modanature laterali nascondono le falde del tetto delle cappelle. Sulla sinistra, addossata al presbiterio, si innesta la torre campanaria.
+
+* **Pianta:** Monumento costituito da un'aula sulla quale si aprono tre cappelle per lato. Il presbiterio è concluso dall'abside ove è addossato l'altare barocco. Sul lato destro si trova la sacrestia dalla quale si accede alla canonica.
+* **Struttura:** La chiesa è costruita in struttura mista con grossi blocchi di pietre e mattoni.
+* **Coperture:** La copertura dell'aula è a due falde. Sulle cappelle insiste una falda per lato. Le strutture portanti del tetto sono realizzate in legno e sono ricoperte da abbadini di ardesia.
+
+#### Cronologia degli interventi
+
+* **1637 ‐ 1642 (Costruzione):** Nel 1628 il Vescovo di Savona erige la parrocchia di Ellera in conseguenza della distanza del borgo dalla chiesa madre di S. Niccolò di Albisola Superiore. L'edificio di culto di S. M. Maddalena, ai margini del paese, è comunque troppo piccolo per assecondare le esigenze degli abitanti. Nel 1637 si avvia dunque la costruzione di una nuova aula liturgica in prossimità dell'abitato. Il monumento è aperto al culto nel 1642.
+* **1877 (Ristrutturazione prospetto principale):** Nei registri parrocchiali è documentato il rifacimento del prospetto principale della chiesa e la pavimentazione del sagrato con ciottoli (risseau) oggi non più in opera.
+* **1912 ‐ 1913 (Ristrutturazione abside e presbiterio):** Trasferimento della balconata dell'orchestra e dell'organo dalla zona absidale alla controfacciata con conseguente ingrandimento e ristrutturazione dell'area.
+* **1913 (Restauro campanile):** Documentato un intervento di restauro sulla torre.
+* **1993 ‐ 1995 (Restauro coperture):** Restauro delle coperture con posa di nuovo manto di abbadini di ardesia.
+* **1999 ‐ 2000 (Restauro prospetto principale):** Intervento sul prospetto principale e sul prospetto laterale destro. Nel corso dei lavori viene anche restaurata la statua marmorea di San Bartolomeo in opera sopra al portale.
+* **2018 (Restauro campanile):** La scala interna della torre versava in pessime condizioni e non era più possibile garantire in sicurezza l'accesso alla cella campanaria e all'orologio. La struttura lignea è demolita e sostituita con una nuova in legno di larice. Sono anche stati ripristinati gli infissi. Il progetto è stato realizzato grazie anche ai contributi Otto per mille alla Chiesa Cattolica.
+
+
 ## La chiesetta dell'Immacolata Concezione e la memoria degli Alpini
 
-Accanto ai complessi maggiori, la memoria religiosa di Ellera vive anche nella piccola chiesetta dell'Immacolata Concezione. Questo edificio raccolto e affettivo è stato salvaguardato e restaurato direttamente dal Gruppo Alpini delle Albissole, che nel tempo ne ha fatto un luogo simbolico del proprio legame con il borgo.
+Accanto ai complessi maggiori, la memoria religiosa di Ellera comprende la cappella dell'Immacolata Concezione, restaurata e curata dal Gruppo Alpini delle Albissole, che vi depone un omaggio floreale in occasione delle sfilate e dei raduni in paese.
 
-Non è quindi soltanto una cappella minore: durante sfilate e raduni delle penne nere a Ellera, la chiesetta è diventata una tappa d'onore in cui gli Alpini depongono un omaggio floreale, trasformandola in un punto d'incontro fra devozione, memoria civile e appartenenza comunitaria.
+## Il cantiere di recupero di Santa Maria Maddalena
 
-## L'emergenza di oggi: salvare un millennio di storia
+La struttura composita di Santa Maria e Santa Maria Maddalena presenta criticità statiche: il peso del campanile cinquecentesco grava sulle murature preromaniche sottostanti. A tutela del sito si è costituita l'Associazione di Santa Maria Maddalena, affiancata da tecnici ed esperti di restauro.
 
-Oggi il complesso di Santa Maria e Santa Maria Maddalena affronta la sfida più delicata della sua lunga esistenza. Il peso del campanile cinquecentesco sta progressivamente schiacciando la fragile struttura preromanica sottostante, esponendola al rischio di un crollo imminente. Da questa emergenza è nata una mobilitazione civica che ha portato alla costituzione dell'Associazione di Santa Maria Maddalena, affiancata da ingegneri e storici dell'arte, tra cui l'architetta Anna Pisani.
-
-Per mettere in sicurezza il sito è stata installata una robusta centina in legno che puntella d'urgenza l'edificio più antico, mentre con il coinvolgimento della Soprintendenza si lavora al reperimento dei fondi necessari per consolidare le murature e restaurare gli affreschi superstiti. Nel marzo 2026, grazie al finanziamento ottenuto attraverso il bando regionale legato alla misura PNRR "Tutela e valorizzazione dell'architettura e del paesaggio rurale", sono finalmente iniziati i lavori di restauro e recupero della chiesa di Santa Maria Maddalena. La scheda pubblica del progetto indica un finanziamento complessivo di 154 mila euro, di cui 150 mila euro a valere su fondi PNRR. In questo cantiere di salvataggio si concentra oggi il significato più profondo delle chiese di Ellera: non solo monumenti del passato, ma eredità vive che la comunità continua a difendere.
+Per la messa in sicurezza immediata è stata posata una centina lignea di puntellamento a sostegno dell'edificio antico. Nel marzo 2026, grazie a un finanziamento regionale su fondi PNRR ("Tutela e valorizzazione dell'architettura e del paesaggio rurale"), sono stati avviati i lavori di restauro e consolidamento statico della chiesa di Santa Maria Maddalena, con un quadro economico complessivo di 154 mila euro (di cui 150 mila euro a valere sulla misura PNRR).
 
 Fonti: Albisola Turismo, "Le chiese"; OpenPNRR, scheda progetto "Complesso di Santa Maria Maddalena nella frazione di Ellera" (CUP G77B22000290004); Pro Musica Antiqua, "Il complesso di Santa Maria Maddalena", https://www.promusicantiqua.it/SMMaddalena/ComplessodiSMariaMaddalena.pdf; "350° anniversario della fondazione", Parrocchia di Ellera, 20 maggio 1978 (don Franco Parodi, parroco); memoria orale locale relativa alla scomparsa di San Salvatore e al toponimo "scala di San Salvatore".

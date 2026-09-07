@@ -86,7 +86,7 @@ export default function ChiSiamo() {
               <span>La nostra missione</span>
             </div>
             <p className="mx-auto max-w-3xl text-base lg:text-lg leading-relaxed text-slate-700">
-              Il <strong className="font-semibold text-foreground">Comitato Ellerese</strong> è il cuore pulsante della comunità di Ellera - un gruppo di cittadini uniti dalla passione per il proprio territorio, impegnati ogni giorno a tenerlo vivo, a raccontarlo e a condividerlo.
+              Il <strong className="font-semibold text-foreground">Comitato Ellerese</strong> è l'associazione di volontariato del borgo di Ellera: un gruppo di residenti e amici del paese impegnati nella cura del territorio, nell'organizzazione delle feste tradizionali e nella manutenzione dei sentieri della valle.
             </p>
           </motion.div>
 
@@ -132,7 +132,7 @@ export default function ChiSiamo() {
             </div>
             <h2 className="text-2xl lg:text-3xl font-heading font-semibold text-foreground mb-1.5 lg:mb-3">Cosa Facciamo</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-sm lg:text-base hidden lg:block">
-              Trasformiamo l'amore per Ellera in azioni concrete - ogni settimana, tutto l'anno.
+              Lavoriamo per il borgo durante tutto l'anno, tra cura del verde, eventi e progetti per la comunità.
             </p>
           </motion.div>
 
