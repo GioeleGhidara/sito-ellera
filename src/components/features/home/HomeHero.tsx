@@ -1,24 +1,24 @@
-import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 
-import { Mountain, Palette, MapPin, ChevronDown, History } from "@/lib/icons";
+import { Mountain, Palette, ChevronDown, History } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
 import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
-import { elleraDalPonteImage } from "@/assets/images";
-
-const WeatherWidget = lazy(() => import("@/components/features/weather/WeatherWidget"));
+import { elleraDalPonteImage, elleraDalPonteMobileImage } from "@/assets/images";
 
 const HomeHero = () => {
   return (
     <section className="relative flex min-h-[85dvh] items-center justify-center overflow-hidden">
-      <img
-        src={elleraDalPonteImage}
-        alt="Il borgo di Ellera visto dal ponte sul Sansobbia"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        fetchpriority="high"
-      />
-      <div className="absolute inset-0 bg-gradient-hero" />
-
+      <picture className="absolute inset-0 h-full w-full">
+        <source media="(max-width: 768px)" srcSet={elleraDalPonteMobileImage} type="image/webp" />
+        <img
+          src={elleraDalPonteImage}
+          alt="Il borgo di Ellera visto dal ponte sul Sansobbia"
+          className="h-full w-full object-cover object-center"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
       <div className="absolute inset-0 bg-gradient-hero" />
 
       {/* Glossary Block - Perfectly centered in the Hero */}
