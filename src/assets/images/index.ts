@@ -7,7 +7,6 @@ export { default as albiTrailAreaLogo } from "./albi-trail/albi-trail-area.svg";
 
 export { default as heroImage } from "./home/hero_image.avif";
 export { default as elleraDalPonteImage } from "./home/elleraDalPonte.avif";
-export { default as elleraDalPonteMobileImage } from "./home/elleraDalPonteMobile.webp";
 export { default as lanternImage } from "./home/lantern.avif";
 export { default as tradizioniHeroImage } from "./tradizioni/hero-tradizioni.webp";
 export { default as gattoNeroImage } from "./tradizioni/gattoNero.avif";

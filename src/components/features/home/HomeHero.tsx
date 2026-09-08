@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { Mountain, Palette, ChevronDown, History } from "@/lib/icons";
 import { ROUTES } from "@/lib/routes";
 import { triggerHaptic, HAPTIC_PATTERNS } from "@/lib/haptics";
-import { elleraDalPonteImage, elleraDalPonteMobileImage } from "@/assets/images";
+import { elleraDalPonteImage } from "@/assets/images";
 
 const HomeHero = () => {
   return (
     <section className="relative flex min-h-[85dvh] items-center justify-center overflow-hidden">
       <picture className="absolute inset-0 h-full w-full">
-        <source media="(max-width: 768px)" srcSet={elleraDalPonteMobileImage} type="image/webp" />
+        <source media="(max-width: 768px)" srcSet="/images/home/elleraDalPonteMobile.webp" type="image/webp" />
         <img
           src={elleraDalPonteImage}
           alt="Il borgo di Ellera visto dal ponte sul Sansobbia"
